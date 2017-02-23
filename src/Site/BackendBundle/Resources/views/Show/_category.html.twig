@@ -1,0 +1,6 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+{% block field %}
+    {% if value %}
+        {{ value.title }}
+    {% endif %}
+{% endblock field %}

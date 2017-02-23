@@ -1,0 +1,8 @@
+{% extends admin.getTemplate('base_list_field') %}
+{% block field %}
+    {% if value and (value|json_decode.small is defined)  %}
+        <img class="poster-img" src="{{ asset(value|json_decode.small) }}"/>
+    {% else %}
+        <img class="poster-img" src="{{ asset('bundles/sitefrontend/images/main/no-image.png') }}">
+    {% endif %}
+{% endblock %}

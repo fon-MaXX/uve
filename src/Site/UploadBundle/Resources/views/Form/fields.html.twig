@@ -1,0 +1,332 @@
+{% extends 'form_div_layout.html.twig' %}
+{% block upbeat_upload_widget %}
+    {% spaceless %}
+        {% set type = type|default('hidden') %}
+        {% set class = file_type %}
+        {% set container = "container_"~id %}
+        <input param="{{ id }}" type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" class="{{ class }}" />
+        {% include template with {
+            name: name,
+            value: value,
+            class: class,
+            crop: crop,
+            crop_width: crop_width,
+            crop_height: crop_height,
+            token: secure_token,
+            id: id,
+            container: container
+        } %}
+        {% if use_plupload %}
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    var uploader{{ id }} = new plupload.Uploader({
+                        runtimes : 'html5,flash,silverlight,html4',
+                        browse_button : 'uploadFile_{{ id }}', // you can pass in id or DOM Element itself
+                        container: '{{ container }}',
+                        max_file_size : '10mb',
+                        url : '{{ path('site_upload_bundle_handle_file') }}',
+                        multi_selection: true,
+                        flash_swf_url : '{{ asset('bundles/siteupload/swf/plupload.flash.swf') }}',
+                        silverlight_xap_url : '{{ asset('bundles/siteupload/swf/plupload.silverlight.xap') }}',
+                        filters : [
+                            {title : "Image files", extensions : "{{ extensions }}"}
+                        ],
+                        multipart_params : {
+                            "type" : '{{ file_type }}',
+                            "field" : '{{ name }}',
+                            "secure_token" : '{{ secure_token }}'
+                        },
+                        init : {
+                            FilesAdded: function(up, files) {
+                                up.start();
+                                startFunction{{ id }}();
+                            },
+
+                            FileUploaded: function (up, files, response)
+                            {
+                                callbackFunction{{ id }}(response);
+                            },
+
+                            UploadComplete: function  ()
+                            {
+                                finalFunction{{ id }}();
+                            }
+                        }
+                    });
+                    uploader{{ id }}.init();
+                });
+            </script>
+        {% elseif use_jqueryupload %}
+            <script type="text/template" id="file-uploader-template">
+                <div class="uploader" data-dropzone="1" style="margin-top: 10px; margin-bottom: 10px">
+                    <div class="controls" style="margin-bottom: 20px">
+                        {# No name attribute please, that would cause it to submit with a regular form #}
+
+                        <input type="file" data-files="1" />
+                        <span class="spinner" data-spinner="1" style="display: none">
+            <img src="{{ asset('bundles/punkavefileuploader/images/spinner.gif') }}" /> Uploading...
+          </span>
+                    </div>
+                    <ul class="thumbnails" data-thumbnails="1">
+                        {# We populate the list via an API call #}
+                    </ul>
+                </div>
+            </script>
+            <style type="text/css">
+                .download.thumbnail-action.btn{
+                    background: url("{{ asset('bundles/siteupload/images/picto-download-warmgrey.svg') }}") center no-repeat;
+                    background-size: contain;
+                }
+                .delete.thumbnail-action.btn{
+                    background: url("{{ asset('bundles/siteupload/images/x.svg') }}") center no-repeat;
+                    background-size: contain;
+                }
+            </style>
+            {# parameters to underscore template: name, thumbnail_url, original_url #}
+            <script type="text/template" id="file-uploader-file-template">
+                <li data-name="<%- name %>" class="thumbnail">
+                    {# Some things can be thumbnailed, some things not #}
+                    <% if ('undefined' != typeof thumbnail_url) { %>
+                    <img src="<%- thumbnail_url %>" class="thumbnail-image" />
+                    <% } %>
+                    <div class="caption">
+                        <span class="filename"><%- name %></span>
+                        <a rel="tooltip" title="Download Original" class="download thumbnail-action btn" target="download" href="<%- url %>"><i class="icon-download"></i></a>
+                        {# ACHTUNG: data-action="delete" matters to javascript #}
+                        <a rel="tooltip" title="Delete" data-action="delete" class="delete thumbnail-action btn" href="#delete"><i class="icon-trash"></i></a>
+                    </div>
+                </li>
+            </script>
+            <script type="text/javascript">
+                function BigFileUploader(options)
+                {
+                    var self = this,
+                            uploadUrl = options.uploadUrl,
+                            viewUrl = options.viewUrl,
+                            inputId = options.id,
+                            $el = $(options.el),
+                            uploaderTemplate = _.template($.trim($('#file-uploader-template').html()));
+                    $el.html(uploaderTemplate({}));
+
+                    var fileTemplate = _.template($.trim($('#file-uploader-file-template').html())),
+                            editor = $el.find('[data-files="1"]'),
+                            thumbnails = $el.find('[data-thumbnails="1"]');
+
+                    self.uploading = false;
+                    self.errorCallback = 'errorCallback' in options ? options.errorCallback : function( info ) { if (window.console && console.log) { console.log(info) } },
+
+                            self.addExistingFiles = function(files)
+                            {
+                                _.each(files, function(file) {
+                                    var arr = file.split('/');
+                                    appendEditableImage({
+                                        // cmsMediaUrl is a global variable set by the underscoreTemplates partial of MediaItems.html.twig
+    //                                    'thumbnail_url': viewUrl + '/thumbnails/' + file,
+    //                                    'url': viewUrl + '/originals/' + file,
+    //                                    'name': file
+                                        'url': file,
+                                        'name': arr[arr.length-1]
+                                    });
+                                });
+                            };
+
+                    // Delay form submission until upload is complete.
+                    // Note that you are welcome to examine the
+                    // uploading property yourself if this isn't
+                    // quite right for you
+                    self.delaySubmitWhileUploading = function(sel)
+                    {
+                        $(sel).submit(function(e) {
+                            if (!self.uploading)
+                            {
+                                return true;
+                            }
+                            function attempt()
+                            {
+                                if (self.uploading)
+                                {
+                                    setTimeout(attempt, 100);
+                                }
+                                else
+                                {
+                                    $(sel).submit();
+                                }
+                            }
+                            attempt();
+                            return false;
+                        });
+                    };
+
+                    if (options.blockFormWhileUploading)
+                    {
+                        self.blockFormWhileUploading(options.blockFormWhileUploading);
+                    }
+
+                    if (options.existingFiles)
+                    {
+                        self.addExistingFiles(options.existingFiles);
+                    }
+
+
+                    if (options.addCallback)
+                        editor.bind('fileuploadadd', options.addCallback);
+                    if (options.submitCallback)
+                        editor.bind('fileuploadsubmit', options.submitCallback);
+                    if (options.sendCallback)
+                        editor.bind('fileuploadsend', options.sendCallback);
+                    if (options.doneCallback)
+                        editor.bind('fileuploaddone', options.doneCallback);
+                    if (options.failCallback)
+                        editor.bind('fileuploadfail', options.failCallback);
+                    if (options.alwaysCallback)
+                        editor.bind('fileuploadalways', options.alwaysCallback);
+                    if (options.progressCallback)
+                        editor.bind('fileuploadprogress', options.progressCallback);
+                    if (options.progressallCallback)
+                        editor.bind('fileuploadprogressall', options.progressallCallback);
+                    if (options.startCallback)
+                        editor.bind('fileuploadstart', options.startCallback);
+                    if (options.stopCallback)
+                        editor.bind('fileuploadstop', options.stopCallback);
+                    if (options.changeCallback)
+                        editor.bind('fileuploadchange', options.changeCallback);
+                    if (options.pasteCallback)
+                        editor.bind('fileuploadpaste', options.pasteCallback);
+                    if (options.dropCallback)
+                        editor.bind('fileuploaddrop', options.dropCallback);
+                    if (options.dragoverCallback)
+                        editor.bind('fileuploaddragover', options.dragoverCallback);
+                    if (options.chunksendCallback)
+                        editor.bind('fileuploadchunksend', options.chunksendCallback);
+                    if (options.chunkdoneCallback)
+                        editor.bind('fileuploadchunkdone', options.chunkdoneCallback);
+                    if (options.chunkfailCallback)
+                        editor.bind('fileuploadchunkfail', options.chunkfailCallback);
+                    if (options.chunkalwaysCallback)
+                        editor.bind('fileuploadchunkalways', options.chunkalwaysCallback);
+
+                    editor.fileupload({
+                        dataType: 'json',
+                        url: uploadUrl,
+                        dropZone: $el.find('[data-dropzone="1"]'),
+                        done: function (e, data) {
+                            if (data)
+                            {
+                                _.each(data.result, function(item) {
+                                    appendEditableImage(item);
+                                });
+                            }
+                        },
+                        start: function (e) {
+                            $el.find('[data-spinner="1"]').show();
+                            self.uploading = true;
+                        },
+                        stop: function (e) {
+                            $el.find('[data-spinner="1"]').hide();
+                            self.uploading = false;
+                        }
+                    });
+
+                    // Expects thumbnail_url, url, and name properties. thumbnail_url can be undefined if
+                    // url does not end in gif, jpg, jpeg or png. This is designed to work with the
+                    // result returned by the UploadHandler class on the PHP side
+                    function appendEditableImage(info)
+                    {
+                        if (info.error)
+                        {
+                            self.errorCallback(info);
+                            return;
+                        }
+                        var li = $(fileTemplate(info));
+                        var obj = $('#'+inputId);
+                        var objVal = obj.val();
+                        var continueFlag = true;
+                        if(objVal == ''){
+                            file = {};
+                        }
+                        else{
+                            file = $.parseJSON(objVal);
+                        }
+                        switch (info.type){
+                            case "image/jpeg":
+                            case "image/png":
+                            case "image/jpg":
+                                file = {
+                                    "name": info.name,
+                                    "medium_url": info.medium_url,
+                                    "small_url": info.small_url,
+                                    "thumbnail_url": info.thumbnail_url,
+                                    "file_type": info.type,
+                                    "path": info.url
+                                }; break;
+                            case "video/mp4":
+                                file = {
+                                    "file_type": 'video_mp4',
+                                    "name": info.name,
+                                    "path": info.url
+                                }; break;
+                            default:
+                                continueFlag = false;
+                                file = {
+    //                                "file_type": info.type,
+    //                                "name": info.name,
+    //                                "path": info.url
+                                    "default_file": info.url
+                                };
+                        }
+                        var arr = [];
+                        arr.push(JSON.stringify(file));
+                        if (continueFlag)
+                            obj.val(JSON.stringify(arr));
+                        li.find('[data-action="delete"]').click(function(event) {
+                            var file = $(this).closest('[data-name]');
+                            var name = file.attr('data-name');
+    //                        console.log(setQueryParameter(uploadUrl, 'file', name)); return;
+    //                        console.log($.parseJSON(obj.val()).default_file); return;
+                            $.ajax({
+                                type: 'delete',
+                                url: setQueryParameter(uploadUrl, 'file', name),
+                                success: function() {
+                                    file.remove();
+                                    if($.parseJSON(objVal)){
+                                        files = {'file':[]};
+                                        obj.val('');
+                                    }
+                                },
+                                dataType: 'json'
+                            });
+                            return false;
+                        });
+
+                        thumbnails.append(li);
+                    }
+
+                    function setQueryParameter(url, param, paramVal)
+                    {
+                        var newAdditionalURL = "";
+                        var tempArray = url.split("?");
+                        var baseURL = tempArray[0];
+                        var additionalURL = tempArray[1];
+                        var temp = "";
+                        if (additionalURL)
+                        {
+                            var tempArray = additionalURL.split("&");
+                            var i;
+                            for (i = 0; i < tempArray.length; i++)
+                            {
+                                if (tempArray[i].split('=')[0] != param )
+                                {
+                                    newAdditionalURL += temp + tempArray[i];
+                                    temp = "&";
+                                }
+                            }
+                        }
+                        var newTxt = temp + "" + param + "=" + encodeURIComponent(paramVal);
+                        var finalURL = baseURL + "?" + newAdditionalURL + newTxt;
+                        return finalURL;
+                    }
+                }
+            </script>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

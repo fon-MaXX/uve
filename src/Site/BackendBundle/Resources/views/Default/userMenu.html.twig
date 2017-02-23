@@ -1,0 +1,14 @@
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    <i class="fa fa-user fa-fw"></i>
+    {% if app.user   %}
+        {{ app.user.username }}
+    {% else %}
+        Anonimous
+    {% endif %}
+    <i class="fa fa-caret-down"></i>
+</a>
+{% if app.user  %}
+    <ul id="upbeat-user-menu" class="dropdown-menu">
+        <li class="upbeat-user-actions"><a href="{{ path('fos_user_security_logout') }}">Log Out</a></li>
+    </ul>
+{% endif %}

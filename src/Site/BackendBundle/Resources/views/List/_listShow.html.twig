@@ -1,0 +1,7 @@
+{% if admin.isGranted('VIEW', object) and admin.hasRoute('show') %}
+    <div>
+        <a href="{{ admin.generateObjectUrl('show', object) }}" class="btn btn-sm btn-default view_link" title="{{ 'action_show'|trans({}, 'SonataAdminBundle') }}">
+            <i class="glyphicon glyphicon-zoom-in"></i>
+        </a>
+    </div>
+{% endif %}

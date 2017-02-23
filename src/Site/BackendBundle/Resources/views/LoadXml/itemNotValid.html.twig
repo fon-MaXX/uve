@@ -1,0 +1,11 @@
+{% extends 'SiteBackendBundle::layout.html.twig' %}
+
+{% block sonata_admin_content %}
+    <h4>Загрузка данных в DB</h4>
+    {% block notice %}
+        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+    {% endblock notice %}
+    <div class="col-lg-12 xml-load-content">
+        <h4>{{ text }}</h4>
+    </div>
+{% endblock %}

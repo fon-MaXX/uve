@@ -1,0 +1,7 @@
+DirectoryIndex app.php
+
+<IfModule mod_rewrite.c>
+    Options -Indexes
+    RewriteEngine On
+    RewriteRule ^(.*)$ web/$1 [L,QSA]
+</IfModule>

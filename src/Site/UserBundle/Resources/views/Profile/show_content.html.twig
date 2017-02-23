@@ -1,0 +1,37 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="user-profile-tabs col-lg-12 col-sm-12 col-xs-12">
+    <ul class="nav nav-tabs">
+        <li data-id="uLogin" role="presentation" class="{{ (active == "uLogin")?"active" }}"><a href="javascript:void(0)">Идентификаторы uLogin</a></li>
+        <li data-id="edit" role="presentation" class="{{ (active == "edit")?"active" }}"><a href="javascript:void(0)">Редактировать</a></li>
+        <li data-id="show" role="presentation" class="{{ active == "show"?"active" }}"><a href="javascript:void(0)">Просмотр</a></li>
+    </ul>
+</div>
+<div class="col-lg-12 col-sm-12 col-xs-12 profile-tabs-wrapper">
+    <div class="col-lg-12 col-sm-12 col-xs-12 profile-tabs-wrapper-item {{ active == "uLogin"?"active" }}" data-id="uLogin">
+        {% include "SiteUserBundle:Profile/Parts:_uLogin.html.twig" with {'user':user} %}
+    </div>
+    <div class="col-lg-12 col-sm-12 col-xs-12 profile-tabs-wrapper-item {{ active == "edit"?"active" }}" data-id="edit">
+        {% include "SiteUserBundle:Profile/Parts:_edit.html.twig" with {
+        'user':user,
+        'form':form
+        } %}
+    </div>
+    <div class="col-lg-12 col-sm-12 col-xs-12 profile-tabs-wrapper-item {{ active == "show"?"active" }}" data-id="show">
+        {% include "SiteUserBundle:Profile/Parts:_show.html.twig" with {'user':user} %}
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.user-profile-tabs a,.profile-image-controls a.profile-edit-button').click(function(){
+            if($(this).parent().hasClass('active')){
+                return false;
+            }
+            var item=$(this).parent().attr('data-id');
+            $('.user-profile-tabs li').removeClass('active');
+            $('.profile-edit-button').parent().removeClass('active');
+            $('.profile-tabs-wrapper-item').removeClass('active');
+            $('[data-id='+item+']').addClass('active');
+        });
+    });
+</script>

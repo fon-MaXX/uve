@@ -1,0 +1,64 @@
+{% extends 'SiteBackendBundle::layout.html.twig' %}
+
+{% block sonata_admin_content %}
+    <h3>Загруженный xml-файл имеет ошибки</h3>
+    {% block notice %}
+        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+    {% endblock notice %}
+    <div class="col-lg-12 xml-load-content">
+        <div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        <h3>Строка</h3>
+                    </th>
+                    <th>
+                        <h3>Сообщение</h3>
+                    </th>
+                    <th>
+                        <h3>Код ошибки</h3>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for error in errors  %}
+                    <tr>
+                        <td>{{ error.line }}</td>
+                        <td>{{ error.message }}</td>
+                        <td>
+                            <label>{{ error.code }}</label>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{#---------------------breadcrumbs----------------------------------------#}
+{% block sonata_breadcrumb %}
+    {% if _breadcrumb is not empty or action is defined %}
+        <ol class="nav navbar-top-links breadcrumb">
+            {% if _breadcrumb is empty %}
+                {% if action is defined %}
+                    {% for menu in admin.breadcrumbs(action) %}
+                        {% if not loop.last  %}
+                            <li>
+                                {% if menu.uri is not empty %}
+                                    <a href="{{ menu.uri }}">{{ menu.label|raw }}</a>
+                                {% else %}
+                                    {{ menu.label }}
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <li class="active"><span>Load XML to DB</span></li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% else %}
+                {{ _breadcrumb|raw }}
+            {% endif %}
+        </ol>
+    {% endif %}
+{% endblock sonata_breadcrumb %}

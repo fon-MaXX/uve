@@ -1,0 +1,3 @@
+site_user_bundle_add_socials:
+    path:  /add-social-networks/
+    defaults: { _controller: SiteUserBundle:Profile:addSocials}

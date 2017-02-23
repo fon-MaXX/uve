@@ -1,0 +1,169 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block topSlider %}
+    <div id="main-top-slider">
+        <ul class="show-preload-li">
+            <li>
+                <div class="main-slider-wrapper">
+                    <div class="slider-text-wrapper">
+                        <p>Только <strong>3 дня</strong></br>
+                        скидка на обручальные</br>
+                        кольца</p>
+                    </div>
+                    <div class="slider-image-wrapper">
+                        <div class="slider-image-inner-wrapper">
+                            <img src="{{ asset('bundles/sitefrontend/images/main/slider-picture.jpg') }}"/>
+                        </div>
+                        <span class="top-slider-discount">
+                            -20%
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="main-slider-wrapper">
+                    <div class="slider-text-wrapper">
+                        <p>Только <strong>3 дня</strong></br>
+                            скидка на обручальные</br>
+                            кольца</p>
+                    </div>
+                    <div class="slider-image-wrapper">
+                        <div class="slider-image-inner-wrapper">
+                            <img src="{{ asset('bundles/sitefrontend/images/main/slider-picture.jpg') }}"/>
+                        </div>
+                        <span class="top-slider-discount">
+                            -20%
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="main-slider-wrapper">
+                    <div class="slider-text-wrapper">
+                        <p>Только <strong>3 дня</strong></br>
+                            скидка на обручальные</br>
+                            кольца</p>
+                    </div>
+                    <div class="slider-image-wrapper">
+                        <div class="slider-image-inner-wrapper">
+                            <img src="{{ asset('bundles/sitefrontend/images/main/slider-picture.jpg') }}"/>
+                        </div>
+                        <span class="top-slider-discount">
+                            -20%
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="main-slider-wrapper">
+                    <div class="slider-text-wrapper">
+                        <p>Только <strong>3 дня</strong></br>
+                            скидка на обручальные</br>
+                            кольца</p>
+                    </div>
+                    <div class="slider-image-wrapper">
+                        <div class="slider-image-inner-wrapper">
+                            <img src="{{ asset('bundles/sitefrontend/images/main/slider-picture.jpg') }}"/>
+                        </div>
+                        <span class="top-slider-discount">
+                            -20%
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="main-slider-wrapper">
+                    <div class="slider-text-wrapper">
+                        <p>Только <strong>3 дня</strong></br>
+                            скидка на обручальные</br>
+                            кольца</p>
+                    </div>
+                    <div class="slider-image-wrapper">
+                        <div class="slider-image-inner-wrapper">
+                            <img src="{{ asset('bundles/sitefrontend/images/main/slider-picture.jpg') }}"/>
+                        </div>
+                        <span class="top-slider-discount">
+                            -20%
+                        </span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div id="main-top-slider-pager">
+            <a data-slide-index="0" href=""></a>
+            <a data-slide-index="1" href=""></a>
+            <a data-slide-index="2" href=""></a>
+            <a data-slide-index="3" href=""></a>
+            <a data-slide-index="4" href=""></a>
+        </div>
+    </div>
+{% endblock topSlider %}
+{% block content %}
+    <div class="index-novels-block">
+        <div class="container">
+            {% include "@SiteFrontend/Parts/_index-product-block.html.twig" with {
+            'title': "Новинки"
+            } %}
+        </div>
+    </div>
+    <div class="index-popular-block">
+        <div class="container">
+            {% include "@SiteFrontend/Parts/_index-product-block.html.twig" with {
+                'title': "Популярные"
+            } %}
+        </div>
+    </div>
+    <div class="index-news-block">
+        <div class="container">
+            {% include "@SiteFrontend/Parts/_news_section.html.twig" %}
+        </div>
+    </div>
+    <div class="index-info-block-wrapper">
+        <div class="container">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding info-block-logo-wrapper">
+                <div class="info-block-logo"></div>
+            </div>
+            <div class="info-block-text-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                <h1>о магазине</h1>
+                <div class="info-block-text-inner-wrapper">
+                    <p>
+                        Добро пожаловать в наш интернет-магазин ювелирных украшений! У нас Вы найдете как изделия из серебра
+                        925 пробы, так и из золота 585 пробы.
+                    </p>
+                    <p>
+                        Особенность нашего интернет-магазина – «ЖИВЫЕ» ФОТОГРАФИИ. На фото Вы увидите как изделие выглядит
+                        «ВЖИВУЮ», и Вам не нужно переживать о том, будет ли заказанное Вами изделие соответствовать картинке
+                        или фотографии, обработанной компьютерными программами.
+                    </p>
+                    <p>
+                        Мы работаем в онлайн продажах с 2013 ГОДА, на сайте Вы можете найти ссылку на нашу группу Вконтакте,
+                        где большое количество отзывов о нашем магазине, товаре и фото покупок наших клиентов. Приятное
+                        профессиональное обслуживание, индивидуальный подход к каждому клиенту, доступные цены и высокое
+                        качество изделий – это главные принципы работы нашего интернет-магазина.
+                    </p>
+                    <p>
+                        Прислушиваясь к каждому клиенту, пожеланиям и предложениям, мы разработали БОЛЬШОЙ АССОРТИМЕНТ
+                        шикарных украшений, на любой вкус. Шагая в ногу со временем, мы стараемся не переставать удивлять
+                        Вас и заинтересовывать новинками.
+                    </p>
+                    <p>
+                        Все украшения, представленные на нашем сайте, выполнены из серебра 925 пробы, золота 585 пробы.
+                        Изделия проходят Государственную пробирную палату, имеют соответствующую пробу, ОПЛОМБИРОВАНЫ и
+                        ПРОБИРКОВАНЫ. Доставить Вам качественное изделие – для нас задача первой важности. Над изготовлением
+                        работает команда профессиональных мастеров, которые не устают вдохновлять своими творениями.
+                    </p>
+                    <p>
+                        Мы предлагаем удобные способы доставки и оплаты товара (подробнее читайте в разделе о доставке и
+                        оплате). Также Вы можете оставить заказ на ЛЮБОЙ РАЗМЕР КОЛЬЦА (даже если это редкий индивидуальный
+                        размер, или колечко на мизинец, к примеру). Любое изделие Вы можете заказать практически с ЛЮБЫМ
+                        ЦВЕТОМ КАМНЯ, а также с натуральными камнями.
+                    </p>
+                    <p>
+                        При высоком качестве, и большом разнообразии выбора, Вас приятно удивят наши ЦЕНЫ, которые
+                        значительно НИЖЕ чем в других интернет-магазинах и торговым точках. Теперь Вы можете радовать себя и
+                        своих близких, совершая покупку качественного товара по доступной цене.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

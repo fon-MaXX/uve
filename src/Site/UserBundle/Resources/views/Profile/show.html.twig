@@ -1,0 +1,24 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block header %}
+    {{ render(controller('SiteFrontendBundle:Default:header')) }}
+{% endblock header %}
+{% block container %}
+    {% include 'SiteFrontendBundle:Parts:top_slider.html.twig' %}
+    <div class="container margin-top-30 min-height-450">
+        {% include "FOSUserBundle:Profile:show_content.html.twig" with {'user': user,'form' : form,'active' : active} %}
+    </div>
+{% endblock container %}
+{% block footer %}
+    {{ render(controller('SiteFrontendBundle:Default:footer')) }}
+{% endblock footer %}
+{% block seoMeta %}
+    <title>{{ app.user.username~"||Aves-Auto" }}</title>
+{% endblock seoMeta %}
+{% block header_javascript %}
+    {{ parent() }}
+    {% include 'SiteUploadBundle:Default:scripts.html.twig' %}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% include 'SiteUploadBundle:Default:styles.html.twig' %}
+{% endblock %}

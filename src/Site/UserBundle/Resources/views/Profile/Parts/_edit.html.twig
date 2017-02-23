@@ -1,0 +1,97 @@
+<div class="col-lg-12 col-sm-12 col-xs-12 no-padding margin-bottom-50">
+    <form id="profile-edit-form" class="col-lg-12 col-sm-12 col-xs-12 no-padding" action="{{ path('fos_user_profile_edit') }}" method="post">
+        <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+            <div class="profile-edit-label col-lg-8">
+                {{ form_label(form.username) }}
+            </div>
+            <div class="profile-edit-input col-lg-8">
+                {{ form_widget(form.username) }}
+            </div>
+            {% if form.username.vars.valid==false %}
+                <div class="profile-edit-label profile-edit-error col-lg-8">
+                    {{ form_errors(form.username) }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+            <div class="profile-edit-label col-lg-8">
+                {{ form_label(form.email) }}
+            </div>
+            <div class="profile-edit-input col-lg-8">
+                {{ form_widget(form.email) }}
+            </div>
+            {% if form.email.vars.valid==false %}
+                <div class="profile-edit-label profile-edit-error col-lg-8">
+                    {{ form_errors(form.email) }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+            <div class="profile-edit-label col-lg-8">
+                {{ form_label(form.current_password) }}
+            </div>
+            <div class="profile-edit-input col-lg-8">
+                {{ form_widget(form.current_password) }}
+            </div>
+            {% if form.current_password.vars.valid==false %}
+                <div class="profile-edit-label profile-edit-error col-lg-8">
+                    {{ form_errors(form.current_password) }}
+                </div>
+            {% endif %}
+            <div class="profile-edit-description col-lg-8">
+                Введите Ваш текущий пароль для смены Email-адреса,пароля и других данных профиля.
+            </div>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+            <div class="profile-edit-label col-lg-8">
+                {{ form_label(form.avatar) }}
+            </div>
+            <div class="profile-edit-input col-lg-8">
+                {{ form_widget(form.avatar) }}
+            </div>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+            <div class="profile-edit-label col-lg-8">
+                {{ form_label(form.phone) }}
+            </div>
+            <div class="profile-edit-input col-lg-8">
+                <div class="col-lg-1 col-sm-1 col-xs-1 text-right no-padding profile-order-label-small">+38</div>
+                <div class="col-lg-11 col-sm-11 col-xs-11 profile-user-phone-input no-padding">{{ form_widget(form.phone) }}</div>
+            </div>
+            {% if form.phone.vars.valid==false %}
+                <div class="profile-edit-label profile-edit-error col-lg-8">
+                    {{ form_errors(form.phone) }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+            <div class="profile-edit-label col-lg-8">
+                {{ form_label(form.plainPassword.first) }}
+            </div>
+            <div class="profile-edit-input col-lg-8">
+                {{ form_widget(form.plainPassword.first) }}
+            </div>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+            <div class="profile-edit-label col-lg-8">
+                {{ form_label(form.plainPassword.second) }}
+            </div>
+            <div class="profile-edit-input col-lg-8">
+                {{ form_widget(form.plainPassword.second) }}
+            </div>
+        </div>
+        {% if form.plainPassword.vars.valid==false %}
+            <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+                <div class="profile-edit-label profile-edit-error col-lg-8">
+                    Введенные поароли не соответствуют друг другу
+                </div>
+            </div>
+        {% endif %}
+        <div class="display-none">
+            {{ form_rest(form) }}
+        </div>
+        <div class="col-lg-8 col-sm-12 col-xs-12 offset-top-20 no-padding">
+            <button id="profile-edit-submit-form" class="top-button" type="submit">{{ "сохранить"|upper }}</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,40 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block container %}
+    {% include 'SiteFrontendBundle:Parts:top_slider.html.twig' %}
+    <div class="container">
+        <div class="share-with-friends">
+            <p>ВОЙТИ С ПОМОЩЬЮ СОЦ. СЕТИ: </p>
+            <div class="share-with-friends-links">
+                <ul>
+                    <li>
+                        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="facebook-items"></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}" class="google-items"></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'vkontakte' }) }}" class="vk-items"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 form-wrap">
+                {% include 'SiteUserBundle:Registration:register_content.html.twig' %}
+            </div>
+        </div>
+    </div>
+<section class="full-width blue-section">
+    {{ render(controller('SiteFrontendBundle:FilmKit:skinSelection')) }}
+</section>
+{% endblock %}
+{% block header_javascript %}
+    {{ parent() }}
+    {% include 'SiteUploadBundle:Default:scripts.html.twig' %}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% include 'SiteUploadBundle:Default:styles.html.twig' %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'SonataAdminBundle:CRUD:list_outer_rows_mosaic.html.twig' %}
+
+{% block sonata_mosaic_background %}
+        {% if object.poster|json_decode is not null %}
+            {% for item in object.poster|json_decode %}
+                {% if item|json_detect %}
+                    <img class="product-mosaic-image" src="{{ item|json_decode.default_file }}">
+                {% else %}
+                    <img class="product-mosaic-image" src="{{ item }}">
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <img class="product-mosaic-image" src="{{ asset('bundles/sitefrontend/images/main/no-image.png') }}"  alt="no-image">
+        {% endif %}
+{% endblock %}

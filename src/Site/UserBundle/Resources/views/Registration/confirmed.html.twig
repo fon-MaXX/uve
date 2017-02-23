@@ -1,0 +1,18 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block header %}
+    {{ render(controller('SiteFrontendBundle:Default:header')) }}
+{% endblock header %}
+{% block container %}
+    <div class="container min-height-400">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3 class="text-center">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</h3>
+            {% if targetUrl %}
+                <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock container %}
+{% block footer %}
+    {{ render(controller('SiteFrontendBundle:Default:footer')) }}
+{% endblock footer %}

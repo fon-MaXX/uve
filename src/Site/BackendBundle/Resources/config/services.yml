@@ -1,0 +1,139 @@
+parameters:
+    xml_temp_upload_dir: "/uploads/xml-temp"
+    logger_save_dir: "/xml-files/"
+services:
+###############################################xml-load#################################################################
+    upbeat.xml.loader:
+        class: Site\BackendBundle\LoadXml\XmlLoader
+        arguments:
+            - "@service_container"
+
+    upbeat.xml.load.logger:
+        class: Site\BackendBundle\LoadXml\XmlLoaderLogger
+        arguments:
+            - "@service_container"
+
+    custom.event.xml_parse_error:
+        class: Site\BackendBundle\Exceptions\ExceptionListener
+        tags:
+            -
+              name: kernel.event_listener
+              event: kernel.exception
+              method: onKernelException
+        arguments:
+            container: "@service_container"
+###############################################end-xml-load#############################################################
+    site_backend.admin.product:
+        class: Site\BackendBundle\Admin\ProductAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\Product
+            - ~
+            - "@service_container"
+            - "@doctrine.orm.default_entity_manager"
+            - "@upbeat_file_upload.handler"
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "product", show_in_dashboard: true, label: product}
+        calls:
+            - [ setTemplate, [outer_list_rows_mosaic, SiteBackendBundle:ProductAdmin:list_outer_rows_mosaic.html.twig]]
+
+    site_backend.admin.set:
+        class: Site\BackendBundle\Admin\SetAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\Set
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "product", show_in_dashboard: true, label: set}
+
+    site_backend.admin.news:
+        class: Site\BackendBundle\Admin\NewsAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\News
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "news", show_in_dashboard: true, label: News}
+        calls:
+            - [ setTemplate, [outer_list_rows_mosaic, SiteBackendBundle:ProductAdmin:list_outer_rows_mosaic.html.twig]]
+
+    site_backend.admin.static.text:
+        class: Site\BackendBundle\Admin\StaticTextAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\StaticText
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "news", show_in_dashboard: true, label: StaticText}
+
+    site_backend.admin.insertion.color:
+        class: Site\BackendBundle\Admin\InsertionColorAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\InsertionColor
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: insertionColor}
+
+    site_backend.admin.share.tag:
+        class: Site\BackendBundle\Admin\ShareTagAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\ShareTag
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: shareTag}
+
+    site_backend.admin.ring.size:
+        class: Site\BackendBundle\Admin\RingSizeAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\RingSize
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: ringSize}
+
+    site_backend.admin.category:
+        class: Site\BackendBundle\Admin\CategoryAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\Category
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "category", show_in_dashboard: true, label: category}
+
+    site_backend.admin.sub.category:
+        class: Site\BackendBundle\Admin\SubCategoryAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\SubCategory
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "category", show_in_dashboard: true, label: subCategory}
+
+    site_backend.admin.order:
+        class: Site\BackendBundle\Admin\OrderAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\Order
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "order", show_in_dashboard: true, label: order}
+
+    site_backend.admin.xml.log:
+        class: Site\BackendBundle\Admin\XmlAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\XmlLoadLog
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm, show_in_dashboard: false, label: XmlLog}
+
+    site_backend.admin.load.xml:
+        class: Site\BackendBundle\Admin\XmlLoaderAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\XmlLoad
+            - SiteBackendBundle:XmlLoader
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "product", show_in_dashboard: true, label: loadFromFile}

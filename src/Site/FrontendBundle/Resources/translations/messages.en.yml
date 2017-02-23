@@ -1,0 +1,13 @@
+form:
+  empty.data: "Nothing selected"
+  order:
+    region: "Region"
+    city: "City"
+    warehouse: "Warehouse"
+    name: "Full name"
+    phone: "Phone number"
+    email: "E-mail"
+    comment: "Comment to order"
+    pay.type: "Pay type"
+    delivery.type: "Delivery type"
+car.select.form.empty.data: ''

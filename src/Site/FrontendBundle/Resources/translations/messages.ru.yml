@@ -1,0 +1,13 @@
+form:
+  empty.data: "Ничего не выбрано"
+  order:
+    region: "Область"
+    city: "Город"
+    warehouse: "Склад"
+    name: "Имя Фамилия"
+    phone: "Номер телефона"
+    email: "E-mail адрес"
+    comment: "Комментарии к заказу"
+    pay.type: "Способ оплаты"
+    delivery.type: "Способ доставки"
+car.select.form.empty.data: ''

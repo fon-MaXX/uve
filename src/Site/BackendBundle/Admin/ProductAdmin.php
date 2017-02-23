@@ -1,0 +1,310 @@
+<?php
+
+namespace Site\BackendBundle\Admin;
+
+use Site\BackendBundle\Entity\ShareTag;
+use Site\UploadBundle\UpbeatTraits\UpbeatUploadFilesAdminTrait;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Site\UploadBundle\Form\UpbeatUploadType;
+use Sonata\CoreBundle\Model\Metadata;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+class ProductAdmin extends AbstractAdmin
+{
+    use UpbeatUploadFilesAdminTrait;
+    /**
+     * @param string $code
+     * @param string $class
+     * @param string $baseControllerName
+     */
+    public function __construct($code, $class, $baseControllerName, $container = null,$entityManager = null,$fileHandler=null)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+        $this->container = $container;
+        $this->entityManager=$entityManager;
+        $this->fileHandler=$fileHandler;
+    }
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('id')
+            ->add('cod',null,[
+                'label'=>'field.cod'
+            ])
+            ->add('title',null,[
+                'label'=>'field.title'
+            ])
+        ;
+    }
+    /**
+     * @param ListMapper $listMapper
+     */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->add('id')
+            ->add('cod',null,[
+                'label'=>'field.cod'
+            ])
+            ->add('poster','text',[
+                'template'=>"SiteBackendBundle:List:_poster.html.twig",
+                'label'=>'field.poster'
+            ])
+            ->add('title',null,[
+                'label'=>'field.title'
+            ])
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'show' => [
+                        'template' => 'SiteBackendBundle:List:_listShow.html.twig'
+                    ],
+                    'edit' => [
+                        'template' => 'SiteBackendBundle:List:_listEdit.html.twig'
+                    ],
+                    'delete' => [
+                        'template' => 'SiteBackendBundle:List:_listDelete.html.twig'
+                    ],
+                ]
+            ])
+        ;
+    }
+
+    /**
+     * @param FormMapper $formMapper
+     */
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
+        $formMapper
+            ->with('SEO часть')
+            ->add('title','text',[
+                'required'=>true
+            ])
+            ->add('keywords','textarea', [
+                'attr' => [
+                    'class' => 'keywords-textarea'
+                ],
+                'required'=>false
+            ])
+            ->add('description','textarea',[
+                'required'=>false
+            ])
+            ->end()
+            ->with('Контентная часть')
+                ->add('cod','text',[
+                    'required'=>true,
+                    'label'=>'field.cod'
+                ])
+                ->add('subCategory', 'sonata_type_model', [
+                    'required' => false,
+                    'multiple'=>false,
+                    'expanded'=>false,
+                    'btn_add'=>false,
+                    'label'=>'field.category',
+                    'property' => 'title',
+    //                'empty_value' => '//---------------------//',
+                    'class' => 'SiteBackendBundle:SubCategory',
+                ])
+                ->add('shareTags', 'sonata_type_model', [
+                    'expanded' => false,
+                    'property'=>'title',
+                    'by_reference' => false,
+                    'query' => $em->getRepository('SiteBackendBundle:ShareTag')->getAllSortedByTitle(),
+                    'multiple' => true,
+                    'attr' => ['class' => 'multiSelect'],
+                    'label'=>'field.share_tag'
+                ])
+                ->add('state','text',[
+                    'label'=>"field.state"
+                ])
+                ->add('poster', UpbeatUploadType::class,[
+                    'file_type' => 'product_icon',
+                    'template'  => 'SiteBackendBundle:Upload:product_image.html.twig',
+                    'extensions' => 'jpg,gif,png',
+                    'label'=>'field.poster'
+                ])
+                ->add('shortcut', 'textarea', [
+                    'label'=>'field.shortcut',
+                    'attr' => [
+                        'class' => 'tinymce',
+                        'data-theme' => 'medium' // simple, advanced, bbcode
+                    ]
+                ])
+            ->end()
+            ->with("Свойства товара")
+                ->add('price',null,[
+                    'label'=>'field.price',
+                    'required'=>false
+                ])
+                ->add('sharePrice',null,[
+                    'label'=>'field.share_price',
+                    'required'=>false
+                ])
+                ->add('weight',null,[
+                    'label'=>'field.weight',
+                    'required'=>false
+                ])
+                ->add('metal',null,[
+                    'label'=>'field.metal',
+                    'required'=>false
+                ])
+                ->add('insertionType',null,[
+                    'label'=>'field.insertion_type',
+                    'required'=>false
+                ])
+                ->add('insertionShape',null,[
+                    'label'=>'field.insertion_shape',
+                    'required'=>false
+                ])
+                ->add('insertionParameters',null,[
+                    'label'=>'field.insertion_parameters',
+                    'required'=>false
+                ])
+                ->add('productParameters',null,[
+                    'label'=>'field.product_parameters',
+                    'required'=>false
+                ])
+                ->add('weavingType',null,[
+                    'label'=>'field.weaving_type',
+                    'required'=>false
+                ])
+                ->add('chainLength',null,[
+                    'label'=>'field.chain_length',
+                    'required'=>false
+                ])
+                ->add('covering',null,[
+                    'label'=>'field.covering',
+                    'required'=>false
+                ])
+                ->add('productType',null,[
+                    'label'=>'field.product_type',
+                    'required'=>false
+                ])
+                ->add('theme',null,[
+                    'label'=>'field.theme',
+                    'required'=>false
+                ])
+                ->add('manufacturer',null,[
+                    'label'=>'field.manufacturer',
+                    'required'=>false
+                ])
+                ->add('ringSizes', 'sonata_type_model', [
+                    'expanded' => false,
+                    'property'=>'title',
+                    'by_reference' => false,
+                    'query' => $em->getRepository('SiteBackendBundle:RingSize')->getAllSortedByTitle(),
+                    'multiple' => true,
+                    'attr'     => ['class' => 'multiSelect'],
+                    'label'=>'field.ring_sizes',
+                    'required'=>false
+                ])
+                ->add('insertionColors', 'sonata_type_model', [
+                    'expanded' => false,
+                    'property'=>'title',
+                    'by_reference' => false,
+                    'query' => $em->getRepository('SiteBackendBundle:InsertionColor')->getAllSortedByTitle(),
+                    'multiple' => true,
+                    'attr'     => ['class' => 'multiSelect'],
+                    'label'=>'field.insertion_colors',
+                    'required'=>false
+                ])
+            ->end()
+        ;
+    }
+
+    /**
+     * @param ShowMapper $showMapper
+     */
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('title')
+            ->add('keywords')
+            ->add('description')
+            ->add('cod','text',[
+                'label'=>'field.cod'
+            ])
+            ->add('subCategory', 'text', [
+                'label'=>'field.category',
+                'template'=>'SiteBackendBundle:Show:_category.html.twig'
+                ])
+            ->add('shareTags', 'text', [
+                'label'=>'field.share_tag',
+                'template'=>"SiteBackendBundle:Show:_tag.html.twig"
+            ])
+            ->add('state','text',[
+                'label'=>"field.state"
+            ])
+            ->add('poster', 'text',[
+                'template'  => 'SiteBackendBundle:Show:_poster.html.twig',
+                'label'=>'field.poster'
+            ])
+            ->add('shortcut', 'textarea', [
+                'label'=>'field.shortcut',
+                'template'=>"SiteBackendBundle:Show:_text.html.twig"
+            ])
+            ->add('price',null,[
+                'label'=>'field.price',
+            ])
+            ->add('sharePrice',null,[
+                'label'=>'field.share_price',
+            ])
+            ->add('weight',null,[
+                'label'=>'field.weight',
+            ])
+            ->add('metal',null,[
+                'label'=>'field.metal',
+            ])
+            ->add('insertionType',null,[
+                'label'=>'field.insertion_type',
+            ])
+            ->add('insertionShape',null,[
+                'label'=>'field.insertion_shape',
+            ])
+            ->add('insertionParameters',null,[
+                'label'=>'field.insertion_parameters',
+            ])
+            ->add('productParameters',null,[
+                'label'=>'field.product_parameters',
+            ])
+            ->add('weavingType',null,[
+                'label'=>'field.weaving_type',
+            ])
+            ->add('chainLength',null,[
+                'label'=>'field.chain_length',
+            ])
+            ->add('covering',null,[
+                'label'=>'field.covering',
+            ])
+            ->add('productType',null,[
+                'label'=>'field.product_type',
+            ])
+            ->add('theme',null,[
+                'label'=>'field.theme',
+            ])
+            ->add('manufacturer',null,[
+                'label'=>'field.manufacturer',
+            ])
+            ->add('ringSizes', 'sonata_type_model', [
+                'template'=>"SiteBackendBundle:Show:_tag.html.twig",
+                'label'=>'field.ring_sizes',
+            ])
+            ->add('insertionColors', 'sonata_type_model', [
+                'label'=>'field.insertion_colors',
+                'template'=>"SiteBackendBundle:Show:_tag.html.twig",
+            ])
+        ;
+    }
+    public function getObjectMetadata($object)
+    {
+        $url = $this->generateUrl('create');
+
+        return new Metadata($object->getTitle(), $object->getShortcut(), $url);
+    }
+}

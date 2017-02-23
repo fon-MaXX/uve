@@ -1,0 +1,265 @@
+<h1 class="text-left">Личный кабинет</h1>
+<div class="col-lg-3 col-sm-6 col-xs-6 no-padding">
+    <div class="profile-image-outer-wrapper">
+        <div class="image-inner-wrapper">
+            <img src="{{ (user.avatar|length and  (user.avatar|json_decode.small is defined)) ? user.avatar|json_decode.small : asset('bundles/sitebackend/images/noimage.jpg')}}"/>
+        </div>
+    </div>
+    <div class="col-lg-12 col-sm-12 col-xs-12 no-padding profile-image-controls">
+        <div data-id="edit" class="col-lg-5 col-sm-6 col-xs-6 no-padding">
+            <a class="top-button profile-edit-button" href="javascript:void(0)">Редактировать</a>
+        </div>
+        <div class="col-lg-7 col-sm-6 col-xs-6 no-padding">
+            <a class="top-button profile-logout" href="{{ url('fos_user_security_logout') }}">Выход</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-6 col-xs-6 no-padding profile-user-data">
+    <p><label>Имя:</label> {{ user.username }}</p>
+    <p><label>Email:</label> {{ user.email }}</p>
+    <p><label>Телефон:</label> {{ user.phone }}</p>
+</div>
+<div class="col-lg-5 col-sm-12 col-xs-12 col-lg-offset-1 col-sm-offset-0 no-padding">
+    <h2 class="profile-history-title">История заказов</h2>
+    <table class="table table-responsive profile-order-history">
+        <thead>
+            <tr>
+                <th>
+                    номер
+                </th>
+                <th>
+                    дата
+                </th>
+                <th>
+                    сумма
+                </th>
+                <th>
+                    статус
+                </th>
+            </tr>
+        </thead>
+        {% if user.orders|length %}
+            <tbody>
+                {% for item in user.orders  %}
+                    <tr>
+                        <td>
+                            <a href="#{{ item.id }}" style="color: #fff;">{{ item.id }}</a>
+                        </td>
+                        <td>
+                            {{ item.createdAt|date("Y-d-m H:i:s") }}
+                        </td>
+                        <td>
+                            {{ item.sum|round(0, 'ceil')~" грн" }}
+                        </td>
+                        <td>
+                            {{ item.state|trans }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+    </table>
+</div>
+{% if user.orders|length %}
+    {% for item in user.orders  %}
+        <div class="col-lg-12 col-sm-12 col-xs-12 no-padding margin-bottom-50">
+            <h2 id="{{ item.id }}" class="profile-orders-list text-center">Номер заказа: {{ item.id }}</h2>
+            <table class="table table-bordered table-responsive text-center profile-order-item">
+                <thead>
+                    <tr>
+                        <th>артикул</th>
+                        <th></th>
+                        <th>наименование товара</th>
+                        <th>категория</th>
+                        <th>кол-во</th>
+                        <th>цена</th>
+                        <th>сумма</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if item.orderHasProducts|length %}
+                        {% for productOrder in item.orderHasProducts %}
+                            <tr>
+                                <td>
+                                    {{ productOrder.product.code }}
+                                </td>
+                                <td>
+                                    <img class="profile-order-poster" src="{{ productOrder.product.poster|length? productOrder.product.poster|json_decode.small : null }}"/>
+                                </td>
+                                <td>
+                                    {% set category = productOrder.product.category %}
+                                    {% if category.firstParentSlug|length %}
+                                        {% set path = path("site_frontend_product_sub_category_list", {"parent_slug":category.firstParentSlug,"slug": category.slug}) %}
+                                        {% set productPath = path('site_frontend_product_show', {
+                                        'slug' : productOrder.product.slug,
+                                        'parent_slug':category.firstParentSlug,
+                                        'sub_slug': category.slug
+                                        }) %}
+                                    {% else %}
+                                        {% set path = path("site_frontend_product_category_list", {"slug": category.slug}) %}
+                                        {% set productPath = path('site_frontend_product_show', {
+                                        'slug' : productOrder.product.slug,
+                                        'parent_slug':category.slug,
+                                        'sub_slug': category.slug
+                                        }) %}
+                                    {% endif %}
+                                    <a href="{{ productPath }}">
+                                    {{ productOrder.product.title }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path }}">
+                                        {{ productOrder.product.category.title }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ productOrder.number }}
+                                </td>
+                                <td>
+                                    {{ productOrder.productPrice~" грн" }}</br>
+                                    {% if productOrder.priceType == 'roll' %}
+                                        {{ "за 1 руллон" }}
+                                    {% elseif productOrder.priceType == 'meter' %}
+                                        {{ "за 1 м.пог." }}
+                                    {% else %}
+                                        {{ "за 1 шт." }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ (productOrder.productPrice*productOrder.number)|round(0, 'ceil')~" грн" }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    {% if item.filmKits|length %}
+                        {% for filmkitOrder in item.filmKits %}
+                            <tr>
+                                <td>
+                                    {{ filmkitOrder.id }}
+                                </td>
+                                <td>
+                                    <img class="profile-order-poster" src="{{ filmkitOrder.filmkit.car.image|length ? filmkitOrder.filmkit.car.image|json_decode['small'] }}" alt="{{ filmkitOrder.filmkit.car.imageAlt }}">
+                                </td>
+                                <td>
+                                    {{ filmkitOrder.filmKitVendor.title~" на "~filmkitOrder.filmkit.car.model.manufacturer~" "~filmkitOrder.filmkit.car.productionAge  }}
+                                </td>
+                                <td>
+                                    {{ filmkitOrder.filmkit.title }}
+                                </td>
+                                <td>
+                                    {{ filmkitOrder.number }}
+                                </td>
+                                <td>
+                                    {{ filmkitOrder.filmkitPrice }}</br>за 1 набор
+                                </td>
+                                <td>
+                                    {{ filmkitOrder.filmkitPrice*filmkitOrder.number|round(0, 'ceil')~" грн" }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    {% if item.tintingFilmKits|length %}
+                        {% for tintingFilmkitOrder in item.tintingFilmKits %}
+                            <tr>
+                                <td>
+                                    {{ tintingFilmkitOrder.id }}
+                                </td>
+                                <td>
+                                    <img class="profile-order-poster" src="{{ tintingFilmkitOrder.filmkit.car.image|length ? tintingFilmkitOrder.filmkit.car.image|json_decode['small'] }}" alt="{{ tintingFilmkitOrder.filmkit.car.imageAlt }}">
+                                </td>
+                                <td>
+                                    {{ tintingFilmkitOrder.tintingFilmKitVendor.title~" на "~tintingFilmkitOrder.filmkit.car.model.manufacturer~" "~tintingFilmkitOrder.filmkit.car.productionAge  }}
+                                </td>
+                                <td>
+                                    {{ tintingFilmkitOrder.filmkit.title }}
+                                </td>
+                                <td>
+                                    {{ tintingFilmkitOrder.number }}
+                                </td>
+                                <td>
+                                    {{ tintingFilmkitOrder.filmkitPrice|round(0, 'ceil') }}</br>за 1 набор
+                                </td>
+                                <td>
+                                    {{ (tintingFilmkitOrder.filmkitPrice*tintingFilmkitOrder.number)|round(0, 'ceil')~" грн" }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+            <div class="col-lg-12 col-sm-12 col-xs-12 text-right">
+                <span class="profile-order-sum">
+                    <label>Всего:</label>{{ item.sum|round(0, 'ceil')~" грн" }}
+                </span>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-xs-12">
+                <h3 class="uppercase">контактные данные</h3>
+                <div class="profile-order-label no-padding col-lg-11 col-sm-12 col-xs-12">
+                    Имя Фамилия
+                </div>
+                <div class="profile-order-input col-lg-11 col-sm-12 col-xs-12">
+                    {{ item.username }}
+                </div>
+                <div class="profile-order-label no-padding col-lg-11 col-sm-12 col-xs-12">
+                    Номер телефона
+                </div>
+                <div class="col-lg-11 col-sm-12 col-xs-12 no-padding">
+                    <div class="col-lg-1 col-sm-1 col-xs-1 text-right no-padding profile-order-label-small">+3</div>
+                    <div class="col-lg-11 col-sm-11 col-xs-11 padding-5 profile-order-input">
+                        {{ item.phone|slice(2,item.phone|length) }}
+                    </div>
+                </div>
+                <div class="profile-order-label col-lg-11 col-sm-12 col-xs-12 no-padding">
+                    E-mail адрес
+                </div>
+                <div class="profile-order-input col-lg-11 col-sm-12 col-xs-12">
+                    {{ item.email }}
+                </div>
+                <div class="profile-order-label no-padding col-lg-11 col-sm-12 col-xs-12">
+                    Комментарии к заказу
+                </div>
+                <div class="profile-order-input col-lg-11 col-sm-12 col-xs-12 profile-order-textarea">
+                    {{ item.comment }}
+                </div>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-xs-12 col-lg-offset-2 col-sm-offset-0 ">
+                <h3 class="uppercase">оплата и доставка</h3>
+                <div class="profile-order-label col-lg-11 col-sm-12 col-xs-12">
+                    Способ оплаты
+                </div>
+                <div class="profile-order-input col-lg-11 col-sm-12 col-xs-12">
+                    {{ item.payType.title }}
+                </div>
+                <div class="profile-order-label col-lg-11 col-sm-12 col-xs-12 padding-5 profile-order-description">
+                    {{ item.payType.text }}
+                </div>
+                <div class="profile-order-label  no-padding offset-top-20 col-lg-11 col-sm-12 col-xs-12">
+                    Способ доставки
+                </div>
+                <div class="profile-order-input col-lg-11 col-sm-12 col-xs-12">
+                    {{ item.deliveryProviders[item.deliveryType] }}
+                </div>
+                {% if item.deliveryType=='new-post' %}
+                    <div class="col-lg-11 col-sm-12 col-xs-12 no-padding offset-top-20">
+                        <div class="col-lg-3 col-sm-3 col-xs-3 text-left no-padding profile-order-label">Область</div>
+                        <div class="col-lg-9 col-sm-9 col-xs-9 profile-order-input no-padding">
+                            {{ item.novaPoshtaData?item.novaPoshtaData.regionName:'' }}
+                        </div>
+                    </div>
+                    <div class="col-lg-11 col-sm-12 col-xs-12 no-padding offset-top-20">
+                        <div class="col-lg-3 col-sm-3 col-xs-3 text-left no-padding profile-order-label">Город</div>
+                        <div class="col-lg-9 col-sm-9 col-xs-9 profile-order-input no-padding">
+                            {{ item.novaPoshtaData?item.novaPoshtaData.cityName:'' }}
+                        </div>
+                    </div>
+                    <div class="col-lg-11 col-sm-12 col-xs-12 no-padding offset-top-20">
+                        <div class="col-lg-3 col-sm-3 col-xs-3 text-left no-padding profile-order-label">Отдел</div>
+                        <div class="col-lg-9 col-sm-9 col-xs-9 profile-order-input no-padding">
+                            {{ item.novaPoshtaData?item.novaPoshtaData.warehouseName:'' }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}

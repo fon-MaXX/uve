@@ -1,0 +1,19 @@
+{% extends admin.getTemplate('base_list_field') %}
+{% block field %}
+    {% if value %}
+        <table class="table-bordered cover-list-table">
+            {% for item in value %}
+                <tr>
+                    <td>
+                        <a target="_blank" href="{{ url('admin_site_backend_product_show',{'id':item.id}) }}">
+                            <p>
+                                {{ item.title }}
+                            </p>
+                            <img class="poster-img" src="{{ item.poster ? item.poster|json_decode.small : asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

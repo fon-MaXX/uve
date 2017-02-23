@@ -1,0 +1,24 @@
+services:
+    site.form.registration:
+        class: Site\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: site_user_registration }
+        arguments:
+            - "%fos_user.model.user.class%"
+
+    user_bundle.profile.form.factory:
+        class: Site\UserBundle\Form\Factory\FormFactory
+        arguments:
+          - "@form.factory"
+          - "user_bundle_profile_form_type"
+          - "user_bundle_profile_form_type"
+          - "%fos_user.profile.form.validation_groups%"
+
+    user.bundle.profile.form.type:
+        class: Site\UserBundle\Form\Type\ProfileFormType
+        arguments:
+          - "%fos_user.model.user.class%"
+        tags:
+          -
+            name: "form.type"
+            alias: "user_bundle_profile_form_type"

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7f0a2cd4-5cfc-4c5d-9894-284408e660d8" name="upbeat" url="http://zhitom01.ftp.ukraine.com.ua">
+        <fileTransfer host="zhitom01.ftp.ukraine.com.ua" port="21" password="df8bdfcfdf9ddf93dfc7dffadf93dfe9df8fdfc9" username="zhitom01">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

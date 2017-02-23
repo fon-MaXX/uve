@@ -1,0 +1,157 @@
+<ul class="sidebar-menu">
+    {% set admin = admin_pool.adminByAdminCode('site_backend.admin.product') %}
+    {% if admin.isGranted('LIST') or admin.isGranted('CREATE') %}
+        <li class="first last treeview">
+            <a href="#">
+                <i class="fa  fa-superpowers "></i>
+                <span>Товары</span>
+                <span class="pull-right-container">
+                    <i class="fa pull-right fa-angle-left"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu menu_level_1 menu-open">
+                {% if admin.isGranted('LIST') %}
+                    <li class="first last">
+                        <a href="{{ url("admin_site_backend_product_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Список</a>
+                    </li>
+                {% endif %}
+                {% if admin.isGranted('CREATE') %}
+                    <li class="first last">
+                        <a href="{{ url("admin_site_backend_product_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Добавить новый</a>
+                    </li>
+                    <li class="first last">
+                        <a href="{{ url("admin_site_backend_xmlload_loadXml") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Загрузить с файла</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+    {% set admin = admin_pool.adminByAdminCode('site_backend.admin.set') %}
+    {% if admin.isGranted('LIST') or admin.isGranted('CREATE') %}
+        <li class="first last treeview">
+            <a href="#">
+                <i class="fa  fa-cubes "></i>
+                <span>Наборы</span>
+                <span class="pull-right-container">
+                    <i class="fa pull-right fa-angle-left"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu menu_level_1 menu-open">
+                {% if admin.isGranted('LIST') %}
+                    <li class="first last">
+                        <a href="{{ url("admin_site_backend_set_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Список</a>
+                    </li>
+                {% endif %}
+                {% if admin.isGranted('CREATE') %}
+                    <li class="first last">
+                        <a href="{{ url("admin_site_backend_set_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Добавить новый</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+    {% set admin = admin_pool.adminByAdminCode('site_backend.admin.order') %}
+    {% if admin.isGranted('LIST') %}
+        <li class="first last treeview">
+            <a href="{{ url("admin_site_backend_order_list") }}">
+                <i class="fa  fa-shopping-bag"></i>
+                <span>Заказы</span>
+            </a>
+        </li>
+    {% endif %}
+    {% set admin = admin_pool.adminByAdminCode('site_backend.admin.news') %}
+    {% if admin.isGranted('LIST') %}
+        <li class="first last treeview">
+            <a href="{{ url("admin_site_backend_news_list") }}">
+                <i class="fa  fa-file"></i>
+                <span>Новости</span>
+            </a>
+        </li>
+    {% endif %}
+    {% set admin = admin_pool.adminByAdminCode('site_backend.admin.static.text') %}
+    {% if admin.isGranted('LIST') %}
+        <li class="first last treeview">
+            <a href="{{ url("admin_site_backend_statictext_list") }}">
+                <i class="fa  fa-file-text-o"></i>
+                <span>Статический контент</span>
+            </a>
+        </li>
+    {% endif %}
+    <li class="first last treeview">
+        <a href="#">
+            <i class="fa   fa-tags"></i>
+            <span>Теги</span>
+            <span class="pull-right-container">
+                <i class="fa pull-right fa-angle-left"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu menu_level_1 menu-open">
+            <li class="first last">
+                <a href="{{ url("admin_site_backend_insertioncolor_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Цвет вставки список</a>
+            </li>
+            <li class="first last">
+                <a href="{{ url("admin_site_backend_insertioncolor_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Цвет вставки добавить</a>
+            </li>
+            <li class="first last">
+                <a href="{{ url("admin_site_backend_ringsize_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Размер кольца список</a>
+            </li>
+            <li class="first last">
+                <a href="{{ url("admin_site_backend_ringsize_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Размер кольца добавить</a>
+            </li>
+            <li class="first last">
+                <a href="{{ url("admin_site_backend_sharetag_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Теги продаж список</a>
+            </li>
+            <li class="first last">
+                <a href="{{ url("admin_site_backend_sharetag_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Теги продаж добавить</a>
+            </li>
+        </ul>
+    </li>
+    {% set admin = admin_pool.adminByAdminCode('site_backend.admin.category') %}
+    {% if admin.isGranted('LIST') or admin.isGranted('CREATE') %}
+        <li class="first last treeview">
+            <a href="#">
+                <i class="fa  fa-list "></i>
+                <span>Категории</span>
+                <span class="pull-right-container">
+                    <i class="fa pull-right fa-angle-left"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu menu_level_1 menu-open">
+                {% if admin.isGranted('LIST') %}
+                    <li class="first last">
+                        <a href="{{ url("admin_site_backend_category_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Список категорий</a>
+                    </li>
+                {% endif %}
+                {% if admin.isGranted('CREATE') %}
+                    <li class="first last">
+                        <a href="{{ url("admin_site_backend_category_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Добавить категорию</a>
+                    </li>
+                {% endif %}
+                {% set admin = admin_pool.adminByAdminCode('site_backend.admin.sub.category') %}
+                {% if admin.isGranted('LIST') %}
+                    <li class="first last">
+                        <a href="{{ url("admin_site_backend_subcategory_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Список подкатегорий</a>
+                    </li>
+                {% endif %}
+                {% if admin.isGranted('CREATE') %}
+                    <li class="first last">
+                        <a href="{{ url("admin_site_backend_subcategory_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Добавить подкатегорию</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+    {% set admin = admin_pool.adminByAdminCode('site_backend.admin.xml.log') %}
+    {% if admin.isGranted('LIST') %}
+        <li class="first last treeview">
+            <a href="{{ url("admin_site_backend_xmlloadlog_list") }}">
+                <i class="fa   fa-file-excel-o"></i>
+                <span>Лог заргузок из файла</span>
+            </a>
+        </li>
+    {% endif %}
+</ul>
+
+
+
+

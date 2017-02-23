@@ -1,0 +1,47 @@
+<div class="col-lg-5 col-sm-12 col-xs-12 col-lg-offset-1 col-sm-offset-0 no-padding">
+    <h2 class="profile-history-title">Активирован вход через:</h2>
+    <table class="table table-responsive profile-order-history">
+        <thead>
+        <tr>
+            <th>
+                Vkontakte
+            </th>
+            <th>
+                Facebook
+            </th>
+            <th>
+                Google
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                {{ app.user.vkontakteId ? "да" : "нет" }}
+            </td>
+            <td>
+                {{ app.user.facebookId ? "да" : "нет" }}
+            </td>
+            <td>
+                {{ app.user.googleId ? "да" : "нет" }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="share-with-friends col-lg-5 col-sm-12 col-xs-12 col-lg-offset-1 col-sm-offset-0 margin-top-30 no-padding">
+    <p>ДОБАВИТЬ СОЦ. СЕТИ: </p>
+    <div class="share-with-friends-links">
+        <ul>
+            <li>
+                <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="facebook-items"></a>
+            </li>
+            <li>
+                <a href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}" class="google-items"></a>
+            </li>
+            <li>
+                <a href="{{ path('hwi_oauth_service_redirect', {'service': 'vkontakte' }) }}" class="vk-items"></a>
+            </li>
+        </ul>
+    </div>
+</div>
