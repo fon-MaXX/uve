@@ -24,7 +24,7 @@
     font-style: normal;
 }
 @font-face {
-    font-family: 'MullerboldItalic';
+    font-family: 'MullerBoldItalic';
     src: url('../fonts/muller/MullerBoldItalic/fontfabric_-_mullerbolditalic-webfont.woff2') format('woff2'),
     url('../fonts/muller/MullerBoldItalic/fontfabric_-_mullerbolditalic-webfont.woff') format('woff'),
     url('../fonts/muller/MullerBoldItalic/fontfabric_-_mullerbolditalic-webfont.ttf') format('truetype');
@@ -121,7 +121,7 @@
     font-style: normal;
 }
 @font-face {
-    font-family: 'MullerRegularregular';
+    font-family: 'MullerRegular';
     src: url('../fonts/muller/MullerRegular/fontfabric_-_mullerregular-webfont.woff2') format('woff2'),
     url('../fonts/muller/MullerRegular/fontfabric_-_mullerregular-webfont.woff') format('woff'),
     url('../fonts/muller/MullerRegular/fontfabric_-_mullerregular-webfont.ttf') format('truetype');
@@ -226,6 +226,7 @@ body .no-padding{
     height:190px;
     background-color: #fff;
     transition: 0.3s;
+    border:0;
 }
 .navbar-head-top-section-wrapper{
     width:100%;
@@ -394,9 +395,9 @@ body .no-padding{
     content:" ";
     background-image: url("../images/main/icons-sprite.svg");
     background-position: 0 0;
-    background-size: 30px auto;
+    background-size: 60px auto;
     width:30px;
-    height:30px;
+    height:32px;
     margin-left: 20px;
     position: absolute;
     top:50%;
@@ -433,8 +434,8 @@ body .no-padding{
     width: 60px;
     height: 60px;
     background-image: url("../images/main/icons-sprite.svg");
-    background-size: 65px auto;
-    background-position: -2px 305px;
+    background-size: 130px auto;
+    background-position: -2px 300px;
     background-color: #006EAA;
     border-radius: 60px;
 }
@@ -678,8 +679,8 @@ div.laptop-menu-content-wrapper.open {
     display: inline-block;
     width: 45px;
     height: 45px;
-    background-size: 67px auto;
-    background-position: -10px 305px;
+    background-size: 134px auto;
+    background-position: -10px 300px;
     background-color: #006EAA;
     border-radius: 45px;
 }
@@ -718,8 +719,11 @@ div.laptop-menu-content-wrapper.open {
     content: "";
     background-image: url("../images/main/icons-sprite.svg");
     background-position: 0 115px;
-    background-size: 100% auto;
+    background-size: 200% auto;
     float:left;
+}
+.fixed-scroll-logo:hover{
+    background-position: 100% 115px;
 }
 .fixed-content-wrapper-active{}
 /**************************************END-HEADER-SECTION****************************************************************/
@@ -771,8 +775,8 @@ div.laptop-menu-content-wrapper.open {
     width: 70px;
     height: 70px;
     background-image: url("../images/main/icons-sprite.svg");
-    background-size: 100% auto;
-    background-position: 0 405px;
+    background-size: 200% auto;
+    background-position: 0 399px;
 }
 .footer-logo-subscribe {
     font-size: 17px;
@@ -824,7 +828,7 @@ div.laptop-menu-content-wrapper.open {
     content: " ";
     position: absolute;
     background-image: url("../images/main/icons-sprite.svg");
-    background-size: 100% auto;
+    background-size: 200% auto;
     background-position: 0 0;
     right:45%;
 }
@@ -876,21 +880,21 @@ div.laptop-menu-content-wrapper.open {
 .footer-email:before,
 .footer-skype:before{
     width:25px;
-    height: 24px;
+    height: 23px;
     display: block;
     position: absolute;
     content: " ";
     right:55%;
     background-image: url("../images/main/icons-sprite.svg");
-    background-size: 100% auto;
+    background-size: 200% auto;
     top:50%;
     margin-top: -12px;
 }
 .footer-email:before{
-    background-position: 0 192px;
+    background-position: 0 189px;
 }
 .footer-skype:before{
-    background-position: 0 169px;
+    background-position: 0 165px;
 }
 /**************************************END-FOOTER-SECTION**************************************************************/
 /**************************************MAIN-SLIDER-SECTION*************************************************************/
@@ -1066,7 +1070,7 @@ div.laptop-menu-content-wrapper.open {
     text-align: center;
 }
 .news-preview-inner-wrapper img {
-    height: 260px;
+    height: 265px;
     /*max-height: 350px;*/
 }
 .news-image-subscription{
@@ -1391,8 +1395,8 @@ body .index-product-input{
     left: 0;
     top:100%;
     padding:0;
-    font-size: 9pt;
-    font-family: MullerThin;
+    font-size: 8pt;
+    font-family: MullerRegular;
     opacity: 0;
     transition: opacity 0.3s,box-shadow 0.3s;
     background-color: #fff;
@@ -1413,17 +1417,17 @@ body .index-product-input{
 /*}*/
 .index-product-item:hover .index-product-shortcut-wrapper{
     opacity: 1;
-    padding:15px;
+    padding:15px 10px;
     height: unset;
     overflow: visible;
-    z-index: 10;
+    z-index: 11;
     transition: opacity 0.3s,box-shadow 0.3s;
     -webkit-box-shadow: 2px 0 3px 0 rgba(4, 4, 4, 0.1), -2px 0 3px 0 rgba(4, 4, 4, 0.1),0 2px 3px 0 rgba(4, 4, 4, 0.1);
     -moz-box-shadow:    2px 0 3px 0 rgba(4, 4, 4, 0.1), -2px 0 3px 0 rgba(4, 4, 4, 0.1),0 2px 3px 0 rgba(4, 4, 4, 0.1);
     box-shadow:         2px 0 3px 0 rgba(4, 4, 4, 0.1), -2px 0 3px 0 rgba(4, 4, 4, 0.1),0 2px 3px 0 rgba(4, 4, 4, 0.1);
 }
 .index-product-shortcut-wrapper strong{
-    font-family: MullerRegular;
+    font-family: MullerBold;
     font-weight: normal;
     padding-right:2px;
 }
@@ -1491,7 +1495,10 @@ body .index-product-input{
     content: "";
     display: block;
     background-image: url("../images/main/icons-sprite.svg");
-    background-size: 100% auto;
+    background-size: 200% auto;
+    background-position: 100% 22px;
+}
+.selected-item:hover:before{
     background-position: 0 22px;
 }
 .comparison-item:before{
@@ -1503,7 +1510,10 @@ body .index-product-input{
     content: "";
     display: block;
     background-image: url("../images/main/icons-sprite.svg");
-    background-size: 100% auto;
+    background-size: 200% auto;
+    background-position: 100% 45px;
+}
+.comparison-item:hover:before{
     background-position: 0 45px;
 }
 /*.index-product-item:hover .index-product-shortcut-wrapper:before{*/
@@ -1832,7 +1842,7 @@ body .index-product-input{
     .basket-image {
         width: 45px;
         height: 45px;
-        background-size: 45px auto;
+        background-size: 200% auto;
         background-position: 0 210px;
     }
     .nav-contact-phone {
@@ -1840,7 +1850,7 @@ body .index-product-input{
     }
     .nav-contact-phones-inner-wrapper::before {
         margin-left: 5px;
-        background-size: 25px auto;
+        background-size: 200% auto;
         width: 25px;
         height: 27px;
     }
@@ -1891,14 +1901,14 @@ body .index-product-input{
         margin-left: -60px;
     }
     .footer-skype::before {
-        background-position: 0 238px;
+        background-position: 0 233px;
     }
     .footer-email::before {
-        background-position: 0 271px;
+        background-position: 0 265px;
     }
     .footer-email::before, .footer-skype::before {
         width: 35px;
-        height: 35px;
+        height: 34px;
         right: 77%;
         margin-top: -15px;
     }
@@ -2194,8 +2204,8 @@ body .index-product-input{
     .basket-image {
         width: 80px;
         height: 80px;
-        background-size: 80px auto;
-        background-position: 0 377px;
+        background-size: 200% auto;
+        background-position: 0 370px;
     }
     .basket-number-wrapper {
         background-color: #E30513;
@@ -2495,8 +2505,8 @@ body .index-product-input{
     .basket-image {
         width: 60px;
         height: 60px;
-        background-size: 60px auto;
-        background-position: 0 283px;
+        background-size: 200% auto;
+        background-position: 0 280px;
     }
     .basket-number-wrapper {
         width: 25px;
@@ -2672,7 +2682,7 @@ body .index-product-input{
     .footer-vk-item a {
         width: 60px;
         height: 60px;
-        background-position: 0 348px;
+        background-position: 0 340px;
     }
     .footer-logo-subscribe {
         font-size: 14px;
@@ -2704,17 +2714,17 @@ body .index-product-input{
         height: 27px;
     }
     .footer-email::before {
-        background-position: 0 193px;
+        background-position: 0 189px;
     }
     .footer-skype::before {
-        background-position: 0 169px;
+        background-position: 0 165px;
     }
     .footer h3.footer-bold-title {
         padding-left: 10%;
     }
     .footer-email::before, .footer-skype::before {
         width: 25px;
-        height: 24px;
+        height: 23px;
         right: 78%;
         margin-top: -12px;
     }
@@ -2950,8 +2960,8 @@ body .index-product-input{
     .basket-image {
         width: 45px;
         height: 45px;
-        background-size: 45px auto;
-        background-position: 0 213px;
+        background-size: 200% auto;
+        background-position: 0 210px;
     }
     .basket-number-wrapper {
         width: 20px;
