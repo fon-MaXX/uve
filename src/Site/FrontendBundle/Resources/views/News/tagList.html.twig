@@ -1,0 +1,59 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+    <div class="container article-list-content no-padding">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="news-list-title-wrapper">
+            <h1>
+              {{ "Новости" }}
+            </h1>
+        </div>
+        <div class="news-list-content-wrapper">
+            {% for article in news %}
+                <div class="list-article-item">
+                <div class="list-article-preview-image">
+                    <div class="list-article-preview-outer-wrapper">
+                        <div class="index-product-preview-inner-wrapper">
+                            <a href="{{ path('site_frontend_news_show',{'slug':article.slug}) }}">
+                                <img src="{{ (article.poster)?article.poster|json_decode.big:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                            </a>
+                        </div>
+                    </div>
+                    <a class="list-article-tag" href="{{ url('site_frontend_news_tag_list',{
+                        'slug':tag.slug
+                    }) }}">#{{ tag.title }}</a>
+                </div>
+                <div class="list-article-title-wrapper">
+                    <div class="list-article-date">{{ article.createdAt|date('d.m.Y') }}</div>
+                    <div class="list-article-title">{{ article.title }}</div>
+                </div>
+                <div class="list-article-text-wrapper">
+                    {{ article.text|raw }}
+                </div>
+            </div>
+            {% endfor %}
+            <nav id="pagination">
+                <p><a href="{{ url('site_frontend_news_list_tag_jscroll_page',{'page':2,'slug':tag.slug}) }}">Page 2</a></p>
+            </nav>
+            {#<a id="news-list-jscroll-next-link" href="{{ url('site_frontend_news_list_jscroll_page',{'page':2}) }}">next page</a>#}
+        </div>
+    </div>
+{% endblock %}
+{% block seo %}
+    <title>{{ tag.seoTitle }}</title>
+    {% if tag.description %}
+        <meta name="description" content="{{ tag.description }}">
+    {% endif %}
+    {% if tag.keywords %}
+        <meta name="keywords" content="{{ tag.keywords }}">
+    {% endif %}
+{% endblock seo %}

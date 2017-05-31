@@ -1,0 +1,19 @@
+<div class="share-with-friends">
+    <script src="https://yastatic.net/share2/share.js"></script>
+    <div class="share-title">рассказать друзьям:</div>
+    <div id="my-share" class="share-with-friends-links"
+         data-services="vkontakte,gplus,facebook"></div>
+    <script type="text/javascript">
+        {% set url = url("site_frontend_homepage") %}
+        Ya.share2('#my-share', {
+            content: {
+                {% if params is defined %}
+                url:'{{ params.link }}',
+                title:'{{ params.title }}',
+                image: '{{ url|slice(0, url|length-1) ~ params.image }}',
+                description:'{{ params.description|replace({"\n":' ', "\r":' '}) }}',
+                {% endif %}
+            }
+        });
+    </script>
+</div>

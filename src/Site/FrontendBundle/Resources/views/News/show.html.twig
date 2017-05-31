@@ -1,0 +1,94 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+<div class="container article-show-content no-padding">
+    <div class="breadcrumbs">
+        {% if breadcrumbs|length>0 %}
+            {% for breadcrumb in breadcrumbs %}
+                {% if loop.last %}
+                    <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                {% else %}
+                    <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="article-show-title-wrapper">
+        <h1>
+            {{ article.title }}
+        </h1>
+        <div class="article-show-tagline">
+            {{ article.shortcut|raw }}
+        </div>
+        <div>
+            <a class="list-article-tag" href="{{ url('site_frontend_news_tag_list',{
+                'slug':tag.slug
+            }) }}">#{{ tag.title }}</a>
+        </div>
+        <div class="article-show-date">28.01.19</div>
+    </div>
+    <div class="article-show-content-wrapper">
+        <div class="article-show-poster">
+            <img src="{{ (article.poster)?article.poster|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}">
+        </div>
+        <div class="article-wysiwyg-content">
+            {{ article.text|raw }}
+        </div>
+        <div class="product-show-share-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+            {% set currentPath = url(app.request.attributes.get('_route'),
+            app.request.attributes.get('_route_params')) %}
+            {% if article.poster|json_decode['default_file'] is defined %}
+                {% set image = article.poster|json_decode['default_file'] %}
+            {% else %}
+                {% set image = asset('bundles/sitebackend/images/no-image-400.png') %}
+            {% endif %}
+
+            {% set params = {
+            'link': currentPath,
+            'title': article.title,
+            'image': image,
+            'description': article.description,
+            } %}
+            {{ include('SiteFrontendBundle::Parts/_share.html.twig', {params: params}) }}
+        </div>
+    </div>
+    <div class="article-show-popular-block-wrapper">
+        {% if recomended|length %}
+            <h2>Вам может быть интересно:</h2>
+            <div class="news-list-content-wrapper">
+                {% for item in recomended %}
+                    <div class="list-article-item">
+                    <div class="list-article-preview-image">
+                        <div class="list-article-preview-outer-wrapper">
+                            <div class="index-product-preview-inner-wrapper">
+                                <a href="{{ path('site_frontend_news_show',{'slug':item.slug}) }}">
+                                    <img src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/news-preview-example.png") }}">
+                                </a>
+                            </div>
+                        </div>
+                        <a class="list-article-tag" href="{{ url('site_frontend_news_tag_list',{
+                            'slug':tag.slug
+                        }) }}">#{{ tag.title }}</a>
+                    </div>
+                    <div class="list-article-title-wrapper">
+                        <div class="list-article-date">{{ item.createdAt|date("d.m.Y") }}</div>
+                        <div class="list-article-title">{{ item.title }}</div>
+                    </div>
+                    <div class="list-article-text-wrapper">
+                        {{ item.shortcut|raw }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
+{% block seo %}
+    <title>{{ article.title }}</title>
+    {% if article.description %}
+        <meta name="description" content="{{ article.description }}">
+    {% endif %}
+    {% if article.keywords %}
+        <meta name="keywords" content="{{ article.keywords }}">
+    {% endif %}
+{% endblock seo %}

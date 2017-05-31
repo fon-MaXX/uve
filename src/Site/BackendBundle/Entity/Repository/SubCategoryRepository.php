@@ -10,4 +10,33 @@ namespace Site\BackendBundle\Entity\Repository;
  */
 class SubCategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getByCatAndSlug($catSlug,$subSlug){
+        return $this->createQueryBuilder('sc')
+            ->leftJoin('sc.category','c')
+            ->where('sc.slug = :slug')
+            ->andWhere('c.slug = :cSlug')
+            ->setParameter('slug',$subSlug)
+            ->setParameter('cSlug',$catSlug)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+    public function getSubCategoriesIndexById(){
+        $q = $this->createQueryBuilder('sc','sc.id')
+            ->leftJoin('sc.category','c')
+            ->getQuery()
+            ->getResult();
+        $res=[];
+        if($q){
+            foreach($q as $k=>$v){
+                $res[$k]=$v->getCategory()->getTitle().'>'.$v->getTitle();
+            }
+        }
+        return $res;
+    }
+    public function getSubCategoriesWithCategoriesIndexByTitle(){
+        return $this->createQueryBuilder('sc','sc.title')
+            ->leftJoin('sc.category','c')
+            ->getQuery()
+            ->getResult();
+    }
 }

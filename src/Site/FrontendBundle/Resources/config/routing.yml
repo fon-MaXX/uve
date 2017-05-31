@@ -1,3 +1,142 @@
 site_frontend_homepage:
     path:  /
     defaults: { _controller: SiteFrontendBundle:Default:index}
+#**************************************PRODUCT*************************************************************************#
+site_frontend_category:
+    path:  /category/{slug}
+    defaults: { _controller: SiteFrontendBundle:Product:list}
+
+site_frontend_sub_category:
+    path:  /category/{catSlug}/{subSlug}
+    defaults: { _controller: SiteFrontendBundle:Product:subCatList}
+
+site_frontend_product_show:
+    path:  /product/{slug}
+    defaults: { _controller: SiteFrontendBundle:Product:show}
+#**************************************SET*****************************************************************************#
+site_frontend_set_list:
+    path:  /set
+    defaults: { _controller: SiteFrontendBundle:Set:list}
+
+site_frontend_set_show:
+    path:  /set/{slug}
+    defaults: { _controller: SiteFrontendBundle:Set:show}
+#**************************************Order***************************************************************************#
+site_frontend_order_add_product:
+    path:  /order/add-product/{slug}
+    defaults: { _controller: SiteFrontendBundle:Order:addProduct}
+
+site_frontend_order_remove_product:
+    path:  /order/remove-product/{slug}
+    defaults: { _controller: SiteFrontendBundle:Order:removeProduct}
+
+site_frontend_order_add_set:
+    path:  /order/add-set/{slug}
+    defaults: { _controller: SiteFrontendBundle:Order:addSet}
+
+site_frontend_order_remove_set:
+    path:  /order/remove-set/{slug}
+    defaults: { _controller: SiteFrontendBundle:Order:removeSet}
+
+site_frontend_order_get_ajax_cart:
+    path:  /order/get-ajax-cart
+    defaults: { _controller: SiteFrontendBundle:Order:getAjaxCart}
+
+site_frontend_order_create:
+    path:  /order/create
+    defaults: { _controller: SiteFrontendBundle:Order:create}
+    methods:  [POST]
+
+site_frontend_order_get_items_number:
+    path:  /order/get-items-number
+    defaults: { _controller: SiteFrontendBundle:Order:getItemsNumber}
+#**************************************Selected-products***************************************************************#
+site_frontend_selected_add_product:
+    path:  /selected/add-product/{slug}
+    defaults: { _controller: SiteFrontendBundle:Selected:addProduct}
+
+site_frontend_selected_add_set:
+    path:  /selected/add-set/{slug}
+    defaults: { _controller: SiteFrontendBundle:Selected:addSet}
+
+site_frontend_selected_remove_product:
+    path:  /selected/remove-product/{slug}
+    defaults: { _controller: SiteFrontendBundle:Selected:removeProductFromSelected}
+
+site_frontend_selected_remove_set:
+    path:  /selected/remove-set/{slug}
+    defaults: { _controller: SiteFrontendBundle:Selected:removeProductFromSelected}
+
+site_frontend_selected_list:
+    path:  /selected/list
+    defaults: { _controller: SiteFrontendBundle:Selected:selectedList}
+
+site_frontend_comparing_list:
+    path:  /comparing/list
+    defaults: { _controller: SiteFrontendBundle:Selected:comparisonList}
+
+site_frontend_comparing_show:
+    path:  /comparing/show
+    defaults: { _controller: SiteFrontendBundle:Selected:comparisonShow}
+
+site_frontend_comparing_add_product:
+    path:  /comparing/add-product/{slug}
+    defaults: { _controller: SiteFrontendBundle:Selected:addProductToComparing}
+
+site_frontend_comparing_add_set:
+    path:  /comparing/add-set/{slug}
+    defaults: { _controller: SiteFrontendBundle:Selected:addSetToComparing}
+
+site_frontend_comparing_remove_product:
+    path:  /comparing/remove-product/{slug}
+    defaults: { _controller: SiteFrontendBundle:Selected:removeProductFromComparing}
+
+site_frontend_comparing_remove_set:
+    path:  /comparing/remove-set/{slug}
+    defaults: { _controller: SiteFrontendBundle:Selected:removeSetFromComparing}
+
+#**************************************News****************************************************************************#
+site_frontend_news_list:
+    path:  /news
+    defaults: { _controller: SiteFrontendBundle:News:list}
+
+site_frontend_news_show:
+    path:  /news/show/{slug}
+    defaults: { _controller: SiteFrontendBundle:News:show}
+
+site_frontend_news_tag_list:
+    path:  /news/tag/{slug}
+    defaults: { _controller: SiteFrontendBundle:News:tagList}
+
+site_frontend_news_list_jscroll_page:
+    path:  /news/{page}
+    defaults: { _controller: SiteFrontendBundle:News:scrollNewsListPage}
+
+site_frontend_news_list_tag_jscroll_page:
+    path:  /news/tag/{slug}/{page}
+    defaults: { _controller: SiteFrontendBundle:News:scrollTagNewsListPage}
+#**************************************Callback************************************************************************#
+site_frontend_receive_callback:
+    path:  /receive-callback
+    defaults: { _controller: SiteFrontendBundle:Default:receiveCallback}
+    methods:  [POST]
+#**************************************Static pages********************************************************************#
+site_frontend_about_company:
+    path:  /about-company
+    defaults: { _controller: SiteFrontendBundle:Default:static}
+
+site_frontend_contacts:
+    path:  /static/contacts
+    defaults: { _controller: SiteFrontendBundle:Default:static}
+
+site_frontend_about_delivery:
+    path:  /about-delivery
+    defaults: { _controller: SiteFrontendBundle:Default:static}
+
+site_frontend_about_payment:
+    path:  /about-payment
+    defaults: { _controller: SiteFrontendBundle:Default:static}
+
+site_frontend_search:
+    path:  /search
+    defaults: { _controller: SiteFrontendBundle:Search:search}

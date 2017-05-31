@@ -1,0 +1,136 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+    <div class="container comparison-show-content">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="comparison-show-title-wrapper">
+            <h1>
+              {{ "Сравнение" }}
+            </h1>
+        </div>
+        <div class="comparison-container-wrapper">
+            {% if items|length %}
+                <div class="comparison-table">
+                    <div class="comparison-table-fixed">
+                        <div class="comparison-fixed-item comparison-title-item">
+
+                        </div>
+                        {% for item in items %}
+                            <div data-item="{{ loop.index }}" class="comparison-fixed-item">
+                                <div class="comparison-fixed-cell-content">
+                                    <div class="remove-button-wrapper">
+                                        {% set url=(item.type=='product')?'site_frontend_comparing_remove_product':'site_frontend_comparing_remove_set' %}
+                                        <span data-url="{{ url(url,{'slug':item.entity.slug}) }}" class="comparison-cell-item-remove"></span>
+                                    </div>
+                                    <div class="comparison-show-item-wrapper">
+                                        <div class="comparison-item-poster">
+                                            <div class="index-product-preview-inner-wrapper">
+                                                <img src="{{ (item.entity.poster)?item.entity.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}">
+                                            </div>
+                                        </div>
+                                        <div class="comparison-item-title">
+                                            {{ item.entity.title }}
+                                        </div>
+                                    </div>
+                                    {% if item.type=='product' %}
+                                    <div class="comparison-show-price-wrapper">
+                                        {% if item.entity.sharePrice %}
+                                            <span class="index-product-old-price">
+                                                        {{ item.entity.price }} <span class="smaller">грн</span>
+                                                    </span>
+                                            <span class="index-product-new-price">
+                                                        {{ item.entity.sharePrice }} <span class="smaller">грн</span>
+                                                    </span>
+                                        {% else %}
+                                            <span class="index-product-regular-price">{{ item.entity.price }} <span class="smaller">грн</span></span>
+                                        {% endif %}
+                                        <button data-url="{{ url('site_frontend_order_add_product',{"slug":item.entity.slug}) }}" class="index-product-buy">купить</button>
+                                    </div>
+                                    {% elseif item.type=='set' %}
+                                        <div class="comparison-show-price-wrapper">
+                                            <span class="index-product-regular-price">
+                                                {{ item.entity.filterPrice }} <span class="smaller">грн</span>
+                                            </span>
+                                            <button data-url="{{ url('site_frontend_order_add_set',{"slug":item.entity.slug}) }}" class="index-product-buy">купить</button>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="comparison-row-item">
+                        <div class="comparison-cell-item comparison-title-item">
+                            <div class="comparison-features">
+                                Тип изделия:
+                            </div>
+                            <div class="comparison-features">
+                                Средний вес,г:
+                            </div>
+                            <div class="comparison-features">
+                                Металл:
+                            </div>
+                            <div class="comparison-features">
+                                Тип вставки:
+                            </div>
+                            <div class="comparison-features">
+                                Тематика:
+                            </div>
+                            <div class="comparison-features">
+                                Состав набора:
+                            </div>
+                        </div>
+                        {% for item in items %}
+                            <div data-item="{{ loop.index }}" class="comparison-cell-item">
+                                <div class="comparison-features">
+                                    {{ (item.type=='set')?"набор":item.entity.subCategory.category.title }}
+                                </div>
+                                <div class="comparison-features">
+                                    {{ (item.type=='set')?"": item.entity.weight }}
+                                </div>
+                                <div class="comparison-features">
+                                    {{ item.entity.metal }}
+                                </div>
+                                <div class="comparison-features">
+                                    {{ item.entity.insertionType }}
+                                </div>
+                                <div class="comparison-features">
+                                    {{ item.entity.theme }}
+                                </div>
+                                <div class="comparison-features">
+                                    {% if item.type=='set' %}
+                                        {% set entity = item.entity %}
+                                        {% if entity.products|length %}
+                                            {% for product in entity.products %}
+                                                <div>
+                                                    {{ product.title }}
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block seo %}
+    <title>{{ seo.title }}</title>
+    {% if seo.description %}
+        <meta name="description" content="{{ seo.description }}">
+    {% endif %}
+    {% if seo.keywords %}
+        <meta name="keywords" content="{{ seo.keywords }}">
+    {% endif %}
+{% endblock seo %}

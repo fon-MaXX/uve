@@ -1,0 +1,52 @@
+<div class="modal-content">
+    <form data-url="{{ admin.generateObjectUrl('orderaddproduct',object) }}" action="{{ form.vars.action }}" method="post">
+    <div class="modal-form-item-wrapper">
+        {{ form_label(form.category) }}
+        {{ form_widget(form.category) }}
+    </div>
+    <div class="items-list">
+        {% for product in form.products %}
+            {% set productItem = product.vars.value %}
+            <div class="modal-form-item-wrapper">
+                <div class="col-md-2">
+                    <div class="squared-one">
+                        {{ form_widget(product.addProduct) }}
+                        {{ form_label(product.addProduct) }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="poster-outer-wrapper modal-poster">
+                        <div class="poster-inner-wrapper">
+                            <img src="{{ (productItem.poster)?productItem.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>{{ productItem.cod }}</div>
+                    <div>{{ productItem.title }}</div>
+                </div>
+                <div class="col-md-2">
+                    {% if productItem.sharePrice %}
+                        <span class="index-product-old-price">
+                            {{ productItem.price }} <span class="smaller">грн</span>
+                        </span>
+                        <span class="index-product-new-price">
+                            {{ productItem.sharePrice }}<span class="smaller">грн</span>
+                        </span>
+                    {% else %}
+                        <span class="index-product-regular-price">
+                            {{ productItem.price }}<span class="smaller">грн</span>
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="display-none">
+        {{ form_rest(form) }}
+    </div>
+        <div class="submit-wrapper">
+            <button type="submit" class="default-button">Выбрать</button>
+        </div>
+    </form>
+</div>

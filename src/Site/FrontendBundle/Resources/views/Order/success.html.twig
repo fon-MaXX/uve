@@ -1,0 +1,31 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+    <div class="container static-content-page">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="order-create-title-wrapper">
+            <h1>
+                {{ "Корзина" }}
+            </h1>
+            <a href="{{ refererUrl }}" class="regular-button order-create-keep-shopping">продолжить покупки</a>
+            <div class="clearfix"></div>
+            <div class="order-message-box">
+                {{ message }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block globalCart %}
+{% endblock globalCart %}
+{% block seo %}
+    <title>Ваш заказ успешно оформлен</title>
+{% endblock seo %}

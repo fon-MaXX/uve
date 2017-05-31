@@ -1,0 +1,249 @@
+<form method="post" action="{{ form.vars.action }}">
+    {#**********product-html******************#}
+    {% if form.vars.value.orderHasProducts|length %}
+        {% for orderHasProduct in form.orderHasProducts  %}
+            {% set product = orderHasProduct.vars.value.product %}
+            <div class="global-cart-item-wrapper">
+                <div class="global-cart-item-header">
+                    <div class="global-cart-item-cod">
+                        <span>Код товара:</span>
+                        <span class="code-wrapper">{{ product.cod }}</span>
+                    </div>
+                    <div class="global-cart-item-remove text-right">
+                        <span data-url="{{ url("site_frontend_order_remove_product",{'slug':product.slug}) }}" class="cart-remove-item">x</span>
+                    </div>
+                </div>
+                <div class="global-cart-item-content-container">
+                    <div class="global-cart-item-content">
+                        <div class="clearfix">
+                            <div class="global-cart-item-poster-wrapper">
+                                <div class="global-cart-item-poster-inner-wrapper">
+                                    <img src="{{ (product.poster)?product.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}"/>
+                                </div>
+                            </div>
+                            <div class="global-cart-item-shortcut">
+                                <div class="global-cart-product-item-title">
+                                    {{ product.title }}
+                                </div>
+                                <div class="global-cart-element-feature">
+                                    <label>
+                                        Металл:
+                                    </label>
+                                    <span class="cart-feature-item">
+                                        {{ product.metal }};
+                                    </span>
+                                </div>
+                                <div class="global-cart-element-feature">
+                                    <label>
+                                        Вставка:
+                                    </label>
+                                    <span class="cart-feature-item">
+                                        {{ product.insertionType }};
+                                    </span>
+                                </div>
+                                <div class="global-cart-element-feature">
+                                    <label>
+                                        Средний вес, г:
+                                    </label>
+                                    <span class="cart-feature-item">
+                                         {{ product.weight }};
+                                    </span>
+                                </div>
+                                {% if product.insertionColors|length %}
+                                    <div class="global-cart-element-feature">
+                                        <label>Цвет вставки:</label>
+                                        {{ form_widget(orderHasProduct.insertionColor) }}
+                                    </div>
+                                {% endif %}
+                                {% if product.ringSizes|length %}
+                                    <div class="global-cart-element-feature">
+                                        <label>Размер кольца:</label>
+                                        {{ form_widget(orderHasProduct.ringSize) }}
+                                    </div>
+                                {% endif %}
+                                {% if product.chainSizes|length %}
+                                    <div class="global-cart-element-feature">
+                                        <label>Длинна цепи:</label>
+                                        {{ form_widget(orderHasProduct.chainSize) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="index-product-price cart-price-wraper">
+                                {% if product.sharePrice %}
+                                    <span class="index-product-old-price">
+                                        {{ product.price }} <span class="smaller">грн</span>
+                                    </span>
+                                    <span data-price="{{ product.sharePrice }}" class="index-product-new-price">
+                                        {{ product.sharePrice }}
+                                    <span class="smaller">грн</span></span>
+                                {% else %}
+                                    <span data-price="{{ product.price }}" class="index-product-regular-price">{{ product.price }} <span class="smaller">грн</span></span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="global-cart-item-price-container-wrapper clearfix">
+                        <div class="global-cart-item-price-container">
+                            <div class="index-product-input global-cart-item-price-input">
+                                <span class="plus-minus-wrapper">
+                                    <span class="plus-minus-wrapper-item minus"></span>
+                                </span>
+                                <span class="number-input-wrapper">
+                                    {{ form_widget(orderHasProduct.number) }}
+                                </span>
+                                <span class="plus-minus-wrapper">
+                                    <span class="plus-minus-wrapper-item plus"></span>
+                                </span>
+                            </div>
+                            <div class="global-cart-item-price">
+                                <div class="global-cart-item-price-sum">
+                                    сумма:
+                                </div>
+                                <div class="global-cart-item-price-value">
+                                    0
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="display-none">
+                    {{ form_rest(orderHasProduct) }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if form.vars.value.orderHasSets|length %}
+        {% for orderHasSet in form.orderHasSets %}
+            {% set setItem = orderHasSet.vars.value.set %}
+            {#**********set-html**********************#}
+            <div class="global-cart-item-wrapper">
+                <div class="global-cart-item-header">
+                    <div class="global-cart-item-cod">
+                        <span>Код товара:</span>
+                        <span class="code-wrapper">{{ setItem.cod }}</span>
+                    </div>
+                    <div class="global-cart-item-remove text-right">
+                        <span data-url="{{ url("site_frontend_order_remove_set",{'slug':setItem.slug}) }}" class="cart-remove-item">x</span>
+                    </div>
+                </div>
+                <div class="global-cart-item-content-container">
+                    <div class="global-cart-item-content">
+                        <div class="clearfix">
+                            <div class="global-cart-item-poster-wrapper">
+                                <div class="global-cart-item-poster-inner-wrapper">
+                                    <img src="{{ (setItem.poster)?setItem.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}"/>
+                                </div>
+                            </div>
+                            {% if setItem.products|length %}
+                                {% for component in orderHasSet.orderHasSetComponents %}
+                                    {% set componentItem = component.vars.value.product %}
+                                    <div class="global-cart-set-item-shortcut">
+                                        <div class="global-cart-item-shortcut">
+                                            <div class="global-cart-set-item-title-container">
+                                                <div class="global-cart-checkbox-wrapper">
+                                                    <div class="squared-one">
+                                                        {{ form_widget(component.presence) }}
+                                                        {{ form_label(component.presence) }}
+                                                    </div>
+                                                </div>
+                                                <div class="global-cart-set-item-title">
+                                                    {{ componentItem.title }}
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="global-cart-element-feature">
+                                                <label>
+                                                    Металл:
+                                                </label>
+                                            <span class="cart-feature-item">
+                                                {{ componentItem.metal }};
+                                            </span>
+                                            </div>
+                                            <div class="global-cart-element-feature">
+                                                <label>
+                                                    Вставка:
+                                                </label>
+                                            <span class="cart-feature-item">
+                                                {{ componentItem.insertionType }};
+                                            </span>
+                                            </div>
+                                            <div class="global-cart-element-feature">
+                                                <label>
+                                                    Средний вес, г:
+                                                </label>
+                                            <span class="cart-feature-item">
+                                                 {{ componentItem.weight }};
+                                            </span>
+                                            </div>
+                                            {% if componentItem.insertionColors|length %}
+                                                <div class="global-cart-element-feature">
+                                                    <label>Цвет вставки:</label>
+                                                    {{ form_widget(component.insertionColor) }}
+                                                </div>
+                                            {% endif %}
+                                            {% if componentItem.ringSizes|length %}
+                                                <div class="global-cart-element-feature">
+                                                    <label>Размер кольца:</label>
+                                                    {{ form_widget(component.ringSize) }}
+                                                </div>
+                                            {% endif %}
+                                            {% if componentItem.chainSizes|length %}
+                                                <div class="global-cart-element-feature">
+                                                    <label>Длинна цепи:</label>
+                                                    {{ form_widget(component.chainSize) }}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="index-product-price cart-price-wraper">
+                                            {% if componentItem.sharePrice %}
+                                            <span class="index-product-old-price">
+                                                {{ componentItem.price }} <span class="smaller">грн</span>
+                                            </span>
+                                            <span data-price="{{ componentItem.sharePrice }}" class="index-product-new-price">
+                                                {{ componentItem.sharePrice }}<span class="smaller">грн</span>
+                                            </span>
+                                            {% else %}
+                                                <span data-price="{{ componentItem.price }}" class="index-product-regular-price">
+                                                    {{ componentItem.price }}<span class="smaller">грн</span>
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="global-cart-item-price-container-wrapper clearfix">
+                        <div class="global-cart-item-price-container">
+                            <div class="index-product-input global-cart-item-price-input">
+                                <span class="plus-minus-wrapper">
+                                    <span class="plus-minus-wrapper-item minus"></span>
+                                </span>
+                                <span class="number-input-wrapper">
+                                    {{ form_widget(orderHasSet.number) }}
+                                </span>
+                                <span class="plus-minus-wrapper">
+                                    <span class="plus-minus-wrapper-item plus"></span>
+                                </span>
+                            </div>
+                            <div class="global-cart-item-price">
+                                <div class="global-cart-item-price-sum">
+                                    сумма:
+                                </div>
+                                <div class="global-cart-item-price-value">
+                                    0
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="display-none">
+                    {{ form_rest(orderHasSet) }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="display-none">
+        {{ form_rest(form) }}
+    </div>
+</form>

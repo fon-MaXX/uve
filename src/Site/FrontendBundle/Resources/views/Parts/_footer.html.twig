@@ -24,10 +24,15 @@
             <h3>
                 Каталог
             </h3>
-            <div class="footer-link">
-                <a>
-                развернутый?
+            <div class="footer-link footer-catalog">
+                <a href="{{ path("site_frontend_set_list") }}">
+                    Наборы
                 </a>
+                {% for category in categories %}
+                    <a href="{{ path('site_frontend_category',{'slug':category.slug}) }}">
+                    {{ category.title }}
+                    </a>
+                {% endfor %}
             </div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-no-display no-padding">
@@ -35,17 +40,17 @@
                 клиентам
             </h3>
             <div class="footer-link">
-                <a>
+                <a href="{{ path('site_frontend_about_company') }}">
                     О нас
                 </a>
             </div>
             <div class="footer-link">
-                <a>
+                <a href="{{ path('site_frontend_about_payment') }}">
                     Оплата
                 </a>
             </div>
             <div class="footer-link">
-                <a>
+                <a href="{{ path('site_frontend_news_list') }}">
                     НОВОСТи
                 </a>
             </div>
@@ -55,7 +60,7 @@
                 </a>
             </div>
             <div class="footer-link">
-                <a>
+                <a href="{{ path('site_frontend_about_delivery') }}">
                 Доставка
                 </a>
             </div>
@@ -66,16 +71,7 @@
             </h3>
             <div class="footer-phones-wrapper">
                 <span class="footer-phone-link">
-                    +380 (67) 412-73-53
-                </span>
-                <span class="footer-phone-link">
-                    +380 (63) 318-16-00
-                </span>
-                <span class="footer-phone-link">
-                    +380 (50) 337-37-71
-                </span>
-                <span class="footer-phone-link">
-                    +380 (93) 469-12-22
+                    {{ staticContent.phones.text|raw }}
                 </span>
                 <span class="footer-callback-link">
                     <a>Перезвонить вам?</a>
@@ -88,8 +84,8 @@
                 с 9:00 до 20:00</br>
                 без выходных
             </h3>
-            <div class="footer-email">sale@uvelife.com.ua</div>
-            <div class="footer-skype">uvelife</div>
+            <div class="footer-email">{{ staticContent.email.text|raw }}</div>
+            <div class="footer-skype">{{ staticContent.skype.text|raw }}</div>
         </div>
     </div>
 </div>

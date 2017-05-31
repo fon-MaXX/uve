@@ -15,4 +15,92 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+    //    product-list filter method
+    public function getForSetList(array $params, array $config){
+        $query = $this->createQueryBuilder('s');
+        if(isset($params['range'])&&$params['range']){
+            $query->andWhere('s.filterPrice > :min')
+                ->andWhere('s.filterPrice < :max')
+                ->setParameter('min',(int)$params['range']['min'])
+                ->setParameter('max',(int)$params['range']['max']);
+        }
+        if(isset($params['insertionType'])&&$params['insertionType']&&isset($config['insertionType'])){
+            $insertionType = $config['insertionType'];
+            $conditions = [];
+            foreach($params['insertionType'] as $item){
+                $conditions[] = $query->expr()->like('s.insertionType', $query->expr()->literal('%'.$insertionType[$item].'%'));
+            }
+            $orX = $query->expr()->orX();
+            $orX->addMultiple($conditions);
+            $query->andWhere($orX);
+        }
+        if(isset($params['state'])&&$params['state']&&isset($config['state'])){
+            $state = $config['state'];
+            $conditions = [];
+            foreach($params['state'] as $item){
+                $conditions[] = $query->expr()->like('s.state', $query->expr()->literal('%'.$state[$item].'%'));
+            }
+            $orX = $query->expr()->orX();
+            $orX->addMultiple($conditions);
+            $query->andWhere($orX);
+        }
+        if(isset($params['theme'])&&$params['theme']&&isset($config['theme'])){
+            $theme = $config['theme'];
+            $conditions = [];
+            foreach($params['theme'] as $item){
+                $conditions[] = $query->expr()->like('s.theme', $query->expr()->literal('%'.$theme[$item].'%'));
+            }
+            $orX = $query->expr()->orX();
+            $orX->addMultiple($conditions);
+            $query->andWhere($orX);
+        }
+        if(
+            !count($params)||
+            (isset($params['sort'])&&$params['sort']=='popular')
+        ){
+            $query->orderBy('s.rating','DESC');
+        }
+        elseif($params['sort']){
+            ($params['sort']=='cheapest')?$query->orderBy('s.filterPrice','ASC'):$query->orderBy('s.title','ASC');
+        }
+        return $query->getQuery();
+    }
+    public function getByAndIndexIds($ids){
+        return $this->createQueryBuilder('s','s.id')
+            ->where('s.id IN (:ids)')
+            ->setParameter('ids',$ids)
+            ->getQuery()
+            ->getResult();
+    }
+    public function search($title){
+        $options = explode(' ',$title);
+        if(count($options)>1){
+            $queryBuilder = $this->createQueryBuilder('a');
+            $conditions = [];
+            foreach ($options as $optionKey => $option) {
+                $conditions[] = $queryBuilder->expr()->like('a.title', $queryBuilder->expr()->literal('%'.$option.'%'));
+            }
+            $andX = $queryBuilder->expr()->andX();
+            $andX->addMultiple($conditions);
+            $queryBuilder->andWhere($andX);
+            return $queryBuilder
+                ->getQuery()
+                ->getResult();
+        }
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function getRandSets($number)
+    {
+        return $this->createQueryBuilder('s')
+            ->addSelect('RAND() as HIDDEN rand')
+            ->addOrderBy('rand')
+            ->setMaxResults($number)
+            ->getQuery()
+            ->getResult();
+    }
 }

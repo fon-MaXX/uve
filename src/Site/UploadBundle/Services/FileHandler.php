@@ -310,7 +310,7 @@ class FileHandler
         copy($fullPath, $fullDestDir.'/'.$fileAttr['basename']);
         $result['default_file'] = $destinationDir.'/'.$fileAttr['basename'];
         if(!$remoteFlag){
-//            unlink($fullPath);
+            unlink($fullPath);
         }
         $fullPath=$this->rootDir.'/../'.$this->webDir.$result['default_file'];
         foreach ($thumbs as $key => $thumb)

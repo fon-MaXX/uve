@@ -1,0 +1,80 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block header %}
+    {% include "SiteFrontendBundle:Parts:_header.html.twig" with {
+    'category': category,
+    'categories': categories,
+    'itemsNumber': itemsNumber,
+    'staticContent':staticContent,
+    'searchForm': searchForm
+    } %}
+{% endblock header %}
+{% block content %}
+    <div class="container static-content-page">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="static-title-wrapper">
+            <h1>
+                {{ "Результаты поиска" }}
+            </h1>
+        </div>
+        <div class="static-content-wrapper search-result-wrapper">
+            {% if pagination|length %}
+                {% for item in pagination %}
+                    <div class="search-result-container">
+                        {% set url = "" %}
+                        {% if 'Product' == item.shortClassName %}
+                            {% set url = url('site_frontend_product_show',{'slug':item.slug}) %}
+                        {% elseif 'Set' == item.shortClassName %}
+                            {% set url = url('site_frontend_set_show',{ 'slug':item.slug }) %}
+                        {% elseif 'Product' == item.shortClassName %}
+                            {% set url = url('site_frontend_product_show',{ 'slug':item.slug }) %}
+                        {% endif %}
+                        <a href="{{ url }}">
+                            <div class="item-thumbnail-outer-wrapper">
+                                <div class="item-thumbnail-inner-wrapper">
+                                    <img src="{{ (item.poster)?item.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                </div>
+                            </div>
+                            <div class="search-result-text">
+                                <div class="search-title">
+                                    {{ item.title }}
+                                </div>
+                                <div class="search-shortcut">
+                                    <p>Для оформления заказа Вы можете связаться с нами по телефону. Наши специалисты с радостью проконсультируют Вас относительно качества товара, и его наличия на складе. Также на нашем сайте есть возможность заказать услугу «перезвонить мне». Просто оставьте Ваш контактный номер телефона, и мы перезвоним Вам в кратчайшие сроки.</p>
+                                    <p>Для оформления заказа Вы можете связаться с нами по телефону. Наши специалисты с радостью проконсультируют Вас относительно качества товара, и его наличия на складе. Также на нашем сайте есть возможность заказать услугу «перезвонить мне». Просто оставьте Ваш контактный номер телефона, и мы перезвоним Вам в кратчайшие сроки.</p>
+                                    {#{{ item.shortcut|raw }}#}
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="order-message-box">
+                    Поиск не дал результатов..
+                </div>
+            {% endif %}
+        </div>
+        <div class="product-list-pagination-wrapper">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock content %}
+{% block seo %}
+    <title>{{ seo.title }}</title>
+    {% if seo.description %}
+        <meta name="description" content="{{ seo.description }}">
+    {% endif %}
+    {% if seo.keywords %}
+        <meta name="keywords" content="{{ seo.keywords }}">
+    {% endif %}
+{% endblock seo %}

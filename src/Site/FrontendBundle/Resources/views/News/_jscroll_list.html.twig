@@ -1,0 +1,28 @@
+{% if news|length %}
+    {% for article in news %}
+        <div class="list-article-item">
+            <div class="list-article-preview-image">
+                <div class="list-article-preview-outer-wrapper">
+                    <div class="index-product-preview-inner-wrapper">
+                        <a href="{{ path('site_frontend_news_show',{'slug':article.slug}) }}">
+                            <img src="{{ (article.poster)?article.poster|json_decode.big:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                        </a>
+                    </div>
+                </div>
+                <a class="list-article-tag" href="{{ url('site_frontend_news_tag_list',{
+                    'slug':article.newsTags|first.slug
+                }) }}">#{{ article.newsTags|first.title }}</a>
+            </div>
+            <div class="list-article-title-wrapper">
+                <div class="list-article-date">{{ article.createdAt|date('d.m.Y') }}</div>
+                <div class="list-article-title">{{ article.title }}</div>
+            </div>
+            <div class="list-article-text-wrapper">
+                {{ article.text|raw }}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+{#<nav id="pagination">#}
+    {#<p><a href="{{ url('site_frontend_news_list_jscroll_page',{'page':3}) }}">Page 3</a></p>#}
+{#</nav>#}

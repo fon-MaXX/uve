@@ -1,0 +1,53 @@
+{% extends 'form_div_layout.html.twig' %}
+{% block site_frontend_custom_expanded_select_widget %}
+    <div {{ block('widget_container_attributes') }}>
+        {%- for child in form %}
+            <div class="squared-one">{{- form_widget(child) -}}{{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}</div>
+        {% endfor -%}
+    </div>
+{% endblock site_frontend_custom_expanded_select_widget %}
+{% block site_frontend_range_widget %}
+    {% spaceless %}
+    {{ form_widget(form) }}
+        <div class="product-list-filters-range-wrapper">
+            {% set wrapperSelector = "filter-values-wrapper_"~name %}
+            <div class="slider-range-size">
+                <span class="range-min_{{ name }}">{{ min }}</span>
+                <span>-</span>
+                <span class="range-max_{{ name }}">{{ max }}</span>
+            </div>
+            {% set divSelector = "filter-slider-range_"~name %}
+            <div class="{{ divSelector }}"></div>
+        </div>
+        <script>
+            if(!$("input.form-range-min-input").val()){
+                $("input.form-range-min-input").val({{ min }});
+                var $valMin = {{ min }};
+            }
+            else{
+                var $valMin = $("input.form-range-min-input").val();
+            }
+            if(!$("input.form-range-max-input").val()){
+                $("input.form-range-max-input").val({{ max }});
+                var $valMax = {{ max }};
+            }
+            else{
+                var $valMax = $("input.form-range-max-input").val();
+            }
+            $( "{{ "."~divSelector}}" ).slider({
+                range: true,
+                min: {{ min }},
+                max: {{ max }},
+                values: [ $valMin, $valMax ],
+                slide: function( event, ui ) {
+                    $("input.form-range-min-input").val(ui.values[ 0 ]);
+                    $("input.form-range-max-input").val(ui.values[ 1 ]);
+                    $(".range-min_{{ name }}").html(ui.values[ 0 ]);
+                    $(".range-max_{{ name }}").html(ui.values[ 1 ]);
+                }
+            });
+            $(".range-min_{{ name }}").html($("input.form-range-min-input").val());
+            $(".range-max_{{ name }}").html($("input.form-range-max-input").val());
+        </script>
+    {% endspaceless %}
+{% endblock %}

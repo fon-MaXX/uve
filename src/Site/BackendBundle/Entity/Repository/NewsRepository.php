@@ -10,4 +10,54 @@ namespace Site\BackendBundle\Entity\Repository;
  */
 class NewsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getForNewsList($slug=null){
+        $query =  $this->createQueryBuilder('n');
+        if($slug){
+            $query->leftJoin('n.newsTags','nt')
+                ->where('nt.slug = :slug')
+                ->setParameter('slug',$slug);
+        }
+        return    $query->getQuery();
+    }
+    public function getLastByNumber($number){
+        return $this->createQueryBuilder('n')
+            ->setMaxResults($number)
+            ->orderBy('n.createdAt','ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function getRecomended($number,$slug){
+        return $this->createQueryBuilder('n')
+            ->leftJoin('n.newsTags','nt')
+            ->where('nt.slug = :slug')
+            ->setParameter('slug',$slug)
+            ->setMaxResults($number)
+            ->orderBy('n.createdAt','DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function search($title){
+        $options = explode(' ',$title);
+        if(count($options)>1){
+            $queryBuilder = $this->createQueryBuilder('a');
+            $conditions = [];
+            foreach ($options as $optionKey => $option) {
+                $conditions[] = $queryBuilder->expr()->like('a.title', $queryBuilder->expr()->literal('%'.$option.'%'));
+            }
+            $andX = $queryBuilder->expr()->andX();
+            $andX->addMultiple($conditions);
+            $queryBuilder->andWhere($andX);
+            return $queryBuilder
+                ->getQuery()
+                ->getResult();
+        }
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

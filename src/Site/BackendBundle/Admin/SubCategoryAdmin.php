@@ -30,6 +30,9 @@ class SubCategoryAdmin extends AbstractAdmin
             ->add('title',null,[
                 'label'=>'field.title'
             ])
+            ->add('position','text',[
+                'editable'=>true
+            ])
             ->add('category','text',[
                 'template'=>"SiteBackendBundle:List:_category.html.twig",
                 'label'=>'field.category'
@@ -46,6 +49,7 @@ class SubCategoryAdmin extends AbstractAdmin
             ->add('title','text',[
                 'required'=>true
             ])
+            ->add('position')
             ->add('keywords','textarea', [
                 'attr' => [
                     'class' => 'keywords-textarea'

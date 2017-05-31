@@ -1,0 +1,39 @@
+<div class="modal-content">
+    <form data-url="{{ admin.generateObjectUrl('orderaddproduct',object) }}" action="{{ form.vars.action }}" method="post">
+        <div class="items-list">
+            {% for set in form.sets %}
+                {% set setItem = set.vars.value %}
+                <div class="modal-form-item-wrapper">
+                    <div class="col-md-2">
+                        <div class="squared-one">
+                            {{ form_widget(set.addSet) }}
+                            {{ form_label(set.addSet) }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="poster-outer-wrapper modal-poster">
+                            <div class="poster-inner-wrapper">
+                                <img src="{{ (setItem.poster)?setItem.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>{{ setItem.cod }}</div>
+                        <div>{{ setItem.title }}</div>
+                    </div>
+                    <div class="col-md-2">
+                        <span class="index-product-regular-price">
+                            {{ setItem.filterPrice }}<span class="smaller">грн</span>
+                        </span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="display-none">
+            {{ form_rest(form) }}
+        </div>
+        <div class="submit-wrapper">
+            <button type="submit" class="default-button">Выбрать</button>
+        </div>
+    </form>
+</div>

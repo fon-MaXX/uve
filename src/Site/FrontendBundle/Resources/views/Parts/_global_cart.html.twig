@@ -1,0 +1,27 @@
+<div class="modal-shadow">
+    <img src="{{ asset('bundles/sitefrontend/images/loader.svg') }}">
+</div>
+<div class="global-cart-wrapper">
+    <div class="global-cart-modal-body-container">
+        <div class="global-cart-modal-body-wrapper clearfix">
+            <div class="global-cart-modal-body">
+                <div class="text-right">
+                    <button class="close-button">x</button>
+                </div>
+                <div class="global-cart-items-container clearfix">
+                    {#**************content of ajax-response************#}
+                </div>
+                <div class = "global-cart-item-final-price-container">
+                    <div class = "global-cart-item-final-price-wrapper">
+                        <div>итого:</div>
+                        <div class = "global-cart-item-final-price">0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="global-cart-modal-buttons">
+                <button class="global-cart-modal-button-item keep-shopping"><span>продолжить покупки</span></button>
+                <button class="global-cart-modal-button-item make-order">оформить заказ</button>
+            </div>
+        </div>
+    </div>
+</div>

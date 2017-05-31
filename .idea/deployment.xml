@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="upbeat">
+  <component name="PublishConfigData">
     <serverData>
-      <paths name="upbeat">
+      <paths name="orinoco">
         <serverdata>
           <mappings>
-            <mapping deploy="/upbeat.com.ua/uvelife" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/uvelife.com" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

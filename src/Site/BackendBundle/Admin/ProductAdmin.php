@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Site\UploadBundle\Form\UpbeatUploadType;
 use Sonata\CoreBundle\Model\Metadata;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 class ProductAdmin extends AbstractAdmin
 {
     use UpbeatUploadFilesAdminTrait;
@@ -26,6 +27,11 @@ class ProductAdmin extends AbstractAdmin
         $this->container = $container;
         $this->entityManager=$entityManager;
         $this->fileHandler=$fileHandler;
+        $this->childAdmins = new \SplObjectStorage();
+        $imagesAdmin = new \StdClass;
+        $imagesAdmin->fieldName = 'productGallery';
+        $imagesAdmin->adminService = 'site_backend.admin.product.gallery';
+        $this->childAdmins->attach($imagesAdmin);
     }
     /**
      * @param DatagridMapper $datagridMapper
@@ -85,6 +91,10 @@ class ProductAdmin extends AbstractAdmin
             ->with('SEO часть')
             ->add('title','text',[
                 'required'=>true
+            ])
+            ->add('isFresh',CheckboxType::class,[
+                'required'=>true,
+                'label'=>'Присутствовал в синхронизации'
             ])
             ->add('keywords','textarea', [
                 'attr' => [
@@ -174,16 +184,8 @@ class ProductAdmin extends AbstractAdmin
                     'label'=>'field.weaving_type',
                     'required'=>false
                 ])
-                ->add('chainLength',null,[
-                    'label'=>'field.chain_length',
-                    'required'=>false
-                ])
                 ->add('covering',null,[
                     'label'=>'field.covering',
-                    'required'=>false
-                ])
-                ->add('productType',null,[
-                    'label'=>'field.product_type',
                     'required'=>false
                 ])
                 ->add('theme',null,[
@@ -204,6 +206,16 @@ class ProductAdmin extends AbstractAdmin
                     'label'=>'field.ring_sizes',
                     'required'=>false
                 ])
+                ->add('chainSizes', 'sonata_type_model', [
+                    'expanded' => false,
+                    'property'=>'title',
+                    'by_reference' => false,
+                    'query' => $em->getRepository('SiteBackendBundle:ChainSize')->getAllSortedByTitle(),
+                    'multiple' => true,
+                    'attr'     => ['class' => 'multiSelect'],
+                    'label'=>'field.chain_length',
+                    'required'=>false
+                ])
                 ->add('insertionColors', 'sonata_type_model', [
                     'expanded' => false,
                     'property'=>'title',
@@ -215,7 +227,17 @@ class ProductAdmin extends AbstractAdmin
                     'required'=>false
                 ])
             ->end()
-        ;
+            ->with("Gallery")
+            ->add('productGallery', 'sonata_type_collection', [
+                'label' => 'Photos',
+                'by_reference' => false
+                ],
+                [
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'targetEntity' => 'SiteBackendBundle\Entity\ProductGallery'
+                ])
+            ->end();
     }
 
     /**
@@ -276,9 +298,6 @@ class ProductAdmin extends AbstractAdmin
             ->add('weavingType',null,[
                 'label'=>'field.weaving_type',
             ])
-            ->add('chainLength',null,[
-                'label'=>'field.chain_length',
-            ])
             ->add('covering',null,[
                 'label'=>'field.covering',
             ])
@@ -294,6 +313,10 @@ class ProductAdmin extends AbstractAdmin
             ->add('ringSizes', 'sonata_type_model', [
                 'template'=>"SiteBackendBundle:Show:_tag.html.twig",
                 'label'=>'field.ring_sizes',
+            ])
+            ->add('chainSizes', 'sonata_type_model', [
+                'template'=>"SiteBackendBundle:Show:_tag.html.twig",
+                'label'=>'field.chain_length',
             ])
             ->add('insertionColors', 'sonata_type_model', [
                 'label'=>'field.insertion_colors',

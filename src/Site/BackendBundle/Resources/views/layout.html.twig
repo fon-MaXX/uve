@@ -36,6 +36,7 @@ file that was distributed with this source code.
                     <link rel="stylesheet" href="{{ asset(stylesheet) }}">
             {% endfor %}
         {% endblock %}
+        <link href="{{ asset("bundles/sitefrontend/css/font-awesome.css") }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('/bundles/sitebackend/css/style.css') }}">
         {% include 'SiteUploadBundle:Default:styles.html.twig' %}
         {% block javascripts %}
@@ -82,6 +83,7 @@ file that was distributed with this source code.
                 {% endif %}
             {% endif %}
         {% endblock %}
+        <script src="{{ asset('bundles/sitebackend/js/jquery.inputmask.js') }}"></script>
         <script src="{{ asset('bundles/sitebackend/js/main.js') }}"></script>
         {% include 'SiteUploadBundle:Default:scripts.html.twig' %}
         <title>
@@ -372,6 +374,16 @@ file that was distributed with this source code.
     </div>
     <div class="loader-gif">
         <img src="{{ asset('bundles/sitebackend/images/ajax-loader.gif') }}"/>
+    </div>
+    <div class="backend-modal-wrapper">
+        <div class="modal-shaddow"></div>
+        <div class="modal-loader"></div>
+        <div class="modal-body-wrapper">
+            <div class="modal-close-wrapper">
+                <span class="modal-close">x</span>
+            </div>
+            <div class="modal-content"></div>
+        </div>
     </div>
     </body>
 </html>

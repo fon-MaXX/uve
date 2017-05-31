@@ -1,0 +1,83 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+    <div class="container static-content-page">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="static-title-wrapper">
+            <h1>
+                {{ title }}
+            </h1>
+        </div>
+        <div class="static-content-wrapper contacts-content">
+            <div class="left-block">
+                <div class="street-wrapper">
+                    {{ staticContent.street.text|raw }}
+                </div>
+                <div class="contacts-page-phone-numbers">
+                    {{ staticContent.phone_numbers.text|raw }}
+                </div>
+            </div>
+            <div class="right-block">
+                {{ staticContent.right_column_text.text|raw }}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="contacts-form-wrapper">
+            <form id="contacts-form" method="post" action="{{ form.vars.action }}">
+                <div class="contacts-form-left">
+                    <div class="contacts-form-element">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name) }}
+                    </div>
+                    <div class="contacts-form-element">
+                        <label>Номер телефона:</label>
+                        <div class="phone-form-input-wrapper">
+                            <div class="order-form-pre-phone-input">+38</div>
+                            <div class="order-form-phone-input">{{ form_widget(form.phone) }}</div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="contacts-form-element">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                    </div>
+                </div>
+                <div class="contacts-form-right">
+                    <div class="contacts-form-element">
+                        {{ form_label(form.theme) }}
+                        {{ form_widget(form.theme) }}
+                    </div>
+                    <div class="contacts-form-element">
+                        {{ form_label(form.text) }}
+                        {{ form_widget(form.text) }}
+                    </div>
+                </div>
+                <div class="display-none">
+                    {{ form_rest(form) }}
+                </div>
+                <div class="clearfix"></div>
+                <div class="static-content-button-wrapper">
+                    <button class="regular-button static-content-button contacts-form-submit" type="submit">отправить сообщение</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+{% block seo %}
+    <title>{{ seo.title }}</title>
+    {% if seo.description %}
+        <meta name="description" content="{{ seo.description }}">
+    {% endif %}
+    {% if seo.keywords %}
+        <meta name="keywords" content="{{ seo.keywords }}">
+    {% endif %}
+{% endblock seo %}

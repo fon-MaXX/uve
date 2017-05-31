@@ -1,0 +1,149 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+    <div class="container selected-product-list-content">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="selected-product-list-title-wrapper">
+            <h1>
+              {{ "Избранные" }}
+            </h1>
+        </div>
+        <div class="product-list-content-wrapper">
+            <div class="selected-product-list-items-wrapper">
+                {% if items|length %}
+                    {% for item in items %}
+                        {% if item.type=='set' %}
+                            <div class="col-lg-15 col-xxs-6">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding index-product-item">
+                                    <div class="index-product-preview-image">
+                                        <div data-url="{{ url('site_frontend_selected_remove_set',{'slug':item.entity.slug}) }}" class="selected-remove-item"></div>
+                                        <div class="index-product-preview-outer-wrapper">
+                                            <div class="index-product-preview-inner-wrapper">
+                                                <a href="{{ path('site_frontend_set_show',{'slug':item.entity.slug}) }}">
+                                                    <img src="{{ (item.entity.poster)?item.entity.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="index-product-title">
+                                        <span>{{ item.entity.title }}</span>
+                                    </div>
+                                    <div class="product-fetures-wrapper">
+                                        <div class="index-product-price">
+                                            <span class="index-product-regular-price">
+                                                {{ item.entity.filterPrice }}<span class="smaller">грн</span>
+                                            </span>
+                                        </div>
+                                        <div class="index-product-controls col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                                            <button data-url="{{ url('site_frontend_order_add_set',{"slug":item.entity.slug}) }}" class="index-product-buy">
+                                                купить
+                                            </button>
+                                        </div>
+                                        <div class="index-product-shortcut-wrapper">
+                                            <div><strong>Металл:</strong> {{ item.entity.metal }}; </div>
+                                            <div><strong>Тип вставки:</strong>{{ item.entity.insertionType }};</div>
+                                            <div class="set-list-properties-components-wrapper">
+                                                <div class="set-list-properties-components-title">Состав набора:</div>
+                                                <div class="set-list-properties-components">
+                                                    {% if item.entity.products|length %}
+                                                        {% for product in item.entity.products %}
+                                                            <div>
+                                                                {{ product.title }}
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-state {{ item.entity.state|product_state }}"><span>{{ item.entity.state }}</span></div>
+                                            <div class="selected-button-wrapper">
+                                                <span class="disabled-selected-item">
+                                                    <span>добавить</br> в избранное</span>
+                                                </span>
+                                                <span data-url="{{ url("site_frontend_comparing_add_set",{'slug':item.entity.slug}) }}" class="comparison-item">
+                                                    <span>добавить</br> в сравнение</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elseif item.type == 'product' %}
+                            <div class="col-lg-15 col-xxs-6">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding index-product-item">
+                                    <div class="index-product-preview-image">
+                                        <div data-url="{{ url('site_frontend_selected_remove_product',{'slug':item.entity.slug}) }}" class="selected-remove-item"></div>
+                                        <div class="index-product-preview-outer-wrapper">
+                                            <div class="index-product-preview-inner-wrapper">
+                                                <a href="{{ path('site_frontend_product_show',{'slug': item.entity.slug }) }}">
+                                                    <img src="{{ (item.entity.poster)?item.entity.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="index-product-title">
+                                        <span>{{ item.entity.title }}</span>
+                                    </div>
+                                    <div class="product-fetures-wrapper">
+                                        <div class="index-product-price">
+                                        {% if item.entity.sharePrice %}
+                                            <span class="index-product-old-price">
+                                                {{ item.entity.price }} <span class="smaller">грн</span>
+                                            </span>
+                                            <span class="index-product-new-price">
+                                                {{ item.entity.sharePrice }}
+                                                <span class="smaller">грн</span>
+                                            </span>
+                                        {% else %}
+                                            <span class="index-product-regular-price">
+                                                {{ item.entity.price }} <span class="smaller">грн</span>
+                                            </span>
+                                        {% endif %}
+                                        </div>
+                                        <div class="index-product-controls col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                                            <button data-url="{{ url('site_frontend_order_add_product',{"slug":item.entity.slug }) }}" class="index-product-buy">
+                                                купить
+                                            </button>
+                                        </div>
+                                        <div class="index-product-shortcut-wrapper">
+                                            <div><strong>Металл:</strong> {{ item.entity.metal }}; </div>
+                                            <div><strong>Средний вес, г:</strong> {{ item.entity.weight }};</div>
+                                            <div><strong>Тип вставки:</strong>{{ item.entity.insertionType }};</div>
+                                            <div class="product-state {{ item.entity.state|product_state }}"><span>{{ item.entity.state }}</span></div>
+                                            <div class="selected-button-wrapper">
+                                                <span class="disabled-selected-item">
+                                                    <span>добавить</br> в избранное</span>
+                                                </span>
+                                                <span data-url="{{ url("site_frontend_comparing_add_product",{'slug':item.entity.slug}) }}" class="comparison-item">
+                                                    <span>добавить</br> в сравнение</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block seo %}
+    <title>{{ seo.title }}</title>
+    {% if seo.description %}
+        <meta name="description" content="{{ seo.description }}">
+    {% endif %}
+    {% if seo.keywords %}
+        <meta name="keywords" content="{{ seo.keywords }}">
+    {% endif %}
+{% endblock seo %}

@@ -41,20 +41,6 @@ class InsertionColor
      * )
      */
     private $products;
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Set", inversedBy="insertionColors")
-     * @ORM\JoinTable(name="set_has_insertion_color",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="insertion_color_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="set_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $sets;
 
     /**
      * Get id
@@ -123,47 +109,12 @@ class InsertionColor
     {
         return $this->products;
     }
-
-    /**
-     * Add set
-     *
-     * @param \Site\BackendBundle\Entity\Set $set
-     *
-     * @return InsertionColor
-     */
-    public function addSet(\Site\BackendBundle\Entity\Set $set)
-    {
-        $this->sets[] = $set;
-
-        return $this;
-    }
-
-    /**
-     * Remove set
-     *
-     * @param \Site\BackendBundle\Entity\Set $set
-     */
-    public function removeSet(\Site\BackendBundle\Entity\Set $set)
-    {
-        $this->sets->removeElement($set);
-    }
-
-    /**
-     * Get sets
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSets()
-    {
-        return $this->sets;
-    }
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->sets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 }

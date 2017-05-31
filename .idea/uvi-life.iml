@@ -34,6 +34,7 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/symfony/symfony/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/sensiolabs/security-checker" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/var/cache" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

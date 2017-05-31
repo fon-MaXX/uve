@@ -2,6 +2,7 @@
 
 namespace Site\BackendBundle\LoadXml;
 use Doctrine\Common\Collections\ArrayCollection;
+use Site\BackendBundle\Entity\ChainSize;
 use Site\BackendBundle\Exceptions\ItemNotValidException;
 use Site\BackendBundle\Exceptions\NoCityException;
 use Site\BackendBundle\Exceptions\XmlNotValidException;
@@ -27,12 +28,16 @@ class XmlLoader
         $this->container =$container;
         $this->em = $this->container->get('doctrine')->getManager();
         $this->products = $this->em->getRepository("SiteBackendBundle:Product")->getProductsIndexByCode();
+        $this->freshProducts = $this->products;
         $this->sets = $this->em->getRepository("SiteBackendBundle:Set")->getSetsIndexByCode();
+        $this->freshSets = $this->sets;
         $this->ringSizes = $this->em->getRepository("SiteBackendBundle:RingSize")->getRingSizesIndexByTitle();
+        $this->chainSizes = $this->em->getRepository("SiteBackendBundle:ChainSize")->getChainSizesIndexByTitle();
         $this->insertionColors = $this->em->getRepository("SiteBackendBundle:InsertionColor")->getInsertionColorsIndexByTitle();
         $this->shareTags = $this->em->getRepository("SiteBackendBundle:ShareTag")->getShareTagsIndexByTitle();
         $this->categories = $this->em->getRepository("SiteBackendBundle:Category")->getCategoriesWithSubCategoriesIndexByTitle();
-//        dump($this->categories['asd']->getSubCategories()['ыфвыф']);die();
+        $this->subCategories = $this->em->getRepository("SiteBackendBundle:SubCategory")->getSubCategoriesWithCategoriesIndexByTitle();
+
     }
 
     /**
@@ -107,8 +112,7 @@ class XmlLoader
                 'setter'=>'setWeavingType'
             ],
             "dlina_cepi"=>[
-                'method'=>'SetFilterAttribute',
-                'setter'=>'setChainLength'
+                'method'=>'setChainSizes'
             ],
             "rasmer_kolsa"=>[
                 'method'=>'setRingSize'
@@ -117,8 +121,11 @@ class XmlLoader
                 'method'=>'SetFilterAttribute',
                 'setter'=>'setCovering'
             ],
+            "katalog"=>[
+                'method'=>'setCategory'
+            ],
             "tip_izdeliya"=>[
-                'method'=>'setProductType'
+                'method'=>'setSubCategory'
             ],
             "tematika"=>[
                 'method'=>'SetFilterAttribute',
@@ -136,6 +143,10 @@ class XmlLoader
             "proizvoditel"=>[
                 'method'=>'SetFilterAttribute',
                 'setter'=>'setManufacturer'
+            ],
+            "ves_izdeliya_/_reiting"=>[
+                'method'=>'SetFilterAttribute',
+                'setter'=>'setRating'
             ],
         ];
         $xml=$xml->Worksheet->Table;
@@ -163,11 +174,25 @@ class XmlLoader
             }
         }
         if(count($setsArray)){
+            $arr=[];
             foreach($setsArray as $set){
                 $code = (string)$set->Cell[$this->objectCodIndex]->Data;
                 $object = (isset($this->sets[$code]))?$this->sets[$code]:new Set();
                 $object = $this->loadItem($object,$sortedParameters,$set,'set');
                 $this->em->persist($object);
+                $arr[]=$object;
+            }
+        }
+        if(count($this->freshProducts)){
+            foreach($this->freshProducts as $item){
+                $item->setIsFresh(false);
+                $this->em->persist($item);
+            }
+        }
+        if(count($this->freshSets)){
+            foreach($this->freshSets as $item){
+                $item->setIsFresh(false);
+                $this->em->persist($item);
             }
         }
         $this->em->flush();
@@ -195,9 +220,24 @@ class XmlLoader
                 $object = $this->$method($object,$text,$type,$setter);
             }
         }
-        return $object;
+        return $this->unsetItemFromList($object,$type);
     }
 
+    /**
+     * unset all items which are present in new-file
+     *
+     * @param $object
+     * @param $type
+     */
+    private function unsetItemFromList($object,$type){
+        $name = 'fresh'.ucfirst($type).'s';
+        $list=&$this->$name;
+        if(count($list)&&isset($list[$object->getCod()])){
+            unset($list[$object->getCod()]);
+            $object->setIsFresh(true);
+        }
+        return $object;
+    }
     /**
      * cod setter
      * @param $object
@@ -211,7 +251,7 @@ class XmlLoader
         if(strlen($text)>255){
             throw new ToLongStringException("Артикул ".$text." длиннее 255");
         }
-        return $object->setCod($text);
+        return $object->setCod((string)$text);
     }
 
     /**
@@ -321,7 +361,7 @@ class XmlLoader
      * @return mixed
      */
     private function setInsertionColor($object,$text,$type,$setter){
-        if($text!='-'&&$text){
+        if($type == 'product'&&$text!='-'&&$text){
             $items = explode(';',$text);
             if($object->getInsertionColors()&&count($object->getInsertionColors())){
                 foreach($object->getInsertionColors() as $color){
@@ -344,6 +384,45 @@ class XmlLoader
                         $this->em->persist($color);
                         $this->insertionColors[$item] = $color;
                         $object->addInsertionColor($color);
+                    }
+                }
+            }
+        }
+        return $object;
+    }
+    /**
+     * Setter for chain size tags
+     *
+     * @param $object
+     * @param $text
+     * @param $type
+     * @param $setter
+     * @return mixed
+     */
+    private function setChainSizes($object,$text,$type,$setter){
+        if($text!='-'&&$text){
+            $items = explode(';',$text);
+            if($object->getChainSizes()&&count($object->getChainSizes())){
+                foreach($object->getChainSizes() as $size){
+                    if(!count($items)||!in_array($size->getTitle(),$items)){
+                        $object->removeRingSize($size);
+                        $size->removeProduct($object);
+                    }
+                }
+            }
+            if(count($items)){
+                foreach($items as $item){
+                    if(isset($this->chainSizes[$item])){
+                        if(!$object->hasChainSize($this->chainSizes[$item])){
+                            $object->addChainSize($this->chainSizes[$item]);
+                        }
+                    }
+                    else{
+                        $size = new ChainSize();
+                        $size->setTitle($item);
+                        $this->em->persist($size);
+                        $this->chainSizes[$item] = $size;
+                        $object->addChainSize($size);
                     }
                 }
             }
@@ -390,7 +469,15 @@ class XmlLoader
         }
         return $object;
     }
-    private function setProductType($object,$text,$type,$setter){
+    private function setCategory($object,$text,$type,$setter){
+        return $object;
+    }
+    private function setSubCategory($object,$text,$type,$setter){
+        if($type!='set'&&isset($this->subCategories[$text])){
+            $subCategory = $this->subCategories[$text];
+            $object->setSubCategory($subCategory);
+            $this->em->persist($object);
+        }
         return $object;
     }
 

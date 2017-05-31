@@ -46,8 +46,16 @@ class Category
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(targetEntity="SubCategory", mappedBy="category",cascade={"persist","remove"}, orphanRemoval=true,indexBy="title")
+     * @ORM\OrderBy({"position" = "DESC"})
      */
     private $subCategories;
+    public function __toString()
+    {
+        if($this->getId()){
+            return $this->getTitle();
+        }
+        return "Новая категория";
+    }
 
     /**
      * Get id

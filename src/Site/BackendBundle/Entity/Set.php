@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Set
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="product_set_table")
+ * @ORM\Table(name="set_table")
  * @ORM\Entity(repositoryClass="Site\BackendBundle\Entity\Repository\SetRepository")
  */
 class Set
@@ -70,22 +70,64 @@ class Set
     private $insertionType;
     /**
      *
+     * @ORM\Column(name="poster_field", type="text", nullable=true)
+     */
+    private $poster;
+    /**
+     *
+     * @ORM\Column(name="shortcut_field", type="text", nullable=true)
+     */
+    private $shortcut;
+    /**
+     *
      * @ORM\Column(name="state_field", type="string", length=256, nullable=true)
      */
     private $state;
     /**
-     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="InsertionColor", mappedBy="sets")
+     * @ORM\Column(name="filter_price_field", type="string", length=30, nullable=true)
      */
-    private $insertionColors;
+    private $filterPrice;
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Order", inversedBy="sets",cascade={"persist"})
-     * @ORM\JoinTable(name="order_has_set")
+     * @ORM\ManyToMany(targetEntity="ShareTag", mappedBy="sets")
      */
-    private $orders;
+    private $shareTags;
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="OrderHasSet", mappedBy="set",indexBy="id")
+     */
+    private $orderHasSets;
+    /**
+     *
+     * @ORM\Column(name="rating_field", type="integer", length=11, nullable=true)
+     */
+    private $rating;
+    /**
+     *
+     * @ORM\Column(name="is_fresh_field", type="boolean", nullable=true)
+     */
+    private $isFresh = true;
+    /**
+     * @var \SetGallery
+     *
+     * @ORM\OneToMany(targetEntity="SetGallery", mappedBy="set",cascade={"persist","remove"}, orphanRemoval=true)
+     *
+     */
+    private $setGallery;
+    public function getShortClassName(){
+        return "Set";
+    }
+    private $addSet=false;
+    public function getAddSet(){
+        return $this->addSet;
+    }
+    public function setAddSet($value){
+        $this->addSet=$value;
+        return $this;
+    }
     public function __toString()
     {
         $string = "Набор";
@@ -359,85 +401,239 @@ class Set
     }
 
     /**
-     * Add insertionColor
+     * Set poster
      *
-     * @param \Site\BackendBundle\Entity\InsertionColor $insertionColor
+     * @param string $poster
      *
      * @return Set
      */
-    public function addInsertionColor(\Site\BackendBundle\Entity\InsertionColor $insertionColor)
+    public function setPoster($poster)
     {
-        $insertionColor->addSet($this);
-        $this->insertionColors[] = $insertionColor;
+        $this->poster = $poster;
 
         return $this;
     }
-    public function hasInsertionColor(InsertionColor $color)
-    {
-        return $this->getInsertionColors()->contains($color);
-    }
+
     /**
-     * Remove insertionColor
+     * Get poster
      *
-     * @param \Site\BackendBundle\Entity\InsertionColor $insertionColor
+     * @return string
      */
-    public function removeInsertionColor(\Site\BackendBundle\Entity\InsertionColor $insertionColor)
+    public function getPoster()
     {
-        $insertionColor->removeSet($this);
-        $this->insertionColors->removeElement($insertionColor);
+        return $this->poster;
     }
 
     /**
-     * Get insertionColors
+     * Set shortcut
+     *
+     * @param string $shortcut
+     *
+     * @return Set
+     */
+    public function setShortcut($shortcut)
+    {
+        $this->shortcut = $shortcut;
+
+        return $this;
+    }
+
+    /**
+     * Get shortcut
+     *
+     * @return string
+     */
+    public function getShortcut()
+    {
+        return $this->shortcut;
+    }
+
+    /**
+     * Set filterPrice
+     *
+     * @param string $filterPrice
+     *
+     * @return Set
+     */
+    public function setFilterPrice($filterPrice)
+    {
+        $this->filterPrice = $filterPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get filterPrice
+     *
+     * @return string
+     */
+    public function getFilterPrice()
+    {
+        return $this->filterPrice;
+    }
+
+    /**
+     * Add shareTag
+     *
+     * @param \Site\BackendBundle\Entity\ShareTag $shareTag
+     *
+     * @return Set
+     */
+    public function addShareTag(\Site\BackendBundle\Entity\ShareTag $shareTag)
+    {
+        $shareTag->addSet($this);
+        $this->shareTags[] = $shareTag;
+
+        return $this;
+    }
+
+    /**
+     * Remove shareTag
+     *
+     * @param \Site\BackendBundle\Entity\ShareTag $shareTag
+     */
+    public function removeShareTag(\Site\BackendBundle\Entity\ShareTag $shareTag)
+    {
+        $this->shareTags->removeElement($shareTag);
+    }
+
+    /**
+     * Get shareTags
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getInsertionColors()
+    public function getShareTags()
     {
-        return $this->insertionColors;
+        return $this->shareTags;
     }
-
+    public function hasShareTag(ShareTag $tag)
+    {
+        return $this->getShareTags()->contains($tag);
+    }
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->insertionColors = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->shareTags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orderHasSets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add order
+     * Add orderHasSet
      *
-     * @param \Site\BackendBundle\Entity\Order $order
+     * @param \Site\BackendBundle\Entity\OrderHasSet $orderHasSet
      *
      * @return Set
      */
-    public function addOrder(\Site\BackendBundle\Entity\Order $order)
+    public function addOrderHasSet(\Site\BackendBundle\Entity\OrderHasSet $orderHasSet)
     {
-        $this->orders[] = $order;
+        $this->orderHasSets[] = $orderHasSet;
 
         return $this;
     }
 
     /**
-     * Remove order
+     * Remove orderHasSet
      *
-     * @param \Site\BackendBundle\Entity\Order $order
+     * @param \Site\BackendBundle\Entity\OrderHasSet $orderHasSet
      */
-    public function removeOrder(\Site\BackendBundle\Entity\Order $order)
+    public function removeOrderHasSet(\Site\BackendBundle\Entity\OrderHasSet $orderHasSet)
     {
-        $this->orders->removeElement($order);
+        $this->orderHasSets->removeElement($orderHasSet);
     }
 
     /**
-     * Get orders
+     * Get orderHasSets
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getOrders()
+    public function getOrderHasSets()
     {
-        return $this->orders;
+        return $this->orderHasSets;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param integer $rating
+     *
+     * @return Set
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return integer
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Set isFresh
+     *
+     * @param boolean $isFresh
+     *
+     * @return Set
+     */
+    public function setIsFresh($isFresh)
+    {
+        $this->isFresh = $isFresh;
+
+        return $this;
+    }
+
+    /**
+     * Get isFresh
+     *
+     * @return boolean
+     */
+    public function getIsFresh()
+    {
+        return $this->isFresh;
+    }
+
+    /**
+     * Add setGallery
+     *
+     * @param \Site\BackendBundle\Entity\SetGallery $setGallery
+     *
+     * @return Set
+     */
+    public function addSetGallery(\Site\BackendBundle\Entity\SetGallery $setGallery)
+    {
+        $setGallery->setSet($this);
+        $this->setGallery[] = $setGallery;
+
+        return $this;
+    }
+
+    /**
+     * Remove setGallery
+     *
+     * @param \Site\BackendBundle\Entity\SetGallery $setGallery
+     */
+    public function removeSetGallery(\Site\BackendBundle\Entity\SetGallery $setGallery)
+    {
+        $this->setGallery->removeElement($setGallery);
+    }
+
+    /**
+     * Get setGallery
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSetGallery()
+    {
+        return $this->setGallery;
     }
 }

@@ -41,6 +41,7 @@ twig:
     form_themes:
         - 'SiteUploadBundle:Form:fields.html.twig'
         - 'SonataCoreBundle:Form:datepicker.html.twig'
+        - 'SiteFrontendBundle:Form:_range_field.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -68,7 +69,9 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
-
+        dql:
+            numeric_functions:
+                Rand: Site\BackendBundle\DQL\RandFunction
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -138,14 +141,14 @@ stfalcon_tinymce:
                  - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
                  - "searchreplace wordcount visualblocks visualchars code fullscreen"
                  - "insertdatetime media nonbreaking save table directionality"
-                 - "emoticons template paste textcolor"
+                 - "paste textcolor"
              menubar: false
-             toolbar1: " bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons "
-#             toolbar2: "print preview media | forecolor backcolor emoticons | stfalcon | example | smileys"
+             toolbar1: " bold italic | fontsizeselect forecolor backcolor | bullist numlist outdent indent | link | code "
              image_advtab: true
-             templates:
-                 - {title: 'Test template 1', content: 'Test 1'}
-                 - {title: 'Test template 2', content: 'Test 2'}
+             fontsize_formats: '8px 10px 12px 14px 18px 24px 36px 40px 48px 60px'
+             relative_urls: false
+             force_br_newlines : false
+             force_p_newlines : false
              file_browser_callback : elFinderBrowser
              relative_urls: false
         medium:
@@ -233,7 +236,9 @@ sonata_admin:
                 items:
                     - site_backend.admin.insertion.color
                     - site_backend.admin.ring.size
+                    - site_backend.admin.chain.size
                     - site_backend.admin.share.tag
+                    - site_backend.admin.news.tag
             Category:
                 label: Category
                 label_catalogue: SiteBackendBundle
@@ -250,7 +255,15 @@ sonata_admin:
                 label_catalogue: SiteBackendBundle
                 items:
                     - site_backend.admin.news
-                    - site_backend.admin.static.text
+                    - site_backend.admin.static.page.content
+                    - site_backend.admin.slider
+                    - site_backend.admin.static.seo.pages
+            Contacts:
+                label: Contacts
+                label_catalogue: SiteBackendBundle
+                items:
+                    - site_backend.admin.contacts
+                    - site_backend.admin.callback
         blocks:
             -
                 position: left
@@ -281,11 +294,98 @@ site_upload:
             upload_dir: '/uploads/products'
             max_size: '4761200' #bytes
             thumbnails:
+                extra_small:
+                   width: 100
+                   height: 100
+                   action: exact_resize
                 small:
-                   width: 40
-                   height: 40
+                   width: 350
+                   height: 350
                    action: exact_resize
                 big:
-                   width: 173
-                   height: 173
+                   width: 710
+                   height: 510
+                   action: exact_resize
+        set_icon:
+            type: image
+            mime_type: []  # default
+            format: 'jpg,gif,png'
+            upload_dir: '/uploads/sets'
+            max_size: '4761200' #bytes
+            thumbnails:
+                extra_small:
+                   width: 100
+                   height: 100
+                   action: exact_resize
+                small:
+                   width: 350
+                   height: 350
+                   action: exact_resize
+                big:
+                   width: 710
+                   height: 510
+                   action: exact_resize
+        news_icon:
+            type: image
+            mime_type: []  # default
+            format: 'jpg,gif,png'
+            upload_dir: '/uploads/news'
+            max_size: '4761200' #bytes
+            thumbnails:
+                small:
+                   width: 350
+                   height: 350
+                   action: exact_resize
+                big:
+                   width: 710
+                   height: 510
+                   action: exact_resize
+        product_gallery_icon:
+            type: image
+            mime_type: []  # default
+            format: 'jpg,gif,png'
+            upload_dir: '/uploads/product-gallery'
+            max_size: '4761200' #bytes
+            thumbnails:
+                extra_small:
+                   width: 100
+                   height: 100
+                   action: exact_resize
+                small:
+                   width: 350
+                   height: 350
+                   action: exact_resize
+                big:
+                   width: 710
+                   height: 510
+                   action: exact_resize
+        set_gallery_icon:
+            type: image
+            mime_type: []  # default
+            format: 'jpg,gif,png'
+            upload_dir: '/uploads/set-gallery'
+            max_size: '4761200' #bytes
+            thumbnails:
+                extra_small:
+                   width: 100
+                   height: 100
+                   action: exact_resize
+                small:
+                   width: 350
+                   height: 350
+                   action: exact_resize
+                big:
+                   width: 710
+                   height: 510
+                   action: exact_resize
+        slider:
+            type: image
+            mime_type: []  # default
+            format: 'jpg,gif,png'
+            upload_dir: '/uploads/slides'
+            max_size: '4761200' #bytes
+            thumbnails:
+                big:
+                   width: 850
+                   height: 370
                    action: exact_resize

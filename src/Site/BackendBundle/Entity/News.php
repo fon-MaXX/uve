@@ -67,6 +67,12 @@ class News
      */
     private $text;
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="NewsTag", mappedBy="articles")
+     */
+    private $newsTags;
+    /**
      * @var \DateTime $createdAt
      *
      * @Gedmo\Timestampable(on="create")
@@ -80,41 +86,19 @@ class News
      * @ORM\Column(name="updated_at",type="datetime")
      */
     private $updatedAt;
+    public function getShortClassName(){
+        return "News";
+    }
     public function __toString()
     {
         return 'Новость:"'.$this->getTitle().'""';
     }
-
     /**
-     * @return mixed
+     * Constructor
      */
-    public function getKeywords()
+    public function __construct()
     {
-        return $this->keywords;
-    }
-
-    /**
-     * @param mixed $keywords
-     */
-    public function setKeywords($keywords)
-    {
-        $this->keywords = $keywords;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPosterAlt()
-    {
-        return $this->posterAlt;
-    }
-
-    /**
-     * @param mixed $posterAlt
-     */
-    public function setPosterAlt($posterAlt)
-    {
-        $this->posterAlt = $posterAlt;
+        $this->newsTags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -149,6 +133,54 @@ class News
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set keywords
+     *
+     * @param string $keywords
+     *
+     * @return News
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+
+        return $this;
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return string
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return News
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
@@ -224,6 +256,30 @@ class News
     }
 
     /**
+     * Set posterAlt
+     *
+     * @param string $posterAlt
+     *
+     * @return News
+     */
+    public function setPosterAlt($posterAlt)
+    {
+        $this->posterAlt = $posterAlt;
+
+        return $this;
+    }
+
+    /**
+     * Get posterAlt
+     *
+     * @return string
+     */
+    public function getPosterAlt()
+    {
+        return $this->posterAlt;
+    }
+
+    /**
      * Set text
      *
      * @param string $text
@@ -250,14 +306,14 @@ class News
     /**
      * Set createdAt
      *
-     * @param string $createdAt
+     * @param \DateTime $createdAt
      *
      * @return News
      */
     public function setCreatedAt($createdAt)
     {
+        $this->createdAt = $createdAt;
 
-        $this->createdAt= \DateTime::createFromFormat('d-m-Y', $createdAt);
         return $this;
     }
 
@@ -268,9 +324,7 @@ class News
      */
     public function getCreatedAt()
     {
-        if (is_null($this->createdAt))
-            return $this->createdAt;
-        return $this->createdAt->format( "d-m-Y" );
+        return $this->createdAt;
     }
 
     /**
@@ -298,26 +352,37 @@ class News
     }
 
     /**
-     * Set description
+     * Add newsTag
      *
-     * @param string $description
+     * @param \Site\BackendBundle\Entity\NewsTag $newsTag
      *
      * @return News
      */
-    public function setDescription($description)
+    public function addNewsTag(\Site\BackendBundle\Entity\NewsTag $newsTag)
     {
-        $this->description = $description;
+        $newsTag->addArticle($this);
+        $this->newsTags[] = $newsTag;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Remove newsTag
      *
-     * @return string
+     * @param \Site\BackendBundle\Entity\NewsTag $newsTag
      */
-    public function getDescription()
+    public function removeNewsTag(\Site\BackendBundle\Entity\NewsTag $newsTag)
     {
-        return $this->description;
+        $this->newsTags->removeElement($newsTag);
+    }
+
+    /**
+     * Get newsTags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNewsTags()
+    {
+        return $this->newsTags;
     }
 }

@@ -1,0 +1,28 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+    <div class="container order-create-content">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="order-create-title-wrapper">
+            <h1>
+                {{ title }}
+            </h1>
+            <div class="clearfix"></div>
+            <div class="order-message-box">
+                Ваш запрос отправлен, мы свяжемся с Вами в ближайшее время..
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block seo %}
+    <title>{{ "Контакты - запрос успешно отправлен" }}</title>
+{% endblock seo %}

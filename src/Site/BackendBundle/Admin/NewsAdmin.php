@@ -122,6 +122,15 @@ class NewsAdmin extends AbstractAdmin
                         'data-theme' => 'medium' // simple, advanced, bbcode
                     ]
                 ])
+                ->add('newsTags', 'sonata_type_model', [
+                    'expanded' => false,
+                    'property'=>'title',
+                    'by_reference' => false,
+                    'query' => $em->getRepository('SiteBackendBundle:NewsTag')->getAllSortedByTitle(),
+                    'multiple' => true,
+                    'attr' => ['class' => 'multiSelect'],
+                    'label'=>'field.share_tag'
+                ])
                 ->add('createdAt')
                 ->add('updatedAt')
             ->end()
@@ -135,6 +144,10 @@ class NewsAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('title')
+            ->add('newsTags', 'text', [
+                'label'=>'field.share_tag',
+                'template'=>"SiteBackendBundle:Show:_tag.html.twig"
+            ])
             ->add('keywords')
             ->add('description')
             ->add('poster', 'text',[

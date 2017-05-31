@@ -1,2 +1,17 @@
 parameters:
 services:
+    fonmaxx.breadcrumbs.generator:
+        class: Site\FrontendBundle\Services\BreadcrumbsGenerator
+        arguments:
+            - "@router"
+
+    fonmaxx.cart.items.number:
+        class: Site\FrontendBundle\Services\NumberInCart
+        arguments:
+            - "@session"
+
+    product_state.twig_extension:
+        class: Site\FrontendBundle\Twig\Extension\ProductStateExtension
+        public: false
+        tags:
+            - { name: twig.extension }

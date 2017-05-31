@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-
     <link rel="shortcut icon" href="{{ asset("bundles/sitefrontend/images/favicon.png") }}" type="image/x-icon">
-
+{% block seo %}
     <title>Uvelife</title>
-
+    <meta name="description" content="">
+{% endblock seo %}
     <!-- Bootstrap core CSS -->
     <link href="{{ asset("bundles/sitefrontend/css/bootstrap.min.css") }}" rel="stylesheet">
 
@@ -21,6 +20,11 @@
     <link href="{{ asset("bundles/sitefrontend/css/font-awesome.css") }}" rel="stylesheet">
     <link href="{{ asset("bundles/sitefrontend/css/jquery.bxslider.css") }}" rel="stylesheet">
 
+    <link href="{{ asset("bundles/sitefrontend/css/jquery-ui.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("bundles/sitefrontend/css/bootstrap-select.css") }}" rel="stylesheet">
+    <link href="{{ asset("bundles/sitefrontend/css/perfect-scrollbar.min.css") }}" rel="stylesheet">
+
+
     <link href="{{ asset("bundles/sitefrontend/css/style.css") }}" rel="stylesheet">
 
     <script src="{{ asset("bundles/sitefrontend/js/ie-emulation-modes-warning.js") }}"></script>
@@ -28,11 +32,15 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <script src="{{ asset("bundles/sitefrontend/js/html5shiv.min.js") }}"></script>
     <script src="{{ asset("bundles/sitefrontend/js/respond.min.js") }}"></script>
+    <script src="{{ asset("bundles/sitefrontend/js/jquery.min.js") }}"></script>
+    <script src="{{ asset("bundles/sitefrontend/js/jquery-ui.min.js") }}"></script>
 </head>
 
 <body>
 <nav class="navbar navbar-default header-navbar-wrapper">
-    {% include "SiteFrontendBundle:Parts:_header.html.twig" %}
+    {% block header %}
+        {{ render(controller('SiteFrontendBundle:Default:headerMenu')) }}
+    {% endblock header %}
 </nav>
 <section class="content-section">
     <section class="main-top-slider-section">
@@ -45,8 +53,21 @@
     </section>
 </section>
 <footer class="footer">
-    {% include "SiteFrontendBundle:Parts:_footer.html.twig" %}
+    {{ render(controller('SiteFrontendBundle:Default:footer')) }}
 </footer>
+<div class="modal-no-background"></div>
+<div class="modal-with-background"></div>
+{% block globalCart %}
+    {% include "SiteFrontendBundle:Parts:_global_cart.html.twig" %}
+{% endblock globalCart %}
+{{ render(controller('SiteFrontendBundle:Default:getCallbackForm')) }}
+<div class="modal-message-wrapper">
+    <div class="text-right">
+        <button class="close-modal-button">x</button>
+    </div>
+    <div class="modal-body">
+    </div>
+</div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -55,6 +76,11 @@
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="{{ asset("bundles/sitefrontend/js/ie10-viewport-bug-workaround.js") }}"></script>
 <script src="{{ asset("bundles/sitefrontend/js/jquery.bxslider.js") }}"></script>
+<script src="{{ asset("bundles/sitefrontend/js/bootstrap-select.min.js") }}"></script>
+<script src="{{ asset("bundles/sitefrontend/js/perfect-scrollbar.min.js") }}"></script>
+<script src="{{ asset("bundles/sitefrontend/js/masonry.min.js") }}"></script>
+<script src="{{ asset("bundles/sitefrontend/js/jquery.infinitescroll.min.js") }}"></script>
+<script src="{{ asset("bundles/sitefrontend/js/jquery.validate.js") }}"></script>
 <script src="{{ asset("bundles/sitefrontend/js/main.js") }}"></script>
 </body>
 </html>

@@ -1,0 +1,28 @@
+<div class="modal-callback-wrapper">
+    <div class="text-right">
+        <button class="close-modal-button">x</button>
+    </div>
+    <div class="modal-body">
+        <form id="callback-form" enctype="multipart/form-data" method="post" action="{{ form.vars.action }}">
+            <div class="callback-form-label">
+                {{ form_label(form.name) }}
+            </div>
+            <div class="callback-form-input">
+                {{ form_widget(form.name) }}
+            </div>
+            <div class="callback-form-label">
+                {{ form_label(form.phone) }}
+            </div>
+            <div class="callback-form-input">
+                <div class="callback-form-pre-phone-input">+38</div>
+                <div class="callback-form-phone-input">{{ form_widget(form.phone) }}</div>
+            </div>
+            <div class="callback-form-input">
+                <button type="submit" class="regular-button">отправить</button>
+            </div>
+            <div class="display-none">
+                {{ form_rest(form) }}
+            </div>
+        </form>
+    </div>
+</div>

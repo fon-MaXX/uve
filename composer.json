@@ -32,7 +32,8 @@
         "knplabs/knp-paginator-bundle": "dev-master",
         "doctrine/doctrine-migrations-bundle": "1.2.x-dev",
         "pixassociates/sortable-behavior-bundle":   "1.1.x-dev",
-        "friendsofsymfony/user-bundle": "2.0.x-dev"
+        "friendsofsymfony/user-bundle": "2.0.x-dev",
+        "doctrine/doctrine-fixtures-bundle": "2.3.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

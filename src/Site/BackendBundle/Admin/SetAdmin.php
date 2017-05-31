@@ -7,9 +7,29 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-
+use Site\UploadBundle\UpbeatTraits\UpbeatUploadFilesAdminTrait;
+use Site\UploadBundle\Form\UpbeatUploadType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 class SetAdmin extends AbstractAdmin
 {
+    use UpbeatUploadFilesAdminTrait;
+    /**
+     * @param string $code
+     * @param string $class
+     * @param string $baseControllerName
+     */
+    public function __construct($code, $class, $baseControllerName, $container = null,$entityManager = null,$fileHandler=null)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+        $this->container = $container;
+        $this->entityManager=$entityManager;
+        $this->fileHandler=$fileHandler;
+        $this->childAdmins = new \SplObjectStorage();
+        $imagesAdmin = new \StdClass;
+        $imagesAdmin->fieldName = 'setGallery';
+        $imagesAdmin->adminService = 'site_backend.admin.set.gallery';
+        $this->childAdmins->attach($imagesAdmin);
+    }
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -69,6 +89,10 @@ class SetAdmin extends AbstractAdmin
             ->add('title','text',[
                 'required'=>true
             ])
+            ->add('isFresh',CheckboxType::class,[
+                'required'=>true,
+                'label'=>'Присутствовал в синхронизации'
+            ])
             ->add('keywords','textarea', [
                 'attr' => [
                     'class' => 'keywords-textarea'
@@ -109,17 +133,27 @@ class SetAdmin extends AbstractAdmin
                     'label'=>'field.theme',
                     'required'=>false
                 ])
-                ->add('insertionColors', 'sonata_type_model', [
+                ->add('shareTags', 'sonata_type_model', [
                     'expanded' => false,
                     'property'=>'title',
                     'by_reference' => false,
-                    'query' => $em->getRepository('SiteBackendBundle:InsertionColor')->getAllSortedByTitle(),
+                    'query' => $em->getRepository('SiteBackendBundle:ShareTag')->getAllSortedByTitle(),
                     'multiple' => true,
-                    'attr'     => ['class' => 'multiSelect'],
-                    'label'=>'field.insertion_colors',
-                    'required'=>false
+                    'attr' => ['class' => 'multiSelect'],
+                    'label'=>'field.share_tag'
                 ])
             ->end()
+            ->with("Gallery")
+            ->add('setGallery', 'sonata_type_collection', [
+                'label' => 'Photos',
+                'by_reference' => false
+            ],
+                [
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'targetEntity' => 'SiteBackendBundle\Entity\SetGallery'
+                ])
+            ->end();
         ;
     }
 

@@ -1,0 +1,137 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block header %}
+    {% include "SiteFrontendBundle:Parts:_header.html.twig" with {
+        'category': category,
+        'categories': categories,
+        'isSet': true,
+        'itemsNumber': itemsNumber,
+        'staticContent': staticContent,
+        'searchForm': searchForm
+    } %}
+{% endblock header %}
+{% block content %}
+    <div class="container product-list-content no-padding">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="product-list-title-wrapper">
+            <h1>
+              {{ "Наборы" }}
+            </h1>
+            <div class="product-list-title-buttons-wrapper open">
+                <div class="product-list-filter-title-mobile-header">сортировать по</div>
+                <button data-value="popular" class="product-list-title-button product-list-title-button-popular">популярные</button>
+                <button data-value="by_title" class="product-list-title-button product-list-title-button-title">по названию</button>
+                <button data-value="cheapest" class="product-list-title-button product-list-title-button-cheapest">сначала дешевые</button>
+            </div>
+        </div>
+        <div class="product-list-content-wrapper">
+            <div class="product-list-filters-wrapper">
+                <div class="product-list-filter-title-mobile-header">фильтровать по</div>
+                <div class="filter-block-form-wrapper">
+                    {% include "SiteFrontendBundle:Form:_set_filter.html.twig" with {'form':form} %}
+                </div>
+            </div>
+            <div class="product-list-items-wrapper">
+                <div class="product-min-height">
+                    {% if sets|length %}
+                        {% for set in sets %}
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 col-xxs-6">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding index-product-item">
+                                    <div class="index-product-preview-image">
+                                        {% if set.hasShareTag(shareTags['топ продаж']) %}
+                                            <div class="share-marker share-marker-hot"></div>
+                                        {% elseif set.hasShareTag(shareTags['новинка']) %}
+                                            <div class="share-marker share-marker-novel"></div>
+                                        {% elseif set.hasShareTag(shareTags['акция']) %}
+                                            <div class="share-marker share-marker-share"></div>
+                                        {% endif %}
+                                        <div class="index-product-preview-outer-wrapper">
+                                            <div class="index-product-preview-inner-wrapper">
+                                                <a href="{{ path('site_frontend_set_show',{'slug':set.slug}) }}">
+                                                    <img src="{{ (set.poster)?set.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="index-product-title">
+                                        <span>{{ set.title }}</span>
+                                    </div>
+                                    <div class="product-fetures-wrapper">
+                                        <div class="index-product-price">
+                                            {#<span class="index-product-old-price">#}
+                                                {#756 <span class="smaller">грн</span>#}
+                                            {#</span>#}
+                                            {#<span class="index-product-new-price">656 <span class="smaller">грн</span></span>#}
+                                            <span class="index-product-regular-price">{{ set.filterPrice }} <span class="smaller">грн</span></span>
+                                        </div>
+                                        <div class="index-product-controls col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                                            <button data-url="{{ url('site_frontend_order_add_set',{"slug":set.slug}) }}" class="index-product-buy">
+                                                купить
+                                            </button>
+                                        </div>
+                                        <div class="index-product-shortcut-wrapper">
+                                            <div><strong>Металл:</strong> {{ set.metal }}; </div>
+                                            <div><strong>Тип вставки:</strong>{{ set.insertionType }};</div>
+                                            <div class="set-list-properties-components-wrapper">
+                                                <div class="set-list-properties-components-title">Состав набора:</div>
+                                                <div class="set-list-properties-components">
+                                                    {% if set.products|length %}
+                                                        {% for product in set.products %}
+                                                            <div>
+                                                                {{ product.title }}
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-state {{ set.state|product_state }}"><span>{{ set.state }}</span></div>
+                                            <div class="selected-button-wrapper">
+                                                <span data-url="{{ url("site_frontend_selected_add_set",{'slug':set.slug}) }}" class="selected-item">
+                                                    <span>добавить</br> в избранное</span>
+                                                </span>
+                                                <span data-url="{{ url("site_frontend_comparing_add_set",{'slug':set.slug}) }}" class="comparison-item">
+                                                    <span>добавить</br> в сравнение</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="no-items-found">
+                            Извините, наборы с заданными параметрами отсутствуют...
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 section-product-list-footer">
+                    <div class="product-number-select-wrapper">
+                        {{ numberOnPageSelect|raw }}
+                    </div>
+                    <div class="product-list-pagination-wrapper">
+                        {{ knp_pagination_render(sets) }}
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block seo %}
+    <title>{{ seo.title }}</title>
+    {% if seo.description %}
+        <meta name="description" content="{{ seo.description }}">
+    {% endif %}
+    {% if seo.keywords %}
+        <meta name="keywords" content="{{ seo.keywords }}">
+    {% endif %}
+{% endblock seo %}

@@ -16,4 +16,10 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function getCategoriesWithSubCategoriesIndexBySlug(){
+        return $this->createQueryBuilder('c','c.slug')
+            ->leftJoin('c.subCategories','sc')
+            ->getQuery()
+            ->getResult();
+    }
 }

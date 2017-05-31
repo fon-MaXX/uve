@@ -64,6 +64,11 @@ class Product
     private $price;
     /**
      *
+     * @ORM\Column(name="filter_price_field", type="string", length=30, nullable=true)
+     */
+    private $filterPrice;
+    /**
+     *
      * @ORM\Column(name="share_price_field", type="string", length=30, nullable=true)
      */
     private $sharePrice;
@@ -99,19 +104,9 @@ class Product
     private $weavingType;
     /**
      *
-     * @ORM\Column(name="chain_length_field", type="string", length=256, nullable=true)
-     */
-    private $chainLength;
-    /**
-     *
      * @ORM\Column(name="covering_field", type="string", length=256, nullable=true)
      */
     private $covering;
-    /**
-     *
-     * @ORM\Column(name="product_type_field", type="string", length=256, nullable=true)
-     */
-    private $productType;
     /**
      *
      * @ORM\Column(name="theme_field", type="string", length=256, nullable=true)
@@ -129,13 +124,6 @@ class Product
      * @ORM\JoinTable(name="set_has_product")
      */
     private $sets;
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Order", inversedBy="products",cascade={"persist"})
-     * @ORM\JoinTable(name="order_has_product")
-     */
-    private $orders;
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -162,6 +150,12 @@ class Product
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
+     * @ORM\ManyToMany(targetEntity="ChainSize", mappedBy="products")
+     */
+    private $chainSizes;
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
      * @ORM\ManyToMany(targetEntity="InsertionColor", mappedBy="products")
      */
     private $insertionColors;
@@ -175,6 +169,83 @@ class Product
      * })
      */
     private $subCategory;
+    /**
+     * @var \DateTime $createdAt
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at",type="datetime")
+     */
+    private $createdAt;
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="OrderHasProduct", mappedBy="product",indexBy="id")
+     */
+    private $orderHasProducts;
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="OrderHasSetComponent", mappedBy="prduct",indexBy="id")
+     */
+    private $orderHasSetComponents;
+    /**
+     * @var \ProductGallery
+     *
+     * @ORM\OneToMany(targetEntity="ProductGallery", mappedBy="product",cascade={"persist","remove"}, orphanRemoval=true)
+     *
+     */
+    private $productGallery;
+    /**
+     *
+     * @ORM\Column(name="rating_field", type="integer", length=11, nullable=true)
+     */
+    private $rating;
+    /**
+     *
+     * @ORM\Column(name="is_fresh_field", type="boolean", nullable=true)
+     */
+    private $isFresh = true;
+    public function getShortClassName(){
+        return "Product";
+    }
+    private $addProduct=false;
+    public function getAddProduct(){
+        return $this->addProduct;
+    }
+    public function setAddProduct($value){
+        $this->addProduct=$value;
+        return $this;
+    }
+    public function getInsertionColorsList(){
+        if(!count($colors=$this->getInsertionColors())){
+            return [];
+        }
+        $list=[];
+        foreach($colors as $color){
+            $list[$color->getId()]=$color->getTitle();
+        }
+        return $list;
+    }
+    public function getRingSizesList(){
+        if(!count($sizes=$this->getRingSizes())){
+            return [];
+        }
+        $list=[];
+        foreach($sizes as $size){
+            $list[$size->getId()]=$size->getTitle();
+        }
+        return $list;
+    }
+    public function getChainSizesList(){
+        if(!count($sizes=$this->getChainSizes())){
+            return [];
+        }
+        $list=[];
+        foreach($sizes as $size){
+            $list[$size->getId()]=$size->getTitle();
+        }
+        return $list;
+    }
     public function getTagTitle(){
         return $this->getCod().' - '.$this->getTitle();
     }
@@ -350,7 +421,7 @@ class Product
      */
     public function setWeight($weight)
     {
-        $this->weight = $weight;
+        $this->weight = round($weight,2);
 
         return $this;
     }
@@ -362,7 +433,7 @@ class Product
      */
     public function getWeight()
     {
-        return $this->weight;
+        return round($this->weight,2);
     }
 
     /**
@@ -556,31 +627,6 @@ class Product
     {
         return $this->weavingType;
     }
-
-    /**
-     * Set chainLength
-     *
-     * @param string $chainLength
-     *
-     * @return Product
-     */
-    public function setChainLength($chainLength)
-    {
-        $this->chainLength = $chainLength;
-
-        return $this;
-    }
-
-    /**
-     * Get chainLength
-     *
-     * @return string
-     */
-    public function getChainLength()
-    {
-        return $this->chainLength;
-    }
-
     /**
      * Set covering
      *
@@ -604,31 +650,6 @@ class Product
     {
         return $this->covering;
     }
-
-    /**
-     * Set productType
-     *
-     * @param string $productType
-     *
-     * @return Product
-     */
-    public function setProductType($productType)
-    {
-        $this->productType = $productType;
-
-        return $this;
-    }
-
-    /**
-     * Get productType
-     *
-     * @return string
-     */
-    public function getProductType()
-    {
-        return $this->productType;
-    }
-
     /**
      * Set theme
      *
@@ -840,6 +861,7 @@ class Product
      */
     public function removeShareTag(\Site\BackendBundle\Entity\ShareTag $shareTag)
     {
+        $shareTag->removeProduct($this);
         $this->shareTags->removeElement($shareTag);
     }
 
@@ -879,51 +901,6 @@ class Product
     {
         return $this->subCategory;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->sets = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->shareTags = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ringSizes = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->insertionColors = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add order
-     *
-     * @param \Site\BackendBundle\Entity\Order $order
-     *
-     * @return Product
-     */
-    public function addOrder(\Site\BackendBundle\Entity\Order $order)
-    {
-        $this->orders[] = $order;
-
-        return $this;
-    }
-
-    /**
-     * Remove order
-     *
-     * @param \Site\BackendBundle\Entity\Order $order
-     */
-    public function removeOrder(\Site\BackendBundle\Entity\Order $order)
-    {
-        $this->orders->removeElement($order);
-    }
-
-    /**
-     * Get orders
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOrders()
-    {
-        return $this->orders;
-    }
 
     /**
      * Set poster
@@ -947,5 +924,258 @@ class Product
     public function getPoster()
     {
         return $this->poster;
+    }
+
+    /**
+     * Add chainSize
+     *
+     * @param \Site\BackendBundle\Entity\ChainSize $chainSize
+     *
+     * @return Product
+     */
+    public function addChainSize(\Site\BackendBundle\Entity\ChainSize $chainSize)
+    {
+        $chainSize->addProduct($this);
+        $this->chainSizes[] = $chainSize;
+
+        return $this;
+    }
+
+    /**
+     * Remove chainSize
+     *
+     * @param \Site\BackendBundle\Entity\ChainSize $chainSize
+     */
+    public function removeChainSize(\Site\BackendBundle\Entity\ChainSize $chainSize)
+    {
+        $chainSize->removeProduct($this);
+        $this->chainSizes->removeElement($chainSize);
+    }
+
+    /**
+     * Get chainSizes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChainSizes()
+    {
+        return $this->chainSizes;
+    }
+    public function hasChainSize(ChainSize $size)
+    {
+        return $this->getChainSizes()->contains($size);
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Product
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Add productGallery
+     *
+     * @param \Site\BackendBundle\Entity\ProductGallery $productGallery
+     *
+     * @return Product
+     */
+    public function addProductGallery(\Site\BackendBundle\Entity\ProductGallery $productGallery)
+    {
+        $productGallery->setProduct($this);
+        $this->productGallery[] = $productGallery;
+
+        return $this;
+    }
+
+    /**
+     * Remove productGallery
+     *
+     * @param \Site\BackendBundle\Entity\ProductGallery $productGallery
+     */
+    public function removeProductGallery(\Site\BackendBundle\Entity\ProductGallery $productGallery)
+    {
+        $this->productGallery->removeElement($productGallery);
+    }
+
+    /**
+     * Get productGallery
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProductGallery()
+    {
+        return $this->productGallery;
+    }
+
+    /**
+     * Set filterPrice
+     *
+     * @param string $filterPrice
+     *
+     * @return Product
+     */
+    public function setFilterPrice($filterPrice)
+    {
+        $this->filterPrice = $filterPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get filterPrice
+     *
+     * @return string
+     */
+    public function getFilterPrice()
+    {
+        return $this->filterPrice;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->shareTags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ringSizes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->chainSizes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->insertionColors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orderHasProducts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orderHasSetComponents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->productGallery = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add orderHasProduct
+     *
+     * @param \Site\BackendBundle\Entity\OrderHasProduct $orderHasProduct
+     *
+     * @return Product
+     */
+    public function addOrderHasProduct(\Site\BackendBundle\Entity\OrderHasProduct $orderHasProduct)
+    {
+        $this->orderHasProducts[] = $orderHasProduct;
+
+        return $this;
+    }
+
+    /**
+     * Remove orderHasProduct
+     *
+     * @param \Site\BackendBundle\Entity\OrderHasProduct $orderHasProduct
+     */
+    public function removeOrderHasProduct(\Site\BackendBundle\Entity\OrderHasProduct $orderHasProduct)
+    {
+        $this->orderHasProducts->removeElement($orderHasProduct);
+    }
+
+    /**
+     * Get orderHasProducts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrderHasProducts()
+    {
+        return $this->orderHasProducts;
+    }
+
+    /**
+     * Add orderHasSetComponent
+     *
+     * @param \Site\BackendBundle\Entity\OrderHasSetComponent $orderHasSetComponent
+     *
+     * @return Product
+     */
+    public function addOrderHasSetComponent(\Site\BackendBundle\Entity\OrderHasSetComponent $orderHasSetComponent)
+    {
+        $this->orderHasSetComponents[] = $orderHasSetComponent;
+
+        return $this;
+    }
+
+    /**
+     * Remove orderHasSetComponent
+     *
+     * @param \Site\BackendBundle\Entity\OrderHasSetComponent $orderHasSetComponent
+     */
+    public function removeOrderHasSetComponent(\Site\BackendBundle\Entity\OrderHasSetComponent $orderHasSetComponent)
+    {
+        $this->orderHasSetComponents->removeElement($orderHasSetComponent);
+    }
+
+    /**
+     * Get orderHasSetComponents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrderHasSetComponents()
+    {
+        return $this->orderHasSetComponents;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param integer $rating
+     *
+     * @return Product
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return integer
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Set isFresh
+     *
+     * @param boolean $isFresh
+     *
+     * @return Product
+     */
+    public function setIsFresh($isFresh)
+    {
+        $this->isFresh = $isFresh;
+
+        return $this;
+    }
+
+    /**
+     * Get isFresh
+     *
+     * @return boolean
+     */
+    public function getIsFresh()
+    {
+        return $this->isFresh;
     }
 }

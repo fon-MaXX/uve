@@ -1,0 +1,379 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends "SiteBackendBundle::layout.html.twig" %}
+
+{% block title %}
+    {% if admin.id(object) is not null %}
+        {{ "title_edit"|trans({'%name%': admin.toString(object)|truncate(15) }, 'SonataAdminBundle') }}
+    {% else %}
+        {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+    {% endif %}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{%- block actions -%}
+    {% include 'SonataAdminBundle:CRUD:action_buttons.html.twig' %}
+    {% if object.id %}
+        <li>
+            <span class="sonata-action-element add-product-to-order" data-url="{{ admin.generateObjectUrl('orderaddproduct',object,{},0) }}">
+                <i class="fa fa-superpowers" aria-hidden="true"></i>
+                Добавить товар
+            </span>
+        </li>
+        <li>
+            <span class="sonata-action-element add-set-to-order" data-url="{{ admin.generateObjectUrl('orderaddset',object,{},0) }}">
+                <i class="fa fa-cubes" aria-hidden="true"></i>
+                Добавить набор
+            </span>
+        </li>
+    {% endif %}
+{%- endblock -%}
+
+{% block tab_menu %}{{ knp_menu_render(admin.sidemenu(action), {'currentClass' : 'active', 'template': sonata_admin.adminPool.getTemplate('tab_menu_template')}, 'twig') }}{% endblock %}
+
+{% block form %}
+    <form method="post" action="{{ form.vars.action }}">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h4 class="box-title">
+                            Контактные данные
+                        </h4>
+                    </div>
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            <div class="form-group form-item-element">
+                                {{ form_label(form.username) }}
+                                {{ form_widget(form.username) }}
+                            </div>
+                            <div class="form-group form-item-element">
+                                {{ form_label(form.phone) }}
+                                {{ form_widget(form.phone) }}
+                            </div>
+                            <div class="form-group form-item-element">
+                                {{ form_label(form.email) }}
+                                {{ form_widget(form.email) }}
+                            </div>
+                            <div class="form-group form-item-element">
+                                {{ form_label(form.comment) }}
+                                {{ form_widget(form.comment) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if form.vars.value.orderHasProducts|length %}
+            <div class="row">
+                <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h4 class="box-title">
+                            Товары
+                        </h4>
+                    </div>
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                        {% for orderHasProduct in form.orderHasProducts %}
+                            {% set product = orderHasProduct.vars.value.product %}
+                                {% if loop.first %}
+                                    <div class="form-group order-collection-title form-item-collection-element">
+                                        <div class="col-md-1">Удалить?</div>
+                                        <div class="col-md-6">Описание:</div>
+                                        <div class="col-md-3">Количество:</div>
+                                        <div class="col-md-2">Цена:</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                {% endif %}
+                                <div class="form-group col-md-12 form-item-collection-element">
+                                    <div class="col-md-1">
+                                        <div class="squared-one-input delete-checkbox">
+                                            {{ form_widget(orderHasProduct.delete) }}
+                                            {{ form_label(orderHasProduct.delete) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 product-poster">
+                                        <div class="code-wrapper">Код товара: {{ product.cod }}</div>
+                                        <div class="poster-outer-wrapper">
+                                            <div class="poster-inner-wrapper">
+                                                <img src="{{ (product.poster)?product.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="item-title">
+                                            <h5>{{ product.title }}</h5>
+                                        </div>
+                                        {% if product.ringSizes|length %}
+                                            <div>
+                                                {{ form_label(orderHasProduct.ringSize) }}
+                                                {{ form_widget(orderHasProduct.ringSize) }}
+                                            </div>
+                                        {% endif %}
+                                        {% if product.chainSizes|length %}
+                                            <div>
+                                                {{ form_label(orderHasProduct.chainSize) }}
+                                                {{ form_widget(orderHasProduct.chainSize) }}
+                                            </div>
+                                        {% endif %}
+                                        {% if product.insertionColors|length %}
+                                            <div>
+                                                {{ form_label(orderHasProduct.insertionColor) }}
+                                                {{ form_widget(orderHasProduct.insertionColor) }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="index-product-input">
+                                            <span class="plus-minus-wrapper">
+                                                <span class="plus-minus-wrapper-item minus"></span>
+                                            </span>
+                                            <span class="number-input-wrapper">
+                                                {{ form_widget(orderHasProduct.number) }}
+                                            </span>
+                                            <span class="plus-minus-wrapper">
+                                                <span class="plus-minus-wrapper-item plus"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2" data-price="{{ (product.sharePrice)?product.sharePrice:product.price }}">
+                                        {% if product.sharePrice %}
+                                            <span class="index-product-old-price">
+                                                {{ product.price }} <span class="smaller">грн</span>
+                                            </span>
+                                            <span class="index-product-new-price">
+                                                {{ product.sharePrice }}<span class="smaller">грн</span>
+                                            </span>
+                                        {% else %}
+                                            <span class="index-product-regular-price">
+                                                {{ product.price }}<span class="smaller">грн</span>
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            {% endfor %}
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        {% endif %}
+        {% if form.vars.value.orderHasSets|length %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                Наборы
+                            </h4>
+                        </div>
+                        <div class="box-body">
+                            <div class="sonata-ba-collapsed-fields">
+                                <div class="form-group col-md-12 order-collection-title form-item-collection-element">
+                                    <div class="col-md-1">Удалить?</div>
+                                    <div class="col-md-4 text-right">Входит в состав заказа?:</div>
+                                    <div class="col-md-5">Описание:</div>
+                                    <div class="col-md-2">Цена:</div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                {% for orderHasSet in form.orderHasSets %}
+                                    {% set setItem = orderHasSet.vars.value.set %}
+                                    <div class="form-group col-md-12 form-item-collection-element">
+                                        <div class="col-md-1">
+                                            <div class="squared-one-input delete-checkbox">
+                                                {{ form_widget(orderHasSet.delete) }}
+                                                {{ form_label(orderHasSet.delete) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 product-poster">
+                                            <div class="code-wrapper">Код товара: {{ setItem.cod }}</div>
+                                            <div class="poster-outer-wrapper">
+                                                <div class="poster-inner-wrapper">
+                                                    <img src="{{ (setItem.poster)?setItem.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 collection-set">
+                                            {% for component in orderHasSet.orderHasSetComponents %}
+                                                {% set product = component.vars.value.product %}
+                                                <div class="row set-components">
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-2">
+                                                            <div class="squared-one-input component-presence">
+                                                                {{ form_label(component.presence) }}
+                                                                {{ form_widget(component.presence) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="item-title">
+                                                                <h5>{{ product.title }}</h5>
+                                                            </div>
+                                                            {% if product.ringSizes|length %}
+                                                                <div>
+                                                                    {{ form_label(component.ringSize) }}
+                                                                    {{ form_widget(component.ringSize) }}
+                                                                </div>
+                                                            {% endif %}
+                                                            {% if product.chainSizes|length %}
+                                                                <div>
+                                                                    {{ form_label(component.chainSize) }}
+                                                                    {{ form_widget(component.chainSize) }}
+                                                                </div>
+                                                            {% endif %}
+                                                            {% if product.insertionColors|length %}
+                                                                <div>
+                                                                    {{ form_label(component.insertionColor) }}
+                                                                    {{ form_widget(component.insertionColor) }}
+                                                                </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4" data-price="{{ (product.sharePrice)?product.sharePrice:product.price }}">
+                                                        {% if product.sharePrice %}
+                                                            <span class="index-product-old-price">
+                                                                {{ product.price }} <span class="smaller">грн</span>
+                                                            </span>
+                                                            <span class="index-product-new-price">
+                                                                {{ product.sharePrice }}<span class="smaller">грн</span>
+                                                            </span>
+                                                        {% else %}
+                                                            <span class="index-product-regular-price">
+                                                                {{ product.price }}<span class="smaller">грн</span>
+                                                            </span>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="set-item-number">
+                                            <div class="index-product-input">
+                                                <span class="plus-minus-wrapper">
+                                                    <span class="plus-minus-wrapper-item minus"></span>
+                                                </span>
+                                                <span class="number-input-wrapper">
+                                                    {{ form_widget(orderHasSet.number) }}
+                                                </span>
+                                                <span class="plus-minus-wrapper">
+                                                    <span class="plus-minus-wrapper-item plus"></span>
+                                                </span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="final-price-wrapper">
+                                            <div class="final-price">
+                                                {{ setItem.filterPrice }}
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h4 class="box-title">
+                            Доставка и оплата
+                        </h4>
+                    </div>
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            <div class="form-group form-item-element">
+                                {{ form_label(form.payType) }}
+                                {{ form_widget(form.payType) }}
+                            </div>
+                            <div class="form-group form-item-element">
+                                {{ form_label(form.deliveryType) }}
+                                {{ form_widget(form.deliveryType) }}
+                            </div>
+                            <div class="form-group form-item-element">
+                                {{ form_label(form.price) }}
+                                {{ form_widget(form.price) }}
+                            </div>
+                            <div class="form-group form-item-element">
+                                {{ form_label(form.discount) }}
+                                {{ form_widget(form.discount) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="display-none">
+            {{ form_rest(form) }}
+        </div>
+        {#****************************************************************************#}
+        {% block formactions %}
+            <div class="sonata-ba-form-actions well well-small form-actions">
+                {% block sonata_form_actions %}
+                    {% if app.request.isxmlhttprequest %}
+                        {% if admin.id(object) is not null %}
+                            <button type="submit" class="btn btn-success" name="btn_update"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-success" name="btn_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% endif %}
+                    {% else %}
+                        {% if admin.supportsPreviewMode %}
+                            <button class="btn btn-info persist-preview" name="btn_preview" type="submit">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                {{ 'btn_preview'|trans({}, 'SonataAdminBundle') }}
+                            </button>
+                        {% endif %}
+                        {% if admin.id(object) is not null %}
+                            <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update_and_edit_again'|trans({}, 'SonataAdminBundle') }}</button>
+
+                            {% if admin.hasroute('list') and admin.isGranted('LIST') %}
+                                <button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> <i class="fa fa-list" aria-hidden="true"></i> {{ 'btn_update_and_return_to_list'|trans({}, 'SonataAdminBundle') }}</button>
+                            {% endif %}
+{#********************************************************************************************************************#}
+                            <button data-url="{{ admin.generateObjectUrl('orderaddproduct',object,{},0) }}" type="button" class="btn btn-info add-product-to-order"><i class="fa fa-superpowers" aria-hidden="true"></i>Добавить товар</button>
+                            <button data-url="{{ admin.generateObjectUrl('orderaddset',object,{},0) }}" type="button" class="btn btn-info add-set-to-order"><i class="fa fa-cubes" aria-hidden="true"></i>Добавить набор</button>
+{#********************************************************************************************************************#}
+                            {% if admin.hasroute('delete') and admin.isGranted('DELETE', object) %}
+                                {{ 'delete_or'|trans({}, 'SonataAdminBundle') }}
+                                <a class="btn btn-danger" href="{{ admin.generateObjectUrl('delete', object) }}"><i class="fa fa-minus-circle" aria-hidden="true"></i> {{ 'link_delete'|trans({}, 'SonataAdminBundle') }}</a>
+                            {% endif %}
+
+                            {% if admin.isAclEnabled() and admin.hasroute('acl') and admin.isGranted('MASTER', object) %}
+                                <a class="btn btn-info" href="{{ admin.generateObjectUrl('acl', object) }}"><i class="fa fa-users" aria-hidden="true"></i> {{ 'link_edit_acl'|trans({}, 'SonataAdminBundle') }}</a>
+                            {% endif %}
+                        {% else %}
+                            {% if admin.hasroute('edit') and admin.isGranted('EDIT') %}
+                                <button class="btn btn-success" type="submit" name="btn_create_and_edit"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_create_and_edit_again'|trans({}, 'SonataAdminBundle') }}</button>
+                            {% endif %}
+                            {% if admin.hasroute('list') and admin.isGranted('LIST') %}
+                                <button type="submit" class="btn btn-success" name="btn_create_and_list"><i class="fa fa-save"></i> <i class="fa fa-list" aria-hidden="true"></i> {{ 'btn_create_and_return_to_list'|trans({}, 'SonataAdminBundle') }}</button>
+                            {% endif %}
+                            <button class="btn btn-success" type="submit" name="btn_create_and_create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ 'btn_create_and_create_a_new_one'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% endif %}
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endblock formactions %}
+    </form>
+{% endblock form %}
+

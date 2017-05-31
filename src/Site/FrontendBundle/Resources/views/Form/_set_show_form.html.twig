@@ -1,0 +1,12 @@
+<form id="product-show-form" enctype="multipart/form-data" method="post" action="{{ form.vars.action }}">
+    {% if form.insertionColors is defined %}
+        <div class="product-show-form-item-wrapper">
+            <div>{{ form_errors(form.insertionColors ) }}</div>
+            <div class="show-form-label">{{ form_label(form.insertionColors ) }}</div>
+            <div class="show-form-item">{{ form_widget(form.insertionColors ) }}</div>
+        </div>
+    {% endif %}
+    <div class="display-none">
+        {{ form_rest(form) }}
+    </div>
+</form>

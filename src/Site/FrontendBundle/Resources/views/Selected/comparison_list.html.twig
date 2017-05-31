@@ -1,0 +1,169 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+    <div class="container comparison-list-content clearfix">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="clearfix"></div>
+        <div class="comparison-list-title-wrapper">
+            <h1>
+              {{ "Список сравнения" }}
+            </h1>
+        </div>
+        <div class="comparison-list-content-wrapper clear">
+            {% if items|length %}
+                {% for item in items %}
+                    {% set entity = item.entity %}
+                    {% if item.type=='product' %}
+                        {#*************product-item***************#}
+                        <div class="comparison-item-content-wrapper">
+                            <div class="comparison-item-header">
+                                <div class="comparison-item-cod">
+                                    <span>Код товара:</span>
+                                    <span class="code-wrapper">{{ entity.cod }}</span>
+                                </div>
+                                <div class="comparison-item-remove-wrapper text-right">
+                                    <span data-url="{{ url("site_frontend_comparing_remove_product",{'slug':entity.slug}) }}" class="comparison-remove-item">x</span>
+                                </div>
+                            </div>
+                            <div class="comparison-item-content-container">
+                                    <div class="comparison-item-wrapper">
+                                        <div class="comparison-item-poster-wrapper">
+                                            <div class="global-cart-item-poster-inner-wrapper">
+                                                <img src="{{ (entity.poster)?entity.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="comparison-item-shortcut">
+                                            <div class="comparison-product-item-title">
+                                                {{ entity.title }}
+                                            </div>
+                                            <div class="comparison-element-feature">
+                                                <label>
+                                                    Металл:
+                                                </label>
+                                                <span class="cart-feature-item">
+                                                    {{ entity.metal }};
+                                                </span>
+                                            </div>
+                                            <div class="comparison-element-feature">
+                                                <label>
+                                                    Вставка:
+                                                </label>
+                                                <span class="cart-feature-item">
+                                                    {{ entity.insertionType }};
+                                                </span>
+                                            </div>
+                                            <div class="comparison-element-feature">
+                                                <label>
+                                                    Средний вес, г:
+                                                </label>
+                                                <span class="cart-feature-item">
+                                                     {{ entity.weight }};
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="comparison-price-content-wrapper">
+                                            <div class="comparison-price-label">Цена:</div>
+                                            <div class="index-product-price comparison-price-wraper">
+                                                {% if entity.sharePrice %}
+                                                    <span class="index-product-old-price">
+                                                    {{ entity.price }} <span class="smaller">грн</span>
+                                                    </span>
+                                                    <span class="index-product-new-price">{{ entity.sharePrice }} <span class="smaller">грн</span></span>
+                                                {% else %}
+                                                    <span class="index-product-regular-price">{{ entity.price }} <span class="smaller">грн</span></span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {#*************product-item***************#}
+                        {% elseif item.type=='set' %}
+                        {#*************set-item***************#}
+                        <div class="comparison-item-content-wrapper">
+                            <div class="comparison-item-header">
+                                <div class="comparison-item-cod">
+                                    <span>Код товара:</span>
+                                    <span class="code-wrapper">{{ entity.cod }}</span>
+                                </div>
+                                <div class="comparison-item-remove-wrapper text-right">
+                                    <span data-url="{{ url("site_frontend_comparing_remove_set",{'slug':entity.slug}) }}" class="comparison-remove-item">x</span>
+                                </div>
+                            </div>
+                            <div class="comparison-item-content-container">
+                                <div class="comparison-item-wrapper">
+                                    <div class="comparison-item-poster-wrapper">
+                                        <div class="global-cart-item-poster-inner-wrapper">
+                                            <img src="{{ (entity.poster)? entity.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}"/>
+                                        </div>
+                                    </div>
+                                    <div class="comparison-item-shortcut">
+                                        <div class="comparison-product-item-title">
+                                            {{ entity.title }}
+                                        </div>
+                                        <div class="comparison-element-feature">
+                                            <label>
+                                                Металл:
+                                            </label>
+                                                <span class="cart-feature-item">
+                                                    {{ entity.metal }};
+                                                </span>
+                                        </div>
+                                        <div class="comparison-element-feature">
+                                            <label>
+                                                Вставка:
+                                            </label>
+                                                <span class="cart-feature-item">
+                                                    {{ entity.insertionType }};
+                                                </span>
+                                        </div>
+                                        <div class="set-list-properties-components">
+                                            <div class="set-list-properties-components-title">Состав набора:</div>
+                                            {% if entity.products|length %}
+                                                {% for product in entity.products %}
+                                                    <div>
+                                                        {{ product.title }}
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="comparison-price-content-wrapper">
+                                        <div class="comparison-price-label">Цена:</div>
+                                        <div class="index-product-price comparison-price-wraper">
+                                            <span class="index-product-regular-price">{{ entity.filterPrice }} <span class="smaller">грн</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#*************set-item***************#}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="comparison-show-button-wrapper">
+            <a href="{{ path('site_frontend_comparing_show') }}" class="regular-button comparison-show-button">
+                Перейти к сравнению
+            </a>
+        </div>
+    </div>
+{% endblock %}
+{% block seo %}
+    <title>{{ seo.title }}</title>
+    {% if seo.description %}
+        <meta name="description" content="{{ seo.description }}">
+    {% endif %}
+    {% if seo.keywords %}
+        <meta name="keywords" content="{{ seo.keywords }}">
+    {% endif %}
+{% endblock seo %}

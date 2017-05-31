@@ -1,0 +1,64 @@
+<form id="product-filter-form" enctype="multipart/form-data" method="post" action="{{ form.vars.action }}">
+    <div class="product-list-filters-range-wrapper">
+        <div class="range-label">
+            Цена, грн
+        </div>
+        {{ form_widget(form.range) }}
+    </div>
+    <div class="product-filter-item-submit-wrapper">
+        <button class="product-filter-item-submit" type="submit">OK</button>
+    </div>
+    {% if form.subCategory is defined %}
+        <div class="product-filter-item-wrapper">
+            <div class="product-filter-item-title">
+                {{ form_label(form.subCategory) }}
+            </div>
+            <div class="product-filter-item-body">
+                {{ form_widget(form.subCategory) }}
+            </div>
+        </div>
+    {% endif %}
+    {% if form.insertionType is defined %}
+        <div class="product-filter-item-wrapper">
+            <div class="product-filter-item-title">
+                {{ form_label(form.insertionType) }}
+            </div>
+            <div class="product-filter-item-body">
+                {{ form_widget(form.insertionType) }}
+            </div>
+        </div>
+    {% endif %}
+    {% if form.state is defined %}
+        <div class="product-filter-item-wrapper">
+            <div class="product-filter-item-title">
+                {{ form_label(form.state) }}
+            </div>
+            <div class="product-filter-item-body">
+                {{ form_widget(form.state) }}
+            </div>
+        </div>
+    {% endif %}
+    {% if form.chainSizes is defined %}
+        <div class="product-filter-item-wrapper">
+            <div class="product-filter-item-title">
+                {{ form_label(form.chainSizes) }}
+            </div>
+            <div class="product-filter-item-body">
+                {{ form_widget(form.chainSizes) }}
+            </div>
+        </div>
+    {% endif %}
+    {% if form.theme is defined %}
+        <div class="product-filter-item-wrapper">
+            <div class="product-filter-item-title">
+                {{ form_label(form.theme) }}
+            </div>
+            <div class="product-filter-item-body">
+                {{ form_widget(form.theme) }}
+            </div>
+        </div>
+    {% endif %}
+    <div class="display-none">
+        {{ form_rest(form) }}
+    </div>
+</form>

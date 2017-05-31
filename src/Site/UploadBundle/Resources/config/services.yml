@@ -28,3 +28,19 @@ services:
         arguments: ["@security.csrf.token_manager", "@session"]
         tags:
             - { name: form.type }
+
+#update and remove listeners
+    file.delete.listener:
+        class: Site\UploadBundle\EventListener\FileDeleteListener
+        arguments:
+            - "@upbeat_file_upload.handler"
+        tags:
+            - { name: doctrine.event_listener, event: preRemove }
+    file.update.listener:
+        class: Site\UploadBundle\EventListener\FileUpdateListener
+        arguments:
+            - "@upbeat_file_upload.handler"
+            - "%site_upload.web_dir%"
+            - "%kernel.root_dir%"
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }

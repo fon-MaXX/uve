@@ -30,6 +30,19 @@ class CategoryAdmin extends AbstractAdmin
             ->add('title',null,[
                 'label'=>'field.title'
             ])
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'show' => [
+                        'template' => 'SiteBackendBundle:List:_listShow.html.twig'
+                    ],
+                    'edit' => [
+                        'template' => 'SiteBackendBundle:List:_listEdit.html.twig'
+                    ],
+                    'delete' => [
+                        'template' => 'SiteBackendBundle:List:_listDelete.html.twig'
+                    ],
+                ]
+            ])
         ;
     }
 

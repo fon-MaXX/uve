@@ -43,8 +43,41 @@ services:
             - ~
             - Site\BackendBundle\Entity\Set
             - ~
+            - "@service_container"
+            - "@doctrine.orm.default_entity_manager"
+            - "@upbeat_file_upload.handler"
         tags:
             - {name: sonata.admin, manager_type: orm,group: "product", show_in_dashboard: true, label: set}
+
+    site_backend.admin.slider:
+        class: Site\BackendBundle\Admin\SliderAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\Slider
+            - ~
+            - "@service_container"
+            - "@doctrine.orm.default_entity_manager"
+            - "@upbeat_file_upload.handler"
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "news", show_in_dashboard: true, label: slider}
+
+    site_backend.admin.product.gallery:
+        class: Site\BackendBundle\Admin\ProductGalleryAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\ProductGallery
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "", show_in_dashboard: false, label: ProductGallery}
+
+    site_backend.admin.set.gallery:
+        class: Site\BackendBundle\Admin\SetGalleryAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\SetGallery
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "", show_in_dashboard: false, label: SetGallery}
 
     site_backend.admin.news:
         class: Site\BackendBundle\Admin\NewsAdmin
@@ -57,14 +90,23 @@ services:
         calls:
             - [ setTemplate, [outer_list_rows_mosaic, SiteBackendBundle:ProductAdmin:list_outer_rows_mosaic.html.twig]]
 
-    site_backend.admin.static.text:
-        class: Site\BackendBundle\Admin\StaticTextAdmin
+    site_backend.admin.static.page.content:
+        class: Site\BackendBundle\Admin\StaticPageContentAdmin
         arguments:
             - ~
-            - Site\BackendBundle\Entity\StaticText
+            - Site\BackendBundle\Entity\StaticPageContent
             - ~
         tags:
             - {name: sonata.admin, manager_type: orm,group: "news", show_in_dashboard: true, label: StaticText}
+
+    site_backend.admin.static.seo.pages:
+        class: Site\BackendBundle\Admin\StaticSeoPagesAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\StaticSeoPages
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "news", show_in_dashboard: true, label: StaticSeoText}
 
     site_backend.admin.insertion.color:
         class: Site\BackendBundle\Admin\InsertionColorAdmin
@@ -84,6 +126,34 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: shareTag}
 
+
+    site_backend.admin.callback:
+        class: Site\BackendBundle\Admin\CallbackAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\Callback
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "contacts", show_in_dashboard: true, label: Callback}
+
+    site_backend.admin.contacts:
+        class: Site\BackendBundle\Admin\ContactsAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\Contacts
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "contacts", show_in_dashboard: true, label: Contacts}
+
+    site_backend.admin.news.tag:
+        class: Site\BackendBundle\Admin\NewsTagAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\NewsTag
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: newsTag}
+
     site_backend.admin.ring.size:
         class: Site\BackendBundle\Admin\RingSizeAdmin
         arguments:
@@ -92,6 +162,15 @@ services:
             - ~
         tags:
             - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: ringSize}
+
+    site_backend.admin.chain.size:
+        class: Site\BackendBundle\Admin\ChainSizeAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\ChainSize
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: chainSize}
 
     site_backend.admin.category:
         class: Site\BackendBundle\Admin\CategoryAdmin
@@ -116,7 +195,7 @@ services:
         arguments:
             - ~
             - Site\BackendBundle\Entity\Order
-            - ~
+            - SiteBackendBundle:Order
         tags:
             - {name: sonata.admin, manager_type: orm,group: "order", show_in_dashboard: true, label: order}
 
@@ -137,3 +216,17 @@ services:
             - SiteBackendBundle:XmlLoader
         tags:
             - {name: sonata.admin, manager_type: orm,group: "product", show_in_dashboard: true, label: loadFromFile}
+########################################################################################################################
+    product.flush.listener:
+        class: Site\BackendBundle\EventListeners\ProductListener
+
+    set.flush.listener:
+        class: Site\BackendBundle\EventListeners\SetListener
+
+    entity.flush.listener:
+        class: Site\BackendBundle\EventListeners\FlushListener
+        arguments:
+            - "@product.flush.listener"
+            - "@set.flush.listener"
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }

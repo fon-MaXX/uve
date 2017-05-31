@@ -1,0 +1,279 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+<div class="container product-show-content no-padding">
+    <div class="breadcrumbs">
+        {% if breadcrumbs|length>0 %}
+            {% for breadcrumb in breadcrumbs %}
+                {% if loop.last %}
+                    <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                {% else %}
+                    <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="product-show-title-wrapper">
+        <h1>
+            {{ product.title }}
+        </h1>
+    </div>
+    <div class="product-show-main-wrapper">
+        <div class="product-show-content-wrapper">
+            <div class="product-show-slider-wrapper">
+                {% if product.productGallery|length>0 %}
+                        <ul class="product-show-slider show-preload-li">
+                            {% for key,item in  product.productGallery %}
+                                <li>
+                                    <div class="product-show-image-wrapper">
+                                        <div class="product-show-image-inner-wrapper">
+                                            <img src="{{ item.image|json_decode.big }}"/>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="product-show-thumbnails-wrapper">
+                            <div class="product-thumbnail-image-container">
+                                <ul>
+                                    {% for key,item in  product.productGallery %}
+                                        <li>
+                                            <a data-slide-index="{{ key }}" href="" class="product-thumbnail-image-wrapper">
+                                                <div class="product-thumbnail-inner-wrapper">
+                                                    <img src="{{ item.image|json_decode.extra_small }}"/>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <a class="product-show-slider-prev" href="javascript:void(0)"></a>
+                            <a class="product-show-slider-next" href="javascript:void(0)"></a>
+                        </div>
+                {% else %}
+                    <ul class="product-show-slider show-preload-li">
+                        <li>
+                            <div class="product-show-image-wrapper">
+                                <div class="product-show-image-inner-wrapper">
+                                    <img src="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="product-show-thumbnails-wrapper">
+                        <div class="product-thumbnail-image-container">
+                            <ul>
+                                <li>
+                                    <a data-slide-index="0" href="" class="product-thumbnail-image-wrapper">
+                                        <div class="product-thumbnail-inner-wrapper">
+                                            <img src="{{ (product.poster)? product.poster|json_decode.extra_small :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <a class="product-show-slider-prev" href="javascript:void(0)"></a>
+                        <a class="product-show-slider-next" href="javascript:void(0)"></a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="product-show-share-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                {% set currentPath = url(app.request.attributes.get('_route'),
+                app.request.attributes.get('_route_params')) %}
+                {% if product.poster|json_decode['default_file'] is defined %}
+                    {% set image = product.poster|json_decode['default_file'] %}
+                {% else %}
+                    {% set image = asset('bundles/sitebackend/images/no-image-400.png') %}
+                {% endif %}
+
+                {% set params = {
+                'link': currentPath,
+                'title': product.title,
+                'image': image,
+                'description': product.shortcut,
+                } %}
+                {#{{ include('SiteFrontendBundle::Parts/_share.html.twig', {params: params}) }}#}
+            </div>
+            <div class="clearfix"></div>
+            <div class="product-show-text-wrapper">
+                <h2>Описание:</h2>
+                <div class="product-show-text">
+                    {{ product.shortcut|raw }}
+                </div>
+            </div>
+        </div>
+        <div class="product-show-form-wrapper">
+            <div class="product-show-form-state clearfix">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-show-cod">
+                    код товара: {{ product.cod }}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-show-state text-right">
+                    <span class="product-state {{ product.state|product_state }}">
+                        {{ product.state }}
+                    </span>
+                </div>
+            </div>
+            <div class="product-show-add-button-wrapper">
+                <div class="product-show-form-final-prise">
+                    {% if product.sharePrice %}
+                        <span class="index-product-old-price">
+                            {{ product.price }} <span class="smaller">грн</span>
+                        </span>
+                        <span data-price="656" class="index-product-new-price">
+                            {{ product.sharePrice }} <span class="smaller">грн</span>
+                        </span>
+                    {% else %}
+                        <span class="index-product-regular-price">
+                            {{ product.price }} <span class="smaller">грн</span>
+                        </span>
+                    {% endif %}
+                </div>
+                <button data-url="{{ url('site_frontend_order_add_product',{"slug":product.slug}) }}" class="regular-button product-show-cart-add-button">
+                    купить
+                </button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="product-show-fetures-wrapper">
+                {% if features|length>0 %}
+                    {% for item in features %}
+                        <div class="product-show-fetures-item">
+                            <label>{{ item['label'] }}</label>
+                            <span>{{ item['value'] }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {#<div class="product-show-form-block clearfix">#}
+                {#{% include "@SiteFrontend/Form/_product_show_form.html.twig" with {'form':form} %}#}
+            {#</div>#}
+            <div class="selected-button-wrapper selected-button-show-product-form">
+                <span data-url="{{ url("site_frontend_selected_add_product",{'slug':product.slug}) }}" class="selected-item selected-button-show-product-form">
+                    <span>добавить</br> в избранное</span>
+                </span>
+                <span data-url="{{ url("site_frontend_comparing_add_product",{'slug':product.slug}) }}" class="comparison-item selected-button-show-product-form">
+                    <span>добавить</br> в сравнение</span>
+                </span>
+            </div>
+            <div class="product-show-tabs-wrapper">
+                <div class="product-show-tabs-navbar">
+                    <button data-item="delivery" class="active product-show-tabs-navbar-item delivery-icon">
+                        доставка
+                    </button>
+                    <button data-item="payment" class="product-show-tabs-navbar-item payment-icon">
+                        оплата
+                    </button>
+                    <button data-item="quality" class="product-show-tabs-navbar-item quality-icon">
+                        качество
+                    </button>
+                </div>
+                <div class="product-show-tabs-content">
+                    <div class="product-show-tabs-item active" data-item="delivery">
+                        <ol>
+                            <li>
+                                «Новой почтой» по Украине  - Бесплатно!
+                            </li>
+                            <li>
+                                Курьером к двери — 45 грн (бесплатно от 1000 грн)
+                            </li>
+                        </ol>
+                        <div class="product-show-tabs-content-text">
+                            Доставка в любую точку Украины в течение 24 часов.
+                        </div>
+                        <div class="product-show-tabs-content-button-wrapper">
+                            <button class="regular-button product-show-tabs-content-button">подробнее</button>
+                        </div>
+                    </div>
+                    <div class="product-show-tabs-item" data-item="payment">
+                        <ol>
+                            <li>
+                                «Новой почтой» по Украине  - Бесплатно!
+                            </li>
+                            <li>
+                                Курьером к двери — 45 грн (бесплатно от 1000 грн)
+                            </li>
+                        </ol>
+                        <div class="product-show-tabs-content-text">
+                            Доставка в любую точку Украины в течение 24 часов(2).
+                        </div>
+                        <div class="product-show-tabs-content-button-wrapper">
+                            <button class="regular-button product-show-tabs-content-button">подробнее</button>
+                        </div>
+                    </div>
+                    <div class="product-show-tabs-item" data-item="quality">
+                        <ol>
+                            <li>
+                                «Новой почтой» по Украине  - Бесплатно!
+                            </li>
+                            <li>
+                                Курьером к двери — 45 грн (бесплатно от 1000 грн)
+                            </li>
+                        </ol>
+                        <div class="product-show-tabs-content-text">
+                            Доставка в любую точку Украины в течение 24 часов(3).
+                        </div>
+                        <div class="product-show-tabs-content-button-wrapper">
+                            <button class="regular-button product-show-tabs-content-button">подробнее</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="site-disquss-block-wrapper">
+        <div id="disqus_thread"></div>
+        <script>
+
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+             var disqus_config = function () {
+             this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+             this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+             };
+             */
+            this.page.url = {{ url('site_frontend_product_show',{'slug':product.slug}) }};
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://uvelife-com.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+    <div class="product-show-popular-block-wrapper">
+        <h2>Популярные товары:</h2>
+        <div class="show-page-popular-block-items">
+            {% if rand|length %}
+                {% for item in rand %}
+                    <div class="show-page-popular-item">
+                        <div class="index-product-preview-image">
+                            <div class="index-product-preview-outer-wrapper">
+                                <div class="index-product-preview-inner-wrapper">
+                                    <a href="{{ path('site_frontend_product_show',{'slug':item.slug}) }}">
+                                        <img src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="index-product-title">
+                            <span>{{ item.title }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block seo %}
+    <title>{{ product.title }}</title>
+    {% if product.description %}
+        <meta name="description" content="{{ product.description }}">
+    {% endif %}
+    {% if product.keywords %}
+        <meta name="keywords" content="{{ product.keywords }}">
+    {% endif %}
+{% endblock seo %}

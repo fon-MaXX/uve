@@ -20,4 +20,155 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             ->orderBy('p.cod', 'ASC')
             ->getQuery();
     }
+//    product-list filter method
+    public function getForProductList(array $params, array $config,$id){
+        $query = $this->createQueryBuilder('p')
+            ->leftJoin('p.subCategory','sc')
+            ->leftJoin('sc.category','c')
+            ->where('c.id = :catId')
+            ->setParameter('catId',$id)
+            ->andWhere('p.state != :state')
+            ->setParameter('state','только в наборе');
+        if(isset($params['range'])&&$params['range']){
+            $query->andWhere('p.filterPrice > :min')
+                ->andWhere('p.filterPrice < :max')
+                ->setParameter('min',(int)$params['range']['min'])
+                ->setParameter('max',(int)$params['range']['max']);
+        }
+        if(isset($params['insertionType'])&&$params['insertionType']&&isset($config['insertionType'])){
+            $insertionType = $config['insertionType'];
+            $conditions = [];
+            foreach($params['insertionType'] as $item){
+                $conditions[] = $query->expr()->like('p.insertionType', $query->expr()->literal('%'.$insertionType[$item].'%'));
+            }
+            $orX = $query->expr()->orX();
+            $orX->addMultiple($conditions);
+            $query->andWhere($orX);
+        }
+        if(isset($params['state'])&&$params['state']&&$config['state']){
+            $state = $config['state'];
+            $conditions = [];
+            foreach($params['state'] as $item){
+                $conditions[] = $query->expr()->like('p.state', $query->expr()->literal('%'.$state[$item].'%'));
+            }
+            $orX = $query->expr()->orX();
+            $orX->addMultiple($conditions);
+            $query->andWhere($orX);
+        }
+        if(isset($params['theme'])&&$params['theme']&&$config['theme']){
+            $theme = $config['theme'];
+            $conditions = [];
+            foreach($params['theme'] as $item){
+                $conditions[] = $query->expr()->like('p.theme', $query->expr()->literal('%'.$theme[$item].'%'));
+            }
+            $orX = $query->expr()->orX();
+            $orX->addMultiple($conditions);
+            $query->andWhere($orX);
+        }
+
+        if(isset($params['subCategory'])&&$params['subCategory']){
+            $query->andWhere('sc.id IN (:ids)')
+                ->setParameter('ids',$params['subCategory']);
+        }
+        if(isset($params['chainSizes'])&&$params['chainSizes']&&isset($config['chainSizes'])){
+            $chainSizes = $config['chainSizes'];
+            $conditions = [];
+            $query->leftJoin('p.chainSizes','chs');
+            foreach($params['chainSizes'] as $item){
+                $conditions[] = $query->expr()->like('chs.title', $query->expr()->literal('%'.$chainSizes[$item].'%'));
+            }
+            $orX = $query->expr()->orX();
+            $orX->addMultiple($conditions);
+            $query->andWhere($orX);
+        }
+        if(
+            !count($params)||
+            (isset($params['sort'])&&$params['sort']=='popular')
+        ){
+            $query->orderBy('p.rating','DESC');
+        }
+        elseif($params['sort']){
+            ($params['sort']=='cheapest')?$query->orderBy('p.filterPrice','ASC'):$query->orderBy('p.title','ASC');
+        }
+        return $query->getQuery();
+    }
+    public function getOneWithCategoryAndSubCategory($slug){
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.subCategory','sc')
+            ->leftJoin('sc.category','c')
+            ->leftJoin('p.productGallery','g')
+            ->where('p.slug = :slug')
+            ->setParameter('slug',$slug)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+    public function getLastByTagAndNumber($number,$tagTitle){
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.shareTags','shT')
+            ->where('shT.title = :title')
+            ->andWhere('p.state != :state')
+            ->setParameter('title',$tagTitle)
+            ->setParameter('state','только в наборе')
+            ->setMaxResults($number)
+            ->orderBy('p.createdAt','ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function getByAndIndexIds($ids){
+        return $this->createQueryBuilder('p','p.id')
+            ->where('p.id IN (:ids)')
+            ->setParameter('ids',$ids)
+            ->getQuery()
+            ->getResult();
+    }
+    public function getAllBySubCategoryId($id){
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.subCategory','sc')
+            ->where('sc.id = :id')
+            ->setParameter('id',$id)
+            ->orderBy('p.cod','ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function search($title){
+        $options = explode(' ',$title);
+        if(count($options)>1){
+            $queryBuilder = $this->createQueryBuilder('a');
+            $conditions = [];
+            foreach ($options as $optionKey => $option) {
+                $conditions[] = $queryBuilder->expr()->like('a.title', $queryBuilder->expr()->literal('%'.$option.'%'));
+            }
+            $andX = $queryBuilder->expr()->andX();
+            $andX->addMultiple($conditions);
+            $queryBuilder->andWhere($andX);
+            return $queryBuilder
+                ->getQuery()
+                ->getResult();
+        }
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function getRandProducts($number,$id=null)
+    {
+        $q=$this->createQueryBuilder('p');
+        if($id){
+            $q->leftJoin('p.subCategory','sc')
+                ->leftJoin('sc.category','c')
+                ->where('c.id = :id')
+                ->setParameter('id',$id)
+            ;
+        }
+        return $q
+            ->addSelect('RAND() as HIDDEN rand')
+            ->addOrderBy('rand')
+            ->setMaxResults($number)
+            ->getQuery()
+            ->getResult();
+    }
 }

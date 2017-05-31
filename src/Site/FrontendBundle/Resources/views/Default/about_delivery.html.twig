@@ -1,0 +1,44 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block content %}
+    <div class="container static-content-page">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    {% else %}
+                        <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="static-title-wrapper">
+            <h1>
+                {{ title }}
+            </h1>
+        </div>
+        <div class="static-content-wrapper">
+            <div class="static-content-head-text">
+                {{ staticContent.head_text.text|raw }}
+            </div>
+            <div class="static-content-image-wrapper">
+                <img src="{{ asset('bundles/sitefrontend/images/main/about_delivery.jpg') }}">
+            </div>
+            <div class="static-content-text">
+                {{ staticContent.content_text.text|raw }}
+            </div>
+            <div class="static-content-button-wrapper">
+                <button class="regular-button static-content-button static-content-callback">перезвонить мне</button>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block seo %}
+    <title>{{ seo.title }}</title>
+    {% if seo.description %}
+        <meta name="description" content="{{ seo.description }}">
+    {% endif %}
+    {% if seo.keywords %}
+        <meta name="description" content="{{ seo.keywords }}">
+    {% endif %}
+{% endblock seo %}

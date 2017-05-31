@@ -15,38 +15,44 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="navbar-contacts-links-wrapper">
-                            <a class="navbar-contacts-item">
+                            <a class="navbar-contacts-item" href="{{ path('site_frontend_about_company') }}">
                                 о нас
                             </a>
-                            <a class="navbar-contacts-item">
+                            <a class="navbar-contacts-item" href="{{ path('site_frontend_news_list') }}">
                                 новости
                             </a>
-                            <a class="navbar-contacts-item">
+                            <a class="navbar-contacts-item" href="{{ path('site_frontend_about_delivery') }}">
                                 доставка
                             </a>
-                            <a class="navbar-contacts-item">
+                            <a class="navbar-contacts-item" href="{{ path("site_frontend_about_payment") }}">
                                 оплата
                             </a>
                             <a class="navbar-contacts-item">
                                 озывы
                             </a>
-                            <a class="navbar-contacts-item">
+                            <a class="navbar-contacts-item" href="{{ path('site_frontend_contacts') }}">
                                 контакты
                             </a>
                         </div>
                         <div class="navbar-contacts-vk-widget">
-                            <img src="{{ asset("bundles/sitefrontend/images/main/top-vk-widget.png") }}">
+                            <a class="head-selected-items selected-list" href="{{ url('site_frontend_selected_list') }}">избранное</a>
+                            <a class="head-selected-items comparing-list" href="{{ url('site_frontend_comparing_list') }}">сравнение</a>
                         </div>
                         <div class="search-input-wrapper">
                             <div class="custom-search-input search-input-inner">
-                                <div class="input-group col-md-12">
-                                    <input class="search-input-item" type="text"  placeholder="Я ИЩУ..." />
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-lg" type="button">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </span>
-                                </div>
+                                <form id="search-form" method="post" action="{{ searchForm.vars.action }}">
+                                    <div class="input-group col-md-12">
+                                        {{ form_widget(searchForm.text) }}
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-lg" type="submit">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                    </div>
+                                    <div class="display-none">
+                                        {{ form_rest(searchForm) }}
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -54,19 +60,19 @@
                 <div class="navbar-head-basket-section">
                     <div class="nav-contact-phones-list-wrapper">
                         <div class="nav-contact-phones-inner-wrapper">
-                            <div class="nav-contact-phone main-blue">+380 (67) 412-73-53</div>
-                            <div class="nav-contact-phone main-blue">+380 (63) 318-16-00</div>
-                            <div class="nav-contact-phone main-blue">+380 (50) 337-37-71</div>
+                            <div class="nav-contact-phone main-blue">
+                                {{ staticContent.phones.text|raw }}
+                            </div>
                         </div>
                         <div class="nav-callback-link">
                             <a>Перезвонить мне!</a>
                         </div>
                     </div>
                     <div class="nav-basket-wrapper">
-                        <a class="basket-image"></a>
-                            <span class="basket-number-wrapper">
-                                1
-                            </span>
+                        <span data-url="{{ url("site_frontend_order_get_ajax_cart") }}" href="javascript:void(0)" class="basket-image"></span>
+                        <span data-url="{{ url("site_frontend_order_get_items_number") }}" class="basket-number-wrapper">
+                            {{ itemsNumber }}
+                        </span>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -86,69 +92,61 @@
                 </a>
             </div>
             <div class="navbar-head-bottom-section-wrapper">
-                <a class="head-bottom-navbar-item" href="#">наборы</a>
-                <a class="head-bottom-navbar-item" href="#">кольца</a>
+                <a class="head-bottom-navbar-item {{ (isSet is defined)?'active':'' }}" href="{{ path('site_frontend_set_list') }}">наборы</a>
+                {% for cat in categories %}
+                    {% if cat.subCategories|length>1 %}
+                        <span class="head-bottom-navbar-item custom-dropdown-item {{ (cat.slug == category.slug)?'active':''}}">
+                            <a href="{{ path('site_frontend_category',{'slug':cat.slug}) }}" class="custom-dropdown-toggle" >{{ cat.title }}</a>
+                            <ul class="custom-dropdown-menu">
+                                {% for subCategory in cat.subCategories  %}
+                                    <li><a href="{{ path('site_frontend_sub_category',{
+                                            'catSlug':cat.slug,
+                                            'subSlug':subCategory.slug
+                                        }) }}">{{ subCategory.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </span>
+                    {% else %}
+                        <a class="head-bottom-navbar-item {{ (cat.slug == category.slug)?'active':''}}" href="{{ path('site_frontend_category',{'slug':cat.slug}) }}">{{ cat.title }}</a>
+                    {% endif %}
+                {% endfor %}
                 {#<a class="head-bottom-navbar-item" href="#">цепи и браслеты</a>#}
-                <span class="head-bottom-navbar-item custom-dropdown-item">
-                        <a href="#" class="custom-dropdown-toggle" >цепи и браслеты</a>
-                        <ul class="custom-dropdown-menu">
-                            <li><a href="">подвес</a></li>
-                            <li><a href="">церковная  тематика</a></li>
-                            <li><a href="">зодиак</a></li>
-                            <li><a href="">обереги</a></li>
-                        </ul>
-                    </span>
-                <a class="head-bottom-navbar-item" href="#">подвесы</a>
-                <a class="head-bottom-navbar-item" href="#">аксессуары</a>
-                <a class="head-bottom-navbar-item" href="#">серьги</a>
-                <a class="head-bottom-navbar-item" href="#">пирсинг</a>
-                {#<a class="head-bottom-navbar-item" href="#">пандора</a>#}
-                {#<a class="head-bottom-navbar-item" href="#">золото</a>#}
-                <span class="head-bottom-navbar-item custom-dropdown-item">
-                        <a href="#" class="custom-dropdown-toggle" >пандора</a>
-                        <ul class="custom-dropdown-menu">
-                            <li><a href="">подвес</a></li>
-                            <li><a href="">церковная  тематика</a></li>
-                            <li><a href="">зодиак</a></li>
-                            <li><a href="">обереги</a></li>
-                        </ul>
-                    </span>
-                    <span class="head-bottom-navbar-item custom-dropdown-item">
-                        <a href="#" class="custom-dropdown-toggle" >золото</a>
-                        <ul class="custom-dropdown-menu">
-                            <li><a href="">подвес</a></li>
-                            <li><a href="">церковная  тематика</a></li>
-                            <li><a href="">зодиак</a></li>
-                            <li><a href="">обереги</a></li>
-                        </ul>
-                    </span>
+                {#<span class="head-bottom-navbar-item custom-dropdown-item">#}
+                        {#<a href="#" class="custom-dropdown-toggle" >цепи и браслеты</a>#}
+                        {#<ul class="custom-dropdown-menu">#}
+                            {#<li><a href="">подвес</a></li>#}
+                            {#<li><a href="">церковная  тематика</a></li>#}
+                            {#<li><a href="">зодиак</a></li>#}
+                            {#<li><a href="">обереги</a></li>#}
+                        {#</ul>#}
+                {#</span>#}
             </div>
             <div class="scroll-basket-wrapper">
                 <div class="nav-basket-wrapper">
-                    <a class="basket-image"></a>
+                    <span data-url="{{ url("site_frontend_order_get_ajax_cart") }}" href="javascript:void(0)" class="basket-image"></span>
                     <span class="basket-number-wrapper">
-                        1
+                        {{ itemsNumber }}
                     </span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mobile-menu-content-wrapper">
-        <div class="mobile-menu-content-button">
-            <button type="button" class="head-mobile-button">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <ul class="fixed-mobile-nav">
-            <li><a href="#">о нас</a></li>
-            <li><a href="#">новости</a></li>
-            <li><a href="#">доставка</a></li>
-            <li><a href="#">оплата</a></li>
-            <li><a href="#">отзывы</a></li>
-            <li><a href="#">контакты</a></li>
-        </ul>
-    </div>
+    {#<div class="mobile-menu-content-wrapper">#}
+        {#<div class="mobile-menu-content-button">#}
+            {#<button type="button" class="head-mobile-button">#}
+                {#<span class="icon-bar"></span>#}
+                {#<span class="icon-bar"></span>#}
+            {#</button>#}
+        {#</div>#}
+        {#<ul class="fixed-mobile-nav">#}
+            {#<li><a href="{{ path("site_frontend_about_company") }}">о нас</a></li>#}
+            {#<li><a href="{{ path("site_frontend_news_list") }}">новости</a></li>#}
+            {#<li><a href="{{ path("site_frontend_about_delivery") }}">доставка</a></li>#}
+            {#<li><a href="{{ path("site_frontend_about_payment") }}">оплата</a></li>#}
+            {#<li><a href="#">отзывы</a></li>#}
+            {#<li><a href="{{ path("site_frontend_contacts") }}">контакты</a></li>#}
+        {#</ul>#}
+    {#</div>#}
     <div class="laptop-menu-content-wrapper">
         <div class="laptop-menu-content-button">
             <button type="button" class="scroll-mobile-button head-laptop-button">
@@ -156,13 +154,50 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <ul class="laptop-menu-content">
-            <li><a href="#">о нас</a></li>
-            <li><a href="#">новости</a></li>
-            <li><a href="#">доставка</a></li>
-            <li><a href="#">оплата</a></li>
-            <li><a href="#">отзывы</a></li>
-            <li><a href="#">контакты</a></li>
-        </ul>
+        <div class="menu-global-wrapper">
+            <div class="menu-content-wrapper">
+                <div class="footer-logo menu-logo"></div>
+                <div class="menu-items-buttons">
+                    <div data-url="{{ url("site_frontend_order_get_ajax_cart") }}" class="menu-basket-wrapper">
+                        <div class="menu-basket-item-wrapper">
+                            <span class="menu-basket-image-item"></span>
+                            <span data-url="{{ url("site_frontend_order_get_items_number") }}" class="basket-number-wrapper">
+                                {{ itemsNumber }}
+                            </span>
+                        </div>
+                        <div class="basket-item-title">
+                            корзина
+                        </div>
+                    </div>
+                    <a class="menu-items-button menu-selected-item">
+                        избранное
+                    </a>
+                    <a class="menu-items-button menu-comparing-item">
+                        сравнение
+                    </a>
+                </div>
+            </div>
+            <div class="menu-catalog-content-wrapper">
+                <div class="menu-catalog-wrapper">
+                    <div class="menu-catalog-title">
+                        каталог
+                    </div>
+                    <div class="menu-catalog-items-wrapper">
+                        <a href="{{ url('site_frontend_set_list') }}" class="menu-catalog-item">наборы</a>
+                        {% for category in categories %}
+                            <a href="{{ url('site_frontend_category',{'slug':category.slug}) }}" class="menu-catalog-item">{{ category.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="laptop-menu-contacts-wrapper">
+                <a href="{{ path('site_frontend_about_company') }}">о нас</a>
+                <a href="{{ path('site_frontend_news_list') }}">новости</a>
+                <a href="{{ path("site_frontend_about_delivery") }}">доставка</a>
+                <a href="{{ path("site_frontend_about_payment") }}">оплата</a>
+                <a href="#">отзывы</a>
+                <a href="{{ path("site_frontend_contacts") }}">контакты</a>
+            </div>
+        </div>
     </div>
 </div>

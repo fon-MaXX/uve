@@ -9,11 +9,28 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Order
  *
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="order_set_table")
+ * @ORM\Table(name="order_table")
  * @ORM\Entity(repositoryClass="Site\BackendBundle\Entity\Repository\OrderRepository")
  */
 class Order
 {
+    public $deliveryTypes=[
+        1=>'Нова пошта',
+        2=>'Самовывоз'
+    ];
+    public $payTypes=[
+        1=>'Карточкой',
+        2=>'Наличными',
+        3=>'LiqPay',
+    ];
+    public $payTypesText=[
+        1=>'Оплата производится в момент получения на отделении Новой почты. При этом ТК взимает комиссию
+        около 30 грн. за перечисление денег',
+        2=>' Оплата производится в момент получения на отделении Новой почты. При этом ТК взимает комиссию
+        около 60 грн. за перечисление денег',
+        3=>' Оплата производится в момент получения на отделении Новой почты. При этом ТК взимает комиссию
+        около 90 грн. за перечисление денег'
+    ];
     /**
      * @var int
      *
@@ -38,29 +55,95 @@ class Order
      */
     private $phone;
     /**
-     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Product", mappedBy="orders",cascade={"persist"})
+     * @ORM\Column(name="comment_field", type="text", nullable=true)
      */
-    private $products;
+    private $comment;
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Set", mappedBy="orders",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="OrderHasProduct", mappedBy="order",cascade={"persist","remove"}, orphanRemoval=true,indexBy="id")
      */
-    private $sets;
+    private $orderHasProducts;
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="OrderHasSet", mappedBy="order",cascade={"persist","remove"}, orphanRemoval=true,indexBy="id")
+     */
+    private $orderHasSets;
     /**
      *
      * @ORM\Column(name="state_field", type="string", length=256, nullable=true)
      */
     private $state;
     /**
+     *
+     * @ORM\Column(name="pay_type_field", type="string", length=256, nullable=true)
+     */
+    private $payType;
+    /**
+     *
+     * @ORM\Column(name="delivery_type_field", type="string", length=256, nullable=true)
+     */
+    private $deliveryType;
+    /**
+     *
+     * @ORM\Column(name="price_field", type="integer", length=11, nullable=true)
+     */
+    private $price;
+    /**
+     *
+     * @ORM\Column(name="discount_field", type="integer", length=11, nullable=true)
+     */
+    private $discount;
+    /**
+     * @var \DateTime $createdAt
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at",type="datetime")
+     */
+    private $createdAt;
+    /**
+     * @var \DateTime $createdAt
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at",type="datetime")
+     */
+    private $updatedAt;
+    private $items;
+    public function getItems(){
+        $arr=[];
+        if(count($this->getOrderHasProducts())){
+            foreach($this->getOrderHasProducts() as $item){
+                $arr[]=[
+                    'cod'=>$item->getProduct()->getCod(),
+                    'title'=>$item->getProduct()->getTitle()
+                ];
+            }
+        }
+        if(count($this->getOrderHasSets())){
+            foreach($this->getOrderHasSets() as $item){
+                $arr[]=[
+                    'cod'=>$item->getSet()->getCod(),
+                    'title'=>$item->getSet()->getTitle()
+                ];
+            }
+        }
+        return $arr;
+    }
+    public function setItems(){}
+    public function __toString()
+    {
+        return ($this->id)?'Заказ №'.(1000000+$this->id):"Новый заказ";
+    }
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->sets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orderHasProducts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orderHasSets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -170,72 +253,240 @@ class Order
     }
 
     /**
-     * Add product
+     * Add orderHasProduct
      *
-     * @param \Site\BackendBundle\Entity\Product $product
+     * @param \Site\BackendBundle\Entity\OrderHasProduct $orderHasProduct
      *
      * @return Order
      */
-    public function addProduct(\Site\BackendBundle\Entity\Product $product)
+    public function addOrderHasProduct(\Site\BackendBundle\Entity\OrderHasProduct $orderHasProduct)
     {
-        $product->addOrder($this);
-        $this->products[] = $product;
+        $orderHasProduct->setOrder($this);
+        $this->orderHasProducts[] = $orderHasProduct;
 
         return $this;
     }
 
     /**
-     * Remove product
+     * Remove orderHasProduct
      *
-     * @param \Site\BackendBundle\Entity\Product $product
+     * @param \Site\BackendBundle\Entity\OrderHasProduct $orderHasProduct
      */
-    public function removeProduct(\Site\BackendBundle\Entity\Product $product)
+    public function removeOrderHasProduct(\Site\BackendBundle\Entity\OrderHasProduct $orderHasProduct)
     {
-        $this->products->removeElement($product);
+        $this->orderHasProducts->removeElement($orderHasProduct);
     }
 
     /**
-     * Get products
+     * Get orderHasProducts
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getProducts()
+    public function getOrderHasProducts()
     {
-        return $this->products;
+        return $this->orderHasProducts;
     }
 
     /**
-     * Add set
+     * Add orderHasSet
      *
-     * @param \Site\BackendBundle\Entity\Set $set
+     * @param \Site\BackendBundle\Entity\OrderHasSet $orderHasSet
      *
      * @return Order
      */
-    public function addSet(\Site\BackendBundle\Entity\Set $set)
+    public function addOrderHasSet(\Site\BackendBundle\Entity\OrderHasSet $orderHasSet)
     {
-        $set->addOrder($this);
-        $this->sets[] = $set;
+        $orderHasSet->setOrder($this);
+        $this->orderHasSets[] = $orderHasSet;
 
         return $this;
     }
 
     /**
-     * Remove set
+     * Remove orderHasSet
      *
-     * @param \Site\BackendBundle\Entity\Set $set
+     * @param \Site\BackendBundle\Entity\OrderHasSet $orderHasSet
      */
-    public function removeSet(\Site\BackendBundle\Entity\Set $set)
+    public function removeOrderHasSet(\Site\BackendBundle\Entity\OrderHasSet $orderHasSet)
     {
-        $this->sets->removeElement($set);
+        $this->orderHasSets->removeElement($orderHasSet);
     }
 
     /**
-     * Get sets
+     * Get orderHasSets
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getSets()
+    public function getOrderHasSets()
     {
-        return $this->sets;
+        return $this->orderHasSets;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Order
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set payType
+     *
+     * @param string $payType
+     *
+     * @return Order
+     */
+    public function setPayType($payType)
+    {
+        $this->payType = $payType;
+
+        return $this;
+    }
+
+    /**
+     * Get payType
+     *
+     * @return string
+     */
+    public function getPayType()
+    {
+        return $this->payType;
+    }
+
+    /**
+     * Set deliveryType
+     *
+     * @param string $deliveryType
+     *
+     * @return Order
+     */
+    public function setDeliveryType($deliveryType)
+    {
+        $this->deliveryType = $deliveryType;
+
+        return $this;
+    }
+
+    /**
+     * Get deliveryType
+     *
+     * @return string
+     */
+    public function getDeliveryType()
+    {
+        return $this->deliveryType;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return Order
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Order
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Order
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set discount
+     *
+     * @param integer $discount
+     *
+     * @return Order
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Get discount
+     *
+     * @return integer
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
     }
 }

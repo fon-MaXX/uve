@@ -41,6 +41,20 @@ class ShareTag
      * )
      */
     private $products;
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Set", inversedBy="shareTags")
+     * @ORM\JoinTable(name="set_has_share_tag",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="share_tag_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="set_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $sets;
 
     /**
      * Get id
@@ -117,4 +131,38 @@ class ShareTag
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
+    /**
+     * Add set
+     *
+     * @param \Site\BackendBundle\Entity\Set $set
+     *
+     * @return ShareTag
+     */
+    public function addSet(\Site\BackendBundle\Entity\Set $set)
+    {
+        $this->sets[] = $set;
+
+        return $this;
+    }
+
+    /**
+     * Remove set
+     *
+     * @param \Site\BackendBundle\Entity\Set $set
+     */
+    public function removeSet(\Site\BackendBundle\Entity\Set $set)
+    {
+        $this->sets->removeElement($set);
+    }
+
+    /**
+     * Get sets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSets()
+    {
+        return $this->sets;
+    }
 }
