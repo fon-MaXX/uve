@@ -27,22 +27,33 @@ class SearchController extends Controller
         $menu = $breadcrumbsGenerator->generateMenu($arr);
         $em = $this->getDoctrine()->getManager();
         $result=[];
+        $page = $request->query->getInt('page');
+        if(!$page){
+            $this->get('session')->remove('search_session');
+            $page = 1;
+        }
         if($request->isMethod("POST")){
             $form->handleRequest($request);
             if($form->isValid()){
                 $title = $form->getData()['text'];
-                $news = $em->getRepository('SiteBackendBundle:News')->search($title);
-                $products = $em->getRepository('SiteBackendBundle:Product')->search($title);
-                $sets = $em->getRepository('SiteBackendBundle:Set')->search($title);
-                $result = array_merge($result,$products);
-                $result = array_merge($result,$sets);
-                $result = array_merge($result,$news);
             }
         }
+        else{
+            $title = $this->get('session')->get('search_session');
+            $arr=['text',$title];
+            $form->submit($arr);
+        }
+        $news = $em->getRepository('SiteBackendBundle:News')->search($title);
+        $products = $em->getRepository('SiteBackendBundle:Product')->search($title);
+        $sets = $em->getRepository('SiteBackendBundle:Set')->search($title);
+        $result = array_merge($result,$products);
+        $result = array_merge($result,$sets);
+        $result = array_merge($result,$news);
+        $this->get('session')->set('search_session',$title);
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $result,
-            $request->query->getInt('page', 1),
+            $page,
             20
         );
         $pagination->setTemplate('SiteFrontendBundle:Product:_list_pagination.html.twig');
@@ -54,6 +65,7 @@ class SearchController extends Controller
         ]);
         return $this->render('SiteFrontendBundle:Search:searchResult.html.twig', [
                 'pagination' => $pagination,
+//                'items'=>$items,
                 'breadcrumbs'=>$menu,
                 'staticContent'=>$staticContent,
                 'categories'=>$categories,

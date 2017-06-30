@@ -94,26 +94,24 @@ class StaticPageContentAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('staticPage','entity',[
+            ->add('staticPageTitle','text',[
                 'label'=>'Страница',
                 'required'=>true,
                 'attr'=>[
-                    'disabled'=>true
-                ],
-                'choice_label'=>'title',
-                'class'=>'SiteBackendBundle:StaticPage'
+                    'readonly'=>true
+                ]
             ])
             ->add('linkname','text',[
                 'required'=>true,
                 'attr'=>[
-                    'disabled'=>true
+                    'readonly'=>true
                 ]
             ])
             ->add('text', 'textarea', [
                 'label'=>'field.text',
                 'attr' => [
                     'class' => 'tinymce',
-                    'data-theme' => 'simple' // simple, advanced, bbcode
+                    'data-theme' => 'medium' // simple, advanced, bbcode
                 ]
             ])
         ;

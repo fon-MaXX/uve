@@ -1,0 +1,138 @@
+<div class="mail-content-container">
+    <p>Здравствуйте!</p>
+    </br>
+    <h3>Ссылка на заказ:</h3>
+    <a href="{{ url('admin_site_backend_order_edit',{'id':entity.id}) }}">
+        Перейти к администрированию заказа
+    </a>
+    <h3>КОНТАКТНЫЕ ДАННЫЕ:</h3>
+    <table class="no-border">
+        <tr>
+            <td><label>ФИО:</label></td>
+            <td>&nbsp;{{ entity.username }}</td>
+        </tr>
+        <tr>
+            <td><label>Телефон:</label></td>
+            <td>&nbsp;{{ entity.phone }}</td>
+        </tr>
+        {% if entity.email|length %}
+            <tr>
+                <td><label>Email:</label></td>
+                <td>&nbsp;{{ entity.email }}</td>
+            </tr>
+        {% endif %}
+    </table>
+    </br>
+    {#<h3>ДАННЫЕ ПО ОПЛАТЕ:</h3>#}
+    {#<table class="no-border">#}
+        {#<tr>#}
+            {#<td><label>Тип:</label></td>#}
+            {#<td> {{ order.payType.title }}</td>#}
+        {#</tr>#}
+    {#</table>#}
+    {#<h3>ДАННЫЕ ПО ДОСТАВКЕ:</h3>#}
+    {#{% if order.deliveryType == 'pickup' %}#}
+        {#<table class="no-border">#}
+            {#<tr>#}
+                {#<td><label>Номер заказа:</label></td>#}
+                {#<td> {{ order.id }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<td><label>Тип:</label></td>#}
+                {#<td> {{ order.deliveryProviders[order.deliveryType] }}</td>#}
+            {#</tr>#}
+        {#</table>#}
+    {#{% else %}#}
+        {#<table class="no-border">#}
+            {#<tr>#}
+                {#<td><label>Номер заказа:</label></td>#}
+                {#<td> {{ order.id }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<td><label>Тип:</label></td>#}
+                {#<td> {{ order.deliveryProviders[order.deliveryType] }}</td>#}
+            {#</tr>#}
+            {#{% if address %}#}
+                {#<tr>#}
+                    {#<td><label>Область:</label></td>#}
+                    {#<td> {{ address['region'] }}</td>#}
+                {#</tr>#}
+                {#<tr>#}
+                    {#<td><label>Город:</label></td>#}
+                    {#<td> {{ address['city'] }}</td>#}
+                {#</tr>#}
+                {#<tr>#}
+                    {#<td><label>Отделение:</label></td>#}
+                    {#<td> {{ address['wareHouses'] }}</td>#}
+                {#</tr>#}
+            {#{% endif %}#}
+        {#</table>#}
+    {#{% endif %}#}
+    {#</br>#}
+    <h3>ОПИСАНИЕ ЗАКАЗА:</h3>
+    {% if entity.orderHasProducts|length %}
+        {% for item in entity.orderHasProducts %}
+            <table>
+                <tr>
+                    <td>
+                        <label>Наименование:</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;{{ item.product.title }}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Артикул:</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;{{ item.product.cod }}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Количество:</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;{{ item.number }}</label>
+                    </td>
+                </tr>
+            </table>
+            <hr/>
+        {% endfor %}
+    {% endif %}
+    {% if entity.orderHasSets|length %}
+        {% for item in entity.orderHasSets %}
+            <table>
+                <tr>
+                    <td>
+                        <label>Наименование:</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;{{ item.set.title }}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Артикул:</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;{{ item.set.cod }}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Количество:</label>
+                    </td>
+                    <td>
+                        <label>&nbsp;{{ item.number }}</label>
+                    </td>
+                </tr>
+            </table>
+            <hr/>
+        {% endfor %}
+    {% endif %}
+    </br>
+    <h3>ОБЩАЯ СУММА: {{ entity.price~' грн' }}</h3>
+    </br>
+</div>

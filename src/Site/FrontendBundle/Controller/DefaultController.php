@@ -20,8 +20,12 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $novels = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber(5,'новинка');
-        $hits = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber(5,'топ продаж');
+        $productNovels = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber(5,'новинка');
+        $setNovels = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber(5,'новинка');
+        $productHits = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber(5,'топ продаж');
+        $setHits = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber(5,'топ продаж');
+        $novels= $this->bestFiveByRand($productNovels,$setNovels);
+        $hits= $this->bestFiveByRand($productHits,$setHits);
         $news = $em->getRepository('SiteBackendBundle:News')->getLastByNumber(4);
         $slides = $em->getRepository('SiteBackendBundle:Slider')->getLastByNumber(10);
         $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('main_page');
@@ -36,6 +40,43 @@ class DefaultController extends Controller
             'staticContent'=>$staticContent,
             'seo'=>$seo
         ]);
+    }
+
+    /**
+     * for main page popular and hot blocks
+     *
+     * @param $products
+     * @param $sets
+     * @return array
+     */
+    private function bestFiveByRating($products,$sets){
+        if(!is_array($products))$products=[];
+        if(!is_array($sets))$sets=[];
+        $arr = array_merge($products,$sets);
+        if(count($arr)<=5) return $arr;
+        $temp=[];
+        foreach($arr as $k=>$item){
+            $temp[$k]=$item->getRating();
+        }
+        asort($temp);
+        $delete = array_slice($temp,0,count($temp)-5);
+        foreach($delete as $k=>$value){
+            unset($arr[$k]);
+        }
+        return $arr;
+    }
+    private function bestFiveByRand($products,$sets){
+        if(!is_array($products))$products=[];
+        if(!is_array($sets))$sets=[];
+        $arr = array_merge($products,$sets);
+        if(count($arr)<=5) return $arr;
+        $keys = array_rand($arr, 5);
+        foreach($arr as $k=>$value){
+            if(!in_array($k,$keys)){
+                unset($arr[$k]);
+            }
+        }
+        return $arr;
     }
     public function headerMenuAction()
     {
@@ -88,6 +129,7 @@ class DefaultController extends Controller
             $callback = $form->getData();
             $em->persist($callback);
             $em->flush();
+            $this->sendMail($callback,'callback');
             $response=[
                 'success'=>true,
                 'message'=>'Мы свяжемся с вами в ближайшее время'
@@ -118,6 +160,11 @@ class DefaultController extends Controller
                 'template'=>'SiteFrontendBundle:Default:about_payment.html.twig',
                 'page'=>'about_payment',
                 'title'=>'Оплата'
+            ],
+            'site_frontend_static_reviews'=>[
+                'template'=>'SiteFrontendBundle:Default:static_reviews.html.twig',
+                'page'=>'static_reviews',
+                'title'=>'Отзывы'
             ],
         ];
         if(!isset($templates[$templateName])){
@@ -150,6 +197,7 @@ class DefaultController extends Controller
                     $data = $form->getData();
                     $em->persist($data);
                     $em->flush();
+                    $this->sendMail($data,'contacts');
                     return $this->render('SiteFrontendBundle:Default:contactsSuccess.html.twig',[
                         'title'=>$seo->getTitle(),
                         'breadcrumbs'=>$menu,
@@ -166,5 +214,37 @@ class DefaultController extends Controller
             'breadcrumbs'=>$menu,
             'seo'=>$seo
         ]);
+    }
+    private function sendMail($entity,$type){
+        $arr=[
+            'contacts'=>[
+                'template'=>'SiteFrontendBundle:EMails:_contactsMail.html.twig',
+                'subject'=>'Новый запрос о контактах с сайта Uvelife.com'
+            ],
+            'callback'=>[
+                'template'=>'SiteFrontendBundle:EMails:_callbackMail.html.twig',
+                'subject'=>'Новый запрос о перезвоне с сайта Uvelife.com'
+            ],
+        ];
+        if(!isset($arr[$type])){
+            return;
+        }
+        $parameters = $this->container->getParameter('mailer_parameters');
+        $message = \Swift_Message::newInstance()
+            ->setSubject($arr[$type]['subject'])
+            ->setFrom($parameters['send_from'])
+            ->setBody(
+                $this->renderView($arr[$type]['template'],['entity' => $entity]),
+                'text/html'
+            );
+        try{
+            foreach ($parameters['send_to'] as $to) {
+                $message->setTo($to);
+                $this->get('mailer')->send($message);
+            }
+        }
+        catch (\Swift_TransportException $e) {
+
+        }
     }
 }

@@ -28,7 +28,12 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
             $insertionType = $config['insertionType'];
             $conditions = [];
             foreach($params['insertionType'] as $item){
-                $conditions[] = $query->expr()->like('s.insertionType', $query->expr()->literal('%'.$insertionType[$item].'%'));
+                if($insertionType[$item]=='Без вставки'){
+                    $conditions[] = $query->expr()->isNull('p.insertionType');
+                }
+                else{
+                    $conditions[] = $query->expr()->like('p.insertionType', $query->expr()->literal('%'.$insertionType[$item].'%'));
+                }
             }
             $orX = $query->expr()->orX();
             $orX->addMultiple($conditions);
@@ -88,7 +93,8 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
                 ->getResult();
         }
         return $this->createQueryBuilder('q')
-            ->andWhere('q.title LIKE :title')
+            ->where('q.title LIKE :title')
+            ->orWhere('q.cod LIKE :title')
             ->setParameter('title', '%'.$title.'%')
             ->getQuery()
             ->getResult()
@@ -102,5 +108,16 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
             ->setMaxResults($number)
             ->getQuery()
             ->getResult();
+    }
+    public function getLastByTagAndNumber($number,$tagTitle){
+        return $this->createQueryBuilder('s')
+            ->leftJoin('s.shareTags','shT')
+            ->where('shT.title = :title')
+            ->setParameter('title',$tagTitle)
+            ->setMaxResults($number)
+            ->orderBy('s.rating','DESC')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 }

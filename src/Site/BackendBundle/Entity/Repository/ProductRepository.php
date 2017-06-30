@@ -21,12 +21,21 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
     }
 //    product-list filter method
-    public function getForProductList(array $params, array $config,$id){
+    public function getForProductList(array $params, array $config,$id, $subCategoryId=null){
         $query = $this->createQueryBuilder('p')
             ->leftJoin('p.subCategory','sc')
-            ->leftJoin('sc.category','c')
-            ->where('c.id = :catId')
-            ->setParameter('catId',$id)
+            ->leftJoin('sc.category','c');
+            if($subCategoryId){
+                $query
+                    ->where('sc.id = :id')
+                    ->setParameter('id',$subCategoryId);
+            }
+            else{
+                $query
+                    ->where('c.id = :catId')
+                    ->setParameter('catId',$id);
+            }
+        $query
             ->andWhere('p.state != :state')
             ->setParameter('state','только в наборе');
         if(isset($params['range'])&&$params['range']){
@@ -39,7 +48,12 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             $insertionType = $config['insertionType'];
             $conditions = [];
             foreach($params['insertionType'] as $item){
-                $conditions[] = $query->expr()->like('p.insertionType', $query->expr()->literal('%'.$insertionType[$item].'%'));
+                if($insertionType[$item]=='Без вставки'){
+                    $conditions[] = $query->expr()->isNull('p.insertionType');
+                }
+                else{
+                    $conditions[] = $query->expr()->like('p.insertionType', $query->expr()->literal('%'.$insertionType[$item].'%'));
+                }
             }
             $orX = $query->expr()->orX();
             $orX->addMultiple($conditions);
@@ -111,7 +125,7 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('title',$tagTitle)
             ->setParameter('state','только в наборе')
             ->setMaxResults($number)
-            ->orderBy('p.createdAt','ASC')
+            ->orderBy('p.rating','DESC')
             ->getQuery()
             ->getResult()
             ;
@@ -148,7 +162,8 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
                 ->getResult();
         }
         return $this->createQueryBuilder('q')
-            ->andWhere('q.title LIKE :title')
+            ->where('q.title LIKE :title')
+            ->orWhere('q.cod LIKE :title')
             ->setParameter('title', '%'.$title.'%')
             ->getQuery()
             ->getResult()
@@ -165,6 +180,8 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             ;
         }
         return $q
+            ->andWhere('p.state != :state')
+            ->setParameter('state','только в наборе')
             ->addSelect('RAND() as HIDDEN rand')
             ->addOrderBy('rand')
             ->setMaxResults($number)

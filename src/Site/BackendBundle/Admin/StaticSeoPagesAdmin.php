@@ -59,11 +59,11 @@ class StaticSeoPagesAdmin extends AbstractAdmin
                 'label'=>'title'
             ])
             ->add('keywords','textarea',[
-                'required'=>true,
+                'required'=>false,
                 'label'=>'keywords'
             ])
             ->add('description','textarea',[
-                'required'=>true,
+                'required'=>false,
                 'label'=>'dscription'
             ])
         ;

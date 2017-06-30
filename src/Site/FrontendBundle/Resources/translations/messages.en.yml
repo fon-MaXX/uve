@@ -10,4 +10,3 @@ form:
     comment: "Comment to order"
     pay.type: "Pay type"
     delivery.type: "Delivery type"
-car.select.form.empty.data: ''

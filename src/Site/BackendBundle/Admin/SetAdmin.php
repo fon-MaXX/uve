@@ -7,12 +7,15 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Site\UploadBundle\UpbeatTraits\UpbeatUploadFilesAdminTrait;
+use Site\UploadBundle\UpbeatTraits\UpbeatUploadFullAdminTrait;
 use Site\UploadBundle\Form\UpbeatUploadType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Site\FrontendBundle\Form\FilterConfig;
 class SetAdmin extends AbstractAdmin
 {
-    use UpbeatUploadFilesAdminTrait;
+    use UpbeatUploadFullAdminTrait;
     /**
      * @param string $code
      * @param string $class
@@ -84,6 +87,9 @@ class SetAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
+        $formConfig = new FilterConfig();
+        $this->states = $formConfig->getAdminSetStates();
+        $this->insertionTypes = $formConfig->getInsertionTypes();
         $formMapper
             ->with('SEO часть')
             ->add('title','text',[
@@ -118,14 +124,22 @@ class SetAdmin extends AbstractAdmin
                     'required'=>true,
                     'label'=>'field.cod'
                 ])
-                ->add('state','text',[
-                    'label'=>"field.state"
+                ->add('state',ChoiceType::class,[
+                    'label'=>"field.state",
+                    'choices'=>array_flip($this->states),
+                ])
+                ->add('poster', UpbeatUploadType::class,[
+                    'file_type' => 'set_icon',
+                    'template'  => 'SiteBackendBundle:Upload:product_image.html.twig',
+                    'extensions' => 'jpg,gif,png',
+                    'label'=>'field.poster'
                 ])
                 ->add('metal',null,[
                     'label'=>'field.metal',
                     'required'=>false
                 ])
-                ->add('insertionType',null,[
+                ->add('insertionType',ChoiceType::class,[
+                    'choices'=>array_flip($this->insertionTypes),
                     'label'=>'field.insertion_type',
                     'required'=>false
                 ])
@@ -142,6 +156,10 @@ class SetAdmin extends AbstractAdmin
                     'attr' => ['class' => 'multiSelect'],
                     'label'=>'field.share_tag'
                 ])
+                ->add('rating','text',[
+                    'required'=>false,
+                    'label'=>'Рейтинг'
+                ])
             ->end()
             ->with("Gallery")
             ->add('setGallery', 'sonata_type_collection', [
@@ -155,6 +173,28 @@ class SetAdmin extends AbstractAdmin
                 ])
             ->end();
         ;
+        $formMapper->get('insertionType')->addModelTransformer(new CallbackTransformer(
+            function ($insertionType) {
+                //                  call`s after getter
+                $types = array_flip($this->insertionTypes);
+                return  (isset($types[$insertionType]))?$types[$insertionType]:null;
+            },
+            function ($insertionType) {
+                //                   call`s before setter
+                return (isset($this->insertionTypes[$insertionType]))?$this->insertionTypes[$insertionType]:null;
+            }
+        ));
+        $formMapper->get('state')->addModelTransformer(new CallbackTransformer(
+            function ($state) {
+                //                  call`s after getter
+                $states = array_flip($this->states);
+                return  (isset($states[$state]))?$states[$state]:null;
+            },
+            function ($state) {
+                //                   call`s before setter
+                return (isset($this->states[$state]))?$this->states[$state]:null;
+            }
+        ));
     }
 
     /**
@@ -175,6 +215,13 @@ class SetAdmin extends AbstractAdmin
             ])
             ->add('state','text',[
                 'label'=>"field.state"
+            ])
+            ->add('rating','text',[
+                'label'=>"Рейтинг"
+            ])
+            ->add('poster', 'text',[
+                'template'  => 'SiteBackendBundle:Show:_poster.html.twig',
+                'label'=>'field.poster'
             ])
             ->add('metal',null,[
                 'label'=>'field.metal',

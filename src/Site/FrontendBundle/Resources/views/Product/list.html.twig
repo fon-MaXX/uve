@@ -87,7 +87,7 @@
                                         <div class="index-product-shortcut-wrapper">
                                             <div><strong>Металл:</strong> {{ product.metal }}; </div>
                                             <div><strong>Средний вес, г:</strong> {{ product.weight }};</div>
-                                            <div><strong>Тип вставки:</strong>{{ product.insertionType }};</div>
+                                            <div><strong>Тип вставки:</strong>{{ (product.insertionType)?product.insertionType:"Без вставки" }};</div>
                                             <div class="product-state {{ product.state|product_state }}"><span>{{ product.state }}</span></div>
                                             <div class="selected-button-wrapper">
                                                 <span data-url="{{ url("site_frontend_selected_add_product",{'slug':product.slug}) }}" class="selected-item">

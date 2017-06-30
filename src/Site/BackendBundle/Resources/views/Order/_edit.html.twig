@@ -302,13 +302,37 @@ file that was distributed with this source code.
                     </div>
                     <div class="box-body">
                         <div class="sonata-ba-collapsed-fields">
-                            <div class="form-group form-item-element">
-                                {{ form_label(form.payType) }}
+                            <div class="sonata-ba-collapsed-fields order-payment-and-delivery-item">
+                                <label>Способ оплаты</label>
                                 {{ form_widget(form.payType) }}
                             </div>
-                            <div class="form-group form-item-element">
-                                {{ form_label(form.deliveryType) }}
+                            <div class="sonata-ba-collapsed-fields order-payment-and-delivery-item delivery-item">
+                                <label>Способ доставки</label>
                                 {{ form_widget(form.deliveryType) }}
+                            </div>
+                            <h4 class="box-title">
+                                Данные Новой Пошты
+                            </h4>
+                            <div data-url="{{ admin.generateObjectUrl('newpostform',object,{},0) }}" class="sonata-ba-collapsed-fields order-payment-and-delivery-item-wrapper">
+                                {% if form.vars.value.deliveryType == "Нова пошта" %}
+                                    {% include 'SiteFrontendBundle:Order:_novaPoshtaDataForm.html.twig' with {'form':form} %}
+                                {% else %}
+                                    <div class="display-none">
+                                        {{ form_widget(form.novaPoshtaData) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <h4 class="box-title">
+                                Данные Укр Пошты
+                            </h4>
+                            <div data-url="{{ admin.generateObjectUrl('ukrposhtaform',object,{},0) }}" class="sonata-ba-collapsed-fields order-delivery-item-ukrpost-wrapper">
+                                {% if form.vars.value.deliveryType == "Укр пошта" %}
+                                    {% include 'SiteFrontendBundle:Order:_ukrPoshtaDataForm.html.twig' with {'form':form} %}
+                                {% else %}
+                                    <div class="display-none">
+                                        {{ form_widget(form.ukrPoshtaData) }}
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="form-group form-item-element">
                                 {{ form_label(form.price) }}

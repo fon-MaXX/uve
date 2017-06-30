@@ -3,10 +3,13 @@
 namespace Site\FrontendBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Site\BackendBundle\Entity\OrderHasProduct;
+use Site\FrontendBundle\Form\OrderHasProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Site\FrontendBundle\Form\ProductFilterType;
+use Site\FrontendBundle\Form\ProductShowType;
 use Site\FrontendBundle\Form\SearchType;
 use Site\FrontendBundle\Form\FilterConfig;
 
@@ -150,7 +153,7 @@ class ProductController extends Controller
             $form->submit($filter);
         }
         $productNumber = (isset($filter['number']))?(int)$filter['number']:$productNumber;
-        $productQuery = $em->getRepository('SiteBackendBundle:Product')->getForProductList($filter,$config,$parentCategory->getId());
+        $productQuery = $em->getRepository('SiteBackendBundle:Product')->getForProductList($filter,$config,$parentCategory->getId(),$subCategory->getId());
         $paginator = $this->get('knp_paginator');
         $products = $paginator->paginate(
             $productQuery,
@@ -212,22 +215,27 @@ class ProductController extends Controller
         }
         $breadcrumbsGenerator = $this->get('fonmaxx.breadcrumbs.generator');
         $menu = $breadcrumbsGenerator->generateMenu($arr);
-//        $form = $this->createForm(ProductShowType::class,$product,[
-//            'action'=>$this->get('router')->generate('site_frontend_order_add_product',['slug'=>$product->getSlug()])
-//        ]);
+        $orderHasProduct = new OrderHasProduct();
+        $orderHasProduct->setProduct($product);
+        $em->persist($orderHasProduct);
+        $form = $this->createForm(OrderHasProductType::class,$orderHasProduct,[
+            'action'=>$this->get('router')->generate('site_frontend_order_create',['slug'=>$product->getSlug()])
+        ]);
         $rand = $em->getRepository('SiteBackendBundle:Product')->getRandProducts(5,$category->getId());
         $features = $this->getFeaturesArray($product);
+        $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('product_show');
         return $this->render('SiteFrontendBundle:Product:show.html.twig', [
             'breadcrumbs'=>$menu,
             'product'=>$product,
-//            'form'=>$form->createView(),
+            'form'=>$form->createView(),
             'features'=>$features,
-            'rand'=>$rand
+            'rand'=>$rand,
+            'staticContent'=>$staticContent
         ]);
     }
     private function getFilterFromSession($sessionName=null){
         $session = $this->get('session')->get($sessionName);
-        $result = json_decode($session,true);
+        $result = ($session)?json_decode($session,true):[];
         if ((json_last_error() === JSON_ERROR_NONE)&&($result)) {
             return $result;
         }

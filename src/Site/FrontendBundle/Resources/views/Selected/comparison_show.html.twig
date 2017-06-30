@@ -70,6 +70,9 @@
                     <div class="comparison-row-item">
                         <div class="comparison-cell-item comparison-title-item">
                             <div class="comparison-features">
+                                Статус:
+                            </div>
+                            <div class="comparison-features">
                                 Тип изделия:
                             </div>
                             <div class="comparison-features">
@@ -90,6 +93,9 @@
                         </div>
                         {% for item in items %}
                             <div data-item="{{ loop.index }}" class="comparison-cell-item">
+                                <div class="comparison-features">
+                                    <div class="comparison-show-state product-state {{ item.entity.state|product_state }}"><span>{{ item.entity.state }}</span></div>
+                                </div>
                                 <div class="comparison-features">
                                     {{ (item.type=='set')?"набор":item.entity.subCategory.category.title }}
                                 </div>

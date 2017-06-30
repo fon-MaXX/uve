@@ -1,9 +1,10 @@
 <form method="post" action="{{ form.vars.action }}">
     {#**********product-html******************#}
     {% if form.vars.value.orderHasProducts|length %}
+        <div class="order-create-global-items-wrapper" data-name="order:orderHasProducts">
         {% for orderHasProduct in form.orderHasProducts  %}
             {% set product = orderHasProduct.vars.value.product %}
-            <div class="global-cart-item-wrapper">
+            <div class="global-cart-item-wrapper reindex-cart-item-wrapper">
                 <div class="global-cart-item-header">
                     <div class="global-cart-item-cod">
                         <span>Код товара:</span>
@@ -38,7 +39,7 @@
                                         Вставка:
                                     </label>
                                     <span class="cart-feature-item">
-                                        {{ product.insertionType }};
+                                        {{ (product.insertionType)?product.insertionType:"Без вставки" }};
                                     </span>
                                 </div>
                                 <div class="global-cart-element-feature">
@@ -111,6 +112,7 @@
                 </div>
             </div>
         {% endfor %}
+        </div>
     {% endif %}
     {% if form.vars.value.orderHasSets|length %}
         {% for orderHasSet in form.orderHasSets %}
@@ -135,9 +137,10 @@
                                 </div>
                             </div>
                             {% if setItem.products|length %}
+                            <div class="order-create-global-items-wrapper" data-name="order:orderHasProducts">
                                 {% for component in orderHasSet.orderHasSetComponents %}
                                     {% set componentItem = component.vars.value.product %}
-                                    <div class="global-cart-set-item-shortcut">
+                                    <div class="global-cart-set-item-shortcut reindex-cart-item-wrapper">
                                         <div class="global-cart-item-shortcut">
                                             <div class="global-cart-set-item-title-container">
                                                 <div class="global-cart-checkbox-wrapper">
@@ -164,7 +167,7 @@
                                                     Вставка:
                                                 </label>
                                             <span class="cart-feature-item">
-                                                {{ componentItem.insertionType }};
+                                                {{ (componentItem.insertionType)?componentItem.insertionType:"Без вставки" }};
                                             </span>
                                             </div>
                                             <div class="global-cart-element-feature">
@@ -210,6 +213,7 @@
                                         </div>
                                     </div>
                                 {% endfor %}
+                            </div>
                             {% endif %}
                         </div>
                     </div>

@@ -14,9 +14,9 @@ class NumberInCart{
     public function getItemsNumber($sessionName){
 
         $session = $this->session->get($sessionName);
-        $list = json_decode($session,true);
+        $list = ($session)?json_decode($session,true):null;
         $number = 0;
-        if (json_last_error() === JSON_ERROR_NONE) {
+        if (json_last_error() === JSON_ERROR_NONE && $list) {
             $number = (is_array($list))?count($list):0;
         }
         return $number;

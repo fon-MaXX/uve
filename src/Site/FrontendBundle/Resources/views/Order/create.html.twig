@@ -24,16 +24,17 @@
                 <div class="global-cart-items-container order-create-items-container">
                     {#**********product-html******************#}
                     {% if form.vars.value.orderHasProducts|length %}
+                        <div class="order-create-global-items-wrapper" data-name="order:orderHasProducts">
                         {% for orderHasProduct in form.orderHasProducts  %}
                             {% set product = orderHasProduct.vars.value.product %}
-                            <div class="global-cart-item-wrapper">
+                            <div class="global-cart-item-wrapper reindex-cart-item-wrapper">
                                 <div class="global-cart-item-header">
                                     <div class="global-cart-item-cod">
                                         <span>Код товара:</span>
                                         <span class="code-wrapper">{{ product.cod }}</span>
                                     </div>
                                     <div class="global-cart-item-remove text-right">
-                                        <span data-url="{{ url("site_frontend_order_remove_product",{'slug':product.slug}) }}" class="cart-remove-item">x</span>
+                                        <span data-url="{{ url("site_frontend_order_remove_product",{'slug':product.slug}) }}" class="cart-remove-item collection-remove">x</span>
                                     </div>
                                 </div>
                                 <div class="global-cart-item-content-container">
@@ -61,7 +62,7 @@
                                                         Вставка:
                                                     </label>
                                                     <span class="cart-feature-item">
-                                                        {{ product.insertionType }};
+                                                        {{ (product.insertionType)?product.insertionType:"Без вставки" }};
                                                     </span>
                                                 </div>
                                                 <div class="global-cart-element-feature">
@@ -134,19 +135,21 @@
                                 </div>
                             </div>
                         {% endfor %}
+                        </div>
                     {% endif %}
                     {% if form.vars.value.orderHasSets|length %}
+                        <div class="order-create-global-items-wrapper" data-name="order:orderHasSets">
                         {% for orderHasSet in form.orderHasSets %}
                             {% set setItem = orderHasSet.vars.value.set %}
                             {#**********set-html**********************#}
-                            <div class="global-cart-item-wrapper">
+                            <div class="global-cart-item-wrapper reindex-cart-item-wrapper">
                                 <div class="global-cart-item-header">
                                     <div class="global-cart-item-cod">
                                         <span>Код товара:</span>
                                         <span class="code-wrapper">{{ setItem.cod }}</span>
                                     </div>
                                     <div class="global-cart-item-remove text-right">
-                                        <span data-url="{{ url("site_frontend_order_remove_set",{'slug':setItem.slug}) }}" class="cart-remove-item">x</span>
+                                        <span data-url="{{ url("site_frontend_order_remove_set",{'slug':setItem.slug}) }}" class="cart-remove-item collection-remove">x</span>
                                     </div>
                                 </div>
                                 <div class="global-cart-item-content-container">
@@ -187,7 +190,7 @@
                                                                     Вставка:
                                                                 </label>
                                                                 <span class="cart-feature-item">
-                                                                    {{ componentItem.insertionType }};
+                                                                    {{ (componentItem.insertionType)?componentItem.insertionType:"Без вставки" }};
                                                                 </span>
                                                             </div>
                                                             <div class="global-cart-element-feature">
@@ -265,6 +268,7 @@
                                 </div>
                             </div>
                         {% endfor %}
+                        </div>
                     {% endif %}
                     <div class="clearfix"></div>
                 </div>
@@ -325,12 +329,17 @@
                             <label>Способ доставки</label>
                             {{ form_widget(form.deliveryType) }}
                         </div>
-                        <div class="order-payment-and-delivery-item">
-                            <label>Область</label>
-                            <select class="select-default-view order-delivery-type-select">
-                                <option value="1" selected>Житомирская</option>
-                                <option value="2">Ново-Житомирская</option>
-                            </select>
+                        <div data-url="{{ url('site_frontend_ukr_poshta_data') }}" class="order-delivery-item-ukrposhta-wrapper">
+                            {% if form.deliveryType.vars.value == 'ukr-post' %}
+                                {% include 'SiteFrontendBundle:Order:_ukrPoshtaDataForm.html.twig' with {'form':form} %}
+                            {% else %}
+                                <div class="display-none">
+                                    {{ form_widget(form.ukrPoshtaData.address) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div data-url="{{ url('site_frontend_nova_poshta_data') }}" class="order-payment-and-delivery-item-wrapper">
+                            {% include 'SiteFrontendBundle:Order:_novaPoshtaDataForm.html.twig' with {'form':form} %}
                         </div>
                         <div class="order-payment-submit-wrapper">
                             <button class="regular-button order-create-form-submit" type="submit">ОФОРМИТь ЗАКАЗ</button>

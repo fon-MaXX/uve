@@ -41,6 +41,11 @@ class InsertionColor
      * )
      */
     private $products;
+    /**
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position_field", type="integer", length=11, nullable=true)
+     */
+    private $position;
 
     /**
      * Get id
@@ -117,4 +122,28 @@ class InsertionColor
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return InsertionColor
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
 }

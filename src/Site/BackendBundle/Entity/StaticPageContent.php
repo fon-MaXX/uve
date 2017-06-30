@@ -42,6 +42,11 @@ class StaticPageContent
      * })
      */
     private $staticPage;
+    private $staticPageTitle;
+    public function getStaticPageTitle(){
+        return ($this->getStaticPage())?$this->getStaticPage()->getTitle():'';
+    }
+    public function setStaticPageTitle(){}
     public function __toString()
     {
         return ($this->id)?$this->getStaticPage()->getTitle().' >> '.$this->getLinkname():"";

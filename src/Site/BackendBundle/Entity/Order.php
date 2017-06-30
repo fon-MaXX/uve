@@ -15,21 +15,17 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Order
 {
     public $deliveryTypes=[
-        1=>'Нова пошта',
-        2=>'Самовывоз'
+        'new-post'=>'Нова пошта',
+        'ukr-post'=>'Укр пошта',
+        'self-pickup'=>'Самовывоз (г. Житомир)'
     ];
     public $payTypes=[
         1=>'Карточкой',
-        2=>'Наличными',
-        3=>'LiqPay',
+        2=>'Наличными (при получении)',
     ];
     public $payTypesText=[
-        1=>'Оплата производится в момент получения на отделении Новой почты. При этом ТК взимает комиссию
-        около 30 грн. за перечисление денег',
-        2=>' Оплата производится в момент получения на отделении Новой почты. При этом ТК взимает комиссию
-        около 60 грн. за перечисление денег',
-        3=>' Оплата производится в момент получения на отделении Новой почты. При этом ТК взимает комиссию
-        около 90 грн. за перечисление денег'
+        1=>'После оформления заказа с Вами свяжется менеджер и предоставит реквизиты для оплаты',
+        2=>'Оплата производится в момент получения товара на отделении почты. При этом ТК взимает дополнительную комиссию за перечисление денег',
     ];
     /**
      * @var int
@@ -110,6 +106,22 @@ class Order
      * @ORM\Column(name="updated_at",type="datetime")
      */
     private $updatedAt;
+    /**
+     *
+     * @var \NovaPoshtaData
+     *
+     * @ORM\OneToOne(targetEntity="NovaPoshtaData", mappedBy="order", cascade={"persist","remove"}, orphanRemoval=true)
+     *
+     */
+    private $novaPoshtaData;
+    /**
+     *
+     * @var \UkrPoshtaData
+     *
+     * @ORM\OneToOne(targetEntity="UkrPoshtaData", mappedBy="order", cascade={"persist","remove"}, orphanRemoval=true)
+     *
+     */
+    private $ukrPoshtaData;
     private $items;
     public function getItems(){
         $arr=[];
@@ -488,5 +500,59 @@ class Order
     public function getDiscount()
     {
         return $this->discount;
+    }
+
+    /**
+     * Set novaPoshtaData
+     *
+     * @param \Site\BackendBundle\Entity\NovaPoshtaData $novaPoshtaData
+     *
+     * @return Order
+     */
+    public function setNovaPoshtaData(\Site\BackendBundle\Entity\NovaPoshtaData $novaPoshtaData = null)
+    {
+        if ($novaPoshtaData) {
+            $novaPoshtaData->setOrder($this);
+        }
+        $this->novaPoshtaData = $novaPoshtaData;
+
+        return $this;
+    }
+
+    /**
+     * Get novaPoshtaData
+     *
+     * @return \Site\BackendBundle\Entity\NovaPoshtaData
+     */
+    public function getNovaPoshtaData()
+    {
+        return $this->novaPoshtaData;
+    }
+
+    /**
+     * Set ukrPoshtaData
+     *
+     * @param \Site\BackendBundle\Entity\UkrPoshtaData $ukrPoshtaData
+     *
+     * @return Order
+     */
+    public function setUkrPoshtaData(\Site\BackendBundle\Entity\UkrPoshtaData $ukrPoshtaData = null)
+    {
+        if ($ukrPoshtaData) {
+            $ukrPoshtaData->setOrder($this);
+        }
+        $this->ukrPoshtaData = $ukrPoshtaData;
+
+        return $this;
+    }
+
+    /**
+     * Get ukrPoshtaData
+     *
+     * @return \Site\BackendBundle\Entity\UkrPoshtaData
+     */
+    public function getUkrPoshtaData()
+    {
+        return $this->ukrPoshtaData;
     }
 }

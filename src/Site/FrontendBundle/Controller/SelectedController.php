@@ -41,10 +41,10 @@ class SelectedController extends Controller
                 'parameters'=>[],
                 'title'=>'Главная'
             ],
-            'comparison_list'=>[
-                'parameters'=>[],
-                'title'=>'Список сравнения'
-            ],
+//            'comparison_list'=>[
+//                'parameters'=>[],
+//                'title'=>'Список сравнения'
+//            ],
             'last'=>'Сравнение'
         ];
         $breadcrumbsGenerator = $this->get('fonmaxx.breadcrumbs.generator');
@@ -138,7 +138,7 @@ class SelectedController extends Controller
     }
     private function removeItemFromSession($entity,$type,$sessionName){
         $session = $this->get('session')->get($sessionName);
-        $list = json_decode($session,true);
+        $list = ($session)?json_decode($session,true):[];
         if ((json_last_error() === JSON_ERROR_NONE)&&($entity)) {
             $keys = array_keys($list);
             $key = $entity->getId().'-'.$type;
@@ -152,7 +152,7 @@ class SelectedController extends Controller
     private function addItemToSession($entity,$type,$sessionName)
     {
         $session = $this->get('session')->get($sessionName);
-        $list = json_decode($session,true);
+        $list = ($session)?json_decode($session,true):[];
         if ((json_last_error() === JSON_ERROR_NONE)&&($entity)) {
             $keys = (is_array($list))?array_keys($list):[];
             $key = $entity->getId().'-'.$type;
@@ -166,7 +166,7 @@ class SelectedController extends Controller
     private function getItemsFromSession($sessionName)
     {
         $session = $this->get('session')->get($sessionName);
-        $list = json_decode($session,true);
+        $list = ($session)?json_decode($session,true):[];
         if(!count($list)){
             return false;
         }

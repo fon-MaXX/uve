@@ -145,18 +145,21 @@ class Product
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="RingSize", mappedBy="products")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $ringSizes;
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="ChainSize", mappedBy="products")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $chainSizes;
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="InsertionColor", mappedBy="products")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $insertionColors;
     /**

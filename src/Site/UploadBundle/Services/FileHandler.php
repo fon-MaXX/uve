@@ -78,15 +78,15 @@ class FileHandler
         $uploadDir=$this->config[$fieldType]['upload_dir'];
         $dir=$uploadDir.$subDir;
         if ($this->config[$fieldType]['type'] == 'file') {
-                $result = $this->saveFile($filePath, $dir);
-            }
+            $result = $this->saveFile($filePath, $dir);
+        }
         elseif ($this->config[$fieldType]['type'] == 'image') {
-                $result = $this->saveImage($filePath, $dir, $this->config[$fieldType]['thumbnails']);
-            }
-            else {
-                throw new \Exception('Unrecognized file type!');
-            }
-            return $result;
+            $result = $this->saveImage($filePath, $dir, $this->config[$fieldType]['thumbnails']);
+        }
+        else {
+            throw new \Exception('Unrecognized file type!');
+        }
+        return $result;
     }
 
     /**
@@ -315,22 +315,27 @@ class FileHandler
         $fullPath=$this->rootDir.'/../'.$this->webDir.$result['default_file'];
         foreach ($thumbs as $key => $thumb)
         {
-        if (isset($thumb['action']) == true) {
-            $img=$this->performResize($fullPath,$thumb['action'],$thumb['width'],$thumb['height']);
+            if (isset($thumb['action']) == true) {
+                $img=$this->performResize($fullPath,$thumb['action'],$thumb['width'],$thumb['height']);
             }
-        if (isset($thumb['watermark']) == true) {
-            $watermark= new Imagick(__DIR__.'/../Resources/public/images/watermarks/'.$thumb['watermark']);
-            $watermark->setImageFormat('png');
-            $watermark->setImageOpacity($thumb['opacity']);
-            $paddingX=$img->getImageWidth()-$watermark->getImageWidth()-$thumb['padding-x'];
-            $paddingY=$img->getImageHeight()-$watermark->getImageHeight()-$thumb['padding-y'];
-            $img->compositeImage($watermark, imagick::COMPOSITE_OVER, $paddingX, $paddingY);
+            if (isset($thumb['watermark']) == true) {
+                $wPath = $this->rootDir.'/../'.$this->webDir.'/'.$thumb['watermark'];
+                $watermark= new Imagick($wPath);
+                $imHeight = $img->getImageHeight();
+                $imWidth = $img->getImageWidth();
+                $wHeight =(int)($imHeight/3);
+                $watermark->resizeImage(null,$wHeight,Imagick::FILTER_LANCZOS,1,false);
+                $paddingX=$imWidth-(int)($watermark->getImageWidth())-5;
+                if($paddingX<0)$paddingX=0;
+                $paddingY=$imHeight-(int)($watermark->getImageHeight())-5;
+                if($paddingY<0)$paddingY=0;
+                $img->compositeImage($watermark, imagick::COMPOSITE_OVER, $paddingX, $paddingY);
             }
-        $this->checkDir($fullDestDir);
-        $name = $key.uniqid().'.png';
-        $path=$fullDestDir.'/'.$name;
-        $img->writeImage($path);
-        $result[$key] = $destinationDir.'/'.$name;
+            $this->checkDir($fullDestDir);
+            $name = $key.uniqid().'.png';
+            $path=$fullDestDir.'/'.$name;
+            $img->writeImage($path);
+            $result[$key] = $destinationDir.'/'.$name;
         }
         return $result;
     }
@@ -355,10 +360,13 @@ class FileHandler
                 $img->resizeImage($width, $height,Imagick::FILTER_LANCZOS,1,true);
                 break;
             case "landscape_resize":
-                $img->resizeImage($width, null,Imagick::FILTER_LANCZOS,1,true);
+                $img->resizeImage($width, null,Imagick::FILTER_LANCZOS,1,false);
                 break;
             case "portrait_resize":
-                $img->resizeImage(null, $height,Imagick::FILTER_LANCZOS,1,true);
+                $img->resizeImage(null, $height,Imagick::FILTER_LANCZOS,1,false);
+                break;
+            case "resize_and_crop":
+                $img = $this->resizeAndCropImage($img,$width,$height);
                 break;
             case "exact_crop":
                 if($img->getImageWidth()<$width||$img->getImageHeight()<$height){
@@ -377,5 +385,54 @@ class FileHandler
                 break;
         }
         return $img;
+    }
+
+    /**
+     * resize image for best fit to thumbnails parameters and then crop by center
+     *
+     * @param $img
+     * @param $width
+     * @param $height
+     * @return mixed
+     */
+    private function resizeAndCropImage($img,$width,$height){
+        $imWidth = $img->getImageWidth();
+        $imHeight = $img->getImageHeight();
+        $newSize = $this->getScaleParameters($imWidth,$imHeight,$width,$height);
+        $img->resizeImage($newSize['width'],$newSize['height'],Imagick::FILTER_LANCZOS,1);
+        $imWidth = $img->getImageWidth();
+        $imHeight = $img->getImageHeight();
+        $cropX = ($imWidth>$width)?ceil(($imWidth-$width)/2):0;
+        $cropY = ($imHeight>$height)?ceil(($imHeight-$height)/2):0;
+        $img->cropImage($width,$height,(int)$cropX,(int)$cropY);
+        return $img;
+    }
+
+    /**
+     * calculates image scale to match given thumbnails size
+     *
+     *
+     * @param $imageWidth
+     * @param $imageHeight
+     * @param $thWidth
+     * @param $thHeight
+     * @return array
+     */
+    private function getScaleParameters($imageWidth,$imageHeight,$thWidth,$thHeight){
+        ($thWidth>$imageWidth)?$x=$thWidth:$x=null;
+        ($thHeight>$imageHeight)?$y=$thHeight:$y=null;
+        if($x&&$y){
+            ($imageWidth>$imageHeight)?$x=null:$y=null;
+        }
+        elseif(!$x&&!$y){
+            $xId = $imageWidth/$thWidth;
+            $yId = $imageHeight/$thHeight;
+            $scaleId = ($xId>$yId)?$yId:$xId;
+            $x=(int)floor($imageWidth/$scaleId);
+        }
+        return [
+            'width'=>$x,
+            'height'=>$y
+        ];
     }
 }

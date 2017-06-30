@@ -71,9 +71,9 @@ site_frontend_selected_list:
     path:  /selected/list
     defaults: { _controller: SiteFrontendBundle:Selected:selectedList}
 
-site_frontend_comparing_list:
-    path:  /comparing/list
-    defaults: { _controller: SiteFrontendBundle:Selected:comparisonList}
+#site_frontend_comparing_list:
+#    path:  /comparing/list
+#    defaults: { _controller: SiteFrontendBundle:Selected:comparisonList}
 
 site_frontend_comparing_show:
     path:  /comparing/show
@@ -137,6 +137,22 @@ site_frontend_about_payment:
     path:  /about-payment
     defaults: { _controller: SiteFrontendBundle:Default:static}
 
+site_frontend_static_reviews:
+    path:  /reviews
+    defaults: { _controller: SiteFrontendBundle:Default:static}
+
 site_frontend_search:
     path:  /search
     defaults: { _controller: SiteFrontendBundle:Search:search}
+
+site_frontend_nova_poshta_data:
+    path:  /get-newpost-form
+    defaults: { _controller: SiteFrontendBundle:Order:getNovaPoshtaForm}
+
+site_frontend_ukr_poshta_data:
+    path:  /get-ukrpost-form
+    defaults: { _controller: SiteFrontendBundle:Order:getUkrPoshtaForm}
+
+site_frontend_test:
+    path:  /test
+    defaults: { _controller: SiteFrontendBundle:Default:test}

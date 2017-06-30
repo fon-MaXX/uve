@@ -3,12 +3,14 @@
 namespace Site\FrontendBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Site\FrontendBundle\Form\OrderHasSetType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Site\FrontendBundle\Form\SetFilterType;
-use Site\FrontendBundle\Form\SetShowType;
 use Site\BackendBundle\Entity\Category;
+use Site\BackendBundle\Entity\OrderHasSet;
+use Site\BackendBundle\Entity\OrderHasSetComponent;
 use Site\FrontendBundle\Form\SearchType;
 use Site\FrontendBundle\Form\FilterConfig;
 
@@ -111,17 +113,20 @@ class SetController extends Controller
         ];
         $breadcrumbsGenerator = $this->get('fonmaxx.breadcrumbs.generator');
         $menu = $breadcrumbsGenerator->generateMenu($arr);
-//        $form = $this->createForm(SetShowType::class,$set,[
-//            'action'=>$this->get('router')->generate('site_frontend_order_add_set',['slug'=>$set->getSlug()])
-//        ]);
+        $orderHasSet = $this->createOrderHasSet($set);
+        $form = $this->createForm(OrderHasSetType::class,$orderHasSet,[
+            'action'=>$this->get('router')->generate('site_frontend_order_create',['slug'=>$set->getSlug()])
+        ]);
         $features = $this->getFeaturesArray($set);
         $rand = $em->getRepository('SiteBackendBundle:Set')->getRandSets(5);
+        $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('product_show');
         return $this->render('SiteFrontendBundle:Set:show.html.twig', [
             'breadcrumbs'=>$menu,
             'set'=>$set,
-//            'form'=>$form->createView(),
+            'form'=>$form->createView(),
             'features'=>$features,
-            'rand'=>$rand
+            'rand'=>$rand,
+            'staticContent'=>$staticContent
         ]);
     }
     private function getFilterFromSession($sessionName=null){
@@ -160,5 +165,18 @@ class SetController extends Controller
             }
         }
         return $result;
+    }
+    private function createOrderHasSet($set){
+        $em = $this->getDoctrine()->getManager();
+        $orderHasSet = new OrderHasSet();
+        $orderHasSet->setSet($set);
+        $components = $set->getProducts();
+        foreach($components as $component){
+            $orderHasSetComponent = new OrderHasSetComponent();
+            $orderHasSetComponent->setProduct($component);
+            $orderHasSet->addOrderHasSetComponent($orderHasSetComponent);
+            $em->persist($orderHasSet);
+        }
+        return $orderHasSet;
     }
 }

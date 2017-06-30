@@ -49,11 +49,11 @@ class OrderAdmin extends AbstractAdmin
             ])
             ->add('_action', 'actions', [
                 'actions' => [
-                    'show' => [
-                        'template' => 'SiteBackendBundle:List:_listShow.html.twig'
-                    ],
+//                    'show' => [
+//                        'template' => 'SiteBackendBundle:List:_listShow.html.twig'
+//                    ],
                     'edit' => [
-                        'template' => 'SiteBackendBundle:List:_listEdit.html.twig'
+                        'template' => 'SiteBackendBundle:List:_listOrderEdit.html.twig'
                     ],
                     'delete' => [
                         'template' => 'SiteBackendBundle:List:_listDelete.html.twig'
@@ -99,12 +99,15 @@ class OrderAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('title')
         ;
     }
     protected function configureRoutes(RouteCollection $collection)
     {
+
+        $collection->remove('show');
         $collection->add('orderaddproduct', $this->getRouterIdParameter().'/order-add-product');
         $collection->add('orderaddset', $this->getRouterIdParameter().'/order-add-set');
+        $collection->add('newpostform', $this->getRouterIdParameter().'/order-get-newpost-form');
+        $collection->add('ukrposhtaform', $this->getRouterIdParameter().'/order-get-ukrpost-form');
     }
 }

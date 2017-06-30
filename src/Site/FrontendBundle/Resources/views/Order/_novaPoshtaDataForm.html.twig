@@ -1,0 +1,28 @@
+{% if form.novaPoshtaData.payer is defined %}
+    <div class="order-payment-and-delivery-item">
+        {{ form_errors(form.novaPoshtaData.payer) }}
+        {{ form_label(form.novaPoshtaData.payer) }}
+        {{ form_widget(form.novaPoshtaData.payer) }}
+    </div>
+{% endif %}
+{% if form.novaPoshtaData.regionHref is defined %}
+    <div class="order-payment-and-delivery-item">
+        {{ form_errors(form.novaPoshtaData.regionHref) }}
+        {{ form_label(form.novaPoshtaData.regionHref) }}
+        {{ form_widget(form.novaPoshtaData.regionHref) }}
+    </div>
+{% endif %}
+{% if form.novaPoshtaData.cityHref is defined %}
+    <div class="order-payment-and-delivery-item">
+        {{ form_errors(form.novaPoshtaData.cityHref) }}
+        {{ form_label(form.novaPoshtaData.cityHref) }}
+        {{ form_widget(form.novaPoshtaData.cityHref) }}
+    </div>
+{% endif %}
+{% if form.novaPoshtaData.warehouseHref is defined %}
+    <div class="order-payment-and-delivery-item">
+        {{ form_errors(form.novaPoshtaData.warehouseHref) }}
+        {{ form_label(form.novaPoshtaData.warehouseHref) }}
+        {{ form_widget(form.novaPoshtaData.warehouseHref) }}
+    </div>
+{% endif %}

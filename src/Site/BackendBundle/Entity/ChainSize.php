@@ -42,6 +42,11 @@ class ChainSize
      */
     private $products;
     /**
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position_field", type="integer", length=11, nullable=true)
+     */
+    private $position;
+    /**
      * Constructor
      */
     public function __construct()
@@ -115,5 +120,29 @@ class ChainSize
     public function getProducts()
     {
         return $this->products;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return ChainSize
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

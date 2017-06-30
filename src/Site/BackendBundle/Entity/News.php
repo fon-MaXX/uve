@@ -306,14 +306,14 @@ class News
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param string $createdAt
      *
      * @return News
      */
     public function setCreatedAt($createdAt)
     {
-        $this->createdAt = $createdAt;
 
+        $this->createdAt= \DateTime::createFromFormat('d-m-Y', $createdAt);
         return $this;
     }
 
@@ -324,7 +324,8 @@ class News
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        if (!$this->createdAt) return $this->createdAt;
+        return $this->createdAt->format( "d-m-Y" );
     }
 
     /**

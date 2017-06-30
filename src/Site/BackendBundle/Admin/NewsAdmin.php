@@ -99,7 +99,7 @@ class NewsAdmin extends AbstractAdmin
             ->end()
             ->with('Контентная часть')
                 ->add('poster', UpbeatUploadType::class,[
-                    'file_type' => 'product_icon',
+                    'file_type' => 'news_icon',
                     'template'  => 'SiteBackendBundle:Upload:product_image.html.twig',
                     'extensions' => 'jpg,gif,png',
                     'label'=>'field.poster'
@@ -131,8 +131,11 @@ class NewsAdmin extends AbstractAdmin
                     'attr' => ['class' => 'multiSelect'],
                     'label'=>'field.share_tag'
                 ])
-                ->add('createdAt')
-                ->add('updatedAt')
+                ->add('createdAt','text',[
+                    'attr'=>[
+                        'class'=>'datetime-input'
+                    ]
+                ])
             ->end()
         ;
     }

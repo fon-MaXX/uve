@@ -3,7 +3,8 @@
 namespace Site\BackendBundle\Admin;
 
 use Site\BackendBundle\Entity\ShareTag;
-use Site\UploadBundle\UpbeatTraits\UpbeatUploadFilesAdminTrait;
+use Site\FrontendBundle\Form\FilterConfig;
+use Site\UploadBundle\UpbeatTraits\UpbeatUploadFullAdminTrait;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -13,9 +14,13 @@ use Site\UploadBundle\Form\UpbeatUploadType;
 use Sonata\CoreBundle\Model\Metadata;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class ProductAdmin extends AbstractAdmin
 {
-    use UpbeatUploadFilesAdminTrait;
+    private $insertionTypes=null;
+    private $states=null;
+    use UpbeatUploadFullAdminTrait;
     /**
      * @param string $code
      * @param string $class
@@ -87,6 +92,9 @@ class ProductAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
+        $formConfig = new FilterConfig();
+        $this->states = $formConfig->getAdminProductStates();
+        $this->insertionTypes = $formConfig->getInsertionTypes();
         $formMapper
             ->with('SEO часть')
             ->add('title','text',[
@@ -130,8 +138,13 @@ class ProductAdmin extends AbstractAdmin
                     'attr' => ['class' => 'multiSelect'],
                     'label'=>'field.share_tag'
                 ])
-                ->add('state','text',[
-                    'label'=>"field.state"
+                ->add('rating','text',[
+                    'required'=>false,
+                    'label'=>'Рейтинг'
+                ])
+                ->add('state',ChoiceType::class,[
+                    'label'=>"field.state",
+                    'choices'=>array_flip($this->states),
                 ])
                 ->add('poster', UpbeatUploadType::class,[
                     'file_type' => 'product_icon',
@@ -164,7 +177,8 @@ class ProductAdmin extends AbstractAdmin
                     'label'=>'field.metal',
                     'required'=>false
                 ])
-                ->add('insertionType',null,[
+                ->add('insertionType',ChoiceType::class,[
+                    'choices'=>array_flip($this->insertionTypes),
                     'label'=>'field.insertion_type',
                     'required'=>false
                 ])
@@ -238,6 +252,28 @@ class ProductAdmin extends AbstractAdmin
                     'targetEntity' => 'SiteBackendBundle\Entity\ProductGallery'
                 ])
             ->end();
+        $formMapper->get('insertionType')->addModelTransformer(new CallbackTransformer(
+            function ($insertionType) {
+                //                  call`s after getter
+                $types = array_flip($this->insertionTypes);
+                return  (isset($types[$insertionType]))?$types[$insertionType]:null;
+            },
+            function ($insertionType) {
+                //                   call`s before setter
+                return (isset($this->insertionTypes[$insertionType]))?$this->insertionTypes[$insertionType]:null;
+            }
+        ));
+        $formMapper->get('state')->addModelTransformer(new CallbackTransformer(
+            function ($state) {
+                //                  call`s after getter
+                $states = array_flip($this->states);
+                return  (isset($states[$state]))?$states[$state]:null;
+            },
+            function ($state) {
+                //                   call`s before setter
+                return (isset($this->states[$state]))?$this->states[$state]:null;
+            }
+        ));
     }
 
     /**
@@ -259,6 +295,9 @@ class ProductAdmin extends AbstractAdmin
             ->add('shareTags', 'text', [
                 'label'=>'field.share_tag',
                 'template'=>"SiteBackendBundle:Show:_tag.html.twig"
+            ])
+            ->add('rating','text',[
+                'label'=>"рейтинг"
             ])
             ->add('state','text',[
                 'label'=>"field.state"

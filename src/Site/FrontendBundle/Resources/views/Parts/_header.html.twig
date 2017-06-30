@@ -27,8 +27,8 @@
                             <a class="navbar-contacts-item" href="{{ path("site_frontend_about_payment") }}">
                                 оплата
                             </a>
-                            <a class="navbar-contacts-item">
-                                озывы
+                            <a href="{{ url('site_frontend_static_reviews') }}" class="navbar-contacts-item">
+                                отзывы
                             </a>
                             <a class="navbar-contacts-item" href="{{ path('site_frontend_contacts') }}">
                                 контакты
@@ -36,7 +36,7 @@
                         </div>
                         <div class="navbar-contacts-vk-widget">
                             <a class="head-selected-items selected-list" href="{{ url('site_frontend_selected_list') }}">избранное</a>
-                            <a class="head-selected-items comparing-list" href="{{ url('site_frontend_comparing_list') }}">сравнение</a>
+                            <a class="head-selected-items comparing-list" href="{{ url('site_frontend_comparing_show') }}">сравнение</a>
                         </div>
                         <div class="search-input-wrapper">
                             <div class="custom-search-input search-input-inner">
@@ -195,7 +195,7 @@
                 <a href="{{ path('site_frontend_news_list') }}">новости</a>
                 <a href="{{ path("site_frontend_about_delivery") }}">доставка</a>
                 <a href="{{ path("site_frontend_about_payment") }}">оплата</a>
-                <a href="#">отзывы</a>
+                <a href="{{ url('site_frontend_static_reviews') }}">отзывы</a>
                 <a href="{{ path("site_frontend_contacts") }}">контакты</a>
             </div>
         </div>

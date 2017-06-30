@@ -373,12 +373,13 @@ class XmlLoader
             }
             if(count($items)){
                 foreach($items as $item){
+                    $item = trim(mb_strtolower($item, 'UTF-8'));
                     if(isset($this->insertionColors[$item])){
                         if(!$object->hasInsertionColor($this->insertionColors[$item])){
                             $object->addInsertionColor($this->insertionColors[$item]);
                         }
                     }
-                    else{
+                    else if($item){
                         $color = new InsertionColor();
                         $color->setTitle($item);
                         $this->em->persist($color);

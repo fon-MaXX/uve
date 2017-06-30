@@ -28,36 +28,32 @@
         </div>
         <div class="static-content-wrapper search-result-wrapper">
             {% if pagination|length %}
-                {% for item in pagination %}
-                    <div class="search-result-container">
+                <div class="search-result-container">
+                    {% for item in pagination %}
                         {% set url = "" %}
                         {% if 'Product' == item.shortClassName %}
                             {% set url = url('site_frontend_product_show',{'slug':item.slug}) %}
                         {% elseif 'Set' == item.shortClassName %}
                             {% set url = url('site_frontend_set_show',{ 'slug':item.slug }) %}
-                        {% elseif 'Product' == item.shortClassName %}
-                            {% set url = url('site_frontend_product_show',{ 'slug':item.slug }) %}
+                        {% elseif 'News' == item.shortClassName %}
+                            {% set url = url('site_frontend_news_show',{ 'slug':item.slug }) %}
                         {% endif %}
-                        <a href="{{ url }}">
-                            <div class="item-thumbnail-outer-wrapper">
-                                <div class="item-thumbnail-inner-wrapper">
-                                    <img src="{{ (item.poster)?item.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                        <div class="show-page-popular-item">
+                            <div class="index-product-preview-image">
+                                <div class="index-product-preview-outer-wrapper">
+                                    <div class="index-product-preview-inner-wrapper">
+                                        <a href="{{ url }}">
+                                            <img src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="search-result-text">
-                                <div class="search-title">
-                                    {{ item.title }}
-                                </div>
-                                <div class="search-shortcut">
-                                    <p>Для оформления заказа Вы можете связаться с нами по телефону. Наши специалисты с радостью проконсультируют Вас относительно качества товара, и его наличия на складе. Также на нашем сайте есть возможность заказать услугу «перезвонить мне». Просто оставьте Ваш контактный номер телефона, и мы перезвоним Вам в кратчайшие сроки.</p>
-                                    <p>Для оформления заказа Вы можете связаться с нами по телефону. Наши специалисты с радостью проконсультируют Вас относительно качества товара, и его наличия на складе. Также на нашем сайте есть возможность заказать услугу «перезвонить мне». Просто оставьте Ваш контактный номер телефона, и мы перезвоним Вам в кратчайшие сроки.</p>
-                                    {#{{ item.shortcut|raw }}#}
-                                </div>
+                            <div class="index-product-title">
+                                <span>{{ item.title }}</span>
                             </div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </div>
-                {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
             {% else %}
                 <div class="order-message-box">
                     Поиск не дал результатов..

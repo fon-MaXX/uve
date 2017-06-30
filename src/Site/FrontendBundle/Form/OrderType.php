@@ -10,9 +10,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 use Site\FrontendBundle\Form\OrderHasProductType;
 use Site\FrontendBundle\Form\OrderHasSetType;
+use Site\FrontendBundle\Form\NovaPoshtaType;
+use Site\FrontendBundle\Form\UkrPoshtaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class OrderType extends AbstractType
 {
@@ -65,6 +69,7 @@ class OrderType extends AbstractType
                 'multiple'=>false,
                 'label'=>'Способ доставки',
                 'attr'=>[
+                    'data-sonata-select2'=>"false",
                     'class'=>'select-default-view order-delivery-type-select'
                 ]
             ])
@@ -73,22 +78,32 @@ class OrderType extends AbstractType
                 'attr'=>[
                     'class'=>'clear-input order-personal-data-textarea'
                 ]
-            ])
-            ->add('price','text',[
-                'label'=>"Сумма",
-                'required'=>false
-            ])
-            ->add('discount','text',[
-                'label'=>"Скидка",
-                'required'=>false
-            ])
-            ->add('orderHasProducts',CollectionType::class,[
+            ]);
+        if(!$options['is_frontend']) {
+            $builder->add('price', 'text', [
+                'label' => "Сумма",
+                'required' => false
+                ])
+                ->add('discount', 'text', [
+                    'label' => "Скидка",
+                    'required' => false
+                ]);
+            }
+            $builder->add('orderHasProducts',CollectionType::class,[
                 'entry_type' => OrderHasProductType::class
             ])
             ->add('orderHasSets',CollectionType::class,[
                 'entry_type' => OrderHasSetType::class
-            ])
-        ;
+            ]);
+        if(!$options['is_ajax']){
+            $builder
+                ->add('novaPoshtaData', NovaPoshtaType::class,[
+                    'container'=>$options['container'],
+                    'isBackend'=>!$options['is_frontend']
+                ])
+                ->add('ukrPoshtaData', UkrPoshtaType::class)
+            ;
+        }
         $builder
             ->get('phone')
             ->addModelTransformer(new CallbackTransformer(
@@ -121,7 +136,8 @@ class OrderType extends AbstractType
             ->addModelTransformer(new CallbackTransformer(
                 function ($type) use($payTypes) {
 //                  call`s after getter
-                    return  (isset($payTypes[$type]))?$payTypes[$type]:null;
+                    $types  = array_flip($payTypes);
+                    return  (isset($types[$type]))?$types[$type]:null;
                 },
                 function ($type) use($payTypes) {
 //                   call`s before setter
@@ -133,7 +149,8 @@ class OrderType extends AbstractType
             ->addModelTransformer(new CallbackTransformer(
                 function ($type) use($deliveryTypes) {
 //                  call`s after getter
-                    return  (isset($deliveryTypes[$type]))?$deliveryTypes[$type]:null;
+                    $types  = array_flip($deliveryTypes);
+                    return  (isset($types[$type]))?$types[$type]:null;
                 },
                 function ($type) use($deliveryTypes) {
 //                   call`s before setter
@@ -146,6 +163,9 @@ class OrderType extends AbstractType
         $resolver->setDefaults([
             'action'=>'',
             'data_class'=>'Site\BackendBundle\Entity\Order',
+            'is_frontend'=>false,
+            'container'=>null,
+            'is_ajax'=>false
         ]);
     }
     public function getParent()

@@ -25,6 +25,11 @@ class FilterConfig{
         1=>'В наличии',
         2=>'Под заказ'
     ];
+    private $adminProductState=[
+        1=>'В наличии',
+        2=>'Под заказ',
+        3=>'Только в наборе'
+    ];
     private $theme = [
         'наборы'=>[
             1=>"Наборы с центральным камней",
@@ -79,6 +84,15 @@ class FilterConfig{
         'пандора'=>['price','theme','state','insertionType'],
         'золото'=>['price','theme','state','insertionType'],
     ];
+    public function getInsertionTypes(){
+        return $this->insertionType;
+    }
+    public function getAdminProductStates(){
+        return $this->adminProductState;
+    }
+    public function getAdminSetStates(){
+        return $this->state;
+    }
     public function getFilterConfig($title){
         if(!$title||(!isset($this->filters[$title]))||(!count($this->filters[$title]))){
           return false;

@@ -13,8 +13,12 @@ use Site\UploadBundle\Services\FileHandler;
 class FileDeleteListener
 {
     private $elements = [
-        'set'=>['poster'],
-        'product'=>['poster']
+        'Product'=>['poster'],
+        'ProductGallery'=>['image'],
+        'Set'=>['poster'],
+        'SetGallery'=>['image'],
+        'Slider'=>['image'],
+        'News'=>['poster'],
     ];
     public function __construct(FileHandler $fileHandler)
     {

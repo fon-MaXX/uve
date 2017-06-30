@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Site\BackendBundle\Entity\OrderAddProduct;
 use Site\BackendBundle\Entity\OrderAddSet;
 use Site\BackendBundle\Entity\OrderHasProduct;
+use Site\BackendBundle\Entity\Order;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Site\FrontendBundle\Form\OrderType;
@@ -18,6 +19,47 @@ use Symfony\Component\Form\FormView;
 
 class OrderController extends Controller
 {
+    public function newpostformAction(Request $request)
+    {
+        $data = $request->request->all();
+//        $data=[
+//            "novaPoshtaData"=>[
+//                "regionHref"=>"7150812a-9b87-11de-822f-000c2965ae0e",
+//                "cityHref"=>"3abce78b-25bd-11e3-83b9-0050568002cf",
+//
+//            ]
+//        ];
+        $order = new Order();
+        $form = $this->createForm(OrderType::class, $order, [
+            'container' => $this->container,
+            'is_frontend'=>false
+
+        ]);
+        $form->submit($data);
+        return $this->render('SiteFrontendBundle:Order:_novaPoshtaDataForm.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+    public function ukrposhtaformAction(Request $request)
+    {
+        $data = $request->request->all();
+//        $data=[
+//            "ukrPoshtaData"=>[
+//                "address"=>"test",
+//
+//            ]
+//        ];
+        $order = new Order();
+        $form = $this->createForm(OrderType::class, $order, [
+            'container' => $this->container,
+            'is_frontend'=>false
+
+        ]);
+        $form->submit($data);
+        return $this->render('SiteFrontendBundle:Order:_ukrPoshtaDataForm.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
     public function createAction()
     {
         $request = $this->getRequest();
@@ -147,6 +189,7 @@ class OrderController extends Controller
         /** @var $form Form */
         $form = $this->createForm(OrderType::class,$object,[
             'action'=>$this->get('router')->generate('admin_site_backend_order_edit',['id'=>$object->getId()]),
+            'container'=>$this->container
         ]);
         if($request->isMethod('POST')){
             $form->handleRequest($request);

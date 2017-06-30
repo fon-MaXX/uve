@@ -1,0 +1,7 @@
+{% if form.ukrPoshtaData.address is defined %}
+    <div class="order-personal-data-item order-payment-and-delivery-item">
+        {{ form_errors(form.ukrPoshtaData.address) }}
+        {{ form_label(form.ukrPoshtaData.address) }}
+        {{ form_widget(form.ukrPoshtaData.address) }}
+    </div>
+{% endif %}

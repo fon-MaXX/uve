@@ -20,9 +20,11 @@
             {{ article.shortcut|raw }}
         </div>
         <div>
+            {% if tag %}
             <a class="list-article-tag" href="{{ url('site_frontend_news_tag_list',{
                 'slug':tag.slug
             }) }}">#{{ tag.title }}</a>
+            {% endif %}
         </div>
         <div class="article-show-date">28.01.19</div>
     </div>
@@ -48,7 +50,7 @@
             'image': image,
             'description': article.description,
             } %}
-            {{ include('SiteFrontendBundle::Parts/_share.html.twig', {params: params}) }}
+            {#{{ include('SiteFrontendBundle::Parts/_share.html.twig', {params: params}) }}#}
         </div>
     </div>
     <div class="article-show-popular-block-wrapper">

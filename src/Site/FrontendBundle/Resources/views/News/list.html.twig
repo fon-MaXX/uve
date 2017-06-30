@@ -28,23 +28,24 @@
                             </a>
                         </div>
                     </div>
-                    <a class="list-article-tag" href="{{ url('site_frontend_news_tag_list',{
-                        'slug':article.newsTags|first.slug
-                    }) }}">#{{ article.newsTags|first.title }}</a>
+                    {% if article.newsTags|length %}
+                        <a class="list-article-tag" href="{{ url('site_frontend_news_tag_list',{
+                            'slug':article.newsTags|first.slug
+                        }) }}">#{{ article.newsTags|first.title }}</a>
+                    {% endif %}
                 </div>
                 <div class="list-article-title-wrapper">
                     <div class="list-article-date">{{ article.createdAt|date('d.m.Y') }}</div>
                     <div class="list-article-title">{{ article.title }}</div>
                 </div>
                 <div class="list-article-text-wrapper">
-                    {{ article.text|raw }}
+                    {{ article.shortcut|raw }}
                 </div>
             </div>
             {% endfor %}
             <nav id="pagination">
                 <p><a href="{{ url('site_frontend_news_list_jscroll_page',{'page':2}) }}">Page 2</a></p>
             </nav>
-            {#<a id="news-list-jscroll-next-link" href="{{ url('site_frontend_news_list_jscroll_page',{'page':2}) }}">next page</a>#}
         </div>
     </div>
 {% endblock %}

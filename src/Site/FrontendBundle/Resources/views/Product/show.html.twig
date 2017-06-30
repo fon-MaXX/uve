@@ -24,11 +24,13 @@
                         <ul class="product-show-slider show-preload-li">
                             {% for key,item in  product.productGallery %}
                                 <li>
-                                    <div class="product-show-image-wrapper">
-                                        <div class="product-show-image-inner-wrapper">
-                                            <img src="{{ item.image|json_decode.big }}"/>
+                                    <a href="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}" data-lightbox="product-gallery" data-title="{{ product.title }}">
+                                        <div class="product-show-image-wrapper">
+                                            <div class="product-show-image-inner-wrapper">
+                                                <img src="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -39,7 +41,7 @@
                                         <li>
                                             <a data-slide-index="{{ key }}" href="" class="product-thumbnail-image-wrapper">
                                                 <div class="product-thumbnail-inner-wrapper">
-                                                    <img src="{{ item.image|json_decode.extra_small }}"/>
+                                                    <img src="{{ (item.image|length>0)?item.image|json_decode.extra_small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                                 </div>
                                             </a>
                                         </li>
@@ -52,11 +54,13 @@
                 {% else %}
                     <ul class="product-show-slider show-preload-li">
                         <li>
-                            <div class="product-show-image-wrapper">
-                                <div class="product-show-image-inner-wrapper">
-                                    <img src="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                            <a href="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}" data-lightbox="product-gallery" data-title="{{ product.title }}">
+                                <div class="product-show-image-wrapper">
+                                    <div class="product-show-image-inner-wrapper">
+                                        <img src="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>
                     </ul>
                     <div class="product-show-thumbnails-wrapper">
@@ -128,7 +132,7 @@
                         </span>
                     {% endif %}
                 </div>
-                <button data-url="{{ url('site_frontend_order_add_product',{"slug":product.slug}) }}" class="regular-button product-show-cart-add-button">
+                <button type="submit" form="product-show-form" class="regular-button product-show-cart-add-button">
                     купить
                 </button>
                 <div class="clearfix"></div>
@@ -143,9 +147,9 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            {#<div class="product-show-form-block clearfix">#}
-                {#{% include "@SiteFrontend/Form/_product_show_form.html.twig" with {'form':form} %}#}
-            {#</div>#}
+            <div class="product-show-form-block clearfix">
+                {% include "@SiteFrontend/Form/_product_show_form.html.twig" with {'form':form} %}
+            </div>
             <div class="selected-button-wrapper selected-button-show-product-form">
                 <span data-url="{{ url("site_frontend_selected_add_product",{'slug':product.slug}) }}" class="selected-item selected-button-show-product-form">
                     <span>добавить</br> в избранное</span>
@@ -168,51 +172,21 @@
                 </div>
                 <div class="product-show-tabs-content">
                     <div class="product-show-tabs-item active" data-item="delivery">
-                        <ol>
-                            <li>
-                                «Новой почтой» по Украине  - Бесплатно!
-                            </li>
-                            <li>
-                                Курьером к двери — 45 грн (бесплатно от 1000 грн)
-                            </li>
-                        </ol>
-                        <div class="product-show-tabs-content-text">
-                            Доставка в любую точку Украины в течение 24 часов.
-                        </div>
+                        {{ staticContent.delivery.text|raw }}
                         <div class="product-show-tabs-content-button-wrapper">
-                            <button class="regular-button product-show-tabs-content-button">подробнее</button>
+                            <a href="{{ url('site_frontend_about_delivery') }}" class="regular-button product-show-tabs-content-button">подробнее</a>
                         </div>
                     </div>
                     <div class="product-show-tabs-item" data-item="payment">
-                        <ol>
-                            <li>
-                                «Новой почтой» по Украине  - Бесплатно!
-                            </li>
-                            <li>
-                                Курьером к двери — 45 грн (бесплатно от 1000 грн)
-                            </li>
-                        </ol>
-                        <div class="product-show-tabs-content-text">
-                            Доставка в любую точку Украины в течение 24 часов(2).
-                        </div>
+                        {{ staticContent.peyment.text|raw }}
                         <div class="product-show-tabs-content-button-wrapper">
-                            <button class="regular-button product-show-tabs-content-button">подробнее</button>
+                            <a href="{{ url('site_frontend_about_payment') }}" class="regular-button product-show-tabs-content-button">подробнее</a>
                         </div>
                     </div>
                     <div class="product-show-tabs-item" data-item="quality">
-                        <ol>
-                            <li>
-                                «Новой почтой» по Украине  - Бесплатно!
-                            </li>
-                            <li>
-                                Курьером к двери — 45 грн (бесплатно от 1000 грн)
-                            </li>
-                        </ol>
-                        <div class="product-show-tabs-content-text">
-                            Доставка в любую точку Украины в течение 24 часов(3).
-                        </div>
+                        {{ staticContent.quality.text|raw }}
                         <div class="product-show-tabs-content-button-wrapper">
-                            <button class="regular-button product-show-tabs-content-button">подробнее</button>
+                            <a href="{{ url('site_frontend_static_reviews') }}" class="regular-button product-show-tabs-content-button">подробнее</a>
                         </div>
                     </div>
                 </div>
@@ -233,10 +207,9 @@
              this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
              };
              */
-            this.page.url = {{ url('site_frontend_product_show',{'slug':product.slug}) }};
             (function() { // DON'T EDIT BELOW THIS LINE
                 var d = document, s = d.createElement('script');
-                s.src = 'https://uvelife-com.disqus.com/embed.js';
+                s.src = 'https://https-uvelife-com.disqus.com/embed.js';
                 s.setAttribute('data-timestamp', +new Date());
                 (d.head || d.body).appendChild(s);
             })();

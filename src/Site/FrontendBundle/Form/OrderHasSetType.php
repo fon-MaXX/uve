@@ -20,11 +20,13 @@ class OrderHasSetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->setAction($options['action'])
             ->add('number','text',[
                 'label'=>'Количество',
                 'attr'=>[
                     'class'=>'number-count'
-                ]
+                ],
+                'empty_data'=>1
             ])
             ->add('orderHasSetComponents',CollectionType::class,[
                 'entry_type'=>OrderHasSetComponentType::class
@@ -37,6 +39,7 @@ class OrderHasSetType extends AbstractType
     public function configureOptions(OptionsResolver  $resolver) {
         $resolver->setDefaults([
             'data_class'=>'Site\BackendBundle\Entity\OrderHasSet',
+            'action'=>''
         ]);
     }
     public function getParent()

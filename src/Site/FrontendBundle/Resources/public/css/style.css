@@ -776,7 +776,7 @@ body .navbar {
 }
 .menu-catalog-wrapper.active .menu-catalog-items-wrapper{
     color: #fff;
-    background-color: #00B0EB;
+    background-color: rgba(0,176,235,0.1);
     height:541px;
     transition: height 0.4s;
 }
@@ -1029,18 +1029,61 @@ div.laptop-menu-content-wrapper.open {
     text-align: center;
     padding-top: 45px;
 }
-.footer-vk-item{
-    width: 100%;
-    text-align: center;
+.footer-logo-wrapper{
+    width: 400px;
+    margin: 0 auto;
 }
-.footer-vk-item a{
+.footer-logo-wrapper:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.social-item{
+    width: 100px;
+    text-align: center;
+    float:left;
+}
+/*.footer-logo-wrapper .social-item +.social-item{*/
+    /*margin-left: 10px;*/
+/*}*/
+.footer-vkontakte-item a{
     content: " ";
     display: inline-block;
     width: 70px;
     height: 70px;
-    background-image: url("../images/main/icons-sprite.svg");
-    background-size: 200% auto;
-    background-position: 0 -205px;
+    background-image: url("../images/main/uvelife_vk.svg");
+    background-size: 100% auto;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+.footer-fb-item a{
+    content: " ";
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background-image: url("../images/main/uvelife_facebook.svg");
+    background-size: 100% auto;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+.footer-viber-item a{
+    content: " ";
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background-image: url("../images/main/uvelife_viber.svg");
+    background-size: 100% auto;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+.footer-inst-item a{
+    content: " ";
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background-image: url("../images/main/uvelife_instagram.svg");
+    background-size: 100% auto;
+    background-position: 0 0;
     background-repeat: no-repeat;
 }
 .footer-logo-subscribe {
@@ -1134,6 +1177,9 @@ div.laptop-menu-content-wrapper.open {
 .footer h3.footer-bold-title{
     text-align: left;
     padding-left:30%;
+}
+.footer h3.footer-bold-title{
+    font-size: 13px;
 }
 .footer-email,
 .footer-skype{
@@ -1379,6 +1425,7 @@ div.laptop-menu-content-wrapper.open {
     color: #006EAA;
     font-size:12px;
     font-family: MullerRegular;
+    text-align: center;
 }
 .news-item-more-link{
     margin: 40px auto 0;
@@ -1462,8 +1509,8 @@ div.laptop-menu-content-wrapper.open {
 .index-product-preview-outer-wrapper:hover .index-product-preview-inner-wrapper img{
     min-width:350px;
     max-width: 400px;
-    max-height: 400px;
-    transition: 0.3s;
+    max-height: 500px;
+    transition: 0.4s;
 }
 .index-product-title{
     position: relative;
@@ -1764,6 +1811,9 @@ body .index-product-input{
     background-position: 100% -151px;
     background-repeat: no-repeat;
 }
+.selected-item.comparison-item-disabled:before{
+    background-position: 0 -151px;
+}
 .selected-item:hover:before{
     background-position: 0 -151px;
 }
@@ -1782,6 +1832,13 @@ body .index-product-input{
 }
 .comparison-item:hover:before{
     background-position: 0 -128px;
+}
+.comparison-item.comparison-item-disabled:before{
+    background-position: 0 -128px;
+}
+.comparison-item.comparison-item-disabled,
+.selected-item.comparison-item-disabled{
+    color: rgba(0,110,170,0.4);
 }
 /*.index-product-item:hover .index-product-shortcut-wrapper:before{*/
     /*position: absolute;*/
@@ -2328,6 +2385,13 @@ body .index-product-input{
     clear:both;
 }
 /**************************************PRODUCT SHOW********************************************************************/
+.set-show-form-items-title-wrapper .squared-one label::after {
+    top: 8px;
+}
+.set-show-form-items-title-wrapper .squared-one label::before {
+    top: 8px;
+}
+
 .show-page-popular-item{
     float: left;
     width :214px;
@@ -3520,6 +3584,9 @@ select.global-cart-select.select-default-view,
     width: 60%;
     text-align: center;
 }
+.order-payment-and-delivery-item-wrapper{
+    min-height: 180px;
+}
 /**************************************END ORDER CREATE****************************************************************/
 /**************************************NEWS-LIST***********************************************************************/
 .article-list-content{
@@ -3718,6 +3785,11 @@ select.global-cart-select.select-default-view,
     font-family: GeorgiaItalic;
     font-size: 30px;
 }
+.article-wysiwyg-content{
+    padding: 0 15px;
+    font-size: 16px;
+    font-family: MullerRegular;
+}
 /**************************************END NEWS SHOW*******************************************************************/
 /**************************************MODAL SHADOW AND LOADER*********************************************************/
 .modal-with-background{
@@ -3840,9 +3912,15 @@ select.global-cart-select.select-default-view,
     font-family: Georgia;
     font-size: 17px;
     width: 250px;
+    height: 220px;
+    overflow: hidden;
 }
 .comparison-element-feature {
     margin-top: 5px;
+}
+.comparison-show-state{
+    width :120px;
+    margin: 0 auto;
 }
 .comparison-element-feature label {
     font-size: 13px;
@@ -4250,6 +4328,7 @@ select.global-cart-select.select-default-view,
 .static-content-text p{
     margin: 0 0 25px 0;
     text-align: justify;
+    text-indent: 1.5em
 }
 .static-content-button-wrapper{
     margin-top: 15px;
@@ -4402,7 +4481,50 @@ select.global-cart-select.select-default-view,
 .search-result-container{
     margin-bottom: 30px;
 }
+.search-result-container:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.search-result-container .show-page-popular-item{
+    margin: 11px 0 0 11px;
+}
 /**************************************Search****************************************************************/
+/**************************************404****************************************************************/
+.container-404{
+    width:900px;
+    height:1000px;
+    background-image: url("../images/404-image.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    margin: 0 auto;
+    background-position: center;
+    overflow: hidden;
+}
+.container-404 h1 {
+    margin: 170px 0 0 185px;
+    font-size: 60pt;
+    font-family: MullerBold;
+}
+.container-404 h1 .bigger{
+    font-size: 100pt;
+}
+.text-container-404 {
+    font-size: 23px;
+    font-family: MullerBold;
+    margin-left: 200px;
+    margin-top: 300px;
+    width: 220px;
+}
+.static-content-page h2{
+    text-align: center;
+    font-size: 30px;
+    font-family: GeorgiaItalic;
+}
+.margin-left-20{
+    margin-left: 20px;
+}
+
 /**************************************MEDIA QUERIES*******************************************************************/
 /**************************************media-1199**********************************************************************/
 @media (max-width: 1199px) {
@@ -4602,6 +4724,29 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-991***********************************************************************/
 @media (max-width: 991px) {
+    /**************************************404****************************************************************/
+    .container-404{
+        width:750px;
+        height: 700px;
+        background-size: 100% auto;
+        margin: 0 auto;
+        background-position: center;
+        overflow: hidden;
+    }
+    .container-404 h1 .bigger {
+        font-size: 90pt;
+    }
+    .container-404 h1 {
+        margin: 68px 0 0 180px;
+        font-size: 50pt;
+    }
+    .text-container-404 {
+        font-size: 23px;
+        font-family: MullerBold;
+        margin-left: 180px;
+        margin-top: 240px;
+        width: 220px;
+    }
     /**************************************SEARCH PAGES*************************************************************/
     .search-result-text {
         width: 675px;
@@ -5053,6 +5198,9 @@ select.global-cart-select.select-default-view,
     .footer h3 {
         font-size: 11px;
     }
+    .footer h3.footer-bold-title {
+        font-size: 11px;
+    }
     .footer-phones-wrapper::before {
         right: 65%;
     }
@@ -5163,6 +5311,32 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-767***********************************************************************/
 @media (max-width: 767px) {
+    body.body-no-scroll{
+        width:100%;
+        height:100%;
+        overflow: hidden!important;
+        position: fixed;
+        z-index: 1;
+    }
+    /**************************************404****************************************************************/
+    .container-404{
+        width:710px;
+        height: 650px;
+    }
+    .container-404 h1 .bigger {
+        font-size: 85pt;
+    }
+    .container-404 h1 {
+        margin: 68px 0 0 180px;
+        font-size: 45pt;
+    }
+    .text-container-404 {
+        font-size: 23px;
+        font-family: MullerBold;
+        margin-left: 180px;
+        margin-top: 240px;
+        width: 220px;
+    }
     /**************************************SEARCH PAGES*************************************************************/
     .static-content-wrapper.search-result-wrapper{
         width: 700px;
@@ -5429,6 +5603,9 @@ select.global-cart-select.select-default-view,
     .footer h3 {
         font-size: 21px;
         font-family: MullerBold;
+    }
+    .footer h3.footer-bold-title {
+        font-size: 21px;
     }
     .footer-phone-link {
         font-size: 23px;
@@ -5812,6 +5989,25 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-710***********************************************************************/
 @media (max-width: 710px) {
+    /**************************************404****************************************************************/
+    .container-404{
+        width:640px;
+        height: 590px;
+    }
+    .container-404 h1 .bigger {
+        font-size: 65pt;
+    }
+    .container-404 h1 {
+        margin: 68px 0 0 160px;
+        font-size: 40pt;
+    }
+    .text-container-404 {
+        font-size: 23px;
+        font-family: MullerBold;
+        margin-left: 160px;
+        margin-top: 200px;
+        width: 220px;
+    }
     /**************************************SEARCH PAGES*************************************************************/
     .static-content-wrapper.search-result-wrapper{
         width: 635px;
@@ -6012,6 +6208,25 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-640***********************************************************************/
 @media (max-width: 640px) {
+    /**************************************404****************************************************************/
+    .container-404{
+        width:565px;
+        height: 490px;
+    }
+    .container-404 h1 .bigger {
+        font-size: 50pt;
+    }
+    .container-404 h1 {
+        margin: 68px 0 0 160px;
+        font-size: 35pt;
+    }
+    .text-container-404 {
+        font-size: 15pt;
+        font-family: MullerBold;
+        margin-left: 160px;
+        margin-top: 170px;
+        width: 200px;
+    }
     /**************************************SEARCH PAGES*************************************************************/
     .static-content-wrapper.search-result-wrapper{
         width: 550px;
@@ -6366,6 +6581,25 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-565***********************************************************************/
 @media (max-width: 565px) {
+    /**************************************404****************************************************************/
+    .container-404{
+        width:465px;
+        height: 400px;
+    }
+    .container-404 h1 .bigger {
+        font-size: 45pt;
+    }
+    .container-404 h1 {
+        margin: 50px 0 0 140px;
+        font-size: 30pt;
+    }
+    .text-container-404 {
+        font-size: 15pt;
+        font-family: MullerBold;
+        margin-left: 140px;
+        margin-top: 140px;
+        width: 200px;
+    }
     /**************************************SEARCH PAGES*************************************************************/
     .static-content-wrapper.search-result-wrapper{
         width: 520px;
@@ -6734,6 +6968,9 @@ select.global-cart-select.select-default-view,
     .footer h3 {
         font-size: 15px;
     }
+    .footer h3.footer-bold-title {
+        font-size: 15px;
+    }
     .footer-phone-link {
         font-size: 18px;
     }
@@ -6829,6 +7066,25 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-465***********************************************************************/
 @media (max-width: 465px) {
+    /**************************************404****************************************************************/
+    .container-404{
+        width:395px;
+        height: 350px;
+    }
+    .container-404 h1 .bigger {
+        font-size: 40pt;
+    }
+    .container-404 h1 {
+        margin: 30px 0 0 100px;
+        font-size: 25pt;
+    }
+    .text-container-404 {
+        font-size: 13pt;
+        font-family: MullerBold;
+        margin-left: 100px;
+        margin-top: 120px;
+        width: 180px;
+    }
     /**************************************SEARCH PAGES*************************************************************/
     .static-content-wrapper.search-result-wrapper{
         width: 390px;
@@ -7192,6 +7448,13 @@ select.global-cart-select.select-default-view,
     }
     .head-bottom-navbar-item::after {
         bottom: -10px;
+    }
+    .social-item {
+        width: 75px;
+    }
+    .footer-logo-wrapper {
+        width: 300px;
+        margin: 0 auto;
     }
 }
 /**************************************media-395***********************************************************************/
@@ -7577,9 +7840,37 @@ select.global-cart-select.select-default-view,
         margin-left: -55px;
         font-size: 9px;
     }
+    .footer-logo.menu-logo{
+        display: block;
+        margin: 0 auto;
+        width: 290px;
+        height: 75px;
+    }
+    .laptop-menu-contacts-wrapper{
+        padding-bottom: 30px;
+    }
 }
 /**************************************media-350***********************************************************************/
 @media (max-width: 350px) {
+    /**************************************404****************************************************************/
+    .container-404{
+        width:320px;
+        height: 350px;
+    }
+    .container-404 h1 .bigger {
+        font-size: 40pt;
+    }
+    .container-404 h1 {
+        margin: 30px 0 0 50px;
+        font-size: 25pt;
+    }
+    .text-container-404 {
+        font-size: 13pt;
+        font-family: MullerBold;
+        margin-left: 50px;
+        margin-top: 120px;
+        width: 180px;
+    }
     /**************************************SEARCH PAGES*************************************************************/
     .static-content-wrapper.search-result-wrapper{
         width: 310px;

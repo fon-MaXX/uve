@@ -6,6 +6,10 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: ru
+    mailer_parameters:
+        send_to:
+          - 'uvelife@gmail.com'
+        send_from: 'no-reply@uvelife.com'
 
 framework:
     #esi:             ~
@@ -78,7 +82,7 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    spool:     { type: memory }
+#    spool:     { type: memory }
 
 # Assetic Configuration
 assetic:
@@ -298,14 +302,17 @@ site_upload:
                    width: 100
                    height: 100
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
                 small:
                    width: 350
                    height: 350
-                   action: exact_resize
+                   action: resize_and_crop
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
         set_icon:
             type: image
             mime_type: []  # default
@@ -317,14 +324,17 @@ site_upload:
                    width: 100
                    height: 100
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
                 small:
                    width: 350
                    height: 350
-                   action: exact_resize
+                   action: resize_and_crop
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
         news_icon:
             type: image
             mime_type: []  # default
@@ -335,11 +345,13 @@ site_upload:
                 small:
                    width: 350
                    height: 350
-                   action: exact_resize
+                   action: resize_and_crop
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
         product_gallery_icon:
             type: image
             mime_type: []  # default
@@ -351,14 +363,17 @@ site_upload:
                    width: 100
                    height: 100
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
                 small:
                    width: 350
                    height: 350
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
         set_gallery_icon:
             type: image
             mime_type: []  # default
@@ -370,14 +385,17 @@ site_upload:
                    width: 100
                    height: 100
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
                 small:
                    width: 350
                    height: 350
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
         slider:
             type: image
             mime_type: []  # default
@@ -389,3 +407,4 @@ site_upload:
                    width: 850
                    height: 370
                    action: exact_resize
+                   watermark: 'bundles/sitefrontend/images/watermark-01.png'

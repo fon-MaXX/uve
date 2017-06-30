@@ -67,6 +67,9 @@ services:
             - ~
             - Site\BackendBundle\Entity\ProductGallery
             - ~
+            - "@service_container"
+            - "@doctrine.orm.default_entity_manager"
+            - "@upbeat_file_upload.handler"
         tags:
             - {name: sonata.admin, manager_type: orm,group: "", show_in_dashboard: false, label: ProductGallery}
 
@@ -76,6 +79,9 @@ services:
             - ~
             - Site\BackendBundle\Entity\SetGallery
             - ~
+            - "@service_container"
+            - "@doctrine.orm.default_entity_manager"
+            - "@upbeat_file_upload.handler"
         tags:
             - {name: sonata.admin, manager_type: orm,group: "", show_in_dashboard: false, label: SetGallery}
 
@@ -85,6 +91,9 @@ services:
             - ~
             - Site\BackendBundle\Entity\News
             - ~
+            - "@service_container"
+            - "@doctrine.orm.default_entity_manager"
+            - "@upbeat_file_upload.handler"
         tags:
             - {name: sonata.admin, manager_type: orm,group: "news", show_in_dashboard: true, label: News}
         calls:
@@ -113,7 +122,7 @@ services:
         arguments:
             - ~
             - Site\BackendBundle\Entity\InsertionColor
-            - ~
+            - PixSortableBehaviorBundle:SortableAdmin
         tags:
             - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: insertionColor}
 
@@ -159,7 +168,7 @@ services:
         arguments:
             - ~
             - Site\BackendBundle\Entity\RingSize
-            - ~
+            - PixSortableBehaviorBundle:SortableAdmin
         tags:
             - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: ringSize}
 
@@ -168,7 +177,7 @@ services:
         arguments:
             - ~
             - Site\BackendBundle\Entity\ChainSize
-            - ~
+            - PixSortableBehaviorBundle:SortableAdmin
         tags:
             - {name: sonata.admin, manager_type: orm,group: "tags", show_in_dashboard: true, label: chainSize}
 
@@ -216,6 +225,15 @@ services:
             - SiteBackendBundle:XmlLoader
         tags:
             - {name: sonata.admin, manager_type: orm,group: "product", show_in_dashboard: true, label: loadFromFile}
+
+    site_backend.admin.nova_poshta_data:
+        class: Site\BackendBundle\Admin\NovaPoshtaAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\NovaPoshtaData
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm, show_in_dashboard: false, label: novaPoshta}
 ########################################################################################################################
     product.flush.listener:
         class: Site\BackendBundle\EventListeners\ProductListener
@@ -228,5 +246,24 @@ services:
         arguments:
             - "@product.flush.listener"
             - "@set.flush.listener"
+            - "@newpost.data.update.listener"
         tags:
             - { name: doctrine.event_listener, event: onFlush }
+########################################################################################################################
+    new.post.service:
+        class: Site\BackendBundle\NewPost\NewPostService
+        arguments:
+            - "@service_container"
+
+    newpost.data.update.listener:
+        class: Site\BackendBundle\NewPost\NewPostListener
+        arguments:
+            - "@new.post.service"
+
+########################################################################################################################
+    gedmo.listener.sortable:
+        class: Gedmo\Sortable\SortableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]

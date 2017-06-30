@@ -89,6 +89,10 @@ class LoadStaticSeoPagesData extends AbstractFixture implements OrderedFixtureIn
             13=>[
                 'linkname'=>'order',
                 'title'=>'Оформление заказа'
+            ],
+            14=>[
+                'linkname'=>'static_reviews',
+                'title'=>'Отзывы'
             ]
         ];
         foreach($arr as $item){

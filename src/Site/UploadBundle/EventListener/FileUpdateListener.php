@@ -12,8 +12,12 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 class FileUpdateListener
 {
     private $elements =[
-        'set'=>['poster'],
-        'product'=>['poster']
+        'Product'=>['poster'],
+        'ProductGallery'=>['image'],
+        'Set'=>['poster'],
+        'SetGallery'=>['image'],
+        'Slider'=>['image'],
+        'News'=>['poster'],
     ];
     public function __construct(\Site\UploadBundle\Services\FileHandler $fileHandler,$webDir,$rootDir)
     {

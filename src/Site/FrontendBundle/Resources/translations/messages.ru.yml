@@ -10,4 +10,3 @@ form:
     comment: "Комментарии к заказу"
     pay.type: "Способ оплаты"
     delivery.type: "Способ доставки"
-car.select.form.empty.data: ''

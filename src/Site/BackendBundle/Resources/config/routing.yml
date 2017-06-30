@@ -1,8 +1,4 @@
 #**************************************Order*************************************************************************#
-site_backend_add_product_to_order:
-    path:  /order/add-product/{id}
-    defaults: { _controller: SiteBackendBundle:Order:addProduct}
 
-site_backend_add_set_to_order:
-    path:  /order/add-set/{id}
-    defaults: { _controller: SiteBackendBundle:Order:addSet}
+
+

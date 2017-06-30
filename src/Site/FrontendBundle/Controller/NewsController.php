@@ -130,7 +130,7 @@ class NewsController extends Controller
             'last'=>$article->getTitle()
         ];
         $tag = $article->getNewsTags()[0];
-        $recomended = $em->getRepository('SiteBackendBundle:News')->getRecomended(3,$tag->getSlug());
+        $recomended =($tag)?$em->getRepository('SiteBackendBundle:News')->getRecomended(3,$tag->getSlug()):null;
         $breadcrumbsGenerator = $this->get('fonmaxx.breadcrumbs.generator');
         $menu = $breadcrumbsGenerator->generateMenu($arr);
         return $this->render('SiteFrontendBundle:News:show.html.twig', [
