@@ -17,6 +17,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class DefaultController extends Controller
 {
     private $cartSession = 'cart_session';
+    private $newCartSession = 'order_cart_session';
+
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -82,7 +84,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('SiteBackendBundle:Category')->getCategoriesWithSubCategoriesIndexBySlug();
-        $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->cartSession);
+        $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->newCartSession);
         $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('footer_and_header');
         $searchForm = $this->createForm(SearchType::class,[],[
             'action'=>$this->get('router')->generate('site_frontend_search')

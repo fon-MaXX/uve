@@ -6,19 +6,17 @@
  * Time: 15:13
  */
 namespace Site\FrontendBundle\Services;
+use Site\BackendBundle\Entity\Order;
+
 class NumberInCart{
     private $session=[];
     public function __construct($session){
         $this->session=$session;
     }
     public function getItemsNumber($sessionName){
-
         $session = $this->session->get($sessionName);
-        $list = ($session)?json_decode($session,true):null;
-        $number = 0;
-        if (json_last_error() === JSON_ERROR_NONE && $list) {
-            $number = (is_array($list))?count($list):0;
-        }
+        $order = ($session)?unserialize($session):new Order();
+        $number = 0 + count($order->getOrderHasProducts()) + count($order->getOrderHasSets());
         return $number;
     }
 }

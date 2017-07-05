@@ -412,7 +412,7 @@ $(document).ready(function () {
             return false;
         });
         $(".global-cart-wrapper").on('countinputchanged','input',function(){
-            console.log('asd');
+            saveTempForm();
             countGlobalCartSum();
             return false;
         });
@@ -896,6 +896,27 @@ $(document).ready(function () {
                 });
             }
             return false;
+        });
+    }
+    $('body').on('change','.global-cart-element-feature select',function(){
+        saveTempForm();
+        // $.post(url, dataObj, function (data) {
+        // });
+    });
+    $('body').on('click','.global-cart-checkbox-wrapper input',function(){
+        saveTempForm();
+    });
+    function saveTempForm() {
+        var form = $('.global-cart-items-container form');
+        var data_href_url = form.attr('data-href-save-order');
+        var dataObj = form.serialize();
+        $.ajax({
+            type: 'POST',
+            url: data_href_url,
+            data: dataObj,
+            dataType: 'JSON',
+            success: function (response) {
+            }
         });
     }
     //    ****************************end-new-post-actions****************************************************************//

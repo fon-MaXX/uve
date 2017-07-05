@@ -77,6 +77,40 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getSetBySlug($slug){
+        return $this->createQueryBuilder('s')
+            ->select('s, products, ringSizes, insertionColors, chainSizes')
+            ->leftJoin('s.products','products')
+            ->leftJoin('products.ringSizes','ringSizes')
+            ->leftJoin('products.insertionColors','insertionColors')
+            ->leftJoin('products.chainSizes','chainSizes')
+            ->where('s.slug =:slug')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function getByAndIndexIdsForGetFromSession($ids)
+    {
+        $sets = $this->createQueryBuilder('s')
+            ->select('s, products, ringSizes, insertionColors, chainSizes')
+            ->leftJoin('s.products','products')
+            ->leftJoin('products.ringSizes','ringSizes')
+            ->leftJoin('products.insertionColors','insertionColors')
+            ->leftJoin('products.chainSizes','chainSizes')
+            ->where('s.id IN (:ids)')
+            ->setParameter('ids', $ids)
+            ->getQuery()
+            ->getResult();
+        $resultSets = [];
+        foreach ($sets as $set) {
+            $resultSets[$set->getId()] = $set;
+        }
+
+        return $resultSets;
+    }
+
     public function search($title){
         $options = explode(' ',$title);
         if(count($options)>1){

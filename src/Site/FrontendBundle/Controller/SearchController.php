@@ -12,6 +12,7 @@ use Site\BackendBundle\Entity\Category;
 class SearchController extends Controller
 {
     private $cartSession = 'cart_session';
+    private $newCartSession = 'order_cart_session';
     public function searchAction(Request $request){
         $form = $this->createForm(SearchType::class,[],[
             'action'=>$this->get('router')->generate('site_frontend_search')
@@ -59,7 +60,7 @@ class SearchController extends Controller
         $pagination->setTemplate('SiteFrontendBundle:Product:_list_pagination.html.twig');
         $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('footer_and_header');
         $categories = $em->getRepository('SiteBackendBundle:Category')->getCategoriesWithSubCategoriesIndexBySlug();
-        $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->cartSession);
+        $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->newCartSession);
         $seo = $em->getRepository('SiteBackendBundle:StaticSeoPages')->findOneBy([
             'linkname'=>'search'
         ]);

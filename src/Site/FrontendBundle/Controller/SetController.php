@@ -18,6 +18,7 @@ class SetController extends Controller
 {
     private $listSession = 'set_controller_list';
     private $cartSession = 'cart_session';
+    private $newCartSession = 'order_cart_session';
     private $numberOnPage = [
         20=>'20 на страницу',
         40=>'40 на страницу',
@@ -71,7 +72,7 @@ class SetController extends Controller
         $numberOnPageSelect = $this->getNumberOnPageSelect($setNumber,'product-list-number-select');
         $sets->setTemplate('SiteFrontendBundle:Product:_list_pagination.html.twig');
         $shareTags=$em->getRepository('SiteBackendBundle:ShareTag')->getShareTagsIndexByTitle();
-        $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->cartSession);
+        $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->newCartSession);
         $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('footer_and_header');
         $searchForm = $this->createForm(SearchType::class,[],[
             'action'=>$this->get('router')->generate('site_frontend_search')

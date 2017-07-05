@@ -188,7 +188,7 @@ class Product
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="OrderHasSetComponent", mappedBy="prduct",indexBy="id")
+     * @ORM\OneToMany(targetEntity="OrderHasSetComponent", mappedBy="product",indexBy="id")
      */
     private $orderHasSetComponents;
     /**

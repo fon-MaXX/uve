@@ -47,6 +47,11 @@ site_frontend_order_create:
     defaults: { _controller: SiteFrontendBundle:Order:create}
     methods:  [POST]
 
+site_frontend_save_temp_order:
+    path:  /order/save/
+    defaults: { _controller: SiteFrontendBundle:Order:save}
+    methods:  [POST]
+
 site_frontend_order_get_items_number:
     path:  /order/get-items-number
     defaults: { _controller: SiteFrontendBundle:Order:getItemsNumber}

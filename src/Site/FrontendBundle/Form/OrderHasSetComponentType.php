@@ -2,6 +2,7 @@
 
 namespace Site\FrontendBundle\Form;
 
+use Site\BackendBundle\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -70,17 +71,17 @@ class OrderHasSetComponentType extends AbstractType
                         'class'=>"select-default-view ring-size-select"
                     ]
                 ])
-                    ->addModelTransformer(new CallbackTransformer(
-                        function ($ringSize) {
-                            //                  call`s after getter
-                            $sizes = array_flip($this->ringSizes);
-                            return  (isset($sizes[$ringSize]))?$sizes[$ringSize]:null;
-                        },
-                        function ($ringSize) {
-                            //                   call`s before setter
-                            return (isset($this->ringSizes[$ringSize]))?$this->ringSizes[$ringSize]:null;
-                        }
-                    ))
+//                    ->addModelTransformer(new CallbackTransformer(
+//                        function ($ringSize) {
+//                            //                  call`s after getter
+//                            $sizes = array_flip($this->ringSizes);
+//                            return  (isset($sizes[$ringSize]))?$sizes[$ringSize]:null;
+//                        },
+//                        function ($ringSize) {
+//                            //                   call`s before setter
+//                            return (isset($this->ringSizes[$ringSize]))?$this->ringSizes[$ringSize]:null;
+//                        }
+//                    ))
                     ->getForm()
                 );
             }
