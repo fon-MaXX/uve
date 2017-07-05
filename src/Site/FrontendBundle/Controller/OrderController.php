@@ -37,15 +37,16 @@ class OrderController extends Controller
         return new Response('error');
     }
 
-    public function createAction(Request $request){
+    public function createAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
-        $previousUrl  = $this->getRefererUrl($request);
-        $arr=[
-            'main'=>[
-                'parameters'=>[],
-                'title'=>'главная'
+        $previousUrl = $this->getRefererUrl($request);
+        $arr = [
+            'main' => [
+                'parameters' => [],
+                'title' => 'главная'
             ],
-            'last'=>"Корзина"
+            'last' => "Корзина"
         ];
         $breadcrumbsGenerator = $this->get('fonmaxx.breadcrumbs.generator');
         $menu = $breadcrumbsGenerator->generateMenu($arr);
@@ -53,20 +54,20 @@ class OrderController extends Controller
 //        $order = $this->getOrderObject();
         $order = $this->getNewOrderObject();
         //        in a case set_show was submitted
-        $order = $this->checkOrderHasSetSubmit($request,$order);
+        $order = $this->checkOrderHasSetSubmit($request, $order);
         //        in a case product_show was submitted
-        $order = $this->checkOrderHasProductSubmit($request,$order);
-        if(!$order)return $this->redirect($previousUrl);
-        $form = $this->createForm(OrderType::class,$order,[
-            'action'=>$this->get('router')->generate('site_frontend_order_create',[]),
-            'is_frontend'=>true,
-            'container'=>$this->container
+        $order = $this->checkOrderHasProductSubmit($request, $order);
+        if (!$order) return $this->redirect($previousUrl);
+        $form = $this->createForm(OrderType::class, $order, [
+            'action' => $this->get('router')->generate('site_frontend_order_create', []),
+            'is_frontend' => true,
+            'container' => $this->container
         ]);
-        if($request->isMethod('POST')&&$request->request->has($form->getName())){
+        if ($request->isMethod('POST') && $request->request->has($form->getName())) {
             $form->handleRequest($request);
-            if($form->isValid()){
+            if ($form->isValid()) {
                 $object = $form->getData();
-                if(count($object->getOrderHasProducts())||count($object->getOrderHasSets())){
+                if (count($object->getOrderHasProducts()) || count($object->getOrderHasSets())) {
                     $price = $this->countOrderSum($object);
                     $object->setPrice($price);
                     $object->setState('new');
@@ -75,25 +76,24 @@ class OrderController extends Controller
                     $em->flush();
                     $this->clearSession($this->newCartSession);
                     $this->sendMail($object);
-                }
-                else{
+                } else {
                     $message = 'Заказ не оформлен, так как список товаров пуст';
                 }
-                return $this->render('SiteFrontendBundle:Order:success.html.twig',[
-                    'breadcrumbs'=>$menu,
-                    'refererUrl'=> $previousUrl,
-                    'message'=>$message
+                return $this->render('SiteFrontendBundle:Order:success.html.twig', [
+                    'breadcrumbs' => $menu,
+                    'refererUrl' => $previousUrl,
+                    'message' => $message
                 ]);
             }
         }
         $seo = $em->getRepository('SiteBackendBundle:StaticSeoPages')->findOneBy([
-            'linkname'=>'order'
+            'linkname' => 'order'
         ]);
-        return $this->render('SiteFrontendBundle:Order:create.html.twig',[
-            'breadcrumbs'=>$menu,
-            'refererUrl'=> $previousUrl,
-            'form'=>$form->createView(),
-            'seo'=>$seo
+        return $this->render('SiteFrontendBundle:Order:create.html.twig', [
+            'breadcrumbs' => $menu,
+            'refererUrl' => $previousUrl,
+            'form' => $form->createView(),
+            'seo' => $seo
         ]);
     }
 
@@ -101,19 +101,20 @@ class OrderController extends Controller
      * method to get number of elements in user cart
      *
      */
-    public function getItemsNumberAction(Request $request){
+    public function getItemsNumberAction(Request $request)
+    {
 
         $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->newCartSession);
         $result = json_encode([
-            'success'=>true,
-            'number'=>$itemsNumber
+            'success' => true,
+            'number' => $itemsNumber
         ]);
         return new JsonResponse($result);
     }
 
     public function addProductAction(Request $request, $slug)
     {
-        $em= $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Product')->findOneBySlug($slug);
         $order = $this->getNewOrderObject();
         $order = $this->addProductToOrder($entity, $order);
@@ -123,17 +124,19 @@ class OrderController extends Controller
             'is_frontend' => true,
             'is_ajax' => true
         ]);
-        return $this->render('SiteFrontendBundle:Order:_ajax_cart.html.twig',[
-            'form'=>$form->createView()
+        return $this->render('SiteFrontendBundle:Order:_ajax_cart.html.twig', [
+            'form' => $form->createView()
         ]);
     }
+
     public function removeProductAction(Request $request, $slug)
     {
-        $em= $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Product')->findOneBySlug($slug);
         $this->removeItemFromOrder($entity);
         return new Response('success');
     }
+
     public function addSetAction(Request $request, $slug)
     {
         $em = $this->getDoctrine()->getManager();
@@ -145,30 +148,33 @@ class OrderController extends Controller
             'is_frontend' => true,
             'is_ajax' => true
         ]);
-        return $this->render('SiteFrontendBundle:Order:_ajax_cart.html.twig',[
-            'form'=>$form->createView()
+        return $this->render('SiteFrontendBundle:Order:_ajax_cart.html.twig', [
+            'form' => $form->createView()
         ]);
     }
+
     public function removeSetAction(Request $request, $slug)
     {
-        $em= $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Set')->findOneBySlug($slug);
         $this->removeSetFromOrder($entity);
         return new Response('success');
     }
+
     public function getAjaxCartAction(Request $request)
     {
-        $order = $this->getOrderObject();
-        $form = $this->createForm(OrderType::class,$order,[
-            'action'=>$this->get('router')->generate('site_frontend_order_create',[]),
-            'container'=>$this->container,
-            'is_frontend'=>true,
-            'is_ajax'=>true
+        $order = $this->getNewOrderObject();
+        $form = $this->createForm(OrderType::class, $order, [
+            'action' => $this->get('router')->generate('site_frontend_order_create', []),
+            'container' => $this->container,
+            'is_frontend' => true,
+            'is_ajax' => true
         ]);
-        return $this->render('SiteFrontendBundle:Order:_ajax_cart.html.twig',[
-            'form'=>$form->createView()
+        return $this->render('SiteFrontendBundle:Order:_ajax_cart.html.twig', [
+            'form' => $form->createView()
         ]);
     }
+
     public function getNovaPoshtaFormAction(Request $request)
     {
         $data = $request->request->all();
@@ -182,7 +188,7 @@ class OrderController extends Controller
         $order = new Order();
         $form = $this->createForm(OrderType::class, $order, [
             'container' => $this->container,
-            'is_frontend'=>true
+            'is_frontend' => true
 
         ]);
         $form->submit($data);
@@ -190,6 +196,7 @@ class OrderController extends Controller
             'form' => $form->createView()
         ));
     }
+
     public function getUkrPoshtaFormAction(Request $request)
     {
         $data = $request->request->all();
@@ -210,6 +217,7 @@ class OrderController extends Controller
             'form' => $form->createView()
         ));
     }
+
     /**
      * @param Request $request
      * get referrer page url for keep shopping button
@@ -364,6 +372,7 @@ class OrderController extends Controller
                 $orderHasProduct->setProduct($products[$orderHasProduct->getProduct()->getId()]);
             }
         }
+
         return $order;
     }
 
@@ -394,42 +403,71 @@ class OrderController extends Controller
             $em->persist($order);
             $this->addOrderToSession($order, $this->newCartSession);
         }
+
         return $order;
     }
-    private function clearSession($sessionName){
-        $this->get('session')->remove($sessionName);
-    }
-    private function countOrderSum($object){
-        $sum=0;
-        if(count($products = $object->getOrderHasProducts())){
-            foreach($products as $item){
-                $sum+=($item->getProduct()->getSharePrice())?$item->getProduct()->getSharePrice()*$item->getNumber():$item->getProduct()->getPrice()*$item->getNumber();
+
+    private function addSets($order, $sets)
+    {
+        foreach ($order->getOrderHasSets() as $orderHasSet) {
+            if (array_key_exists($orderHasSet->getSet()->getId(), $sets)) {
+                $set = $sets[$orderHasSet->getSet()->getId()];
+                $orderHasSet->setSet($set);
+                $components = $set->getProducts();
+                $componentsArr = [];
+                foreach ($components as $product) {
+                    $componentsArr[$product->getId()] = $product;
+                }
+                foreach ($orderHasSet->getOrderHasSetComponents() as $component) {
+                    if (array_key_exists($component->getProduct()->getId(), $componentsArr)) {
+                        $component->setProduct($componentsArr[$component->getProduct()->getId()]);
+                    }
+                }
             }
         }
-        if(count($sets = $object->getOrderHasSets())){
-            foreach($sets as $item){
+
+        return $order;
+    }
+
+    private function clearSession($sessionName)
+    {
+        $this->get('session')->remove($sessionName);
+    }
+
+    private function countOrderSum($object)
+    {
+        $sum = 0;
+        if (count($products = $object->getOrderHasProducts())) {
+            foreach ($products as $item) {
+                $sum += ($item->getProduct()->getSharePrice()) ? $item->getProduct()->getSharePrice() * $item->getNumber() : $item->getProduct()->getPrice() * $item->getNumber();
+            }
+        }
+        if (count($sets = $object->getOrderHasSets())) {
+            foreach ($sets as $item) {
                 $number = $item->getNumber();
-                if(count($components = $item->getOrderHasSetComponents())){
-                    $tempSum=0;
-                    foreach($components as $component){
-                        if($component->getPresence()){
-                            $tempSum+=($component->getProduct()->getSharePrice())?$component->getProduct()->getSharePrice():$component->getProduct()->getPrice();
+                if (count($components = $item->getOrderHasSetComponents())) {
+                    $tempSum = 0;
+                    foreach ($components as $component) {
+                        if ($component->getPresence()) {
+                            $tempSum += ($component->getProduct()->getSharePrice()) ? $component->getProduct()->getSharePrice() : $component->getProduct()->getPrice();
                         }
                     }
                 }
-                $sum+=$tempSum*$number;
+                $sum += $tempSum * $number;
             }
         }
         return $sum;
     }
-    private function sendMail($entity){
+
+    private function sendMail($entity)
+    {
         return;
         $parameters = $this->container->getParameter('mailer_parameters');
         $message = \Swift_Message::newInstance()
             ->setSubject('Новый заказ ' . '(id:' . $entity->getId() . ')' . ' с сайта "Uvelife.com"')
             ->setFrom($parameters['send_from'])
             ->setBody(
-                $this->renderView('SiteFrontendBundle:EMails:_orderManagerMail.html.twig',['entity' => $entity]),
+                $this->renderView('SiteFrontendBundle:EMails:_orderManagerMail.html.twig', ['entity' => $entity]),
                 'text/html'
             );
         foreach ($parameters['send_to'] as $to) {
@@ -450,22 +488,23 @@ class OrderController extends Controller
      * @param $order
      * @return mixed
      */
-    private function checkOrderHasSetSubmit($request,$order){
+    private function checkOrderHasSetSubmit($request, $order)
+    {
         $em = $this->getDoctrine()->getManager();
         $orderHasSet = $this->getOrderHasSetObject($request);
-        if(!$orderHasSet){
+        if (!$orderHasSet) {
             return $order;
         }
-        $orderHasSetForm = $this->createForm(OrderHasSetType::class,$orderHasSet,[]);
+        $orderHasSetForm = $this->createForm(OrderHasSetType::class, $orderHasSet, []);
 
-        if($request->isMethod('POST')&&$request->request->has($orderHasSetForm->getName())){
+        if ($request->isMethod('POST') && $request->request->has($orderHasSetForm->getName())) {
             $orderHasSetForm->handleRequest($request);
-            if($orderHasSetForm->isValid()){
+            if ($orderHasSetForm->isValid()) {
 //            we just need to add orderHasSet to current Order to have all states selected in show
 //            and add it to session
-                if(count($order->getOrderHasSets())){
-                    foreach($order->getOrderHasSets() as $item){
-                        if($item->getSet()->getId()==$orderHasSet->getSet()->getId()){
+                if (count($order->getOrderHasSets())) {
+                    foreach ($order->getOrderHasSets() as $item) {
+                        if ($item->getSet()->getId() == $orderHasSet->getSet()->getId()) {
                             $order->removeOrderHasSet($item);
                             $em->persist($order);
                         }
@@ -475,13 +514,13 @@ class OrderController extends Controller
                 $em->persist($order);
                 $this->addOrderToSession($order, $this->newCartSession);
 //                $this->addItemToSession($orderHasSet->getSet(),'set',$this->cartSession);
-            }
-            else{
+            } else {
                 return false;
             }
         }
         return $order;
     }
+
     /**
      * method to handle submit of product_show
      *
@@ -494,19 +533,20 @@ class OrderController extends Controller
      * @param $order
      * @return mixed
      */
-    private function checkOrderHasProductSubmit($request,$order){
+    private function checkOrderHasProductSubmit($request, $order)
+    {
         $em = $this->getDoctrine()->getManager();
         $orderHasProduct = $this->getOrderHasProductObject($request);
-        if(!$orderHasProduct){
+        if (!$orderHasProduct) {
             return $order;
         }
-        $orderHasProductForm = $this->createForm(OrderHasProductType::class,$orderHasProduct,[]);
-        if($request->isMethod('POST')&&$request->request->has($orderHasProductForm->getName())){
+        $orderHasProductForm = $this->createForm(OrderHasProductType::class, $orderHasProduct, []);
+        if ($request->isMethod('POST') && $request->request->has($orderHasProductForm->getName())) {
             $orderHasProductForm->handleRequest($request);
-            if($orderHasProductForm->isValid()){
-                if(count($order->getOrderHasProducts())){
-                    foreach($order->getOrderHasProducts() as $item){
-                        if($item->getProduct()->getId()==$orderHasProduct->getProduct()->getId()){
+            if ($orderHasProductForm->isValid()) {
+                if (count($order->getOrderHasProducts())) {
+                    foreach ($order->getOrderHasProducts() as $item) {
+                        if ($item->getProduct()->getId() == $orderHasProduct->getProduct()->getId()) {
                             $order->removeOrderHasProduct($item);
                             $em->persist($order);
                         }
@@ -516,18 +556,18 @@ class OrderController extends Controller
                 $em->persist($order);
                 $this->addOrderToSession($order, $this->newCartSession);
 //                $this->addItemToSession($orderHasProduct->getProduct(),'product',$this->cartSession);
-            }
-            else{
+            } else {
                 return false;
             }
         }
         return $order;
     }
+
     private function getOrderHasProductObject($request)
     {
         $em = $this->getDoctrine()->getManager();
         $slug = $request->query->get('slug', null);
-        if ($slug){
+        if ($slug) {
             $product = $em->getRepository('SiteBackendBundle:Product')->findOneBySlug($slug);
             if ($product) {
                 $orderHasProduct = new OrderHasProduct();
@@ -538,16 +578,18 @@ class OrderController extends Controller
         }
         return false;
     }
-    private function getOrderHasSetObject($request){
-        $em= $this->getDoctrine()->getManager();
+
+    private function getOrderHasSetObject($request)
+    {
+        $em = $this->getDoctrine()->getManager();
         $slug = $request->query->get('slug', null);
-        if($slug){
+        if ($slug) {
             $set = $em->getRepository('SiteBackendBundle:Set')->findOneBySlug($slug);
-            if($set){
+            if ($set) {
                 $orderHasSet = new OrderHasSet();
                 $orderHasSet->setSet($set);
                 $components = $set->getProducts();
-                foreach($components as $component){
+                foreach ($components as $component) {
                     $orderHasSetComponent = new OrderHasSetComponent();
                     $orderHasSetComponent->setProduct($component);
                     $orderHasSet->addOrderHasSetComponent($orderHasSetComponent);
