@@ -27,7 +27,7 @@ site_frontend_order_add_product:
     defaults: { _controller: SiteFrontendBundle:Order:addProduct}
 
 site_frontend_order_remove_product:
-    path:  /order/remove-product/{slug}
+    path:  /order/remove-product/{slug}/{ringSize}/{insertionColor}/{chainSize}
     defaults: { _controller: SiteFrontendBundle:Order:removeProduct}
 
 site_frontend_order_add_set:

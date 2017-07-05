@@ -45,17 +45,17 @@ class OrderHasSetComponentType extends AbstractType
                         'class'=>"select-default-view insertion-color-select"
                     ]
                 ])
-                    ->addModelTransformer(new CallbackTransformer(
-                        function ($insertionColor) {
-//                  call`s after getter
-                            $colors = array_flip($this->insertionColors);
-                            return  (isset($colors[$insertionColor]))?$colors[$insertionColor]:null;
-                        },
-                        function ($insertionColor) {
-//                   call`s before setter
-                            return (isset($this->insertionColors[$insertionColor]))?$this->insertionColors[$insertionColor]:null;
-                        }
-                    ))
+//                    ->addModelTransformer(new CallbackTransformer(
+//                        function ($insertionColor) {
+////                  call`s after getter
+//                            $colors = array_flip($this->insertionColors);
+//                            return  (isset($colors[$insertionColor]))?$colors[$insertionColor]:null;
+//                        },
+//                        function ($insertionColor) {
+////                   call`s before setter
+//                            return (isset($this->insertionColors[$insertionColor]))?$this->insertionColors[$insertionColor]:null;
+//                        }
+//                    ))
                     ->getForm()
                 );
             }
@@ -97,17 +97,17 @@ class OrderHasSetComponentType extends AbstractType
                         'class'=>"select-default-view chain-size-select"
                     ]
                 ])
-                    ->addModelTransformer(new CallbackTransformer(
-                        function ($chainSize) {
-//                  call`s after getter
-                            $sizes = array_flip($this->chainSizes);
-                            return  (isset($sizes[$chainSize]))?$sizes[$chainSize]:null;
-                        },
-                        function ($chainSize) {
-//                   call`s before setter
-                            return (isset($this->chainSizes[$chainSize]))?$this->chainSizes[$chainSize]:null;
-                        }
-                    ))
+//                    ->addModelTransformer(new CallbackTransformer(
+//                        function ($chainSize) {
+////                  call`s after getter
+//                            $sizes = array_flip($this->chainSizes);
+//                            return  (isset($sizes[$chainSize]))?$sizes[$chainSize]:null;
+//                        },
+//                        function ($chainSize) {
+////                   call`s before setter
+//                            return (isset($this->chainSizes[$chainSize]))?$this->chainSizes[$chainSize]:null;
+//                        }
+//                    ))
                     ->getForm()
                 );
             }

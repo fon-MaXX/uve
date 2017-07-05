@@ -130,6 +130,24 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
             ;
     }
+    public function getByAndIndexIdsForGetFromSession($ids){
+        $products = $this->createQueryBuilder('s')
+            ->select('s, ringSizes, insertionColors, chainSizes')
+            ->where('s.id IN (:ids)')
+            ->leftJoin('s.ringSizes','ringSizes')
+            ->leftJoin('s.insertionColors','insertionColors')
+            ->leftJoin('s.chainSizes','chainSizes')
+            ->setParameter('ids',$ids)
+            ->getQuery()
+            ->getResult();
+
+        $resultProducts = [];
+        foreach ($products as $product) {
+            $resultProducts[$product->getId()] = $product;
+        }
+
+        return $resultProducts;
+    }
     public function getByAndIndexIds($ids){
         return $this->createQueryBuilder('p','p.id')
             ->where('p.id IN (:ids)')

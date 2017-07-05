@@ -34,7 +34,36 @@
                                         <span class="code-wrapper">{{ product.cod }}</span>
                                     </div>
                                     <div class="global-cart-item-remove text-right">
-                                        <span data-url="{{ url("site_frontend_order_remove_product",{'slug':product.slug}) }}" class="cart-remove-item collection-remove">x</span>
+                                        {% if product.insertionColors|length %}
+                                            {% set insertionColorsParameter =  orderHasProduct.insertionColor.vars.value %}
+                                        {% else %}
+                                            {% set insertionColorsParameter = 'null' %}
+                                        {% endif %}
+                                        {% if product.ringSizes|length %}
+                                            {% set ringSizesParameter = orderHasProduct.ringSize.vars.value%}
+                                        {% else %}
+                                            {% set ringSizesParameter = 'null' %}
+                                        {% endif %}
+                                        {% if product.chainSizes|length %}
+                                            {% set chainSizesParameter = orderHasProduct.chainSize.vars.value%}
+                                        {% else %}
+                                            {% set chainSizesParameter = 'null' %}
+                                        {% endif %}
+                                        {% if insertionColorsParameter == '' %}
+                                            {% set insertionColorsParameter = 'null' %}
+                                        {% endif %}
+                                        {% if ringSizesParameter == '' %}
+                                            {% set ringSizesParameter = 'null' %}
+                                        {% endif %}
+                                        {% if chainSizesParameter == '' %}
+                                            {% set chainSizesParameter = 'null' %}
+                                        {% endif %}
+                                        <span data-url="{{ url("site_frontend_order_remove_product",{
+                                            'slug':product.slug,
+                                            'ringSize': ringSizesParameter,
+                                            'insertionColor': insertionColorsParameter,
+                                            'chainSize': chainSizesParameter
+                                        }) }}" class="cart-remove-item collection-remove">x</span>
                                     </div>
                                 </div>
                                 <div class="global-cart-item-content-container">

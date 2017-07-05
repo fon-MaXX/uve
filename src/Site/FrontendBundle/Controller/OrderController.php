@@ -31,7 +31,7 @@ class OrderController extends Controller
         ]);
         if ($request->isMethod('POST') && $request->request->has($form->getName())) {
             $form->handleRequest($request);
-            $this->addOrderToSession($order, $this->newCartSession);
+            $this->addOrderToSession($form->getData(), $this->newCartSession);
             return new Response('success');
         }
         return new Response('error');
@@ -129,11 +129,11 @@ class OrderController extends Controller
         ]);
     }
 
-    public function removeProductAction(Request $request, $slug)
+    public function removeProductAction(Request $request, $slug, $ringSize = null, $insertionColor = null, $chainSize = null)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Product')->findOneBySlug($slug);
-        $this->removeItemFromOrder($entity);
+        $this->removeItemFromOrder($entity, $ringSize, $insertionColor, $chainSize);
         return new Response('success');
     }
 
@@ -274,12 +274,27 @@ class OrderController extends Controller
         $this->addOrderToSession($order, $this->newCartSession);
     }
 
-    private function removeItemFromOrder($entity)
+    private function removeItemFromOrder($entity, $ringSize, $insertionColor, $chainSize)
     {
+        if ($ringSize == 'null') {
+            $ringSize = null;
+        }
+        if ($insertionColor == 'null') {
+            $insertionColor = null;
+        }
+        if ($chainSize == 'null') {
+            $chainSize = null;
+        }
         $order = $this->getNewOrderObject();
         foreach ($order->getOrderHasProducts() as $key => $orderHasProduct) {
             if ($orderHasProduct->getProduct()->getId() == $entity->getId()) {
-                unset($order->getOrderHasProducts()[$key]);
+                if (
+                    $orderHasProduct->getChainSize() == $chainSize and
+                    $orderHasProduct->getRingSize() == $ringSize and
+                    $orderHasProduct->getInsertionColor() == $insertionColor
+                ) {
+                    unset($order->getOrderHasProducts()[$key]);
+                }
             }
         }
         $this->addOrderToSession($order, $this->newCartSession);
@@ -304,19 +319,40 @@ class OrderController extends Controller
 
     private function addProductToOrder($product, Order $order)
     {
+        $ringSizes = ($product->getRingSizes()[0]) ? $product->getRingSizes()[0]->getId() : null;
+        $chainSize = ($product->getChainSizes()[0]) ? $product->getChainSizes()[0]->getId() : null;
+        $insertionColor = ($product->getInsertionColors()[0]) ? $product->getInsertionColors()[0]->getId() : null;
+
         $inOrder = false;
         foreach ($order->getOrderHasProducts() as $orderHasProduct) {
             if ($orderHasProduct->getProduct()->getId() == $product->getId()) {
-                $inOrder = true;
+                if ((
+                        is_null($orderHasProduct->getRingSize()) and
+                        is_null($orderHasProduct->getChainSize()) and
+                        is_null($orderHasProduct->getInsertionColor())
+                    ) or
+                    (
+                        ($orderHasProduct->getRingSize() == $ringSizes) and
+                        ($orderHasProduct->getChainSize() == $chainSize) and
+                        ($orderHasProduct->getInsertionColor() == $insertionColor)
+                    )
+                ) {
+                    $number = $orderHasProduct->getNumber();
+                    $orderHasProduct->setNumber($number + 1);
+                    $inOrder = true;
+                }
             }
         }
 
         if ($inOrder == false) {
             $orderHasProducts = new OrderHasProduct();
             $orderHasProducts->setProduct($product);
+            $orderHasProducts->setRingSize($ringSizes);
+            $orderHasProducts->setChainSize($chainSize);
+            $orderHasProducts->setInsertionColor($insertionColor);
             $order->addOrderHasProduct($orderHasProducts);
-            $this->addOrderToSession($order, $this->newCartSession);
         }
+        $this->addOrderToSession($order, $this->newCartSession);
         return $order;
     }
 
@@ -358,7 +394,7 @@ class OrderController extends Controller
         foreach ($order->getOrderHasSets() as $orderHasSets) {
             $setIds[] = $orderHasSets->getSet()->getId();
         }
-        $products = $em->getRepository('SiteBackendBundle:Product')->getByAndIndexIds($productIds);
+        $products = $em->getRepository('SiteBackendBundle:Product')->getByAndIndexIdsForGetFromSession($productIds);
         $sets = $em->getRepository('SiteBackendBundle:Set')->getByAndIndexIdsForGetFromSession($setIds);
         $order = $this->addProducts($order, $products);
         $order = $this->addSets($order, $sets);
@@ -367,12 +403,13 @@ class OrderController extends Controller
 
     private function addProducts($order, $products)
     {
+        $em = $this->getDoctrine()->getManager();
         foreach ($order->getOrderHasProducts() as $orderHasProduct) {
             if (array_key_exists($orderHasProduct->getProduct()->getId(), $products)) {
                 $orderHasProduct->setProduct($products[$orderHasProduct->getProduct()->getId()]);
+                $em->persist($orderHasProduct);
             }
         }
-
         return $order;
     }
 
@@ -540,6 +577,7 @@ class OrderController extends Controller
         if (!$orderHasProduct) {
             return $order;
         }
+        $isAdd = true;
         $orderHasProductForm = $this->createForm(OrderHasProductType::class, $orderHasProduct, []);
         if ($request->isMethod('POST') && $request->request->has($orderHasProductForm->getName())) {
             $orderHasProductForm->handleRequest($request);
@@ -547,12 +585,22 @@ class OrderController extends Controller
                 if (count($order->getOrderHasProducts())) {
                     foreach ($order->getOrderHasProducts() as $item) {
                         if ($item->getProduct()->getId() == $orderHasProduct->getProduct()->getId()) {
-                            $order->removeOrderHasProduct($item);
+                            if (
+                                $item->getRingSize() == $orderHasProduct->getRingSize() and
+                                $item->getChainSize() == $orderHasProduct->getChainSize() and
+                                $item->getInsertionColor() == $orderHasProduct->getInsertionColor()
+                            ) {
+                                $number = $item->getNumber();
+                                $item->setNumber($number + 1);
+                                $isAdd = false;
+                            }
                             $em->persist($order);
                         }
                     }
                 }
-                $order->addOrderHasProduct($orderHasProduct);
+                if ($isAdd) {
+                    $order->addOrderHasProduct($orderHasProduct);
+                }
                 $em->persist($order);
                 $this->addOrderToSession($order, $this->newCartSession);
 //                $this->addItemToSession($orderHasProduct->getProduct(),'product',$this->cartSession);

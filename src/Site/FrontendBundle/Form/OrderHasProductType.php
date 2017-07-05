@@ -52,17 +52,17 @@ class OrderHasProductType extends AbstractType
                         'class'=>"select-default-view insertion-color-select"
                     ]
                 ])
-                ->addModelTransformer(new CallbackTransformer(
-                    function ($insertionColor) {
-//                  call`s after getter
-                        $colors = array_flip($this->insertionColors);
-                        return  (isset($colors[$insertionColor]))?$colors[$insertionColor]:null;
-                    },
-                    function ($insertionColor) {
-//                   call`s before setter
-                        return (isset($this->insertionColors[$insertionColor]))?$this->insertionColors[$insertionColor]:null;
-                    }
-                    ))
+//                ->addModelTransformer(new CallbackTransformer(
+//                    function ($insertionColor) {
+////                  call`s after getter
+//                        $colors = array_flip($this->insertionColors);
+//                        return  (isset($colors[$insertionColor]))?$colors[$insertionColor]:null;
+//                    },
+//                    function ($insertionColor) {
+////                   call`s before setter
+//                        return (isset($this->insertionColors[$insertionColor]))?$this->insertionColors[$insertionColor]:null;
+//                    }
+//                    ))
                     ->getForm()
                 );
             }
@@ -78,17 +78,17 @@ class OrderHasProductType extends AbstractType
                         'class'=>"select-default-view ring-size-select"
                     ]
                 ])
-                ->addModelTransformer(new CallbackTransformer(
-                    function ($ringSize) {
-    //                  call`s after getter
-                        $sizes = array_flip($this->ringSizes);
-                        return  (isset($sizes[$ringSize]))?$sizes[$ringSize]:null;
-                    },
-                    function ($ringSize) {
-    //                   call`s before setter
-                        return (isset($this->ringSizes[$ringSize]))?$this->ringSizes[$ringSize]:null;
-                    }
-                    ))
+//                ->addModelTransformer(new CallbackTransformer(
+//                    function ($ringSize) {
+//    //                  call`s after getter
+//                        $sizes = array_flip($this->ringSizes);
+//                        return  (isset($sizes[$ringSize]))?$sizes[$ringSize]:null;
+//                    },
+//                    function ($ringSize) {
+//    //                   call`s before setter
+//                        return (isset($this->ringSizes[$ringSize]))?$this->ringSizes[$ringSize]:null;
+//                    }
+//                    ))
                 ->getForm()
                 );
             }
@@ -104,17 +104,17 @@ class OrderHasProductType extends AbstractType
                         'class'=>"select-default-view chain-size-select"
                     ]
                 ])
-                ->addModelTransformer(new CallbackTransformer(
-                        function ($chainSize) {
-//                  call`s after getter
-                            $sizes = array_flip($this->chainSizes);
-                            return  (isset($sizes[$chainSize]))?$sizes[$chainSize]:null;
-                        },
-                        function ($chainSize) {
-//                   call`s before setter
-                            return (isset($this->chainSizes[$chainSize]))?$this->chainSizes[$chainSize]:null;
-                        }
-                    ))
+//                ->addModelTransformer(new CallbackTransformer(
+//                        function ($chainSize) {
+////                  call`s after getter
+//                            $sizes = array_flip($this->chainSizes);
+//                            return  (isset($sizes[$chainSize]))?$sizes[$chainSize]:null;
+//                        },
+//                        function ($chainSize) {
+////                   call`s before setter
+//                            return (isset($this->chainSizes[$chainSize]))?$this->chainSizes[$chainSize]:null;
+//                        }
+//                    ))
                 ->getForm()
                 );
             }
