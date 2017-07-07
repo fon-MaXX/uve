@@ -3,6 +3,7 @@
 namespace Site\FrontendBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Site\BackendBundle\Entity\FilterConfig;
 use Site\FrontendBundle\Form\OrderHasSetType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +13,6 @@ use Site\BackendBundle\Entity\Category;
 use Site\BackendBundle\Entity\OrderHasSet;
 use Site\BackendBundle\Entity\OrderHasSetComponent;
 use Site\FrontendBundle\Form\SearchType;
-use Site\FrontendBundle\Form\FilterConfig;
 
 class SetController extends Controller
 {
@@ -39,7 +39,7 @@ class SetController extends Controller
         $breadcrumbsGenerator = $this->get('fonmaxx.breadcrumbs.generator');
         $menu = $breadcrumbsGenerator->generateMenu($arr);
 
-        $configObject = new FilterConfig();
+        $configObject = $em->getRepository(FilterConfig::class)->findFilterConfig();
         $config = $configObject->getFilterConfig('наборы');
         $form = $this->createForm(SetFilterType::class,[],[
             'action'=>$this->get('router')->generate('site_frontend_set_list',[]),

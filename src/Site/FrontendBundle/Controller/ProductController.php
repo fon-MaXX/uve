@@ -3,6 +3,7 @@
 namespace Site\FrontendBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Site\BackendBundle\Entity\FilterConfig;
 use Site\BackendBundle\Entity\OrderHasProduct;
 use Site\FrontendBundle\Form\OrderHasProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,7 +12,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Site\FrontendBundle\Form\ProductFilterType;
 use Site\FrontendBundle\Form\ProductShowType;
 use Site\FrontendBundle\Form\SearchType;
-use Site\FrontendBundle\Form\FilterConfig;
 
 class ProductController extends Controller
 {
@@ -51,7 +51,7 @@ class ProductController extends Controller
                 $subCatList[$item->getId()]= $item->getTitle();
             }
         }
-        $configObject = new FilterConfig();
+        $configObject = $em->getRepository(FilterConfig::class)->findFilterConfig();
         $config = $configObject->getFilterConfig($category->getTitle());
         $form = $this->createForm(ProductFilterType::class,[],[
             'action'=>$this->get('router')->generate('site_frontend_category',['slug'=>$slug]),
@@ -127,7 +127,7 @@ class ProductController extends Controller
         ];
         $breadcrumbsGenerator = $this->get('fonmaxx.breadcrumbs.generator');
         $menu = $breadcrumbsGenerator->generateMenu($arr);
-        $configObject = new FilterConfig();
+        $configObject = $em->getRepository(FilterConfig::class)->findFilterConfig();
         $config = $configObject->getFilterConfig($parentCategory->getTitle());
         $form = $this->createForm(ProductFilterType::class,[],[
             'action'=>$this->get('router')->generate('site_frontend_sub_category',[
