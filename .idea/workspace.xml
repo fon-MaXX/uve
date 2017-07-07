@@ -4,7 +4,429 @@
     <bookmark url="file://$PROJECT_DIR$/src/Site/BackendBundle/Resources/views/Order/_add_product.html.twig" line="48" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f925509e-3059-43f0-802d-a55f06f61c5f" name="Default" comment="" />
+    <list default="true" id="f925509e-3059-43f0-802d-a55f06f61c5f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/apple-touch-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/arrows-active.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/arrows-normal.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/crop.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/dialogs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/icons-big.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/icons-small.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/progress.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/quicklook-bg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/quicklook-icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/resize.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/spinner-mini.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/toolbar.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/volume_icon_box.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/volume_icon_dropbox.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/volume_icon_ftp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/volume_icon_googledrive.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/volume_icon_local.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/volume_icon_onedrive.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/img/volume_icon_sql.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/images/bx_loader.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/images/controls.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/font-awesome/FontAwesome.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBlack/Fontfabric - MullerBlack.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBlackItalic/Fontfabric - MullerBlackItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBold/Fontfabric - MullerBold.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBoldItalic/Fontfabric - MullerBoldItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerExtraBold/Fontfabric - MullerExtraBold.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerExtraBoldItalic/Fontfabric - MullerExtraBoldItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHairline/Fontfabric - MullerHairline.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHairlineItalic/Fontfabric - MullerHairlineItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHeavy/Fontfabric - MullerHeavy.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHeavyItalic/Fontfabric - MullerHeavyItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerLight/Fontfabric - MullerLight.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerLightItalic/Fontfabric - MullerLightItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerMedium/Fontfabric - MullerMedium.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerMediumItalic/Fontfabric - MullerMediumItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerRegular/Fontfabric - MullerRegular.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerRegularItalic/Fontfabric - MullerRegularItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerThin/Fontfabric - MullerThin.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerThinItalic/Fontfabric - MullerThinItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerUltraLight/Fontfabric - MullerUltraLight.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerUltraLightItalic/Fontfabric - MullerUltraLightItalic.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/myriad-pro/regular/MyriadPro-Regular.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/ajax-loader.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/bg-popup-new.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/favicon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/gray-crystal.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/loading.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/about_company.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/about_delivery.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/about_payment.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/boxed-ring.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/index-info-block.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/news-preview-example.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/no-image.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/product-main-image-thumbnail.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/product-main-image.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/product-sample.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/slider-picture.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/top-vk-widget.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/img/loading.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/favicon.ico" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/big58a1d65d7e980.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/big58a1d7b4bc7bb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/big590c5d0f45b67.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/crop_58a1d7aebb522.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/extra_small590c5d0f0bccd.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/file58a1894f139cb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/file58a189aa00810.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/file58a1d6522b55b.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/file590c5d0b72329.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/small58a1d65d7852f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/small58a1d7b4b9acb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/1/small590c5d0f1f945.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/2/big590c5d4ba0736.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/2/extra_small590c5d4b737c1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/2/file590c5d47da3b1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/2/small590c5d4b77f00.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/3/big590c5d6e9ba0b.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/3/extra_small590c5d6e62d3a.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/3/file590c5d6c22671.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/products/3/small590c5d6e6916e.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/slides/1/big59197bf330b77.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/test/slides/1/file59197b7b7d4bf.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/css/elfinder.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/css/theme.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/elfinder.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.LANG.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.ar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.bg.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.cs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.da.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.de.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.el.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.es.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.fa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.fallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.fo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.fr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.he.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.hr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.hu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.id.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.it.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.jp.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.ko.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.nl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.no.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.pl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.pt_BR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.ro.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.ru.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.sk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.sl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.sr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.sv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.tr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.ug_CN.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.uk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.vi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.zh_CN.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/dist/js/i18n/elfinder.zh_TW.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/elfinder-built.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/elfinder/elfinder-built.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/jquery-ui-built.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/jquery-ui.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/jquery-ui.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/accordion.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/autocomplete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/button.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/core.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/data.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/datepicker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/dialog.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/disable-selection.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/draggable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/droppable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-blind.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-bounce.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-clip.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-drop.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-explode.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-fade.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-fold.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-highlight.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-puff.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-pulsate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-scale.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-shake.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-size.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-slide.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect-transfer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/effect.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/escape-selector.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/focusable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/form-reset-mixin.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/form.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-af.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ar-DZ.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-az.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-be.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-bg.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-bs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-cs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-cy-GB.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-da.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-de.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-el.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-en-AU.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-en-GB.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-en-NZ.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-eo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-es.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-et.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-eu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-fa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-fi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-fo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-fr-CA.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-fr-CH.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-fr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-gl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-he.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-hi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-hr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-hu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-hy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-id.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-is.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-it-CH.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-it.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ja.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ka.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-kk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-km.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ko.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ky.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-lb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-lt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-lv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-mk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ml.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ms.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-nb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-nl-BE.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-nl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-nn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-pl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-pt-BR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ro.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ru.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-sk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-sl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-sq.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-sr-SR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-sr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-sv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-ta.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-th.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-tj.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-uk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-vi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-zh-CN.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-zh-HK.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/i18n/datepicker-zh-TW.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/ie.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/jquery-1-7.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/keycode.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/labels.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/menu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/mouse.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/plugin.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/position.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/progressbar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/resizable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/safe-active-element.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/safe-blur.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/scroll-parent.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/selectable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/selectmenu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/slider.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/sortable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/spinner.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/tabbable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/tabs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/tooltip.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/unique-id.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/version.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery-ui/ui/widget.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery/jquery-built.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery/jquery-migrate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery/jquery-migrate.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery/jquery.min.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery/jquery.slim.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery/jquery.slim.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/jquery/jquery.slim.min.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/require-built.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/require.config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/require.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/assets/require.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/bootstrap-select.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/bootstrap.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/bootstrap.min.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/font-awesome.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/ie10-viewport-bug-workaround.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/jquery-ui.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/jquery-ui.structure.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/jquery-ui.theme.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/jquery.bxslider.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/css/perfect-scrollbar.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/font-awesome/fontawesome-webfont.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/font-awesome/fontawesome-webfont.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/font-awesome/fontawesome-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/font-awesome/fontawesome-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/font-awesome/fontawesome-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/georgia/Georgia Bold Italic.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/georgia/Georgia Bold.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/georgia/Georgia Italic.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/georgia/Georgia.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBlack/fontfabric_-_mullerblack-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBlack/fontfabric_-_mullerblack-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBlack/fontfabric_-_mullerblack-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBlackItalic/fontfabric_-_mullerblackitalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBlackItalic/fontfabric_-_mullerblackitalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBlackItalic/fontfabric_-_mullerblackitalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBold/fontfabric_-_mullerbold-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBold/fontfabric_-_mullerbold-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBold/fontfabric_-_mullerbold-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBoldItalic/fontfabric_-_mullerbolditalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBoldItalic/fontfabric_-_mullerbolditalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerBoldItalic/fontfabric_-_mullerbolditalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerExtraBold/fontfabric_-_mullerextrabold-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerExtraBold/fontfabric_-_mullerextrabold-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerExtraBold/fontfabric_-_mullerextrabold-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerExtraBoldItalic/fontfabric_-_mullerextrabolditalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerExtraBoldItalic/fontfabric_-_mullerextrabolditalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerExtraBoldItalic/fontfabric_-_mullerextrabolditalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHairline/fontfabric_-_mullerhairline-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHairline/fontfabric_-_mullerhairline-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHairline/fontfabric_-_mullerhairline-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHairlineItalic/fontfabric_-_mullerhairlineitalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHairlineItalic/fontfabric_-_mullerhairlineitalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHairlineItalic/fontfabric_-_mullerhairlineitalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHeavy/fontfabric_-_mullerheavy-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHeavy/fontfabric_-_mullerheavy-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHeavy/fontfabric_-_mullerheavy-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHeavyItalic/fontfabric_-_mullerheavyitalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHeavyItalic/fontfabric_-_mullerheavyitalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerHeavyItalic/fontfabric_-_mullerheavyitalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerLight/fontfabric_-_mullerlight-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerLight/fontfabric_-_mullerlight-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerLight/fontfabric_-_mullerlight-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerLightItalic/fontfabric_-_mullerlightitalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerLightItalic/fontfabric_-_mullerlightitalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerLightItalic/fontfabric_-_mullerlightitalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerMedium/fontfabric_-_mullermedium-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerMedium/fontfabric_-_mullermedium-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerMedium/fontfabric_-_mullermedium-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerMediumItalic/fontfabric_-_mullermediumitalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerMediumItalic/fontfabric_-_mullermediumitalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerMediumItalic/fontfabric_-_mullermediumitalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerRegular/fontfabric_-_mullerregular-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerRegular/fontfabric_-_mullerregular-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerRegular/fontfabric_-_mullerregular-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerRegularItalic/fontfabric_-_mullerregularitalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerRegularItalic/fontfabric_-_mullerregularitalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerRegularItalic/fontfabric_-_mullerregularitalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerThin/fontfabric_-_mullerthin-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerThin/fontfabric_-_mullerthin-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerThin/fontfabric_-_mullerthin-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerThinItalic/fontfabric_-_mullerthinitalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerThinItalic/fontfabric_-_mullerthinitalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerThinItalic/fontfabric_-_mullerthinitalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerUltraLight/fontfabric_-_mullerultralight-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerUltraLight/fontfabric_-_mullerultralight-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerUltraLight/fontfabric_-_mullerultralight-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerUltraLightItalic/fontfabric_-_mullerultralightitalic-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerUltraLightItalic/fontfabric_-_mullerultralightitalic-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/fonts/muller/MullerUltraLightItalic/fontfabric_-_mullerultralightitalic-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/desktop.ini" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/loader.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/contacts-rhombuses.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/curved-lines-sprite.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/icons-sprite.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/logo.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/plus-minus.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/share-marks-sprite.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/text-less-logo.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/uvelife_facebook.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/uvelife_instagram.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/uvelife_viber.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/images/main/uvelife_vk.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/bootstrap-select.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/bootstrap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/html5shiv.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/ie-emulation-modes-warning.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/ie10-viewport-bug-workaround.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/jquery-ui.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/jquery.bxslider.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/jquery.infinitescroll.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/jquery.jscroll.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/jquery.validate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/masonry.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/masonry.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/perfect-scrollbar.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/sitefrontend/js/respond.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/js/init.jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/js/init.standard.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/js/ready.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/changelog.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/jquery.tinymce.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/ar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/az.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/bg_BG.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/bs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/cs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/de_AT.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/dv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/et.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/eu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/fa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/fa_IR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/fi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/fr_FR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/gd.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/gl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/he_IL.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/id.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/it.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/kk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/lv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/pl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/pt_BR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/readme.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/ru.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/sk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/sv_SE.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/th_TH.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/ug.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/uk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/uk_UA.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/vi_VN.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/langs/zh_CN.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/license.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/tinymce.jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/bundles/stfalcontinymce/vendor/tinymce/tinymce.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/cache_clear.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/config.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/robots.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uvi-life.iml" afterPath="$PROJECT_DIR$/.idea/uvi-life.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="uvi-life.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -15,7 +437,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -32,65 +453,114 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FilterConfig.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/FilterConfig.php">
+      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/ProductController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18132855">
-              <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="56">
+              <caret line="53" column="84" lean-forward="false" selection-start-line="53" selection-start-column="84" selection-end-line="53" selection-end-column="84" />
+              <folding>
+                <element signature="e#50#109#0#PHP" expanded="true" />
+                <element signature="e#5974#6002#0#PHP" expanded="true" />
+                <element signature="e#6959#6986#1#PHP" expanded="true" />
+                <element signature="e#7505#7533#1#PHP" expanded="true" />
+                <element signature="e#7711#7748#1#PHP" expanded="true" />
+                <element signature="e#7978#8021#0#PHP" expanded="true" />
+                <element signature="e#8508#10699#0#PHP" expanded="false" />
+                <element signature="e#10421#10464#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/SetController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="39" column="58" lean-forward="true" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+              <folding>
+                <element signature="e#50#109#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FilterConfig.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfig.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="119" column="34" lean-forward="false" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="34" />
+              <folding>
+                <element signature="e#576#1084#0#PHP" expanded="false" />
+                <element signature="e#1127#1650#0#PHP" expanded="false" />
+                <element signature="e#1698#2215#0#PHP" expanded="false" />
+                <element signature="e#2261#2752#0#PHP" expanded="false" />
+                <element signature="e#2790#3281#0#PHP" expanded="false" />
+                <element signature="e#9338#9971#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FilterConfigAdmin.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigAdmin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1084">
+              <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+              <folding>
+                <element signature="e#44#87#0#PHP" expanded="true" />
+                <marker date="1499423747370" expanded="true" signature="3806:4420" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>.global-cart-items-container form</find>
+      <find>prduct</find>
+      <find>make-order</find>
+      <find>data-href</find>
+      <find>saveTempForm</find>
+      <find>addSetToOrder</find>
+      <find>OrderHasSetComponent</find>
+      <find>addSets</find>
+      <find>getOrderObject</find>
+      <find>site_frontend_order_remove_product</find>
+      <find>orderHasProduct</find>
+      <find>cart-remove-item</find>
+      <find>removeItemFromOrder</find>
+      <find>product-list-filters-wrapper</find>
+      <find>insertionColors</find>
+      <find>filterConfigInsertionType</find>
+      <find>filterConfigFilters</find>
+      <find>getFilterConfigState</find>
+      <find>insertionType</find>
+      <find>getFilterConfigInsertionType</find>
+      <find>chainSizes</find>
+      <find>getFilterConfigChainSizes</find>
+      <find>getFilterConfigThemeForFilter</find>
+      <find>getFilterConfigTheme</find>
+      <find>getFilterConfigStateForFilter</find>
+      <find>getFilterConfigInsertionTypeForFilter</find>
+      <find>getFilterConfigChainSizesForFilter</find>
+      <find>getPriceForFilter</find>
+      <find>getFilterConfig</find>
+      <find>use Site\BackendBundle\Entity\FilterConfig;</find>
+    </findStrings>
+    <dirStrings>
+      <dir>E:\OpenServer\domains\upbeat\uvelife\src\Site\BackendBundle\Entity</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/NewPost/NewPostService.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/EventListeners/FlushListener.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/NovaPoshtaAdmin.php" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/translations/messages.ru.yml" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/translations/messages.en.yml" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/NovaPoshtaRegionRepository.php" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Order/_novaPoshtaDataForm.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Form/NovaPoshtaType.php" />
-        <option value="$PROJECT_DIR$/app/AppKernel.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Resources/views/layout.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/RingSize.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/RingSizeAdmin.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Resources/config/services.yml" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/InsertionColorAdmin.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/ChainSizeAdmin.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/ChainSize.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/Product.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/StaticSeoPagesAdmin.php" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Default/contacts.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Product/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Set/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Selected/comparison_list.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Selected/comparison_show.html.twig" />
-        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/InsertionColor.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/LoadXml/XmlLoader.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/Order.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/UkrPoshtaData.php" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/public/js/main.js" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Form/UkrPoshtaType.php" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Form/OrderType.php" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Order/_ukrPoshtaDataForm.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Order/create.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Controller/OrderController.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Resources/public/js/main.js" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Resources/public/css/style.css" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/OrderAdmin.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Resources/views/Order/_edit.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Controller/OrderController.php" />
-        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Parts/_header.html.twig" />
-        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Controller/SelectedController.php" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/Site/UploadBundle/Services/FileHandler.php" />
@@ -98,13 +568,56 @@
         <option value="$PROJECT_DIR$/www/app_dev.php" />
         <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/public/css/style.css" />
         <option value="$PROJECT_DIR$/www/bundles/sitefrontend/css/style.css" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Services/NumberInCart.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Form/OrderHasSetType.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Form/OrderType.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/public/js/main.js" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/SetRepository.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/OrderHasSet.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/Product.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/OrderHasSetComponent.php" />
+        <option value="&lt;7cd94907-515b-45b9-9c77-55b3f630206e&gt;/src/Site/FrontendBundle/Form/OrderHasSetComponentType.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/ProductRepository.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Form/OrderHasProductType.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Form/OrderHasSetComponentType.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Order/_ajax_cart.html.twig" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Order/create.html.twig" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Controller/OrderController.php" />
+        <option value="&lt;d2fe8b67-073e-47e7-871e-df400b2925f4&gt;/src/Site/BackendBundle/Admin/TutorialVideoAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigInsertionColors.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigInsertionType.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigState.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigProductType.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigProductTypeAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigInsertionTypeAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigInsertionColorsAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigChainSizesAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigStateAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigThemeValueAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigThemeValue.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigTheme.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigThemeAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigFiltersAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigFiltersTypeAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Resources/config/services.yml" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Resources/views/Parts/left_sidebar.html.twig" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/FilterConfigRepository.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Form/FilterConfig.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfig.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Controller/ProductController.php" />
+        <option value="$PROJECT_DIR$/src/Site/FrontendBundle/Controller/SetController.php" />
+        <option value="$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigAdmin.php" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpServers">
     <servers />
@@ -113,18 +626,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
+    <option name="width" value="1370" />
     <option name="height" value="744" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -141,8 +644,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -150,15 +653,9 @@
               <option name="myItemId" value="uvi-life" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="uvi-life" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uvi-life" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -167,12 +664,92 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
               <option name="myItemId" value="uvi-life" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvi-life" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sitefrontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvi-life" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bundles" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sitefrontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvi-life" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -181,16 +758,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="uvi-life" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Site" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -199,20 +776,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="uvi-life" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Site" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="FrontendBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -221,24 +798,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="uvi-life" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Site" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="FrontendBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -247,12 +824,72 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="uvi-life" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Site" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackendBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvi-life" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Site" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackendBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Entity" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvi-life" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uvelife" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Site" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackendBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -268,23 +905,36 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Site/upbeat/avesauto.ua" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/Site/FrontendBundle/Resources/public/js/main.js" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\OpenServer\domains\uvi-life\www\bundles\sitefrontend\css" />
-      <recent name="C:\OpenServer\domains\uvi-life\www\bundles\sitefrontend\images" />
-      <recent name="C:\OpenServer\domains\uvi-life\src\Site\FrontendBundle\Resources\public\images" />
-      <recent name="C:\OpenServer\domains\uvi-life\www\bundles\sitebackend\js" />
-      <recent name="C:\OpenServer\domains\uvi-life\www\bundles\sitebackend\css" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\OpenServer\domains\uvi-life\src\Site\FrontendBundle\Resources\views\Search" />
       <recent name="C:\OpenServer\domains\uvi-life\src\Site\FrontendBundle\Resources\public\fonts\muller\MullerBlackItalic" />
       <recent name="C:\OpenServer\domains\uvi-life\src\Site\FrontendBundle\Resources\public\fonts\muller\MullerBlack" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\OpenServer\domains\upbeat\uvelife\src\Site\BackendBundle\Entity\Repository" />
+      <recent name="C:\OpenServer\domains\uvi-life\www\bundles\sitefrontend\css" />
+      <recent name="C:\OpenServer\domains\uvi-life\www\bundles\sitefrontend\images" />
+      <recent name="C:\OpenServer\domains\uvi-life\src\Site\FrontendBundle\Resources\public\images" />
+      <recent name="C:\OpenServer\domains\uvi-life\www\bundles\sitebackend\js" />
+    </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -298,7 +948,12 @@
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
@@ -307,13 +962,29 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
+      <command value="run" />
       <scripts />
+      <node-interpreter value="project" />
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -322,31 +993,72 @@
       <changelist id="f925509e-3059-43f0-802d-a55f06f61c5f" name="Default" comment="" />
       <created>1484578096788</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1484578096788</updated>
+      <workItem from="1498814263459" duration="1508000" />
+      <workItem from="1499072130593" duration="16241000" />
+      <workItem from="1499153238284" duration="8467000" />
+      <workItem from="1499165394138" duration="16718000" />
+      <workItem from="1499238460990" duration="14879000" />
+      <workItem from="1499256116910" duration="9770000" />
+      <workItem from="1499336261912" duration="6899000" />
+      <workItem from="1499412223070" duration="10877000" />
     </task>
+    <task id="LOCAL-00001" summary="Сохранение корзины пользователя в сессию.">
+      <created>1499252831914</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1499252831914</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Сохранение корзины пользователя в сессию. (перезалил OrderController)">
+      <created>1499253340430</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1499253340430</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Добавления нескольких одинаковых товаров">
+      <created>1499265660576</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1499265660576</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Добавления возможности редактировать фильтра через админку">
+      <created>1499423924749</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1499423924749</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="85359000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267776" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33661118" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32671756" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28549618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31282052" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31423897" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -355,14 +1067,14 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32405892" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31282052" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32753405" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25945538" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32671756" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28549618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -371,6 +1083,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -383,375 +1098,498 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
+    <MESSAGE value="Сохранение корзины пользователя в сессию." />
+    <MESSAGE value="Сохранение корзины пользователя в сессию. (перезалил OrderController)" />
+    <MESSAGE value="Добавления нескольких одинаковых товаров" />
+    <MESSAGE value="Добавления возможности редактировать фильтра через админку" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавления возможности редактировать фильтра через админку" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/OrderController.php</url>
+          <line>572</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/OrderController.php</url>
+          <line>527</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/LoadXml/XmlLoader.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Order.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79533213">
-          <caret line="478" column="31" selection-start-line="478" selection-start-column="31" selection-end-line="478" selection-end-column="31" />
+        <state relative-caret-position="194">
+          <caret line="308" column="73" lean-forward="false" selection-start-line="308" selection-start-column="62" selection-end-line="308" selection-end-column="73" />
+          <folding>
+            <element signature="e#3417#4064#0#PHP" expanded="false" />
+            <element signature="e#4102#4214#0#PHP" expanded="false" />
+            <element signature="e#4255#4464#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170622105934.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Product.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26750448">
-          <caret line="20" column="211" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="211" />
+        <state relative-caret-position="422">
+          <caret line="160" column="73" lean-forward="false" selection-start-line="160" selection-start-column="73" selection-end-line="160" selection-end-column="73" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170622111527.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/OrderHasSet.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538">
-          <caret line="23" column="100" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="100" />
+        <state relative-caret-position="561">
+          <caret line="34" column="66" lean-forward="true" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/NovaPoshtaData.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61041296">
-          <caret line="110" column="7" selection-start-line="110" selection-start-column="7" selection-end-line="110" selection-end-column="7" />
+        <state relative-caret-position="153">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/SetRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11663808">
-          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        <state relative-caret-position="344">
+          <caret line="110" column="27" lean-forward="true" selection-start-line="105" selection-start-column="7" selection-end-line="110" selection-end-column="27" />
+          <folding>
+            <element signature="e#438#2857#0#PHP" expanded="false" />
+            <element signature="e#4343#5226#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Order/_ukrPoshtaDataForm.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/ProductRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.6153846">
-          <caret line="4" column="53" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="53" />
+        <state relative-caret-position="344">
+          <caret line="148" column="31" lean-forward="true" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/OrderType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.384615">
-          <caret line="103" column="45" selection-start-line="103" selection-start-column="45" selection-end-line="103" selection-end-column="45" />
+        <state relative-caret-position="357">
+          <caret line="92" column="37" lean-forward="false" selection-start-line="92" selection-start-column="37" selection-end-line="92" selection-end-column="37" />
+          <folding>
+            <element signature="e#4010#5052#0#PHP" expanded="false" />
+            <element signature="e#5062#5592#0#PHP" expanded="false" />
+            <element signature="e#5602#6162#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/UkrPoshtaData.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/OrderHasSetType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="8.0">
-          <caret line="31" column="58" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
+        <state relative-caret-position="357">
+          <caret line="31" column="35" lean-forward="true" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/UkrPoshtaType.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/OrderHasSetComponentType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="262">
+          <caret line="57" column="24" lean-forward="false" selection-start-line="47" selection-start-column="22" selection-end-line="57" selection-end-column="24" />
+          <folding>
+            <element signature="e#44#82#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/bundles/sitefrontend/js/main.js">
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/CallbackType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Resources/config/routing.yml">
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Order/_ajax_cart.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05831904">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/bundles/sitebackend/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/bundles/sitebackend/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Resources/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48114902">
-          <caret line="598" column="15" selection-start-line="598" selection-start-column="15" selection-end-line="598" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Resources/public/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7667239">
-          <caret line="199" column="45" selection-start-line="199" selection-start-column="45" selection-end-line="199" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Resources/views/Order/_edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3967684">
-          <caret line="316" column="67" selection-start-line="316" selection-start-column="67" selection-end-line="316" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923">
-          <caret line="8" column="90" selection-start-line="8" selection-start-column="90" selection-end-line="8" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Parts/_header.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.038462">
-          <caret line="38" column="116" selection-start-line="38" selection-start-column="116" selection-end-line="38" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="29" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/SelectedController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5798923">
-          <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/UploadBundle/Resources/doc/index.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="31" selection-start-line="75" selection-start-column="18" selection-end-line="78" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/public/images/watermark-01.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47512865">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/bundles/sitefrontend/images/watermark-01.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Product/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="101" selection-start-line="29" selection-start-column="101" selection-end-line="29" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/UploadBundle/Services/FileHandler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="326" column="43" selection-start-line="326" selection-start-column="43" selection-end-line="326" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Resources/config/services.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/LoadXml/XmlLoaderLogger.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Default/about_company.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="157" column="14" selection-start-line="157" selection-start-column="8" selection-end-line="157" selection-end-column="14" />
+        <state relative-caret-position="306">
+          <caret line="29" column="12" lean-forward="true" selection-start-line="29" selection-start-column="12" selection-end-line="37" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Order/create.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.88351256">
-          <caret line="29" column="65" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/public/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4811644">
-          <caret line="722" column="0" selection-start-line="722" selection-start-column="0" selection-end-line="740" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/SearchController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="44" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/DataFixtures/ORM/LoadStaticSeoPagesData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/DataFixtures/ORM/LoadStaticData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="1110" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="1110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/OrderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="346" column="27" selection-start-line="346" selection-start-column="27" selection-end-line="346" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Order.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="385" column="14" selection-start-line="385" selection-start-column="11" selection-end-line="385" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="456">
+          <caret line="59" column="51" lean-forward="false" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/OrderHasProduct.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="66" selection-end-column="5" />
+        <state relative-caret-position="466">
+          <caret line="109" column="31" lean-forward="false" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/OrderHasProductType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.269231">
-          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Controller/OrderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075">
-          <caret line="225" column="100" selection-start-line="225" selection-start-column="75" selection-end-line="225" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/SubCategoryRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3327032">
-          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+        <state relative-caret-position="323">
+          <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/OrderAddProduct.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/OrderController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="400">
+          <caret line="344" column="9" lean-forward="true" selection-start-line="344" selection-start-column="9" selection-end-line="344" selection-end-column="9" />
+          <folding>
+            <element signature="e#50#86#0#PHP" expanded="false" />
+            <element signature="e#756#1432#0#PHP" expanded="false" />
+            <element signature="e#969#997#0#PHP" expanded="false" />
+            <element signature="e#4156#4480#0#PHP" expanded="false" />
+            <element signature="e#4911#4939#0#PHP" expanded="false" />
+            <element signature="e#5097#5144#0#PHP" expanded="false" />
+            <element signature="e#5428#5455#1#PHP" expanded="false" />
+            <element signature="e#5616#6271#0#PHP" expanded="false" />
+            <element signature="e#6277#6564#0#PHP" expanded="false" />
+            <element signature="e#7092#7791#0#PHP" expanded="false" />
+            <element signature="e#7797#8388#0#PHP" expanded="false" />
+            <element signature="e#8394#8610#0#PHP" expanded="false" />
+            <element signature="e#8615#9207#0#PHP" expanded="false" />
+            <element signature="e#9209#9283#0#PHP" expanded="false" />
+            <element signature="e#10053#10442#0#PHP" expanded="false" />
+            <element signature="e#16346#17540#0#PHP" expanded="false" />
+            <element signature="e#18437#18545#0#PHP" expanded="false" />
+            <element signature="e#18551#19623#0#PHP" expanded="false" />
+            <element signature="e#19629#20290#0#PHP" expanded="false" />
+            <element signature="e#20629#22046#0#PHP" expanded="false" />
+            <element signature="e#22389#24317#0#PHP" expanded="false" />
+            <element signature="e#24323#24880#0#PHP" expanded="false" />
+            <element signature="e#24886#25747#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Product/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="58" lean-forward="true" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Product.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Product/list.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="213" column="4" selection-start-line="213" selection-start-column="4" selection-end-line="220" selection-end-column="5" />
+        <state relative-caret-position="218">
+          <caret line="38" column="63" lean-forward="true" selection-start-line="38" selection-start-column="63" selection-end-line="38" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/views/Form/_product_filter.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigChainSizes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/OrderAdmin.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigFiltersType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="92" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/StaticPageContentAdmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="34" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/StaticSeoPages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/StaticPageContent.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigInsertionType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6032316">
-          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="48" selection-end-column="42" />
+        <state relative-caret-position="357">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="48" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Resources/public/css/style.css">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigState.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59090906">
-          <caret line="3786" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="8331" selection-end-column="120" />
+        <state relative-caret-position="361">
+          <caret line="157" column="30" lean-forward="true" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/bundles/sitefrontend/css/style.css">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigInsertionTypeAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42010772">
-          <caret line="8317" column="29" selection-start-line="8317" selection-start-column="29" selection-end-line="8317" selection-end-column="29" />
+        <state relative-caret-position="289">
+          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding>
+            <element signature="e#44#87#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/app_dev.php">
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigChainSizesAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3967684">
-          <caret line="14" column="91" selection-start-line="14" selection-start-column="91" selection-end-line="14" selection-end-column="91" />
+        <state relative-caret-position="204">
+          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigInsertionColors.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="48" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigStateAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-336">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigProductTypeAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-115">
+          <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/InsertionColor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigProductType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/SiteFrontendCustomExpandedSelectType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/ProductFilterType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="87" column="53" lean-forward="false" selection-start-line="87" selection-start-column="53" selection-end-line="87" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigThemeValue.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="38" column="31" lean-forward="true" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigTheme.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="141" column="21" lean-forward="true" selection-start-line="141" selection-start-column="21" selection-end-line="141" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigInsertionColorsAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfigFilters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigThemeAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="60" column="14" lean-forward="true" selection-start-line="47" selection-start-column="8" selection-end-line="60" selection-end-column="14" />
+          <folding>
+            <element signature="e#44#87#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigThemeValueAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigFiltersAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="49" column="36" lean-forward="false" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigFiltersTypeAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="60" column="19" lean-forward="false" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Resources/config/services.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="270" column="36" lean-forward="true" selection-start-line="270" selection-start-column="4" selection-end-line="270" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Resources/views/Parts/left_sidebar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="253" column="47" lean-forward="false" selection-start-line="253" selection-start-column="47" selection-end-line="253" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Callback.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/ChainSizeRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="26" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="15" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/ContactsRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/Repository/FilterConfigRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="117" lean-forward="false" selection-start-line="16" selection-start-column="117" selection-end-line="16" selection-end-column="117" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Form/FilterConfig.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18132855">
-          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="68">
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="18" />
+          <folding>
+            <element signature="e#119#351#0#PHP" expanded="false" />
+            <element signature="e#577#661#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="53" column="84" lean-forward="false" selection-start-line="53" selection-start-column="84" selection-end-line="53" selection-end-column="84" />
+          <folding>
+            <element signature="e#50#109#0#PHP" expanded="true" />
+            <element signature="e#5974#6002#0#PHP" expanded="true" />
+            <element signature="e#6959#6986#1#PHP" expanded="true" />
+            <element signature="e#7505#7533#1#PHP" expanded="true" />
+            <element signature="e#7711#7748#1#PHP" expanded="true" />
+            <element signature="e#7978#8021#0#PHP" expanded="true" />
+            <element signature="e#8508#10699#0#PHP" expanded="false" />
+            <element signature="e#10421#10464#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/FrontendBundle/Controller/SetController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="39" column="58" lean-forward="true" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+          <folding>
+            <element signature="e#50#109#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Entity/FilterConfig.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="119" column="34" lean-forward="false" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="34" />
+          <folding>
+            <element signature="e#576#1084#0#PHP" expanded="false" />
+            <element signature="e#1127#1650#0#PHP" expanded="false" />
+            <element signature="e#1698#2215#0#PHP" expanded="false" />
+            <element signature="e#2261#2752#0#PHP" expanded="false" />
+            <element signature="e#2790#3281#0#PHP" expanded="false" />
+            <element signature="e#9338#9971#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Site/BackendBundle/Admin/FilterConfigAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1084">
+          <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+          <folding>
+            <element signature="e#44#87#0#PHP" expanded="true" />
+            <marker date="1499423747370" expanded="true" signature="3806:4420" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
