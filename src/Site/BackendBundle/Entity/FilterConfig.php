@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * FilterConfig
  *
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="filter_config")
  * @ORM\Entity(repositoryClass="Site\BackendBundle\Entity\Repository\FilterConfigRepository")
  */
@@ -31,7 +32,7 @@ class FilterConfig
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="FilterConfigChainSizes", inversedBy="filterConfig",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="FilterConfigChainSizes", inversedBy="filterConfig",cascade={"persist","remove"}, orphanRemoval=true)
      * @ORM\JoinTable(name="filter_config_has_filter_config_chain_sizes",
      *   joinColumns={
      *     @ORM\JoinColumn(name="filter_config_id", referencedColumnName="id")
@@ -46,7 +47,7 @@ class FilterConfig
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="FilterConfigInsertionColors", inversedBy="filterConfig",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="FilterConfigInsertionColors", inversedBy="filterConfig",cascade={"persist","remove"}, orphanRemoval=true)
      * @ORM\JoinTable(name="filter_config_has_filter_config_insertion_colors",
      *   joinColumns={
      *     @ORM\JoinColumn(name="filter_config_id", referencedColumnName="id")
@@ -61,7 +62,7 @@ class FilterConfig
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="FilterConfigInsertionType", inversedBy="filterConfig",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="FilterConfigInsertionType", inversedBy="filterConfig",cascade={"persist","remove"}, orphanRemoval=true)
      * @ORM\JoinTable(name="filter_config_has_filter_config_insertion_type",
      *   joinColumns={
      *     @ORM\JoinColumn(name="filter_config_id", referencedColumnName="id")
@@ -76,7 +77,7 @@ class FilterConfig
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="FilterConfigState", inversedBy="filterConfig",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="FilterConfigState", inversedBy="filterConfig",cascade={"persist","remove"}, orphanRemoval=true)
      * @ORM\JoinTable(name="filter_config_has_filter_config_state",
      *   joinColumns={
      *     @ORM\JoinColumn(name="filter_config_id", referencedColumnName="id")
@@ -91,7 +92,7 @@ class FilterConfig
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="FilterConfigTheme", inversedBy="filterConfig",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="FilterConfigTheme", inversedBy="filterConfig",cascade={"persist","remove"}, orphanRemoval=true)
      * @ORM\JoinTable(name="filter_config_has_filter_config_theme",
      *   joinColumns={
      *     @ORM\JoinColumn(name="filter_config_id", referencedColumnName="id")

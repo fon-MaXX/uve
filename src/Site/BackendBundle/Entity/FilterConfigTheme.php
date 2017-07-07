@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * FilterConfigTheme
  *
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="filter_config_theme", indexes={@ORM\Index(name="fk_filter_config_theme_filter_config_product_type1_idx", columns={"filter_config_product_type_id"})})
  * @ORM\Entity
  */
@@ -41,7 +42,7 @@ class FilterConfigTheme
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="FilterConfigThemeValue", mappedBy="filterConfigTheme",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="FilterConfigThemeValue", mappedBy="filterConfigTheme", cascade={"persist","remove"}, orphanRemoval=true)
      */
     private $filterConfigThemeValue;
 
@@ -56,7 +57,7 @@ class FilterConfigTheme
 
     public function __toString()
     {
-        return ($this->filterConfigProductType)?$this->filterConfigProductType->getTitle():'';
+        return ($this->filterConfigProductType) ? $this->filterConfigProductType->getTitle() : '';
     }
 
     /**

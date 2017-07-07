@@ -31,7 +31,7 @@ class FilterConfigThemeValue
     /**
      * @var \FilterConfigTheme
      *
-     * @ORM\ManyToOne(targetEntity="FilterConfigTheme")
+     * @ORM\ManyToOne(targetEntity="FilterConfigTheme", inversedBy="filterConfigThemeValue")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="filter_config_theme_id", referencedColumnName="id")
      * })
