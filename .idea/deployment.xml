@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" uploadOnCheckin="7cd94907-515b-45b9-9c77-55b3f630206e">
+  <component name="PublishConfigData" persistUploadOnCheckin="false">
     <serverData>
       <paths name="avesauto.ua">
         <serverdata>
@@ -129,6 +129,5 @@
         </serverdata>
       </paths>
     </serverData>
-    <option name="myUploadOnCheckinName" value="Димын хостинг" />
   </component>
 </project>
