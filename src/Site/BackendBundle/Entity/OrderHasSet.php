@@ -53,6 +53,25 @@ class OrderHasSet
      */
     private $number=1;
     private $delete=false;
+
+    private $deleteParameter = '';
+
+    /**
+     * @return string
+     */
+    public function getDeleteParameter()
+    {
+        return $this->deleteParameter;
+    }
+
+    /**
+     * @param string $deleteParameter
+     */
+    public function setDeleteParameter($deleteParameter)
+    {
+        $this->deleteParameter = $deleteParameter;
+    }
+
     public function getDelete(){
         return $this->delete;
     }

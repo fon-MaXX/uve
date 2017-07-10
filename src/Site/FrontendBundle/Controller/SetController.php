@@ -97,7 +97,7 @@ class SetController extends Controller
     public function showAction(Request $request,$slug)
     {
         $em = $this->getDoctrine()->getManager();
-        $set = $em->getRepository('SiteBackendBundle:Set')->findOneBySlug($slug);
+        $set = $em->getRepository('SiteBackendBundle:Set')->getSetBySlug($slug);
         if(!$set){
             throw new NotFoundHttpException('Товар с параметром = '.$slug.' не найден');
         }
