@@ -22,3 +22,7 @@
 /web/js
 /.idea
 /.idea/
+*.idea/
+/web/assets
+/web/assets/
+*web/assets/
