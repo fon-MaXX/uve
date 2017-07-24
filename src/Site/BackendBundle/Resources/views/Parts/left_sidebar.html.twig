@@ -12,15 +12,20 @@
             <ul class="treeview-menu menu_level_1 menu-open">
                 {% if admin.isGranted('LIST') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_product_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Список</a>
+                        <a href="{{ url("admin_site_backend_product_list") }}"><i class="fa fa-angle-double-right"
+                                                                                  aria-hidden="true"></i>Список</a>
                     </li>
                 {% endif %}
                 {% if admin.isGranted('CREATE') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_product_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Добавить новый</a>
+                        <a href="{{ url("admin_site_backend_product_create") }}"><i class="fa fa-angle-double-right"
+                                                                                    aria-hidden="true"></i>Добавить
+                            новый</a>
                     </li>
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_xmlload_loadXml") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Загрузить с файла</a>
+                        <a href="{{ url("admin_site_backend_xmlload_loadXml") }}"><i class="fa fa-angle-double-right"
+                                                                                     aria-hidden="true"></i>Загрузить с
+                            файла</a>
                     </li>
                 {% endif %}
             </ul>
@@ -39,12 +44,15 @@
             <ul class="treeview-menu menu_level_1 menu-open">
                 {% if admin.isGranted('LIST') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_set_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Список</a>
+                        <a href="{{ url("admin_site_backend_set_list") }}"><i class="fa fa-angle-double-right"
+                                                                              aria-hidden="true"></i>Список</a>
                     </li>
                 {% endif %}
                 {% if admin.isGranted('CREATE') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_set_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Добавить новый</a>
+                        <a href="{{ url("admin_site_backend_set_create") }}"><i class="fa fa-angle-double-right"
+                                                                                aria-hidden="true"></i>Добавить
+                            новый</a>
                     </li>
                 {% endif %}
             </ul>
@@ -96,35 +104,53 @@
         </a>
         <ul class="treeview-menu menu_level_1 menu-open">
             <li class="first last">
-                <a href="{{ url("admin_site_backend_insertioncolor_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Цвет вставки список</a>
+                <a href="{{ url("admin_site_backend_insertioncolor_list") }}"><i class="fa fa-angle-double-right"
+                                                                                 aria-hidden="true"></i>Цвет вставки
+                    список</a>
             </li>
             <li class="first last">
-                <a href="{{ url("admin_site_backend_insertioncolor_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Цвет вставки добавить</a>
+                <a href="{{ url("admin_site_backend_insertioncolor_create") }}"><i class="fa fa-angle-double-right"
+                                                                                   aria-hidden="true"></i>Цвет вставки
+                    добавить</a>
             </li>
             <li class="first last">
-                <a href="{{ url("admin_site_backend_ringsize_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Размер кольца список</a>
+                <a href="{{ url("admin_site_backend_ringsize_list") }}"><i class="fa fa-angle-double-right"
+                                                                           aria-hidden="true"></i>Размер кольца
+                    список</a>
             </li>
             <li class="first last">
-                <a href="{{ url("admin_site_backend_ringsize_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Размер кольца добавить</a>
+                <a href="{{ url("admin_site_backend_ringsize_create") }}"><i class="fa fa-angle-double-right"
+                                                                             aria-hidden="true"></i>Размер кольца
+                    добавить</a>
             </li>
             <li class="first last">
-                <a href="{{ url("admin_site_backend_chainsize_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Длинна цепи список</a>
+                <a href="{{ url("admin_site_backend_chainsize_list") }}"><i class="fa fa-angle-double-right"
+                                                                            aria-hidden="true"></i>Длинна цепи
+                    список</a>
             </li>
             <li class="first last">
-                <a href="{{ url("admin_site_backend_chainsize_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Длинна цепи добавить</a>
+                <a href="{{ url("admin_site_backend_chainsize_create") }}"><i class="fa fa-angle-double-right"
+                                                                              aria-hidden="true"></i>Длинна цепи
+                    добавить</a>
             </li>
             <li class="first last">
-                <a href="{{ url("admin_site_backend_sharetag_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Теги продаж список</a>
+                <a href="{{ url("admin_site_backend_sharetag_list") }}"><i class="fa fa-angle-double-right"
+                                                                           aria-hidden="true"></i>Теги продаж список</a>
             </li>
             <li class="first last">
-                <a href="{{ url("admin_site_backend_sharetag_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Теги продаж добавить</a>
+                <a href="{{ url("admin_site_backend_sharetag_create") }}"><i class="fa fa-angle-double-right"
+                                                                             aria-hidden="true"></i>Теги продаж добавить</a>
             </li>
 
             <li class="first last">
-                <a href="{{ url("admin_site_backend_newstag_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Теги новостей список</a>
+                <a href="{{ url("admin_site_backend_newstag_list") }}"><i class="fa fa-angle-double-right"
+                                                                          aria-hidden="true"></i>Теги новостей
+                    список</a>
             </li>
             <li class="first last">
-                <a href="{{ url("admin_site_backend_newstag_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Теги новостей добавить</a>
+                <a href="{{ url("admin_site_backend_newstag_create") }}"><i class="fa fa-angle-double-right"
+                                                                            aria-hidden="true"></i>Теги новостей
+                    добавить</a>
             </li>
 
 
@@ -143,23 +169,31 @@
             <ul class="treeview-menu menu_level_1 menu-open">
                 {% if admin.isGranted('LIST') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_category_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Список категорий</a>
+                        <a href="{{ url("admin_site_backend_category_list") }}"><i class="fa fa-angle-double-right"
+                                                                                   aria-hidden="true"></i>Список
+                            категорий</a>
                     </li>
                 {% endif %}
                 {% if admin.isGranted('CREATE') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_category_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Добавить категорию</a>
+                        <a href="{{ url("admin_site_backend_category_create") }}"><i class="fa fa-angle-double-right"
+                                                                                     aria-hidden="true"></i>Добавить
+                            категорию</a>
                     </li>
                 {% endif %}
                 {% set admin = admin_pool.adminByAdminCode('site_backend.admin.sub.category') %}
                 {% if admin.isGranted('LIST') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_subcategory_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Список подкатегорий</a>
+                        <a href="{{ url("admin_site_backend_subcategory_list") }}"><i class="fa fa-angle-double-right"
+                                                                                      aria-hidden="true"></i>Список
+                            подкатегорий</a>
                     </li>
                 {% endif %}
                 {% if admin.isGranted('CREATE') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_subcategory_create") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Добавить подкатегорию</a>
+                        <a href="{{ url("admin_site_backend_subcategory_create") }}"><i class="fa fa-angle-double-right"
+                                                                                        aria-hidden="true"></i>Добавить
+                            подкатегорию</a>
                     </li>
                 {% endif %}
             </ul>
@@ -196,16 +230,29 @@
             <ul class="treeview-menu menu_level_1 menu-open">
                 {% if admin.isGranted('LIST') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_callback_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Запросы на перезвон</a>
+                        <a href="{{ url("admin_site_backend_callback_list") }}"><i class="fa fa-angle-double-right"
+                                                                                   aria-hidden="true"></i>Запросы на
+                            перезвон</a>
                     </li>
                 {% endif %}
                 {% set admin = admin_pool.adminByAdminCode('site_backend.admin.contacts') %}
                 {% if admin.isGranted('LIST') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_contacts_list") }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Запросы о контактах</a>
+                        <a href="{{ url("admin_site_backend_contacts_list") }}"><i class="fa fa-angle-double-right"
+                                                                                   aria-hidden="true"></i>Запросы о
+                            контактах</a>
                     </li>
                 {% endif %}
             </ul>
+        </li>
+    {% endif %}
+    {% set admin = admin_pool.adminByAdminCode('site_backend.admin.filter_config') %}
+    {% if admin.isGranted('LIST') or admin.isGranted('CREATE') %}
+        <li class="first last treeview">
+            <a href="{{ url("admin_site_backend_filterconfig_list") }}">
+                <i class="fa fa-cogs"></i>
+                <span>Настройка фильтров</span>
+            </a>
         </li>
     {% endif %}
 </ul>

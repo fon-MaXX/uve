@@ -178,7 +178,7 @@
                                         <span class="code-wrapper">{{ setItem.cod }}</span>
                                     </div>
                                     <div class="global-cart-item-remove text-right">
-                                        <span data-url="{{ url("site_frontend_order_remove_set",{'slug':setItem.slug}) }}" class="cart-remove-item collection-remove">x</span>
+                                        <span data-url="{{ url("site_frontend_order_remove_set",{'slug':orderHasSet.vars.value.deleteparameter}) }}" class="cart-remove-item collection-remove">x</span>
                                     </div>
                                 </div>
                                 <div class="global-cart-item-content-container">

@@ -156,8 +156,7 @@ class OrderController extends Controller
     public function removeSetAction(Request $request, $slug)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('SiteBackendBundle:Set')->findOneBySlug($slug);
-        $this->removeSetFromOrder($entity);
+        $this->removeSetFromOrder($slug);
         return new Response('success');
     }
 
@@ -263,11 +262,11 @@ class OrderController extends Controller
 //        }
 //    }
 
-    private function removeSetFromOrder($entity)
+    private function removeSetFromOrder($slug)
     {
         $order = $this->getNewOrderObject();
         foreach ($order->getOrderHasSets() as $key => $orderHasSets) {
-            if ($orderHasSets->getSet()->getId() == $entity->getId()) {
+            if ($orderHasSets->getDeleteParameter() == $slug) {
                 unset($order->getOrderHasSets()[$key]);
             }
         }
@@ -417,30 +416,45 @@ class OrderController extends Controller
     {
         $order = $this->getNewOrderObject();
         $em = $this->getDoctrine()->getManager();
-        $inOrder = false;
-        foreach ($order->getOrderHasSets() as $orderHasSet) {
-            if ($orderHasSet->getSet()->getId() == $set->getId()) {
-                $inOrder = true;
-            }
-        }
-        if ($inOrder == false) {
+
+        if ($set) {
             $orderHasSet = new OrderHasSet();
             $orderHasSet->setSet($set);
-//            $orderHasSet->setOrder($order);
             $components = $set->getProducts();
+            $tempComponents = [];
             foreach ($components as $component) {
+                $tempComponents[$component->getId()] = $component;
+            }
+            ksort($tempComponents);
+            foreach ($tempComponents as $component) {
                 $orderHasSetComponent = new OrderHasSetComponent();
                 $orderHasSetComponent->setProduct($component);
-                $orderHasSetComponent->setOrderHasSet($orderHasSet);
-                $em->persist($orderHasSetComponent);
                 $orderHasSet->addOrderHasSetComponent($orderHasSetComponent);
                 $em->persist($orderHasSet);
             }
-            $order->addOrderHasSet($orderHasSet);
-            $em->persist($order);
+
+            $orderHasSet->setDeleteParameter(time());
+            $inOrder = self::checkOrderHasSet($order, $orderHasSet);
+
+            if ($inOrder == false) {
+                $orderHasSet = new OrderHasSet();
+                $orderHasSet->setDeleteParameter(time());
+                $orderHasSet->setSet($set);
+//            $orderHasSet->setOrder($order);
+                $components = $set->getProducts();
+                foreach ($components as $component) {
+                    $orderHasSetComponent = new OrderHasSetComponent();
+                    $orderHasSetComponent->setProduct($component);
+                    $orderHasSetComponent->setOrderHasSet($orderHasSet);
+                    $em->persist($orderHasSetComponent);
+                    $orderHasSet->addOrderHasSetComponent($orderHasSetComponent);
+                    $em->persist($orderHasSet);
+                }
+                $order->addOrderHasSet($orderHasSet);
+                $em->persist($order);
+            }
             $this->addOrderToSession($order, $this->newCartSession);
         }
-
         return $order;
     }
 
@@ -513,6 +527,73 @@ class OrderController extends Controller
         }
     }
 
+    private function checkOrderHasSet($order, $orderHasSet)
+    {
+        $inOrder = false;
+        if (count($order->getOrderHasSets())) {
+            foreach ($order->getOrderHasSets() as $item) {
+                if ($item->getSet()->getId() == $orderHasSet->getSet()->getId()) {
+                    $arr = [];
+                    $arrOrder = [];
+                    foreach ($item->getOrderHasSetComponents() as $orderHasSetComponent) {
+                        $ringSizes = $orderHasSetComponent->getRingSize();
+                        $chainSize = $orderHasSetComponent->getChainSize();
+                        $insertionColor = $orderHasSetComponent->getInsertionColor();
+                        $presence = $orderHasSetComponent->getPresence();
+                        $arr[$orderHasSetComponent->getProduct()->getId()] = [
+                            'insertionColor' => $insertionColor,
+                            'chainSize' => $chainSize,
+                            'ringSizes' => $ringSizes,
+                            'presence' => $presence,
+                        ];
+                    }
+                    foreach ($orderHasSet->getOrderHasSetComponents() as $orderHasSetComponent) {
+                        $ringSizes = $orderHasSetComponent->getRingSize();
+                        $chainSize = $orderHasSetComponent->getChainSize();
+                        $insertionColor = $orderHasSetComponent->getInsertionColor();
+                        $presence = $orderHasSetComponent->getPresence();
+                        $arrOrder[$orderHasSetComponent->getProduct()->getId()] = [
+                            'insertionColor' => $insertionColor,
+                            'chainSize' => $chainSize,
+                            'ringSizes' => $ringSizes,
+                            'presence' => $presence,
+                        ];
+                    }
+                    $isInOrderArr = [];
+                    foreach ($arr as $k => $item2) {
+                        if (
+                            $item2['insertionColor'] == $arrOrder[$k]['insertionColor'] and
+                            $item2['chainSize'] == $arrOrder[$k]['chainSize'] and
+                            $item2['ringSizes'] == $arrOrder[$k]['ringSizes'] and
+                            $item2['presence'] == $arrOrder[$k]['presence']
+                        ) {
+                            $isInOrderArr[] = true;
+                        } else {
+                            $isInOrderArr[] = false;
+                        }
+                    }
+                    $isInOrder = false;
+                    foreach ($isInOrderArr as $item3) {
+                        $isInOrder = true;
+                        if ($item3 == false) {
+                            $isInOrder = false;
+                            break;
+                        }
+                    }
+                    if ($isInOrder == true) {
+                        $inOrder = true;
+                        $number = $item->getNumber();
+                        $item->setNumber($number + 1);
+                    }
+                }
+            }
+        }
+
+        $this->addOrderToSession($order, $this->newCartSession);
+
+        return $inOrder;
+    }
+
     /**
      * method to handle submit of set_show
      *
@@ -533,28 +614,24 @@ class OrderController extends Controller
             return $order;
         }
         $orderHasSetForm = $this->createForm(OrderHasSetType::class, $orderHasSet, []);
-
         if ($request->isMethod('POST') && $request->request->has($orderHasSetForm->getName())) {
             $orderHasSetForm->handleRequest($request);
-            if ($orderHasSetForm->isValid()) {
+//            if ($orderHasSetForm->isValid()) {
 //            we just need to add orderHasSet to current Order to have all states selected in show
 //            and add it to session
-                if (count($order->getOrderHasSets())) {
-                    foreach ($order->getOrderHasSets() as $item) {
-                        if ($item->getSet()->getId() == $orderHasSet->getSet()->getId()) {
-                            $order->removeOrderHasSet($item);
-                            $em->persist($order);
-                        }
-                    }
-                }
+            $orderHasSet->setDeleteParameter(time());
+            $inOrder = self::checkOrderHasSet($order, $orderHasSet);
+            if ($inOrder == false) {
                 $order->addOrderHasSet($orderHasSet);
-                $em->persist($order);
-                $this->addOrderToSession($order, $this->newCartSession);
-//                $this->addItemToSession($orderHasSet->getSet(),'set',$this->cartSession);
-            } else {
-                return false;
             }
+            $em->persist($order);
+            $this->addOrderToSession($order, $this->newCartSession);
+//                $this->addItemToSession($orderHasSet->getSet(),'set',$this->cartSession);
+//            } else {
+//                return $order;
+//            }
         }
+
         return $order;
     }
 
@@ -632,12 +709,17 @@ class OrderController extends Controller
         $em = $this->getDoctrine()->getManager();
         $slug = $request->query->get('slug', null);
         if ($slug) {
-            $set = $em->getRepository('SiteBackendBundle:Set')->findOneBySlug($slug);
+            $set = $em->getRepository('SiteBackendBundle:Set')->getSetBySlug($slug);
             if ($set) {
                 $orderHasSet = new OrderHasSet();
                 $orderHasSet->setSet($set);
                 $components = $set->getProducts();
+                $tempComponents = [];
                 foreach ($components as $component) {
+                    $tempComponents[$component->getId()] = $component;
+                }
+                ksort($tempComponents);
+                foreach ($tempComponents as $component) {
                     $orderHasSetComponent = new OrderHasSetComponent();
                     $orderHasSetComponent->setProduct($component);
                     $orderHasSet->addOrderHasSetComponent($orderHasSetComponent);

@@ -267,3 +267,51 @@ services:
             - { name: doctrine.event_subscriber, connection: default }
         calls:
             - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+    site_backend.admin.filter_config:
+        class: Site\BackendBundle\Admin\FilterConfigAdmin
+        arguments: [~, Site\BackendBundle\Entity\FilterConfig, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FilterConfig }
+
+    site_backend.admin.filter_config_chain_sizes:
+        class: Site\BackendBundle\Admin\FilterConfigChainSizesAdmin
+        arguments: [~, Site\BackendBundle\Entity\FilterConfigChainSizes, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FilterConfigChainSizes }
+
+    site_backend.admin.filter_config_insertion_colors:
+        class: Site\BackendBundle\Admin\FilterConfigInsertionColorsAdmin
+        arguments: [~, Site\BackendBundle\Entity\FilterConfigInsertionColors, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FilterConfigInsertionColors }
+
+    site_backend.admin.filter_config_insertion_type:
+        class: Site\BackendBundle\Admin\FilterConfigInsertionTypeAdmin
+        arguments: [~, Site\BackendBundle\Entity\FilterConfigInsertionType, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FilterConfigInsertionType }
+
+    site_backend.admin.filter_config_product_type:
+        class: Site\BackendBundle\Admin\FilterConfigProductTypeAdmin
+        arguments: [~, Site\BackendBundle\Entity\FilterConfigProductType, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FilterConfigProductType }
+
+    site_backend.admin.filter_config_state:
+        class: Site\BackendBundle\Admin\FilterConfigStateAdmin
+        arguments: [~, Site\BackendBundle\Entity\FilterConfigState, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FilterConfigState }
+
+    site_backend.admin.filter_config_theme:
+        class: Site\BackendBundle\Admin\FilterConfigThemeAdmin
+        arguments: [~, Site\BackendBundle\Entity\FilterConfigTheme, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FilterConfigTheme }
+
+    site_backend.admin.filter_config_theme_value:
+        class: Site\BackendBundle\Admin\FilterConfigThemeValueAdmin
+        arguments: [~, Site\BackendBundle\Entity\FilterConfigThemeValue, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: FilterConfigThemeValue }

@@ -157,7 +157,7 @@
                         <span class="code-wrapper">{{ setItem.cod }}</span>
                     </div>
                     <div class="global-cart-item-remove text-right">
-                        <span data-url="{{ url("site_frontend_order_remove_set",{'slug':setItem.slug}) }}"
+                        <span data-url="{{ url("site_frontend_order_remove_set",{'slug':orderHasSet.vars.value.deleteparameter}) }}"
                               class="cart-remove-item">x</span>
                     </div>
                 </div>

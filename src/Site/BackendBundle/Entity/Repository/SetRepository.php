@@ -86,6 +86,7 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin('products.insertionColors','insertionColors')
             ->leftJoin('products.chainSizes','chainSizes')
             ->where('s.slug =:slug')
+            ->orderBy('products.id', 'ASC')
             ->setParameter('slug', $slug)
             ->getQuery()
             ->getOneOrNullResult();
