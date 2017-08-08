@@ -10,8 +10,19 @@ services:
         arguments:
             - "@session"
 
+    fonmaxx.recaptcha.validate:
+            class: Site\FrontendBundle\Services\RecaptchaValidate
+            arguments:
+                - "%recaptcha%"
+
     product_state.twig_extension:
         class: Site\FrontendBundle\Twig\Extension\ProductStateExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    rating.twig_extension:
+        class: Site\FrontendBundle\Twig\Extension\RatingExtension
         public: false
         tags:
             - { name: twig.extension }

@@ -611,3 +611,48 @@ body .index-product-input {
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
+.top-head-block-child{
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    margin-left: 15px;
+}
+.block-child-body-blue, .block-child-body-blue-order {
+    background-color: #AFA1EC;
+}
+.block-child-href-blue {
+    background-color: #8971F1;
+}
+.block-child-body-title, .block-child-body-title-order {
+    font-family: 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+.top-head-block-child-href a{
+    color: #fff;
+}
+.block-child-body-content{
+    font-size: 16px;
+}
+.top-head-block-child-href a:focus{
+    color: #fff;
+    outline: 0;
+}
+.block-child-body-pink {
+    background-color: #ECA1A1;
+}
+.block-child-href-pink {
+    background-color: #F17171;
+}
+.block-child-body-green, .block-child-body-green-order {
+    background-color: #AFCEA1;
+}
+.block-child-href-green {
+    background-color: #89BE71;
+}
+.top-block-wrapper{
+    margin-top: 20px;
+}

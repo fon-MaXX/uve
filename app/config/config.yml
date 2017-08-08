@@ -10,6 +10,9 @@ parameters:
         send_to:
           - 'uvelife@gmail.com'
         send_from: 'no-reply@uvelife.com'
+    recaptcha:
+      site_key: "6LfJJCsUAAAAADpp4W_SLgJDaL6cxYTYaw1_CvOP"
+      secret_key: "6LfJJCsUAAAAAIvq-Atj_KEF18zV9WLv_v1MjhKt"
 
 framework:
     #esi:             ~
@@ -46,6 +49,8 @@ twig:
         - 'SiteUploadBundle:Form:fields.html.twig'
         - 'SonataCoreBundle:Form:datepicker.html.twig'
         - 'SiteFrontendBundle:Form:_range_field.html.twig'
+    globals:
+        recaptcha: '%recaptcha%'
 
 # Doctrine Configuration
 doctrine:
@@ -282,7 +287,7 @@ sonata_admin:
 
 #Upload bundle
 site_upload:
-    web_dir: 'web'
+    web_dir: 'www'
     temp_upload_dir: "uploads/temp"
     types:
         default:

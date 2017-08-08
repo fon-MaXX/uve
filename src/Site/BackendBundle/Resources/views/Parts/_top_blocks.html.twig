@@ -1,0 +1,50 @@
+<div class="top-head-block-child">
+    <div class="top-head-block-child-body block-child-body-blue">
+        <div class="block-child-body-title">
+            Новые заказы
+        </div>
+        <div class="block-child-body-content">
+            {{ orders }}
+        </div>
+    </div>
+    <div class="top-head-block-child-href block-child-href-blue">
+        <a href="{{ path('admin_site_backend_order_list',{
+            'filter[state][value][]':'new'
+        }) }}">
+            Read more
+            <i class="fa fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+<div class="top-head-block-child">
+    <div class="top-head-block-child-body block-child-body-pink">
+        <div class="block-child-body-title">
+            Запросы на перезон
+        </div>
+        <div class="block-child-body-content">
+            {{ callbacks }}
+        </div>
+    </div>
+    <div class="top-head-block-child-href block-child-href-pink">
+        <a href="javascript:void(0)">
+            Read more
+            <i class="fa fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+<div class="top-head-block-child">
+    <div class="top-head-block-child-body block-child-body-green-order">
+        <div class="block-child-body-title">
+            Новые комментарии
+        </div>
+        <div class="block-child-body-content">
+            {{ comments }}
+        </div>
+    </div>
+    <div class="top-head-block-child-href block-child-href-green">
+        <a href="javascript:void(0)">
+            Read more
+            <i class="fa fa-arrow-right"></i>
+        </a>
+    </div>
+</div>

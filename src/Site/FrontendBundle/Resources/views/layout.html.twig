@@ -26,6 +26,7 @@
 
 
     <link href="{{ asset("bundles/sitefrontend/css/lightbox.css") }}" rel="stylesheet">
+    <link href="{{ asset("bundles/sitefrontend/css/star-rating-svg.css") }}" rel="stylesheet">
     <link href="{{ asset("bundles/sitefrontend/css/style.css") }}" rel="stylesheet">
 
     <script src="{{ asset("bundles/sitefrontend/js/ie-emulation-modes-warning.js") }}"></script>
@@ -73,6 +74,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+{% block javascripts %}
 <script src="{{ asset("bundles/sitefrontend/js/jquery.min.js") }}"></script>
 <script src="{{ asset("bundles/sitefrontend/js/bootstrap.min.js") }}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -84,5 +86,6 @@
 <script src="{{ asset("bundles/sitefrontend/js/jquery.infinitescroll.min.js") }}"></script>
 <script src="{{ asset("bundles/sitefrontend/js/jquery.validate.js") }}"></script>
 <script src="{{ asset("bundles/sitefrontend/js/main.js") }}"></script>
+{% endblock javascripts %}
 </body>
 </html>

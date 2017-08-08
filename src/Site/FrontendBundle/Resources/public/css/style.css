@@ -4525,6 +4525,283 @@ select.global-cart-select.select-default-view,
     margin-left: 20px;
 }
 
+/**************************************COMMENTS************************************************************************/
+.comment-head-avatar{
+    width: 65px;
+    height: 65px;
+    background-image: url("../images/comments/gender.svg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    margin: 0 auto;
+}
+.comment-head-avatar.girl-avatar{
+    background-position: 0 99%;
+}
+.comment-head-avatar:after{
+    content: "";
+}
+/* start .rounded-one */
+.rounded-one input{
+    display: none;
+}
+.rounded-one{
+    position: relative;
+    float:left;
+}
+.rounded-one label{
+    width:20px;
+    height:35px;
+    padding-top: 25px;
+    margin: 0;
+    font-weight: normal;
+    font-size: 8px;
+    text-transform: uppercase;
+    font-family: GeorgiaItalic;
+    color: #626B6D;
+}
+.rounded-one label:before{
+    width:15px;
+    height: 15px;
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #626B6D;
+    left:0;
+    top:0;
+    content: "";
+    border-radius: 15px;
+}
+.rounded-one label:after{
+    width:9px;
+    height: 9px;
+    border-radius:9px;
+    position: absolute;
+    z-index: 2;
+    left:3px;
+    top:3px;
+    background-color: transparent;
+    content: "";
+}
+.rounded-one label:hover:before{
+    border: 1px solid rgba(98,107,109,0.7);
+}
+.rounded-one input[type=radio]:checked+ label:before{
+    border: 1px solid #626B6D;
+}
+.rounded-one input[type=radio]:checked+ label:after{
+    background-color: #626B6D;
+}
+.comment-radio-buttons-wrapper:after{
+    float: none;
+    content: "";
+    display: block;
+}
+.comment-radio-buttons-wrapper{
+    width: 55px;
+    height: 35px;
+    margin: 0 auto;
+}
+.comment-radio-buttons-wrapper .rounded-one +.rounded-one{
+    margin-left: 15px;
+}
+.profile-wrapper{
+    width: 115px;
+    overflow: hidden;
+    float: left;
+}
+.comments-wrapper{
+    border-top: 2px solid #ACBABF;
+    width:950px;
+    margin: 0 auto;
+    padding: 0 0 190px 0;
+}
+.comment-item-wrapper{
+    margin: 35px 0 0 0;
+}
+.comment-wrapper{
+    float:left;
+    width: 835px;
+}
+.comment-row:after{
+    clear: both;
+    display: block;
+    content: "";
+}
+.comment-wrapper input{
+    margin-top: 25px;
+    width: 100%;
+    border: none;
+    border-top: 1.5px solid #006FAB ;
+    background-color: rgba(172,176,191,0.1);
+}
+.comment-wrapper textarea{
+    width: 100%;
+    border: none;
+    background-color: rgba(172,176,191,0.1);
+    height: 75px;
+    padding-top: 9px;
+}
+.comment-input {
+    height: 45px;
+    display: block;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 0 10px 15px;
+    font-family: GeorgiaItalic;
+    font-weight: normal;
+}
+.stars-wrapper{
+    width: 115px;
+    float: left;
+}
+.comment-row.stars-container{
+    margin-top: 35px;
+}
+.stars-widget,.static-stars-widget{
+    width: 85px;
+    height: 22px;
+    margin: 0 auto;
+}
+.stars-widget:after,.static-stars-widget:after{
+    content:"";
+}
+.stars-text{
+    width: 100%;
+    height: 59px;
+    overflow: hidden;
+    color: #006FAB;
+    font-family: MullerBold;
+    font-size: 12px;
+    text-align: center;
+    font-weight: normal;
+}
+.stars-text:after{
+    content: "";
+}
+.stars-text div:first-child{
+    font-size: 42px;
+    line-height: 42px;
+}
+.comment-submit-row{
+    margin-top: 20px;
+}
+#comment-recaptcha{
+    float: left;
+    margin-left: 115px;
+    min-height: 76px;
+    min-width: 302px;
+}
+#comment-recaptcha:after{
+    content:"";
+}
+.comment-submit-wrapper{
+    float: right;
+    width: 275px;
+    margin-top: 12px;
+}
+.comment-submit-wrapper button {
+    width: 100%;
+    height: 53px;
+    background-color: #EE5D59;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 55px;
+    font-family: MullerExtraBold;
+    font-size: 13px;
+    border-radius: 5px;
+}
+.comment-user-data-wrapper{
+    margin-left:115px;
+    margin-top:30px;
+    float:left;
+    border-bottom: 1px solid #006FAB;
+}
+.comment-user-data-wrapper .comment-user-data,
+.comment-user-data-wrapper .comment-head-avatar{
+    float:left;
+}
+.comment-user-data{
+    margin-left: 10px;
+}
+.comment-date{
+    padding-top: 15px;
+    font-size: 13px;
+    font-family: GeorgiaItalic;
+    color: #626B6D;
+}
+.comment-username{
+    font-family: MullerBold;
+    font-size: 17px;
+    color: #006FAB;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}
+.static-stars-wrapper{
+    width: 115px;
+    float: left;
+}
+.comment-text{
+    padding: 20px 60px 40px 30px;
+    background-color: rgba(172,176,191,0.1);
+    color: #626B6D;
+    font-family: GeorgiaItalic;
+    font-size: 11px;
+    float:left;
+    width: 835px;
+}
+.answer-body{
+    float: right;
+    width: 580px;
+}
+.answer-user-data-wrapper {
+    margin-top: 15px;
+    float: left;
+    border-bottom: 1px solid #006FAB;
+}
+.answer-text {
+    padding: 20px 60px 40px 30px;
+    background-color: rgba(172,176,191,0.1);
+    color: #626B6D;
+    font-family: GeorgiaItalic;
+    font-size: 11px;
+    width: 100%;
+}
+.comments-list-wrapper:after{
+    clear:both;
+    content: "";
+    display: block;
+}
+.comment-uvelife-avatar {
+    font-size: 17px;
+    color: #006FAB;
+    font-family: MullerBold;
+    padding-right: 200px;
+    position:relative;
+}
+.comment-uvelife-avatar::after {
+    content: "";
+    position: absolute;
+    background-image: url("../images/main/icons-sprite.svg");
+    width: 15px;
+    height: 25px;
+    display: block;
+    background-size: 200% auto;
+    background-repeat: no-repeat;
+    background-position: -15px -69px;
+    left: 73px;
+    top: -5px;
+}
+.answer-date {
+    font-size: 13px;
+    line-height: 13px;
+    font-family: GeorgiaItalic;
+    color: #626B6D;
+}
+.comment-success-message{
+    display: none;
+}
+/**************************************END-COMMENTS********************************************************************/
 /**************************************MEDIA QUERIES*******************************************************************/
 /**************************************media-1199**********************************************************************/
 @media (max-width: 1199px) {
@@ -4724,6 +5001,16 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-991***********************************************************************/
 @media (max-width: 991px) {
+    /**************************************comments****************************************************************/
+    .comments-wrapper {
+        width: 767px;
+    }
+    .comment-wrapper {
+        width: 652px;
+    }
+    .comment-text {
+        width: 652px;
+    }
     /**************************************404****************************************************************/
     .container-404{
         width:750px;
@@ -5311,6 +5598,18 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-767***********************************************************************/
 @media (max-width: 767px) {
+    /**************************************comments****************************************************************/
+    .comments-wrapper {
+        width: 710px;
+    }
+    .comment-wrapper,
+    .comment-text{
+        width: 595px;
+    }
+    .answer-body {
+        width: 560px;
+    }
+    /*************************************************************************************************************/
     body.body-no-scroll{
         width:100%;
         height:100%;
@@ -5989,6 +6288,20 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-710***********************************************************************/
 @media (max-width: 710px) {
+    /**************************************comments****************************************************************/
+    .comments-wrapper {
+        width: 640px;
+    }
+    .comment-wrapper,
+    .comment-text{
+        width: 525px;
+    }
+    .answer-body {
+        width: 490px;
+    }
+    #comment-recaptcha {
+        margin-left: 63px;
+    }
     /**************************************404****************************************************************/
     .container-404{
         width:640px;
@@ -6208,6 +6521,34 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-640***********************************************************************/
 @media (max-width: 640px) {
+    /**************************************comments****************************************************************/
+    .comments-wrapper {
+        width: 565px;
+    }
+    .comment-wrapper,
+    .comment-text{
+        width: 450px;
+    }
+    .answer-body {
+        width: 450px;
+    }
+    #comment-recaptcha {
+        margin-left: 0;
+        min-height: 76px;
+        min-width: 250px;
+    }
+    .comment-submit-wrapper button {
+        height: 45px;
+        line-height: 46px;
+        border-radius: 4px;
+    }
+    .comment-submit-wrapper {
+        width: 250px;
+    }
+    .comment-user-data{
+        max-width: calc(100% - 75px);
+        overflow: hidden;
+    }
     /**************************************404****************************************************************/
     .container-404{
         width:565px;
@@ -6581,6 +6922,34 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-565***********************************************************************/
 @media (max-width: 565px) {
+    /**************************************comments****************************************************************/
+    .comments-wrapper {
+        width: 465px;
+    }
+    .comment-wrapper,
+    .comment-text{
+        width: 350px;
+    }
+    .answer-body {
+        width: 350px;
+    }
+    #comment-recaptcha {
+        margin-left: 0;
+        min-height: 76px;
+        min-width: 200px;
+    }
+    .g-reCAPTCHA {
+        transform:scale(0.77);
+        transform-origin:0 0;
+    }
+    .comment-submit-wrapper button {
+        height: 40px;
+        line-height: 41px;
+        border-radius: 3px;
+    }
+    .comment-submit-wrapper {
+        width: 150px;
+    }
     /**************************************404****************************************************************/
     .container-404{
         width:465px;
@@ -7066,6 +7435,39 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-465***********************************************************************/
 @media (max-width: 465px) {
+    /**************************************comments****************************************************************/
+    .comments-wrapper {
+        width: 395px;
+    }
+    .comment-wrapper,
+    .comment-text{
+        width: 280px;
+    }
+    .answer-body {
+        width: 280px;
+    }
+    #comment-recaptcha {
+        margin-left: 0;
+        min-height: 76px;
+        width:200px;
+        overflow: visible;
+    }
+    .g-reCAPTCHA {
+        transform:scale(0.65);
+        transform-origin:0 0;
+    }
+    .comment-submit-wrapper button {
+        height: 40px;
+        line-height: 41px;
+        border-radius: 3px;
+    }
+    .comment-submit-wrapper {
+        width: 150px;
+        margin-top: 6px;
+    }
+    .comment-uvelife-avatar {
+        padding-right: 150px;
+    }
     /**************************************404****************************************************************/
     .container-404{
         width:395px;
@@ -7465,6 +7867,48 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-395***********************************************************************/
 @media (max-width: 395px) {
+    /**************************************comments****************************************************************/
+    .comments-wrapper {
+        width: 350px;
+    }
+    .comment-wrapper,
+    .comment-text{
+        width: 235px;
+    }
+    .answer-body {
+        width: 235px;
+    }
+    #comment-recaptcha {
+        margin-left: 0;
+        min-height: 76px;
+        width:180px;
+        overflow: visible;
+    }
+    .comment-submit-wrapper {
+        width: 120px;
+        margin-top: 3px;
+    }
+    .comment-uvelife-avatar {
+        padding-right: 150px;
+    }
+    .comment-user-data-wrapper {
+        margin-left: 25px;
+        border-bottom: none;
+    }
+    .comment-head-avatar{
+        margin-right: 25px;
+    }
+    .comment-username {
+        border-bottom: 1px solid #006FAB;
+    }
+    .comment-uvelife-avatar {
+        padding-right: 100px;
+    }
+    .comment-user-data {
+        max-width: calc(100% - 90px);
+        overflow: hidden;
+        margin-left: 0;
+    }
     /**************************************SEARCH PAGES*************************************************************/
     .static-content-wrapper.search-result-wrapper{
         width: 345px;
@@ -7652,6 +8096,10 @@ select.global-cart-select.select-default-view,
         width: 160px;
         padding: 0 7px 0 0;
         font-size: 11px;
+    }
+    .g-reCAPTCHA {
+        transform:scale(0.60);
+        transform-origin:0 0;
     }
     /**********************end-list**********************************************************/
     .index-product-item::after {
@@ -7863,6 +8311,30 @@ select.global-cart-select.select-default-view,
 }
 /**************************************media-350***********************************************************************/
 @media (max-width: 350px) {
+    /**************************************comments****************************************************************/
+    .comments-wrapper {
+        width: 320px;
+    }
+    .comment-wrapper,
+    .comment-text{
+        width: 205px;
+    }
+    .answer-body {
+        width: 205px;
+    }
+    #comment-recaptcha {
+        margin-left: 0;
+        min-height: 76px;
+        width:180px;
+        overflow: visible;
+    }
+    .comment-submit-wrapper {
+        width: 120px;
+        margin-top: 6px;
+    }
+    .comment-uvelife-avatar {
+        padding-right: 150px;
+    }
     /**************************************404****************************************************************/
     .container-404{
         width:320px;

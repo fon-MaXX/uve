@@ -1,0 +1,98 @@
+<script type="text/javascript">
+    var onloadRecaptchaCallback = function() {
+            grecaptcha.render('comment-recaptcha', {
+                'sitekey' : '{{ recaptcha.site_key }}'
+            });
+        };
+    var radioGenderAvatar = function(){
+        var $class = 'girl-avatar';
+        var $value = null;
+        $value = $('.comment-radio-buttons-wrapper').find('.rounded-one input[type=radio]:checked').val();
+        var $avatar = $('.comment-radio-buttons-wrapper').closest('.profile-wrapper').find('.comment-head-avatar');
+        if($value == 2){
+            if(!$avatar.hasClass($class)){
+                $avatar.addClass($class);
+            }
+        }
+        else{
+            $avatar.removeClass($class);
+        }
+    }
+    var getRateText = function(index){
+        var htmlText = '';
+        switch(index){
+            case 1:
+                htmlText = "<div>1</div><div>Балл</div>";
+                break;
+            case 2:
+                htmlText = "<div>2</div><div>Балла</div>";
+                break;
+            case 3:
+                htmlText = "<div>3</div><div>Балла</div>";
+                break;
+            case 4:
+                htmlText = "<div>4</div><div>Балла</div>";
+                break;
+            case 5:
+                htmlText = "<div>5</div><div>Баллов</div>";
+                break;
+        }
+        return  htmlText;
+    }
+    document.addEventListener("DOMContentLoaded", function(event) {
+        $(document).ready(function(){
+            if($('.comment-radio-buttons-wrapper').length){
+                radioGenderAvatar();
+                $('.comment-radio-buttons-wrapper').on('change','input',radioGenderAvatar)
+            }
+            if($('#comment-form .stars-widget').length){
+                var $rate = $('.stars-wrapper').find('input').val();
+                $("#comment-form .stars-widget").starRating({
+                    totalStars: 5,
+                    emptyColor: '#ACBABF',
+                    hoverColor: '#006FAB',
+                    activeColor: '#006FAB',
+                    initialRating: $rate,
+                    strokeWidth: 0,
+                    useGradient: false,
+                    useFullStars: true,
+                    starSize: 17,
+                    disableAfterRate: false,
+                    callback: function(currentRating, $el){
+                        var $text = getRateText(Math.round(currentRating));
+                        $('#comment-form .stars-text').html($text);
+                        $('.stars-wrapper').find('input').val(Math.round(currentRating));
+                    },
+                    onHover: function(currentIndex, currentRating, $el){
+                        var $text = getRateText(Math.round(currentIndex));
+                        $('#comment-form .stars-text').html($text);
+                    },
+                    onLeave: function(currentIndex, currentRating, $el){
+                        var $text = getRateText(Math.round(currentRating));
+                        $('#comment-form .stars-text').html($text);
+                    }
+                });
+            }
+            if($('.static-stars-wrapper').length){
+                $('.static-stars-wrapper').each(function(){
+                    var $rate = $(this).find('.stars-text').attr('data-rate');
+                    $(this).find(".static-stars-widget").starRating({
+                        totalStars: 5,
+                        emptyColor: '#ACBABF',
+                        hoverColor: '#006FAB',
+                        activeColor: '#006FAB',
+                        initialRating: $rate,
+                        strokeWidth: 0,
+                        useGradient: false,
+                        useFullStars: true,
+                        starSize: 17,
+                        disableAfterRate: false,
+                        readOnly: true
+                    });
+                });
+            }
+        });
+    });
+</script>
+<script src="{{ asset('bundles/sitefrontend/js/jquery.star-rating-svg.js') }}"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>

@@ -249,6 +249,11 @@ file that was distributed with this source code.
             {% endblock sonata_left_side %}
 
             <div class="content-wrapper">
+                {% block custom_top_blocks %}
+                    <div class="top-block-wrapper" data-url="{{ url('site_backend_top_blocks_render',{}) }}">
+                        {{ render(controller('SiteBackendBundle:Default:renderTopBlocks')) }}
+                    </div>
+                {% endblock custom_top_blocks %}
                 {% block sonata_page_content %}
                     <section class="content-header">
 

@@ -3,6 +3,7 @@
 namespace Site\FrontendBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Site\BackendBundle\Entity\Comment;
 use Site\BackendBundle\Entity\Contacts;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,6 +14,7 @@ use Site\FrontendBundle\Form\ContactsType;
 use Site\FrontendBundle\Form\SearchType;
 use Site\BackendBundle\Entity\Callback;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Site\FrontendBundle\Form\CommentType;
 
 class DefaultController extends Controller
 {
@@ -207,14 +209,24 @@ class DefaultController extends Controller
                 }
             }
         }
-        ($form)?$form=$form->createView():'';
+        else if($page=='static_reviews'){
+            $comment = new Comment();
+            $comment->setPageUrl($request->getPathInfo());
+            $form = $this->createForm(CommentType::class,$comment,[
+                'action'=>$this->get('router')->generate('site_frontend_add_comment',[
+                    'type'=>'review'
+                ])
+            ]);
+        }
+        if($form)$form=$form->createView();
         $sctaticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage($page);
         return $this->render($template,[
             'staticContent'=>$sctaticContent,
             'form'=>$form,
             'title'=>$seo->getTitle(),
             'breadcrumbs'=>$menu,
-            'seo'=>$seo
+            'seo'=>$seo,
+            'comments'=>array()
         ]);
     }
     private function sendMail($entity,$type){
@@ -248,5 +260,50 @@ class DefaultController extends Controller
         catch (\Swift_TransportException $e) {
 
         }
+    }
+
+    /**
+     * Load comment or review to db
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function addCommentAction(Request $request, $type){
+        $types = ['review','comment'];
+        $recapthaValidator = $this->get('fonmaxx.recaptcha.validate');
+        $comment = new Comment();
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(CommentType::class,$comment,[]);
+        $form->handleRequest($request);
+        $result=[
+            'success'=>false
+        ];
+        if(
+            $form->isSubmitted() &&
+            $form->isValid() &&
+            $recapthaValidator->captchaverify($request->get('g-recaptcha-response'))&&
+            in_array($type,$types)
+        ){
+            $state = ($comment->states['новый'])?$comment->states['новый']:null;
+            $comment->setState($state);
+            $url = $comment->getPageUrl();
+            if($this->checkUrl($url)){
+                $comment->setType($type);
+                $em->persist($comment);
+                $em->flush();
+                $result= [
+                    'success'=>true
+                ];
+            }
+        }
+        return new JsonResponse(json_encode($result));
+    }
+    private function checkUrl($url){
+        $route = $this->get('router')->match($url);
+        return (
+            $route=='site_frontend_static_reviews'||
+            $route=='site_frontend_product_show'||
+            $route=='site_frontend_set_show'
+        );
     }
 }

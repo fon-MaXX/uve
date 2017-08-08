@@ -2,6 +2,7 @@
 
 namespace Site\BackendBundle\Admin;
 
+use Site\BackendBundle\Entity\Order;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -24,8 +25,22 @@ class OrderAdmin extends AbstractAdmin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+        $subject = false;
+        if(!($subject=$this->getSubject()))$subject= new Order();
+        $states = $subject->states;
         $datagridMapper
             ->add('id')
+            ->add('state', 'doctrine_orm_choice', [
+                'label' => 'Статус заказа',
+            ],
+                'choice',
+                [
+                    'choices' => $states,
+                    'expanded' => true,
+                    'multiple' => true,
+                    'attr' => ['class' => 'filter-state-choices']
+                ]
+            )
         ;
     }
     /**

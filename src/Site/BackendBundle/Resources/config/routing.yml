@@ -1,4 +1,7 @@
 #**************************************Order*************************************************************************#
+site_backend_top_blocks_render:
+  path:  /custom-top-blocks
+  defaults: { _controller: SiteBackendBundle:Default:renderTopBlocks}
 
 
 

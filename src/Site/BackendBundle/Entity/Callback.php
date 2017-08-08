@@ -14,6 +14,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Callback
 {
+    public $states=[
+        'новый'=>'new',
+        'недозвон'=>'dismissed',
+        'выполнен'=>'accomplished'
+    ];
     /**
      * @var int
      *
@@ -32,6 +37,11 @@ class Callback
      * @ORM\Column(name="phone", type="text", nullable=true)
      */
     private $phone;
+    /**
+     *
+     * @ORM\Column(name="state_field", type="string", length=255, nullable=true)
+     */
+    private $state='new';
     /**
      * @var \DateTime $createdAt
      *
@@ -151,5 +161,29 @@ class Callback
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     *
+     * @return Callback
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 }

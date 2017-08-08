@@ -6,6 +6,11 @@
         {% endfor -%}
     </div>
 {% endblock site_frontend_custom_expanded_select_widget %}
+{% block site_frontend_custom_expanded_select_radio_widget %}
+        {%- for child in form %}
+            <div class="rounded-one">{{- form_widget(child) -}}{{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}</div>
+        {% endfor -%}
+{% endblock site_frontend_custom_expanded_select_radio_widget %}
 {% block site_frontend_range_widget %}
     {% spaceless %}
     {{ form_widget(form) }}

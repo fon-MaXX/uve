@@ -1,0 +1,121 @@
+<div class="comment-item-wrapper">
+    <div class="h3 text-center comment-success-message">Спасибо за ваш отзыв</div>
+    <form id="comment-form" action="{{ form.vars.action }}">
+        <div class="comment-row">
+            <div class="profile-wrapper">
+                <div class="comment-head-avatar {{ (form.vars.value.gender=="жен")?'girl-avatar':'' }}"></div>
+                <div class="comment-radio-buttons-wrapper">
+                    {{ form_widget(form.gender) }}
+                </div>
+            </div>
+            <div class="comment-wrapper">
+                {{ form_widget(form.username) }}
+            </div>
+        </div>
+        <div class="comment-row stars-container">
+            <div class="stars-wrapper">
+                {{ form_widget(form.rating) }}
+                <div class="stars-text">
+                    {{ form.vars.value.rating|rating|raw }}
+                </div>
+                <div class="stars-widget"></div>
+            </div>
+            <div class="comment-wrapper">
+                {{ form_widget(form.text) }}
+            </div>
+        </div>
+        <div class="comment-row comment-submit-row">
+            <div id="comment-recaptcha" class="g-reCAPTCHA"></div>
+            <div class="comment-submit-wrapper">
+                <button type="button" type="submit">Отправить</button>
+            </div>
+        </div>
+        <div class="display-none">
+            {{ form_rest(form) }}
+        </div>
+    </form>
+</div>
+<div class="comments-list-wrapper">
+    <div class="coment-body">
+        <div class="comment-row">
+            <div class="comment-user-data-wrapper">
+                <div class="comment-head-avatar girl-avatar"></div>
+                <div class="comment-user-data">
+                    <div class="comment-date">12 january 2017</div>
+                    <div class="comment-username">Маша Медведева</div>
+                </div>
+            </div>
+        </div>
+        <div class="comment-row">
+            <div class="static-stars-wrapper">
+                <div class="stars-text" data-rate="4">
+                    {{ 4|rating|raw }}
+                </div>
+                <div class="static-stars-widget"></div>
+            </div>
+            <div class="comment-text"> Здесь Вы можете оставлять свои отзывы и пожелания относительно наших ювелирных
+                изделий, и качества обслуживания. Внося новые изменения в ассортимент и перечень услуг, мы ориентируемся
+                именно на мнение клиентов. Написав отзыв, Вы помогаете нам стать еще лучше.
+            </div>
+        </div>
+    </div>
+    <div class="answer-body">
+        <div class="comment-row">
+            <div class="answer-user-data-wrapper">
+                <div class="answer-user-data">
+                    <div class="answer-date">12 january 2017</div>
+                    <div class="comment-uvelife-avatar">UVELIFE</div>
+                </div>
+            </div>
+        </div>
+        <div class="comment-row">
+            <div class="answer-text">
+                Здесь Вы можете оставлять свои отзывы и пожелания относительно наших ювелирных изделий, и качества
+                обслуживания. Внося новые изменения в ассортимент и перечень услуг, мы ориентируемся именно на мнение
+                клиентов. Написав отзыв, Вы помогаете нам стать еще лучше.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="comments-list-wrapper">
+    <div class="coment-body">
+        <div class="comment-row">
+            <div class="comment-user-data-wrapper">
+                <div class="comment-head-avatar girl-avatar"></div>
+                <div class="comment-user-data">
+                    <div class="comment-date">12 january 2017</div>
+                    <div class="comment-username">Маша Медведеваasdasdasda sdasdasddas</div>
+                </div>
+            </div>
+        </div>
+        <div class="comment-row">
+            <div class="static-stars-wrapper">
+                <div class="stars-text" data-rate="4">
+                    {{ 4|rating|raw }}
+                </div>
+                <div class="static-stars-widget"></div>
+            </div>
+            <div class="comment-text"> Здесь Вы можете оставлять свои отзывы и пожелания относительно наших ювелирных
+                изделий, и качества обслуживания. Внося новые изменения в ассортимент и перечень услуг, мы ориентируемся
+                именно на мнение клиентов. Написав отзыв, Вы помогаете нам стать еще лучше.
+            </div>
+        </div>
+    </div>
+    <div class="answer-body">
+        <div class="comment-row">
+            <div class="answer-user-data-wrapper">
+                <div class="answer-user-data">
+                    <div class="answer-date">12 january 2017</div>
+                    <div class="comment-uvelife-avatar">UVELIFE</div>
+                </div>
+            </div>
+        </div>
+        <div class="comment-row">
+            <div class="answer-text">
+                Здесь Вы можете оставлять свои отзывы и пожелания относительно наших ювелирных изделий, и качества
+                обслуживания. Внося новые изменения в ассортимент и перечень услуг, мы ориентируемся именно на мнение
+                клиентов. Написав отзыв, Вы помогаете нам стать еще лучше.
+            </div>
+        </div>
+    </div>
+</div>
