@@ -87,7 +87,13 @@ class OrderType extends AbstractType
                 ->add('discount', 'text', [
                     'label' => "Скидка",
                     'required' => false
-                ]);
+                ])
+                ->add('state', 'choice', [
+                    'label' => "Статус",
+                    'required' => false,
+                    'choices'=>$entity->states
+                ])
+                ;
             }
             $builder->add('orderHasProducts',CollectionType::class,[
                 'entry_type' => OrderHasProductType::class

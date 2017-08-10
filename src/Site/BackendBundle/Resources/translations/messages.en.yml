@@ -47,3 +47,6 @@ field:
   set_products: "Products in set"
   poster_alt: "Poster alt"
   text: "Text"
+new: "new"
+dismissed: "dismissed"
+accomplished: "accomplished"

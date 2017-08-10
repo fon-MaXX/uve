@@ -16,7 +16,7 @@ class RecaptchaValidate{
     }
     # get success response from recaptcha and return it to controller
     function captchaverify($recaptcha){
-        if(!$recaptcha||!$this->$this->secret_key)return false;
+        if(!$recaptcha||!$this->secret_key)return false;
         $url = "https://www.google.com/recaptcha/api/siteverify";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

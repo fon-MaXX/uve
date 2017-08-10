@@ -12,6 +12,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Site\FrontendBundle\Form\ProductFilterType;
 use Site\FrontendBundle\Form\ProductShowType;
 use Site\FrontendBundle\Form\SearchType;
+use Site\BackendBundle\Entity\Comment;
+use Site\FrontendBundle\Form\CommentType;
 
 class ProductController extends Controller
 {
@@ -225,13 +227,26 @@ class ProductController extends Controller
         $rand = $em->getRepository('SiteBackendBundle:Product')->getRandProducts(5,$category->getId());
         $features = $this->getFeaturesArray($product);
         $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('product_show');
+
+        $comment = new Comment();
+        $comment->setPageUrl($request->getPathInfo());
+        $comments = $em->getRepository('SiteBackendBundle:Comment')->getCommentsByStateAndPath('approved',$request->getPathInfo());
+        $commentForm = $this->createForm(CommentType::class,$comment,[
+            'action'=>$this->get('router')->generate('site_frontend_add_comment',[
+                'type'=>'comment'
+            ])
+        ]);
+
+
         return $this->render('SiteFrontendBundle:Product:show.html.twig', [
             'breadcrumbs'=>$menu,
             'product'=>$product,
             'form'=>$form->createView(),
             'features'=>$features,
             'rand'=>$rand,
-            'staticContent'=>$staticContent
+            'staticContent'=>$staticContent,
+            'comments'=>$comments,
+            'commentForm'=>$commentForm->createView()
         ]);
     }
     private function getFilterFromSession($sessionName=null){

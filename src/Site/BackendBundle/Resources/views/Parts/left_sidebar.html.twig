@@ -12,20 +12,24 @@
             <ul class="treeview-menu menu_level_1 menu-open">
                 {% if admin.isGranted('LIST') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_product_list") }}"><i class="fa fa-angle-double-right"
-                                                                                  aria-hidden="true"></i>Список</a>
+                        <a href="{{ url("admin_site_backend_product_list") }}">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            Список
+                        </a>
                     </li>
                 {% endif %}
                 {% if admin.isGranted('CREATE') %}
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_product_create") }}"><i class="fa fa-angle-double-right"
-                                                                                    aria-hidden="true"></i>Добавить
-                            новый</a>
+                        <a href="{{ url("admin_site_backend_product_create") }}">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            Добавить новый
+                        </a>
                     </li>
                     <li class="first last">
-                        <a href="{{ url("admin_site_backend_xmlload_loadXml") }}"><i class="fa fa-angle-double-right"
-                                                                                     aria-hidden="true"></i>Загрузить с
-                            файла</a>
+                        <a href="{{ url("admin_site_backend_xmlload_loadXml") }}">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            Загрузить с файла
+                        </a>
                     </li>
                 {% endif %}
             </ul>
@@ -252,6 +256,15 @@
             <a href="{{ url("admin_site_backend_filterconfig_list") }}">
                 <i class="fa fa-cogs"></i>
                 <span>Настройка фильтров</span>
+            </a>
+        </li>
+    {% endif %}
+    {% set admin = admin_pool.adminByAdminCode('site_backend.admin.comment') %}
+    {% if admin.isGranted('LIST') or admin.isGranted('CREATE') %}
+        <li class="first last treeview">
+            <a href="{{ url("admin_site_backend_comment_list") }}">
+                <i class="fa  fa-comments"></i>
+                <span>Комментарии</span>
             </a>
         </li>
     {% endif %}

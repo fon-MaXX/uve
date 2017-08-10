@@ -13,6 +13,8 @@ use Site\BackendBundle\Entity\Category;
 use Site\BackendBundle\Entity\OrderHasSet;
 use Site\BackendBundle\Entity\OrderHasSetComponent;
 use Site\FrontendBundle\Form\SearchType;
+use Site\BackendBundle\Entity\Comment;
+use Site\FrontendBundle\Form\CommentType;
 
 class SetController extends Controller
 {
@@ -121,13 +123,25 @@ class SetController extends Controller
         $features = $this->getFeaturesArray($set);
         $rand = $em->getRepository('SiteBackendBundle:Set')->getRandSets(5);
         $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('product_show');
+
+        $comment = new Comment();
+        $comment->setPageUrl($request->getPathInfo());
+        $comments = $em->getRepository('SiteBackendBundle:Comment')->getCommentsByStateAndPath('approved',$request->getPathInfo());
+        $commentForm = $this->createForm(CommentType::class,$comment,[
+            'action'=>$this->get('router')->generate('site_frontend_add_comment',[
+                'type'=>'comment'
+            ])
+        ]);
+
         return $this->render('SiteFrontendBundle:Set:show.html.twig', [
             'breadcrumbs'=>$menu,
             'set'=>$set,
             'form'=>$form->createView(),
             'features'=>$features,
             'rand'=>$rand,
-            'staticContent'=>$staticContent
+            'staticContent'=>$staticContent,
+            'comments'=>$comments,
+            'commentForm'=>$commentForm->createView()
         ]);
     }
     private function getFilterFromSession($sessionName=null){

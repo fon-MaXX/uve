@@ -656,3 +656,20 @@ body .index-product-input {
 .top-block-wrapper{
     margin-top: 20px;
 }
+.state-field {
+    font-size: 14px;
+    padding: 4px;
+    color: #ffffff;
+    display: block;
+    text-align: center;
+    background-color: gray;
+}
+.approved{
+    background-color: #00a7d0;
+}
+.new{
+    background-color: #00a65a;
+}
+.not-approved{
+    background-color: rgba(255,0,0,0.8);
+}

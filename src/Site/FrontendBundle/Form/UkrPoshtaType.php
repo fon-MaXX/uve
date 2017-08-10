@@ -17,8 +17,8 @@ class UkrPoshtaType extends AbstractType
     {
         $builder->add('address','textarea',[
             'label'=>"Адрес для отправки",
+            'required'=>false,
             'attr'=>[
-                'required'=>false,
                 'class'=>'order-personal-data-textarea'
             ]
         ]);

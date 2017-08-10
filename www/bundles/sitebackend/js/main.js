@@ -205,6 +205,7 @@ $(document).ready(function () {
         }
         else if (str == 'self-pickup') {
             $(".order-payment-and-delivery-item-wrapper").html('');
+            $(".order-delivery-item-ukrpost-wrapper").html('');
             $('.modal-shaddow').removeClass('active');
             $('.modal-loader').removeClass('active');
         }

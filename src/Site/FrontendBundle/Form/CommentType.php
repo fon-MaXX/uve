@@ -34,7 +34,7 @@ class CommentType extends AbstractType
                 ]
             ])
             ->add('username',TextType::class,[
-                'required'=>true,
+                'required'=>false,
                 'label'=>'Имя',
                 'attr'=>[
                     'class'=>'comment-input name-validation clear-input',
@@ -49,10 +49,10 @@ class CommentType extends AbstractType
                 'label'=>''
             ])
             ->add('text',TextareaType::class,[
-                'required'=>true,
+                'required'=>false,
                 'attr'=>[
                     'placeholder'=>'Ваше сообщение',
-                    'class'=>'comment-input'
+                    'class'=>'comment-input clear-input name-validation'
                 ]
             ])
             ;

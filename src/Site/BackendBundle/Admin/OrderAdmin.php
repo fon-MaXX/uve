@@ -52,7 +52,10 @@ class OrderAdmin extends AbstractAdmin
             ->add('id')
             ->add('phone')
             ->add('username')
-            ->add('state')
+            ->add('state','text',[
+                'template'=>"SiteBackendBundle:List:_order_state.html.twig",
+                'label'=>'Статус'
+            ])
             ->add('createdAt')
             ->add('price','text',[
                 'template'=>"SiteBackendBundle:List:_price.html.twig",
@@ -64,9 +67,6 @@ class OrderAdmin extends AbstractAdmin
             ])
             ->add('_action', 'actions', [
                 'actions' => [
-//                    'show' => [
-//                        'template' => 'SiteBackendBundle:List:_listShow.html.twig'
-//                    ],
                     'edit' => [
                         'template' => 'SiteBackendBundle:List:_listOrderEdit.html.twig'
                     ],

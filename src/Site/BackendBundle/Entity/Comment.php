@@ -23,6 +23,14 @@ class Comment
         'муж'=>1,
         'жен'=>2
     ];
+    public function __toString()
+    {
+        $text=null;
+        if($this->getType()=='review')$text = "отзыв";
+        if($this->getType()=='comment')$text = "комментарий";
+        return($this->id)?$text." №".$this->getId():"новый комментарий/отзыв";
+    }
+
     /**
      * @var int
      *

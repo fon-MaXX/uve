@@ -56,6 +56,10 @@ class Callback
      * @ORM\Column(name="updated_at",type="datetime")
      */
     private $updatedAt;
+    public function __toString()
+    {
+        return ($this->getId())?'Запрос № '.$this->getId():'Новый запрос';
+    }
 
     /**
      * Get id

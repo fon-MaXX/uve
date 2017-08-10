@@ -921,27 +921,7 @@ $(document).ready(function () {
         });
     }
 //    ***************************************************************************************************************//
-    if($('#comment-form').length){
-        $('.comment-submit-wrapper button').click(function(){
-            $("#comment-form").validate({
-                errorPlacement: function () {
-                    return false;  // suppresses error message text
-                },
-                errorClass: "error",
-                submitHandler: function () {
-                    var $url = $('#comment-form').attr('action');
-                    var $obj = $('#comment-form').serialize();
-                    $.post($url,$obj,function(data){
-                        clearInputs();
-                        $('#comment-form').remove();
-                        $('.comment-success-message').show();
-                        setTimeout(function(){
-                            $('.comment-success-message').hide();
-                        },4000);
-                    });
-                    return false;
-                }
-            });
-        });
-    }
+    $(document).on('blur','.error',function(){
+        $(this).removeClass('error');
+    });
 });

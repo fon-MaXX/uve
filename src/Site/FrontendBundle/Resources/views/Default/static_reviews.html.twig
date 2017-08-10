@@ -24,7 +24,11 @@
         </div>
     </div>
     <div class="container comments-wrapper">
-        {% include "SiteFrontendBundle:Comment:_comment.html.twig" with {'form':form,'comments':comments} %}
+        {% include "SiteFrontendBundle:Comment:_comment.html.twig" with {
+        'form':form,
+        'comments':comments,
+        'text':'Спасибо за Ваш отзыв'
+        } %}
     </div>
 {% endblock content %}
 {% block seo %}

@@ -4616,6 +4616,10 @@ select.global-cart-select.select-default-view,
     margin: 0 auto;
     padding: 0 0 190px 0;
 }
+.product-comments-wrapper{
+    margin-top: 20px;
+    padding: 0 0 40px 0;
+}
 .comment-item-wrapper{
     margin: 35px 0 0 0;
 }
@@ -4650,6 +4654,10 @@ select.global-cart-select.select-default-view,
     padding: 0 10px 15px;
     font-family: GeorgiaItalic;
     font-weight: normal;
+}
+.comment-wrapper input.error,
+.comment-wrapper textarea.error{
+    outline: 1px solid rgba(255,0,0,0.5);
 }
 .stars-wrapper{
     width: 115px;

@@ -234,6 +234,15 @@ services:
             - ~
         tags:
             - {name: sonata.admin, manager_type: orm, show_in_dashboard: false, label: novaPoshta}
+
+    site_backend.admin.comment:
+        class: Site\BackendBundle\Admin\CommentAdmin
+        arguments:
+            - ~
+            - Site\BackendBundle\Entity\Comment
+            - ~
+        tags:
+            - {name: sonata.admin, manager_type: orm, show_in_dashboard: false, label: comment}
 ########################################################################################################################
     product.flush.listener:
         class: Site\BackendBundle\EventListeners\ProductListener
@@ -249,6 +258,18 @@ services:
             - "@newpost.data.update.listener"
         tags:
             - { name: doctrine.event_listener, event: onFlush }
+########################################################################################################################
+    comment_state.twig_extension:
+        class: Site\BackendBundle\Twig\Extension\CommentStateExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    order_state.twig_extension:
+        class: Site\BackendBundle\Twig\Extension\OrderStateExtension
+        public: false
+        tags:
+            - { name: twig.extension }
 ########################################################################################################################
     new.post.service:
         class: Site\BackendBundle\NewPost\NewPostService

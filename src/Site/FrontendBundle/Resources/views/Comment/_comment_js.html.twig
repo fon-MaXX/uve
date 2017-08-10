@@ -1,7 +1,16 @@
 <script type="text/javascript">
+    document.recaptchsAllowSubmit = false;
+    var capcha_filled = function() {
+        document.recaptchsAllowSubmit = true;
+    }
+    var capcha_expired = function() {
+        document.recaptchsAllowSubmit = false;
+    }
     var onloadRecaptchaCallback = function() {
             grecaptcha.render('comment-recaptcha', {
-                'sitekey' : '{{ recaptcha.site_key }}'
+                'sitekey' : '{{ recaptcha.site_key }}',
+                'callback': capcha_filled,
+                'expired-callback': capcha_expired,
             });
         };
     var radioGenderAvatar = function(){
@@ -90,6 +99,37 @@
                         readOnly: true
                     });
                 });
+            }
+            if($('#comment-form').length){
+                $('.comment-submit-wrapper button').click(function(){
+
+                    $("#comment-form").validate({
+                        errorPlacement: function () {
+                            return false;  // suppresses error message text
+                        },
+                        errorClass: "error",
+                        submitHandler: function () {
+                            if(!document.recaptchsAllowSubmit)return false;
+                            $('.modal-no-background').addClass('active');
+                            var $url = $('#comment-form').attr('action');
+                            var $obj = $('#comment-form').serialize();
+                            $.post($url,$obj,function(data){
+                                clearInputs();
+                                $('#comment-form').slideToggle();
+                                $('#comment-form').remove();
+                                $('.modal-no-background').removeClass('active');
+                                $('.comment-success-message').slideToggle();
+                                setTimeout(function(){
+                                    $('.comment-success-message').hide();
+                                },8000);
+                            });
+                            return false;
+                        }
+                    });
+                });
+            }
+            function clearInputs(){
+                $('.clear-input').val('');
             }
         });
     });

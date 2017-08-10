@@ -17,4 +17,15 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function getCommentsByStateAndPath($state,$path){
+        return $this->createQueryBuilder('q')
+            ->where('q.state = :state')
+            ->andWhere('q.pageUrl = :path')
+            ->setParameters([
+                'state'=>$state,
+                'path'=>$path
+            ])
+            ->getQuery()
+            ->getResult();
+    }
 }

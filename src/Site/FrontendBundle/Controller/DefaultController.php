@@ -190,6 +190,7 @@ class DefaultController extends Controller
         $breadcrumbsGenerator = $this->get('fonmaxx.breadcrumbs.generator');
         $menu = $breadcrumbsGenerator->generateMenu($arr);
         $form=null;
+        $comments=[];
         if($page=='contacts'){
             $object = new Contacts();
             $form = $this->createForm(ContactsType::class,$object,[
@@ -212,6 +213,7 @@ class DefaultController extends Controller
         else if($page=='static_reviews'){
             $comment = new Comment();
             $comment->setPageUrl($request->getPathInfo());
+            $comments = $em->getRepository('SiteBackendBundle:Comment')->getCommentsByStateAndPath('approved',$request->getPathInfo());
             $form = $this->createForm(CommentType::class,$comment,[
                 'action'=>$this->get('router')->generate('site_frontend_add_comment',[
                     'type'=>'review'
@@ -226,7 +228,7 @@ class DefaultController extends Controller
             'title'=>$seo->getTitle(),
             'breadcrumbs'=>$menu,
             'seo'=>$seo,
-            'comments'=>array()
+            'comments'=>$comments
         ]);
     }
     private function sendMail($entity,$type){
@@ -301,9 +303,9 @@ class DefaultController extends Controller
     private function checkUrl($url){
         $route = $this->get('router')->match($url);
         return (
-            $route=='site_frontend_static_reviews'||
-            $route=='site_frontend_product_show'||
-            $route=='site_frontend_set_show'
+            $route['_route']=='site_frontend_static_reviews'||
+            $route['_route']=='site_frontend_product_show'||
+            $route['_route']=='site_frontend_set_show'
         );
     }
 }
