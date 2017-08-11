@@ -43,7 +43,7 @@
                     <div class="comment-user-data-wrapper">
                         <div class="comment-head-avatar {{ (comment.gender=="жен")?'girl-avatar':'' }}"></div>
                         <div class="comment-user-data">
-                            <div class="comment-date">{{ comment.createdAt|date('d.mm.Y') }}</div>
+                            <div class="comment-date">{{ comment.createdAt|date('d.m.Y') }}</div>
                             <div class="comment-username">{{ comment.username }}</div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="static-stars-widget"></div>
                     </div>
-                    <div class="comment-text">{{ comment.text|raw }}</div>
+                    <div class="comment-text">{{ comment.text }}</div>
                 </div>
             </div>
             {% if comment.answer %}
@@ -63,13 +63,13 @@
                     <div class="comment-row">
                         <div class="answer-user-data-wrapper">
                             <div class="answer-user-data">
-                                <div class="answer-date">{{ comment.updatedAt|date('d.mm.Y') }}</div>
+                                <div class="answer-date">{{ comment.updatedAt|date('d.m.Y') }}</div>
                                 <div class="comment-uvelife-avatar">UVELIFE</div>
                             </div>
                         </div>
                     </div>
                     <div class="comment-row">
-                        <div class="answer-text">{{ comment.answer|raw }}</div>
+                        <div class="answer-text">{{ comment.answer }}</div>
                     </div>
                 </div>
             {% endif %}

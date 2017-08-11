@@ -151,7 +151,7 @@ class CommentAdmin extends AbstractAdmin
             ])
             ->add('answer','textarea', [
                 'attr' => [],
-                'required'=>true,
+                'required'=>false,
                 'label'=>'Ответ'
             ])
         ;
