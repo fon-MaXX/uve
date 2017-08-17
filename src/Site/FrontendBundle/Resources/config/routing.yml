@@ -45,7 +45,6 @@ site_frontend_order_get_ajax_cart:
 site_frontend_order_create:
     path:  /order/create
     defaults: { _controller: SiteFrontendBundle:Order:create}
-    methods:  [POST]
 
 site_frontend_save_temp_order:
     path:  /order/save/

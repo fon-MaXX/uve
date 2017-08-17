@@ -63,7 +63,7 @@ class OrderController extends Controller
             'is_frontend' => true,
             'container' => $this->container
         ]);
-        if ($request->isMethod('POST') && $request->request->has($form->getName())) {
+        if ($request->request->has($form->getName())) {
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $object = $form->getData();
@@ -239,6 +239,7 @@ class OrderController extends Controller
             $request->getSession()->set($this->previousUrl, $previousUrl);
             $url = $previousUrl;
         }
+        if($url==$orderCreateUri)$url=$this->get('router')->generate('site_frontend_homepage', [], 0);
         return $url;
     }
 
