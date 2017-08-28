@@ -1,3 +1,9 @@
+sitemap:
+    path: /sitemap.{_format}
+    defaults:
+        _controller: SiteFrontendBundle:Default:sitemap
+    requirements: { _format: (xml), _method: GET }
+
 site_frontend_homepage:
     path:  /
     defaults: { _controller: SiteFrontendBundle:Default:index}

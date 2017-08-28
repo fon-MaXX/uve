@@ -1,6 +1,6 @@
 <div class="mail-content-container">
     <p>Здравствуйте!</p>
-    </br>
+    <br>
     <h3>Ссылка на заказ:</h3>
     <a href="{{ url('admin_site_backend_order_edit',{'id':entity.id}) }}">
         Перейти к администрированию заказа
@@ -22,7 +22,7 @@
             </tr>
         {% endif %}
     </table>
-    </br>
+    <br>
     {#<h3>ДАННЫЕ ПО ОПЛАТЕ:</h3>#}
     {#<table class="no-border">#}
         {#<tr>#}
@@ -132,7 +132,7 @@
             <hr/>
         {% endfor %}
     {% endif %}
-    </br>
+    <br>
     <h3>ОБЩАЯ СУММА: {{ entity.price~' грн' }}</h3>
-    </br>
+    <br>
 </div>
