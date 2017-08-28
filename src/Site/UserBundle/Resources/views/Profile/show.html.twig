@@ -22,3 +22,6 @@
     {{ parent() }}
     {% include 'SiteUploadBundle:Default:styles.html.twig' %}
 {% endblock %}
+{% block seo %}
+    <meta name="robots" content="noindex, follow" />
+{% endblock seo %}

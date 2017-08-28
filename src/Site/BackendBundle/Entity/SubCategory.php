@@ -37,6 +37,14 @@ class SubCategory
      * @ORM\Column(name="description_field", type="string", length=256, nullable=true)
      */
     private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_meta", type="string", length=255, nullable=false)
+     */
+    private $titleMeta;
+
     /**
      * @Gedmo\Slug(fields={"title"},unique=true,separator="-")
      * @ORM\Column(name="slug", length=255, unique=true)
@@ -63,12 +71,62 @@ class SubCategory
      */
     private $products;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_h1", type="string", length=255, nullable=false)
+     */
+    private $h1;
+
+    /**
+     * @return string
+     */
+    public function getH1()
+    {
+        return $this->h1;
+    }
+
+    /**
+     * @param string $h1
+     */
+    public function setH1($h1)
+    {
+        $this->h1 = $h1;
+    }
+
+    function ucfirst_utf8($stri)
+    {
+        return ucfirst($stri);
+    }
+
     public function __toString()
     {
-        if($this->getTitle()){
-            return $this->getTitle().'('.$this->getCategory()->getTitle().')';
+        if ($this->getTitle()) {
+            return $this->getTitle() . '(' . $this->getCategory()->getTitle() . ')';
         }
         return 'Новая подкатегория';
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleMeta()
+    {
+        $pos = strripos($this->titleMeta, 'купить в интернет-магазине Ювелир Лайф');
+        if ($pos === false) {
+            return self::ucfirst_utf8($this->h1) . ' купить в интернет-магазине Ювелир Лайф';
+        } else {
+            return self::ucfirst_utf8($this->titleMeta);
+        }
+
+    }
+
+    /**
+     * @param string $titleMeta
+     */
+    public function setTitleMeta($titleMeta)
+    {
+        $this->titleMeta = $titleMeta;
     }
 
     /**
@@ -126,7 +184,7 @@ class SubCategory
      */
     public function getKeywords()
     {
-        return $this->keywords;
+        return self::ucfirst_utf8($this->h1);
     }
 
     /**
@@ -150,7 +208,7 @@ class SubCategory
      */
     public function getDescription()
     {
-        return $this->description;
+        return 'Хотите купить ' . mb_strtolower ($this->h1) . ' в интернет-магазине? Заходите в Ювелир Лайф: ✓Низкие цены ✓Доставка по Киеву и Украине!';
     }
 
     /**

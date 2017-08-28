@@ -30,12 +30,23 @@ class SubCategoryAdmin extends AbstractAdmin
             ->add('title',null,[
                 'label'=>'field.title'
             ])
+            ->add('h1','text',[
+                'required'=> false,
+                'label'=>'h1'
+            ])
             ->add('position','text',[
                 'editable'=>true
             ])
             ->add('category','text',[
                 'template'=>"SiteBackendBundle:List:_category.html.twig",
                 'label'=>'field.category'
+            ])
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit' => [
+                        'template' => 'SiteBackendBundle:List:_listEdit.html.twig'
+                    ],
+                ]
             ])
         ;
     }
@@ -47,7 +58,16 @@ class SubCategoryAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('title','text',[
-                'required'=>true
+                'required'=>true,
+                'label'=>'Title'
+            ])
+            ->add('titleMeta','text',[
+                'required'=> false,
+                'label'=>'Meta title'
+            ])
+            ->add('h1','text',[
+                'required'=> false,
+                'label'=>'h1'
             ])
             ->add('position')
             ->add('keywords','textarea', [

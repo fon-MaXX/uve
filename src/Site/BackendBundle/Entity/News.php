@@ -39,6 +39,14 @@ class News
      * @ORM\Column(name="description_field", type="string", length=256, nullable=true)
      */
     private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_meta", type="string", length=255, nullable=false)
+     */
+    private $titleMeta;
+
     /**
      * @Gedmo\Slug(fields={"title"},unique=true,separator="-")
      * @ORM\Column(name="slug", length=255, unique=true)
@@ -101,6 +109,32 @@ class News
         $this->newsTags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    function ucfirst_utf8($stri){
+       return ucfirst($stri);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitleMeta()
+    {
+        $pos = strripos($this->titleMeta, ' - Ювелир Лайф');
+        if ($pos === false) {
+            return self::ucfirst_utf8($this->title) . ' - Ювелир Лайф';
+        } else {
+            return $this->titleMeta;
+        }
+    }
+
+    /**
+     * @param mixed $titleMeta
+     */
+    public function setTitleMeta($titleMeta)
+    {
+        $this->titleMeta = $titleMeta;
+    }
+
+
     /**
      * Get id
      *
@@ -156,7 +190,11 @@ class News
      */
     public function getKeywords()
     {
-        return $this->keywords;
+        if (is_null($this->keywords)) {
+            return self::ucfirst_utf8($this->title);
+        } else {
+            return $this->keywords;
+        }
     }
 
     /**
@@ -180,7 +218,11 @@ class News
      */
     public function getDescription()
     {
-        return $this->description;
+        if (is_null($this->description)) {
+            return 'Читайте новость "' . $this->title . '" в блоге интернет-магазина Ювелир Лайф.';
+        } else {
+            return $this->description;
+        }
     }
 
     /**

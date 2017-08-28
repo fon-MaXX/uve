@@ -27,7 +27,7 @@
                                     <a href="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}" data-lightbox="product-gallery" data-title="{{ product.title }}">
                                         <div class="product-show-image-wrapper">
                                             <div class="product-show-image-inner-wrapper">
-                                                <img src="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                                <img alt="{{ product.title }}. Фото" src="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                             </div>
                                         </div>
                                     </a>
@@ -41,7 +41,7 @@
                                         <li>
                                             <a data-slide-index="{{ key }}" href="" class="product-thumbnail-image-wrapper">
                                                 <div class="product-thumbnail-inner-wrapper">
-                                                    <img src="{{ (item.image|length>0)?item.image|json_decode.extra_small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                                    <img alt="{{ product.title }}. Фото" src="{{ (item.image|length>0)?item.image|json_decode.extra_small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                                 </div>
                                             </a>
                                         </li>
@@ -57,7 +57,7 @@
                             <a href="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}" data-lightbox="product-gallery" data-title="{{ product.title }}">
                                 <div class="product-show-image-wrapper">
                                     <div class="product-show-image-inner-wrapper">
-                                        <img src="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                        <img alt="{{ product.title }}. Фото" src="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                     </div>
                                 </div>
                             </a>
@@ -69,7 +69,7 @@
                                 <li>
                                     <a data-slide-index="0" href="" class="product-thumbnail-image-wrapper">
                                         <div class="product-thumbnail-inner-wrapper">
-                                            <img src="{{ (product.poster)? product.poster|json_decode.extra_small :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                            <img alt="{{ product.title }}. Фото" src="{{ (product.poster)? product.poster|json_decode.extra_small :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                         </div>
                                     </a>
                                 </li>
@@ -211,7 +211,7 @@
                             <div class="index-product-preview-outer-wrapper">
                                 <div class="index-product-preview-inner-wrapper">
                                     <a href="{{ path('site_frontend_product_show',{'slug':item.slug}) }}">
-                                        <img src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                        <img alt="{{ item.title }}. Фото" src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                                     </a>
                                 </div>
                             </div>
@@ -227,7 +227,7 @@
 </div>
 {% endblock content %}
 {% block seo %}
-    <title>{{ product.title }}</title>
+    <title>{{ product.titleMeta }}</title>
     {% if product.description %}
         <meta name="description" content="{{ product.description }}">
     {% endif %}

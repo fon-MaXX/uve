@@ -10,6 +10,11 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
 class CategoryAdmin extends AbstractAdmin
 {
+    public function preUpdate($entity)
+    {
+        $this->prePersist($entity);
+    }
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -29,6 +34,10 @@ class CategoryAdmin extends AbstractAdmin
             ->add('id')
             ->add('title',null,[
                 'label'=>'field.title'
+            ])
+            ->add('h1','text',[
+                'required'=> false,
+                'label'=>'h1'
             ])
             ->add('_action', 'actions', [
                 'actions' => [
@@ -53,7 +62,16 @@ class CategoryAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('title','text',[
-                'required'=>true
+                'required'=>true,
+                'label'=>'Title'
+            ])
+            ->add('titleMeta','text',[
+                'required'=> false,
+                'label'=>'Meta title'
+            ])
+            ->add('h1','text',[
+                'required'=> false,
+                'label'=>'h1'
             ])
             ->add('keywords','textarea', [
                 'attr' => [

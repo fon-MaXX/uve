@@ -1,11 +1,11 @@
 {% extends "SiteFrontendBundle::layout.html.twig" %}
 {% block header %}
     {% include "SiteFrontendBundle:Parts:_header.html.twig" with {
-        'category': category,
-        'categories': categories,
-        'itemsNumber': itemsNumber,
-        'staticContent':staticContent,
-        'searchForm': searchForm
+    'category': category,
+    'categories': categories,
+    'itemsNumber': itemsNumber,
+    'staticContent':staticContent,
+    'searchForm': searchForm
     } %}
 {% endblock header %}
 {% block content %}
@@ -23,13 +23,19 @@
         </div>
         <div class="product-list-title-wrapper">
             <h1>
-              {{ (subCategory is defined)?subCategory.title:category.title }}
+                {{ (subCategory is defined)?subCategory.h1:category.h1 }}{% if products.params.page is defined and products.params.page > 1 %} - Страница {{ products.params.page }}{% endif %}
             </h1>
             <div class="product-list-title-buttons-wrapper open">
                 <div class="product-list-filter-title-mobile-header">сортировать по</div>
-                <button data-value="popular" class="product-list-title-button product-list-title-button-popular">популярные</button>
-                <button data-value="by_title" class="product-list-title-button product-list-title-button-title">по названию</button>
-                <button data-value="cheapest" class="product-list-title-button product-list-title-button-cheapest">сначала дешевые</button>
+                <button data-value="popular" class="product-list-title-button product-list-title-button-popular">
+                    популярные
+                </button>
+                <button data-value="by_title" class="product-list-title-button product-list-title-button-title">по
+                    названию
+                </button>
+                <button data-value="cheapest" class="product-list-title-button product-list-title-button-cheapest">
+                    сначала дешевые
+                </button>
             </div>
         </div>
         <div class="product-list-content-wrapper">
@@ -56,7 +62,7 @@
                                         <div class="index-product-preview-outer-wrapper">
                                             <div class="index-product-preview-inner-wrapper">
                                                 <a href="{{ path('site_frontend_product_show',{'slug':product.slug}) }}">
-                                                    <img src="{{ (product.poster)?product.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                                    <img alt="{{ product.title }}. Фото" src="{{ (product.poster)?product.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                                                 </a>
                                             </div>
                                         </div>
@@ -80,20 +86,27 @@
                                             {% endif %}
                                         </div>
                                         <div class="index-product-controls col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
-                                            <button data-url="{{ url('site_frontend_order_add_product',{"slug":product.slug}) }}" class="index-product-buy">
+                                            <button data-url="{{ url('site_frontend_order_add_product',{"slug":product.slug}) }}"
+                                                    class="index-product-buy">
                                                 купить
                                             </button>
                                         </div>
                                         <div class="index-product-shortcut-wrapper">
-                                            <div><strong>Металл:</strong> {{ product.metal }}; </div>
+                                            <div><strong>Металл:</strong> {{ product.metal }};</div>
                                             <div><strong>Средний вес, г:</strong> {{ product.weight }};</div>
-                                            <div><strong>Тип вставки:</strong>{{ (product.insertionType)?product.insertionType:"Без вставки" }};</div>
-                                            <div class="product-state {{ product.state|product_state }}"><span>{{ product.state }}</span></div>
+                                            <div><strong>Тип
+                                                    вставки:</strong>{{ (product.insertionType)?product.insertionType:"Без вставки" }}
+                                                ;
+                                            </div>
+                                            <div class="product-state {{ product.state|product_state }}">
+                                                <span>{{ product.state }}</span></div>
                                             <div class="selected-button-wrapper">
-                                                <span data-url="{{ url("site_frontend_selected_add_product",{'slug':product.slug}) }}" class="selected-item">
+                                                <span data-url="{{ url("site_frontend_selected_add_product",{'slug':product.slug}) }}"
+                                                      class="selected-item">
                                                     <span>добавить</br> в избранное</span>
                                                 </span>
-                                                <span data-url="{{ url("site_frontend_comparing_add_product",{'slug':product.slug}) }}" class="comparison-item">
+                                                <span data-url="{{ url("site_frontend_comparing_add_product",{'slug':product.slug}) }}"
+                                                      class="comparison-item">
                                                     <span>добавить</br> в сравнение</span>
                                                 </span>
                                             </div>
@@ -127,11 +140,15 @@
     {% else %}
         {% set seo = category %}
     {% endif %}
-    <title>{{ seo.title }}</title>
+    <title>{{ seo.titleMeta }}{% if  products.params.page is defined and products.params.page > 1 %} - Страница {{ products.params.page }}{% endif %}</title>
     {% if seo.description %}
-        <meta name="description" content="{{ seo.description }}">
+        <meta name="description"
+              content="{{ seo.description }}{% if  products.params.page is defined and products.params.page > 1 %} Страница {{ products.params.page }}{% endif %}">
     {% endif %}
-    {% if seo.keywords %}
-        <meta name="keywords" content="{{ seo.keywords }}">
+    {% if  products.params.page is defined and products.params.page > 1 %}
+    {% else %}
+        {% if seo.keywords %}
+            <meta name="keywords" content="{{ seo.keywords }}">
+        {% endif %}
     {% endif %}
 {% endblock seo %}

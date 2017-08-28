@@ -161,6 +161,7 @@
     </div>
 {% endblock %}
 {% block seo %}
+    <meta name="robots" content="noindex, follow" />
     <title>{{ seo.title }}</title>
     {% if seo.description %}
         <meta name="description" content="{{ seo.description }}">

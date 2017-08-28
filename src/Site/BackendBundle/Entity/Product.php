@@ -37,6 +37,14 @@ class Product
      * @ORM\Column(name="description_field", type="string", length=256, nullable=true)
      */
     private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_meta", type="string", length=255, nullable=false)
+     */
+    private $titleMeta;
+
     /**
      * @Gedmo\Slug(fields={"title"},unique=true,separator="-")
      * @ORM\Column(name="slug", length=255, unique=true)
@@ -261,6 +269,35 @@ class Product
         return $string;
     }
 
+    function ucfirst_utf8($stri){
+        if($stri{0}>="\xc3")
+            return (($stri{1}>="\xa0")?
+                    ($stri{0}.chr(ord($stri{1})-32)):
+                    ($stri{0}.$stri{1})).substr($stri,2);
+        else return ucfirst($stri);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitleMeta()
+    {
+        $pos = strripos($this->titleMeta, 'купить в интернет-магазине Ювелир Лайф');
+        if ($pos === false) {
+            return self::ucfirst_utf8($this->title) . ' купить в интернет-магазине Ювелир Лайф';
+        } else {
+            return self::ucfirst_utf8($this->titleMeta);
+        }
+    }
+
+    /**
+     * @param mixed $titleMeta
+     */
+    public function setTitleMeta($titleMeta)
+    {
+        $this->titleMeta = $titleMeta;
+    }
+
     /**
      * Get id
      *
@@ -316,7 +353,11 @@ class Product
      */
     public function getKeywords()
     {
-        return $this->keywords;
+        if (is_null($this->keywords)) {
+            return self::ucfirst_utf8($this->title);
+        } else {
+            return $this->keywords;
+        }
     }
 
     /**
@@ -340,7 +381,11 @@ class Product
      */
     public function getDescription()
     {
-        return $this->description;
+        if (is_null($this->description)) {
+            return 'Купить  ' . $this->title . ' в интернет магазине Ювелир Лайф. Низкие цены! Доставка по Киеву и Украине!';
+        } else {
+            return $this->description;
+        }
     }
 
     /**

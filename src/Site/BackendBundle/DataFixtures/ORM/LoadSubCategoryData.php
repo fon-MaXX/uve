@@ -40,7 +40,7 @@ class LoadSubCategoryData extends AbstractFixture implements OrderedFixtureInter
         $arr = [
             'кольца',
             'цепи и браслеты',
-            'подвесы',
+            'подвески',
             'аксессуары',
             'серьги',
             'пирсинг',

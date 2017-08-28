@@ -42,9 +42,33 @@ class StaticSeoPages
      * @ORM\Column(name="description_field", type="string", length=256, nullable=true)
      */
     private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_h1", type="string", length=255, nullable=false)
+     */
+    private $h1;
+
     public function __toString()
     {
         return ($this->getId())?$this->getTitle():'';
+    }
+
+    /**
+     * @return string
+     */
+    public function getH1()
+    {
+        return $this->h1;
+    }
+
+    /**
+     * @param string $h1
+     */
+    public function setH1($h1)
+    {
+        $this->h1 = $h1;
     }
 
     /**
