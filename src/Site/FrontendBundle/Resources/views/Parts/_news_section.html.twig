@@ -6,7 +6,7 @@
                 <div class="news-preview-outer-wrapper">
                     <div class="news-preview-inner-wrapper">
                         <a href="{{ path('site_frontend_news_show',{'slug':article.slug}) }}">
-                        <img src="{{ (article.poster)?article.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                        <img alt="{{ article.title }}. Фото" src="{{ (article.poster)?article.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                         </a>
                     </div>
                 </div>
