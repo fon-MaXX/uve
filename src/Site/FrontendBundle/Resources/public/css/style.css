@@ -1417,6 +1417,10 @@ div.laptop-menu-content-wrapper.open {
     width:80%;
     display: inline-block;
 }
+.news-item-wrapper h3 span a{
+    color: #333;
+}
+
 .news-item-shortcut{
     width:260px;
     height: 70px;
@@ -3671,6 +3675,11 @@ select.global-cart-select.select-default-view,
     font-size: 20px;
     font-family: Georgia;
 }
+
+.list-article-title a{
+    color: #333;
+}
+
 .list-article-text-wrapper{
     padding-top: 10px;
     font: 15px MullerRegular;

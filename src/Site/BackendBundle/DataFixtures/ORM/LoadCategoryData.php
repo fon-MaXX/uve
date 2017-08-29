@@ -71,7 +71,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
                     'position'=>2
                 ]
             ],
-            'подвесы'=>[
+            'подвески'=>[
                 0=>[
                     'title'=>'Подвес',
                     'position'=>5

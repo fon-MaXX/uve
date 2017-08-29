@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,32 +11,50 @@
     <title>Uvelife</title>
     <meta name="description" content="">
 {% endblock seo %}
+
+    {% stylesheets
+    output='css/uvelife_com.css'
+    filter='cssrewrite, yui_css'
+    'bundles/sitefrontend/css/bootstrap.min.css'
+    'bundles/sitefrontend/css/ie10-viewport-bug-workaround.css'
+    'bundles/sitefrontend/css/font-awesome.css'
+    'bundles/sitefrontend/css/jquery.bxslider.css'
+    'bundles/sitefrontend/css/jquery-ui.min.css'
+    'bundles/sitefrontend/css/bootstrap-select.css'
+    'bundles/sitefrontend/css/perfect-scrollbar.min.css'
+    'bundles/sitefrontend/css/lightbox.css'
+    'bundles/sitefrontend/css/star-rating-svg.css'
+    'bundles/sitefrontend/css/style.css'
+    %}
+    <link href="{{ asset_url }}" rel="stylesheet"/>
+    {% endstylesheets %}
+
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset("bundles/sitefrontend/css/bootstrap.min.css") }}" rel="stylesheet">
+    {#<link href="{{ asset("bundles/sitefrontend/css/bootstrap.min.css") }}" rel="stylesheet">#}
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="{{ asset("bundles/sitefrontend/css/ie10-viewport-bug-workaround.css") }}" rel="stylesheet">
+    {#<link href="{{ asset("bundles/sitefrontend/css/ie10-viewport-bug-workaround.css") }}" rel="stylesheet">#}
 
-    <link href="{{ asset("bundles/sitefrontend/css/font-awesome.css") }}" rel="stylesheet">
-    <link href="{{ asset("bundles/sitefrontend/css/jquery.bxslider.css") }}" rel="stylesheet">
+    {#<link href="{{ asset("bundles/sitefrontend/css/font-awesome.css") }}" rel="stylesheet">#}
+    {#<link href="{{ asset("bundles/sitefrontend/css/jquery.bxslider.css") }}" rel="stylesheet">#}
 
-    <link href="{{ asset("bundles/sitefrontend/css/jquery-ui.min.css") }}" rel="stylesheet">
-    <link href="{{ asset("bundles/sitefrontend/css/bootstrap-select.css") }}" rel="stylesheet">
-    <link href="{{ asset("bundles/sitefrontend/css/perfect-scrollbar.min.css") }}" rel="stylesheet">
+    {#<link href="{{ asset("bundles/sitefrontend/css/jquery-ui.min.css") }}" rel="stylesheet">#}
+    {#<link href="{{ asset("bundles/sitefrontend/css/bootstrap-select.css") }}" rel="stylesheet">#}
+    {#<link href="{{ asset("bundles/sitefrontend/css/perfect-scrollbar.min.css") }}" rel="stylesheet">#}
 
 
-    <link href="{{ asset("bundles/sitefrontend/css/lightbox.css") }}" rel="stylesheet">
-    <link href="{{ asset("bundles/sitefrontend/css/star-rating-svg.css") }}" rel="stylesheet">
-    <link href="{{ asset("bundles/sitefrontend/css/style.css") }}" rel="stylesheet">
+    {#<link href="{{ asset("bundles/sitefrontend/css/lightbox.css") }}" rel="stylesheet">#}
+    {#<link href="{{ asset("bundles/sitefrontend/css/star-rating-svg.css") }}" rel="stylesheet">#}
+    {#<link href="{{ asset("bundles/sitefrontend/css/style.css") }}" rel="stylesheet">#}
 
-    <script src="{{ asset("bundles/sitefrontend/js/ie-emulation-modes-warning.js") }}"></script>
+    {#<script src="{{ asset("bundles/sitefrontend/js/ie-emulation-modes-warning.js") }}"></script>#}
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <script src="{{ asset("bundles/sitefrontend/js/html5shiv.min.js") }}"></script>
-    <script src="{{ asset("bundles/sitefrontend/js/respond.min.js") }}"></script>
+    {#<script src="{{ asset("bundles/sitefrontend/js/html5shiv.min.js") }}"></script>#}
+    {#<script src="{{ asset("bundles/sitefrontend/js/respond.min.js") }}"></script>#}
     <script src="{{ asset("bundles/sitefrontend/js/jquery.min.js") }}"></script>
-    <script src="{{ asset("bundles/sitefrontend/js/jquery-ui.min.js") }}"></script>
-    <script src="{{ asset("bundles/sitefrontend/js/lightbox.min.js") }}"></script>
+{#<script src="{{ asset("bundles/sitefrontend/js/jquery-ui.min.js") }}"></script>#}
+{#<script src="{{ asset("bundles/sitefrontend/js/lightbox.min.js") }}"></script>#}
 </head>
 
 <body>
@@ -75,17 +93,40 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 {% block javascripts %}
-<script src="{{ asset("bundles/sitefrontend/js/jquery.min.js") }}"></script>
-<script src="{{ asset("bundles/sitefrontend/js/bootstrap.min.js") }}"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="{{ asset("bundles/sitefrontend/js/ie10-viewport-bug-workaround.js") }}"></script>
-<script src="{{ asset("bundles/sitefrontend/js/jquery.bxslider.js") }}"></script>
-<script src="{{ asset("bundles/sitefrontend/js/bootstrap-select.min.js") }}"></script>
-<script src="{{ asset("bundles/sitefrontend/js/perfect-scrollbar.min.js") }}"></script>
-<script src="{{ asset("bundles/sitefrontend/js/masonry.min.js") }}"></script>
-<script src="{{ asset("bundles/sitefrontend/js/jquery.infinitescroll.min.js") }}"></script>
-<script src="{{ asset("bundles/sitefrontend/js/jquery.validate.js") }}"></script>
-<script src="{{ asset("bundles/sitefrontend/js/main.js") }}"></script>
+    <script src="{{ asset("bundles/sitefrontend/js/jquery.bxslider.js") }}"></script>
+    {% javascripts
+    output='js/uvelife_com.js'
+    filter='yui_js'
+    'bundles/sitefrontend/js/html5shiv.min.js'
+    'bundles/sitefrontend/js/respond.min.js'
+    'bundles/sitefrontend/js/ie-emulation-modes-warning.js'
+    'bundles/sitefrontend/js/jquery-ui.min.js'
+    'bundles/sitefrontend/js/lightbox.min.js'
+    'bundles/sitefrontend/js/bootstrap.min.js'
+    'bundles/sitefrontend/js/ie10-viewport-bug-workaround.js'
+    'bundles/sitefrontend/js/bootstrap-select.min.js'
+    'bundles/sitefrontend/js/perfect-scrollbar.min.js'
+    'bundles/sitefrontend/js/masonry.min.js'
+    'bundles/sitefrontend/js/jquery.infinitescroll.min.js'
+    'bundles/sitefrontend/js/jquery.validate.js'
+    'bundles/sitefrontend/js/main.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {#<script src="{{ asset("bundles/sitefrontend/js/jquery-ui.min.js") }}"></script>#}
+    {#<script src="{{ asset("bundles/sitefrontend/js/lightbox.min.js") }}"></script>#}
+{#<script src="{{ asset("bundles/sitefrontend/js/jquery.min.js") }}"></script>#}
+{#<script src="{{ asset("bundles/sitefrontend/js/bootstrap.min.js") }}"></script>#}
+{#<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->#}
+{#<script src="{{ asset("bundles/sitefrontend/js/ie10-viewport-bug-workaround.js") }}"></script>#}
+
+{#<script src="{{ asset("bundles/sitefrontend/js/bootstrap-select.min.js") }}"></script>#}
+{#<script src="{{ asset("bundles/sitefrontend/js/perfect-scrollbar.min.js") }}"></script>#}
+{#<script src="{{ asset("bundles/sitefrontend/js/masonry.min.js") }}"></script>#}
+{#<script src="{{ asset("bundles/sitefrontend/js/jquery.infinitescroll.min.js") }}"></script>#}
+{#<script src="{{ asset("bundles/sitefrontend/js/jquery.validate.js") }}"></script>#}
+{#<script src="{{ asset("bundles/sitefrontend/js/main.js") }}"></script>#}
 {% endblock javascripts %}
 </body>
 </html>

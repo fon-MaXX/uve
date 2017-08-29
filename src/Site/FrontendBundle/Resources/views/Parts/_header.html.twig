@@ -2,7 +2,7 @@
     <div class="navbar-head-top-section-wrapper">
         <div class="navbar-head-logo">
             <a href="{{ path('site_frontend_homepage') }}">
-                <img src="{{ asset("bundles/sitefrontend/images/main/logo.svg") }}"/>
+                <img alt="Ювелирный интернет-магазин серебряных украшений Ювелир Лайф" src="{{ asset("bundles/sitefrontend/images/main/logo.svg") }}"/>
             </a>
         </div>
         <div class="fixed-menu-wrapper">
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="nav-basket-wrapper">
-                        <span data-url="{{ url("site_frontend_order_get_ajax_cart") }}" href="javascript:void(0)" class="basket-image"></span>
+                        <span data-url="{{ url("site_frontend_order_get_ajax_cart") }}" class="basket-image"></span>
                         <span data-url="{{ url("site_frontend_order_get_items_number") }}" class="basket-number-wrapper">
                             {{ itemsNumber }}
                         </span>
@@ -88,14 +88,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="fixed-scroll-logo">
+                <a class="fixed-scroll-logo" href="{{ path('site_frontend_homepage') }}">
                 </a>
             </div>
             <div class="navbar-head-bottom-section-wrapper">
                 <a class="head-bottom-navbar-item {{ (isSet is defined)?'active':'' }}" href="{{ path('site_frontend_set_list') }}">наборы</a>
                 {% for cat in categories %}
                     {% if cat.subCategories|length>1 %}
-                        <span class="head-bottom-navbar-item custom-dropdown-item {{ (cat.slug == category.slug)?'active':''}}">
+                        <div class="head-bottom-navbar-item custom-dropdown-item {{ (cat.slug == category.slug)?'active':''}}">
                             <a href="{{ path('site_frontend_category',{'slug':cat.slug}) }}" class="custom-dropdown-toggle" >{{ cat.title }}</a>
                             <ul class="custom-dropdown-menu">
                                 {% for subCategory in cat.subCategories  %}
@@ -105,7 +105,7 @@
                                         }) }}">{{ subCategory.title }}</a></li>
                                 {% endfor %}
                             </ul>
-                        </span>
+                        </div>
                     {% else %}
                         <a class="head-bottom-navbar-item {{ (cat.slug == category.slug)?'active':''}}" href="{{ path('site_frontend_category',{'slug':cat.slug}) }}">{{ cat.title }}</a>
                     {% endif %}
@@ -123,7 +123,7 @@
             </div>
             <div class="scroll-basket-wrapper">
                 <div class="nav-basket-wrapper">
-                    <span data-url="{{ url("site_frontend_order_get_ajax_cart") }}" href="javascript:void(0)" class="basket-image"></span>
+                    <span data-url="{{ url("site_frontend_order_get_ajax_cart") }}" class="basket-image"></span>
                     <span class="basket-number-wrapper">
                         {{ itemsNumber }}
                     </span>

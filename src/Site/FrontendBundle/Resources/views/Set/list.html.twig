@@ -24,7 +24,7 @@
         </div>
         <div class="product-list-title-wrapper">
             <h1>
-              {{ "Наборы" }}
+                {{ seo.h1 }}
             </h1>
             <div class="product-list-title-buttons-wrapper open">
                 <div class="product-list-filter-title-mobile-header">сортировать по</div>
@@ -57,7 +57,7 @@
                                         <div class="index-product-preview-outer-wrapper">
                                             <div class="index-product-preview-inner-wrapper">
                                                 <a href="{{ path('site_frontend_set_show',{'slug':set.slug}) }}">
-                                                    <img src="{{ (set.poster)?set.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                                    <img alt="{{ set.title }}. Фото" src="{{ (set.poster)?set.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                                                 </a>
                                             </div>
                                         </div>
@@ -96,10 +96,10 @@
                                             <div class="product-state {{ set.state|product_state }}"><span>{{ set.state }}</span></div>
                                             <div class="selected-button-wrapper">
                                                 <span data-url="{{ url("site_frontend_selected_add_set",{'slug':set.slug}) }}" class="selected-item">
-                                                    <span>добавить</br> в избранное</span>
+                                                    <span>добавить<br> в избранное</span>
                                                 </span>
                                                 <span data-url="{{ url("site_frontend_comparing_add_set",{'slug':set.slug}) }}" class="comparison-item">
-                                                    <span>добавить</br> в сравнение</span>
+                                                    <span>добавить<br> в сравнение</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -127,7 +127,7 @@
     </div>
 {% endblock %}
 {% block seo %}
-    <title>{{ seo.title }}</title>
+    <title>{{ seo.h1 }}</title>
     {% if seo.description %}
         <meta name="description" content="{{ seo.description }}">
     {% endif %}

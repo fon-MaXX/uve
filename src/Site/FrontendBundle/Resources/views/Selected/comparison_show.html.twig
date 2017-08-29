@@ -34,7 +34,7 @@
                                     <div class="comparison-show-item-wrapper">
                                         <div class="comparison-item-poster">
                                             <div class="index-product-preview-inner-wrapper">
-                                                <img src="{{ (item.entity.poster)?item.entity.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}">
+                                                <img alt="Ювелирный интернет-магазин серебряных украшений Ювелир Лайф" src="{{ (item.entity.poster)?item.entity.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}">
                                             </div>
                                         </div>
                                         <div class="comparison-item-title">
@@ -132,6 +132,7 @@
     </div>
 {% endblock %}
 {% block seo %}
+    <meta name="robots" content="noindex, follow" />
     <title>{{ seo.title }}</title>
     {% if seo.description %}
         <meta name="description" content="{{ seo.description }}">

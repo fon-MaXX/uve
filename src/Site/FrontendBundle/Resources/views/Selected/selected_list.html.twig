@@ -29,7 +29,7 @@
                                         <div class="index-product-preview-outer-wrapper">
                                             <div class="index-product-preview-inner-wrapper">
                                                 <a href="{{ path('site_frontend_set_show',{'slug':item.entity.slug}) }}">
-                                                    <img src="{{ (item.entity.poster)?item.entity.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                                    <img alt="Ювелирный интернет-магазин серебряных украшений Ювелир Лайф" src="{{ (item.entity.poster)?item.entity.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                                                 </a>
                                             </div>
                                         </div>
@@ -66,10 +66,10 @@
                                             <div class="product-state {{ item.entity.state|product_state }}"><span>{{ item.entity.state }}</span></div>
                                             <div class="selected-button-wrapper">
                                                 <span class="disabled-selected-item">
-                                                    <span>добавить</br> в избранное</span>
+                                                    <span>добавить<br> в избранное</span>
                                                 </span>
                                                 <span data-url="{{ url("site_frontend_comparing_add_set",{'slug':item.entity.slug}) }}" class="comparison-item">
-                                                    <span>добавить</br> в сравнение</span>
+                                                    <span>добавить<br> в сравнение</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -84,7 +84,7 @@
                                         <div class="index-product-preview-outer-wrapper">
                                             <div class="index-product-preview-inner-wrapper">
                                                 <a href="{{ path('site_frontend_product_show',{'slug': item.entity.slug }) }}">
-                                                    <img src="{{ (item.entity.poster)?item.entity.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                                    <img alt="Ювелирный интернет-магазин серебряных украшений Ювелир Лайф" src="{{ (item.entity.poster)?item.entity.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                                                 </a>
                                             </div>
                                         </div>
@@ -120,10 +120,10 @@
                                             <div class="product-state {{ item.entity.state|product_state }}"><span>{{ item.entity.state }}</span></div>
                                             <div class="selected-button-wrapper">
                                                 <span class="disabled-selected-item">
-                                                    <span>добавить</br> в избранное</span>
+                                                    <span>добавить<br> в избранное</span>
                                                 </span>
                                                 <span data-url="{{ url("site_frontend_comparing_add_product",{'slug':item.entity.slug}) }}" class="comparison-item">
-                                                    <span>добавить</br> в сравнение</span>
+                                                    <span>добавить<br> в сравнение</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -139,6 +139,7 @@
     </div>
 {% endblock %}
 {% block seo %}
+    <meta name="robots" content="noindex, follow" />
     <title>{{ seo.title }}</title>
     {% if seo.description %}
         <meta name="description" content="{{ seo.description }}">

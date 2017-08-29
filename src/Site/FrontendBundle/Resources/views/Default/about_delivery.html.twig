@@ -14,7 +14,7 @@
         </div>
         <div class="static-title-wrapper">
             <h1>
-                {{ title }}
+                {{ seo.h1 }}
             </h1>
         </div>
         <div class="static-content-wrapper">
@@ -22,7 +22,7 @@
                 {{ staticContent.head_text.text|raw }}
             </div>
             <div class="static-content-image-wrapper">
-                <img src="{{ asset('bundles/sitefrontend/images/main/about_delivery.jpg') }}">
+                <img alt="Ювелирный интернет-магазин серебряных украшений Ювелир Лайф" src="{{ asset('bundles/sitefrontend/images/main/about_delivery.jpg') }}">
             </div>
             <div class="static-content-text">
                 {{ staticContent.content_text.text|raw }}

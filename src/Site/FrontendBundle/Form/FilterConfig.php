@@ -51,7 +51,7 @@ class FilterConfig{
             3=>'Серьги с жемчугом',
             4=>'Серьги без камней'
         ],
-        'подвесы'=>[
+        'подвески'=>[
             1=>"Подвесы в виде сердца",
             2=>"Тема любви",
             3=>"Детская тематика",
@@ -77,7 +77,7 @@ class FilterConfig{
         'наборы'=>['price','theme','state','insertionType'],
         'кольца'=>['price','theme','state','insertionType'],
         'серьги'=>['price','theme','state','insertionType'],
-        'подвесы'=>['price','theme','state','insertionType'],
+        'подвески'=>['price','theme','state','insertionType'],
         'аксессуары'=>['price','theme','state','insertionType'],
         'пирсинг'=>['price','theme','state','insertionType'],
         'цепи и браслеты'=>['price','theme','state','insertionType','chainSizes'],

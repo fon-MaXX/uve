@@ -6,14 +6,18 @@
                 <div class="news-preview-outer-wrapper">
                     <div class="news-preview-inner-wrapper">
                         <a href="{{ path('site_frontend_news_show',{'slug':article.slug}) }}">
-                        <img src="{{ (article.poster)?article.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                        <img alt="{{ article.title }}. Фото" src="{{ (article.poster)?article.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                         </a>
                     </div>
                 </div>
             </div>
             <div class="news-image-subscription">{{ article.createdAt|date('d.m.Y') }}</div>
             <h3>
-                <span class="news-item-title">{{ article.title }}</span>
+                <span class="news-item-title">
+                      <a href="{{ path('site_frontend_news_show',{'slug':article.slug}) }}">
+                        {{ article.title }}
+                    </a>
+                </span>
             </h3>
             <div class="news-item-shortcut">
                 {{ article.shortcut|raw }}

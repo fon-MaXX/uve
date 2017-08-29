@@ -27,7 +27,7 @@
                                 <a href="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}" data-lightbox="set-gallery" data-title="{{ set.title }}">
                                     <div class="product-show-image-wrapper">
                                         <div class="product-show-image-inner-wrapper">
-                                            <img src="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                            <img alt="{{ set.title }}. Фото" src="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                         </div>
                                     </div>
                                 </a>
@@ -41,7 +41,7 @@
                                     <li>
                                         <a data-slide-index="{{ key }}" href="" class="product-thumbnail-image-wrapper">
                                             <div class="product-thumbnail-inner-wrapper">
-                                                <img src="{{ (item.image|length>0)?item.image|json_decode.extra_small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                                <img alt="{{ set.title }}. Фото" src="{{ (item.image|length>0)?item.image|json_decode.extra_small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                             </div>
                                         </a>
                                     </li>
@@ -57,7 +57,7 @@
                             <a href="{{ (set.poster|length>0)? set.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}" data-lightbox="set-gallery" data-title="{{ set.title }}">
                                 <div class="product-show-image-wrapper">
                                     <div class="product-show-image-inner-wrapper">
-                                        <img src="{{ (set.poster|length>0)? set.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                        <img alt="{{ set.title }}. Фото" src="{{ (set.poster|length>0)? set.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                     </div>
                                 </div>
                             </a>
@@ -69,7 +69,7 @@
                                 <li>
                                     <a data-slide-index="0" href="" class="product-thumbnail-image-wrapper">
                                         <div class="product-thumbnail-inner-wrapper">
-                                            <img src="{{ (set.poster|length>0)? set.poster|json_decode.extra_small :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                            <img alt="{{ set.title }}. Фото" src="{{ (set.poster|length>0)? set.poster|json_decode.extra_small :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                         </div>
                                     </a>
                                 </li>
@@ -150,10 +150,10 @@
             </div>
             <div class="selected-button-wrapper selected-button-show-product-form">
                 <span data-url="{{ url("site_frontend_selected_add_set",{'slug':set.slug}) }}" class="selected-item selected-button-show-product-form">
-                    <span>добавить</br> в избранное</span>
+                    <span>добавить<br> в избранное</span>
                 </span>
                 <span data-url="{{ url("site_frontend_comparing_add_set",{'slug':set.slug}) }}" class="comparison-item selected-button-show-product-form">
-                    <span>добавить</br> в сравнение</span>
+                    <span>добавить<br> в сравнение</span>
                 </span>
             </div>
             <div class="product-show-tabs-wrapper">
@@ -209,7 +209,7 @@
                             <div class="index-product-preview-outer-wrapper">
                                 <div class="index-product-preview-inner-wrapper">
                                     <a href="{{ path('site_frontend_product_show',{'slug':item.slug}) }}">
-                                        <img src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                        <img alt="{{ item.title }}. Фото" src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                                     </a>
                                 </div>
                             </div>

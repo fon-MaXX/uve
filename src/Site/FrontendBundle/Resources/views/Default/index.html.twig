@@ -11,7 +11,7 @@
                             </div>
                             <div class="slider-image-wrapper">
                                 <div class="slider-image-inner-wrapper">
-                                    <img src="{{ (slide.image)?slide.image|json_decode.big:asset('bundles/sitefrontend/images/main/slider-picture.jpg') }}"/>
+                                    <img alt="Ювелирный интернет-магазин серебряных украшений Ювелир Лайф" src="{{ (slide.image)?slide.image|json_decode.big:asset('bundles/sitefrontend/images/main/slider-picture.jpg') }}"/>
                                 </div>
                                 <span class="top-slider-discount">
                                     {{ slide.discount }}
@@ -61,7 +61,8 @@
                 <div class="info-block-logo"></div>
             </div>
             <div class="info-block-text-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
-                <h1>о магазине</h1>
+                {#<h1>о магазине</h1>#}
+                <h1>{{ seo.h1 }}</h1>
                 <div class="info-block-text-inner-wrapper">
                     {{ staticContent.about_shop.text|raw }}
                 </div>

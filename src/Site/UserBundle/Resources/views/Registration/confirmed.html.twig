@@ -16,3 +16,6 @@
 {% block footer %}
     {{ render(controller('SiteFrontendBundle:Default:footer')) }}
 {% endblock footer %}
+{% block seo %}
+    <meta name="robots" content="noindex, follow" />
+{% endblock seo %}

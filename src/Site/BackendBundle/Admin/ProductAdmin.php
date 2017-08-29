@@ -100,6 +100,10 @@ class ProductAdmin extends AbstractAdmin
             ->add('title','text',[
                 'required'=>true
             ])
+            ->add('titleMeta','text',[
+                'required'=> false,
+                'label'=>'Meta title'
+            ])
             ->add('isFresh',CheckboxType::class,[
                 'required'=>true,
                 'label'=>'Присутствовал в синхронизации'

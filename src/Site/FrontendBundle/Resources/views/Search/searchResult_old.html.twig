@@ -41,7 +41,7 @@
                         <a href="{{ url }}">
                             <div class="item-thumbnail-outer-wrapper">
                                 <div class="item-thumbnail-inner-wrapper">
-                                    <img src="{{ (item.poster)?item.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                    <img alt="Ювелирный интернет-магазин серебряных украшений Ювелир Лайф" src="{{ (item.poster)?item.poster|json_decode.small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                 </div>
                             </div>
                             <div class="search-result-text">
@@ -70,6 +70,7 @@
     </div>
 {% endblock content %}
 {% block seo %}
+    <meta name="robots" content="noindex, follow" />
     <title>{{ seo.title }}</title>
     {% if seo.description %}
         <meta name="description" content="{{ seo.description }}">

@@ -14,7 +14,7 @@
         </div>
         <div class="news-list-title-wrapper">
             <h1>
-              {{ "Новости" }}
+                {{ seo.h1 }}
             </h1>
         </div>
         <div class="news-list-content-wrapper">
@@ -24,7 +24,7 @@
                     <div class="list-article-preview-outer-wrapper">
                         <div class="index-product-preview-inner-wrapper">
                             <a href="{{ path('site_frontend_news_show',{'slug':article.slug}) }}">
-                                <img src="{{ (article.poster)?article.poster|json_decode.big:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                <img alt="{{ article.title }}. Фото" src="{{ (article.poster)?article.poster|json_decode.big:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                             </a>
                         </div>
                     </div>
@@ -36,7 +36,11 @@
                 </div>
                 <div class="list-article-title-wrapper">
                     <div class="list-article-date">{{ article.createdAt|date('d.m.Y') }}</div>
-                    <div class="list-article-title">{{ article.title }}</div>
+                    <div class="list-article-title">
+                        <a href="{{ path('site_frontend_news_show',{'slug':article.slug}) }}">
+                        {{ article.title }}
+                        </a>
+                    </div>
                 </div>
                 <div class="list-article-text-wrapper">
                     {{ article.shortcut|raw }}

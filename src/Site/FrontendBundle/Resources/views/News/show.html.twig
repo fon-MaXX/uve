@@ -30,7 +30,7 @@
     </div>
     <div class="article-show-content-wrapper">
         <div class="article-show-poster">
-            <img src="{{ (article.poster)?article.poster|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}">
+            <img alt="{{ article.title }}. Фото" src="{{ (article.poster)?article.poster|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}">
         </div>
         <div class="article-wysiwyg-content">
             {{ article.text|raw }}
@@ -63,7 +63,7 @@
                         <div class="list-article-preview-outer-wrapper">
                             <div class="index-product-preview-inner-wrapper">
                                 <a href="{{ path('site_frontend_news_show',{'slug':item.slug}) }}">
-                                    <img src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/news-preview-example.png") }}">
+                                    <img alt="{{ item.title }}. Фото" src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/news-preview-example.png") }}">
                                 </a>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
 </div>
 {% endblock content %}
 {% block seo %}
-    <title>{{ article.title }}</title>
+    <title>{{ article.titleMeta }}</title>
     {% if article.description %}
         <meta name="description" content="{{ article.description }}">
     {% endif %}

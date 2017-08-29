@@ -349,7 +349,7 @@ class FilterConfig
             'getPriceForFilter', 'getFilterConfigThemeForFilter',
             'getFilterConfigStateForFilter', 'getFilterConfigInsertionTypeForFilter'
         ],
-        'подвесы' => [
+        'подвески' => [
             'getPriceForFilter', 'getFilterConfigThemeForFilter',
             'getFilterConfigStateForFilter', 'getFilterConfigInsertionTypeForFilter'
         ],
