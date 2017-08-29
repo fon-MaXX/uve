@@ -413,6 +413,7 @@ class XmlLoader
             }
             if(count($items)){
                 foreach($items as $item){
+                    $item = trim($item);
                     if(isset($this->chainSizes[$item])){
                         if(!$object->hasChainSize($this->chainSizes[$item])){
                             $object->addChainSize($this->chainSizes[$item]);
@@ -453,6 +454,7 @@ class XmlLoader
             }
             if(count($items)){
                 foreach($items as $item){
+                    $item = trim($item);
                     if(isset($this->ringSizes[$item])){
                         if(!$object->hasRingSize($this->ringSizes[$item])){
                             $object->addRingSize($this->ringSizes[$item]);
