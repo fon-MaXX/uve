@@ -3,7 +3,9 @@
         <div class="range-label">
             Цена, грн
         </div>
+        {% if form.range is defined %}
         {{ form_widget(form.range) }}
+        {% endif %}
     </div>
     <div class="product-filter-item-submit-wrapper">
         <button class="product-filter-item-submit" type="submit">OK</button>

@@ -7,7 +7,19 @@
     <meta name="format-detection" content="telephone=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="shortcut icon" href="{{ asset("bundles/sitefrontend/images/gray-crystal.png") }}" type="image/x-icon">
-{% block seo %}
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-105577500-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    {% block seo %}
     <title>Uvelife</title>
     <meta name="description" content="">
 {% endblock seo %}
@@ -53,7 +65,8 @@
     {#<script src="{{ asset("bundles/sitefrontend/js/html5shiv.min.js") }}"></script>#}
     {#<script src="{{ asset("bundles/sitefrontend/js/respond.min.js") }}"></script>#}
     <script src="{{ asset("bundles/sitefrontend/js/jquery.min.js") }}"></script>
-{#<script src="{{ asset("bundles/sitefrontend/js/jquery-ui.min.js") }}"></script>#}
+    <script src="{{ asset("bundles/sitefrontend/js/jquery.bxslider.js") }}"></script>
+<script src="{{ asset("bundles/sitefrontend/js/jquery-ui.min.js") }}"></script>
 {#<script src="{{ asset("bundles/sitefrontend/js/lightbox.min.js") }}"></script>#}
 </head>
 
@@ -93,14 +106,12 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 {% block javascripts %}
-    <script src="{{ asset("bundles/sitefrontend/js/jquery.bxslider.js") }}"></script>
     {% javascripts
     output='js/uvelife_com.js'
     filter='yui_js'
     'bundles/sitefrontend/js/html5shiv.min.js'
     'bundles/sitefrontend/js/respond.min.js'
     'bundles/sitefrontend/js/ie-emulation-modes-warning.js'
-    'bundles/sitefrontend/js/jquery-ui.min.js'
     'bundles/sitefrontend/js/lightbox.min.js'
     'bundles/sitefrontend/js/bootstrap.min.js'
     'bundles/sitefrontend/js/ie10-viewport-bug-workaround.js'
