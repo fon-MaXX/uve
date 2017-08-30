@@ -5,4 +5,7 @@ DirectoryIndex app.php
     RewriteRule ^(.*)$ https://uvelife.com/$1 [R=301,L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app.php [QSA,L]
+
+    RewriteCond %{QUERY_STRING} ^page=1$
+    RewriteRule ^/?category/podvieski https://uvelife.com/category/podvieski? [L,R=301]
 </IfModule>
