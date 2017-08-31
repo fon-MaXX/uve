@@ -2277,7 +2277,7 @@ body .index-product-input{
 /*************************************pagination***********************************************************************/
 .product-list-pagination-wrapper{
     width: 660px;
-    float:left;
+    float: right;
 }
 .product-list-pagination-wrapper ul{
     list-style-type: none;
@@ -4897,7 +4897,12 @@ select.global-cart-select.select-default-view,
         width: 720px;
     }
     .product-list-pagination-wrapper {
-        width: 490px;
+        width: 395px;
+        margin: auto;
+    }
+    .product-number-select-wrapper {
+        width: 190px;
+        margin: auto;
     }
     /**********************end-list**********************************************************/
     .fixed-scroll-logo {
@@ -5348,6 +5353,13 @@ select.global-cart-select.select-default-view,
     }
     .product-filter-item-body{
         padding-left: 0;
+    }
+    .product-list-pagination-wrapper{
+        float: unset;
+        margin-top: 30px;
+    }
+    .product-number-select-wrapper{
+        float: unset;
     }
     /**********************end-list**********************************************************/
     /**********************cart**************************************************************/
@@ -6489,9 +6501,9 @@ select.global-cart-select.select-default-view,
     /**********************end show**********************************************************/
     /**********************list**************************************************************/
     .product-list-pagination-wrapper {
-        width: 250px;
-        float: right;
-        margin-right: 10px;
+        /*width: 250px;*/
+        /*float: right;*/
+        /*margin-right: 10px;*/
     }
     .set-list-properties-components {
         height: 70px;
@@ -7337,8 +7349,8 @@ select.global-cart-select.select-default-view,
         padding: 15px 0;
     }
     .product-list-pagination-wrapper {
-        width: 215px;
-        margin-right: 0px;
+        /*width: 215px;*/
+        /*margin-right: 0px;*/
     }
     /**********************end-list**********************************************************/
     /***************************cart*********************************************/
@@ -7703,13 +7715,18 @@ select.global-cart-select.select-default-view,
         max-height: 250px;
     }
     .product-list-pagination-wrapper {
-        width: 250px;
+        width: 310px;
         float: unset;
-        margin: 40px auto 0;
+        margin: 30px auto 0;
     }
     .product-number-select-wrapper {
         float: unset;
         margin: 0 auto;
+    }
+    .product-list-pagination-wrapper ul li{
+        width: 25px;
+        height: 25px;
+        line-height: 23px;
     }
     /**********************end-list**********************************************************/
     /***************************cart*********************************************/
@@ -7908,6 +7925,7 @@ select.global-cart-select.select-default-view,
     .comment-uvelife-avatar {
         padding-right: 150px;
     }
+
     .comment-user-data-wrapper {
         margin-left: 25px;
         border-bottom: none;
@@ -8324,6 +8342,13 @@ select.global-cart-select.select-default-view,
     }
     .laptop-menu-contacts-wrapper{
         padding-bottom: 30px;
+    }
+    /***************************************Pagination***************************/
+    .product-list-pagination-wrapper ul li + li{
+        margin-left: 3px;
+    }
+    .product-list-pagination-wrapper{
+        width: 255px;
     }
 }
 /**************************************media-350***********************************************************************/

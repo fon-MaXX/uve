@@ -5,9 +5,10 @@
         {% if breadcrumbs|length>0 %}
             {% for breadcrumb in breadcrumbs %}
                 {% if loop.last %}
-                    <span class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    <span class="breadcrumb-last" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" >{{ breadcrumb.title }}</span>
                 {% else %}
-                    <a class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+                    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a class="breadcrumbs-item" itemprop="url" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a></span>
+
                 {% endif %}
             {% endfor %}
         {% endif %}
