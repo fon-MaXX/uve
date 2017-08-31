@@ -15,9 +15,9 @@
             {% if breadcrumbs|length>0 %}
                 {% for breadcrumb in breadcrumbs %}
                     {% if loop.last %}
-                        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb-last"><span itemprop="tittle">{{ breadcrumb.title }}</span></span>
+                        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb-last"><span itemprop="title">{{ breadcrumb.title }}</span></span>
                     {% else %}
-                        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" class="breadcrumbs-item" href="{{ breadcrumb.url }}"><span itemprop="tittle">{{ breadcrumb.title }}</span></a></span>
+                        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" class="breadcrumbs-item" href="{{ breadcrumb.url }}"><span itemprop="title">{{ breadcrumb.title }}</span></a></span>
                     {% endif %}
                 {% endfor %}
             {% endif %}
