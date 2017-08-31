@@ -1,6 +1,6 @@
 {% extends "SiteFrontendBundle::layout.html.twig" %}
 {% block content %}
-<div class="container product-show-content no-padding" itemscope itemtype="http://schema.org/Product">
+<div class="container product-show-content no-padding">
     <div class="breadcrumbs">
         {% if breadcrumbs|length>0 %}
             {% for breadcrumb in breadcrumbs %}
@@ -12,6 +12,8 @@
             {% endfor %}
         {% endif %}
     </div>
+
+    <span itemscope itemtype="http://schema.org/Product">
     <div class="product-show-title-wrapper">
         <h1 itemprop="name">
             {{ product.title }}
@@ -193,6 +195,7 @@
             </div>
         </div>
     </div>
+    </span>
     <div class="clearfix"></div>
     <div class="container comments-wrapper product-comments-wrapper">
         {% include "SiteFrontendBundle:Comment:_comment.html.twig" with {
