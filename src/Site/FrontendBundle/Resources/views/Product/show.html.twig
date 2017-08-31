@@ -1,19 +1,19 @@
 {% extends "SiteFrontendBundle::layout.html.twig" %}
 {% block content %}
-<div class="container product-show-content no-padding">
+<div class="container product-show-content no-padding" itemscope itemtype="http://schema.org/AggregateRating">
     <div class="breadcrumbs">
         {% if breadcrumbs|length>0 %}
             {% for breadcrumb in breadcrumbs %}
                 {% if loop.last %}
-                    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb-last">{{ breadcrumb.title }}</span>
+                    <span itemprop="child" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb-last"><span itemprop="tittle">{{ breadcrumb.title }}</span></span>
                 {% else %}
-                    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" class="breadcrumbs-item" href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a></span>
+                    <span itemprop="child" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" class="breadcrumbs-item" href="{{ breadcrumb.url }}"><span itemprop="tittle">{{ breadcrumb.title }}</span></a></span>
                 {% endif %}
             {% endfor %}
         {% endif %}
     </div>
     <div class="product-show-title-wrapper">
-        <h1>
+        <h1 itemprop="name">
             {{ product.title }}
         </h1>
     </div>
@@ -27,7 +27,7 @@
                                     <a href="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}" data-lightbox="product-gallery" data-title="{{ product.title }}">
                                         <div class="product-show-image-wrapper">
                                             <div class="product-show-image-inner-wrapper">
-                                                <img alt="{{ product.title }}. Фото" src="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                                <img itemprop="image" alt="{{ product.title }}. Фото" src="{{ (item.image|length>0)?item.image|json_decode.big:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                             </div>
                                         </div>
                                     </a>
@@ -41,7 +41,7 @@
                                         <li>
                                             <a data-slide-index="{{ key }}" href="" class="product-thumbnail-image-wrapper">
                                                 <div class="product-thumbnail-inner-wrapper">
-                                                    <img alt="{{ product.title }}. Фото" src="{{ (item.image|length>0)?item.image|json_decode.extra_small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                                    <img itemprop="image" alt="{{ product.title }}. Фото" src="{{ (item.image|length>0)?item.image|json_decode.extra_small:asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                                 </div>
                                             </a>
                                         </li>
@@ -57,7 +57,7 @@
                             <a href="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}" data-lightbox="product-gallery" data-title="{{ product.title }}">
                                 <div class="product-show-image-wrapper">
                                     <div class="product-show-image-inner-wrapper">
-                                        <img alt="{{ product.title }}. Фото" src="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                        <img itemprop="image" alt="{{ product.title }}. Фото" src="{{ (product.poster)? product.poster|json_decode.big :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                     </div>
                                 </div>
                             </a>
@@ -69,7 +69,7 @@
                                 <li>
                                     <a data-slide-index="0" href="" class="product-thumbnail-image-wrapper">
                                         <div class="product-thumbnail-inner-wrapper">
-                                            <img alt="{{ product.title }}. Фото" src="{{ (product.poster)? product.poster|json_decode.extra_small :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
+                                            <img itemprop="image" alt="{{ product.title }}. Фото" src="{{ (product.poster)? product.poster|json_decode.extra_small :asset('bundles/sitefrontend/images/main/no-image.png') }}"/>
                                         </div>
                                     </a>
                                 </li>
@@ -101,7 +101,7 @@
             <div class="clearfix"></div>
             <div class="product-show-text-wrapper">
                 <h2>Описание:</h2>
-                <div class="product-show-text">
+                <div itemprop="description" class="product-show-text">
                     {{ product.shortcut|raw }}
                 </div>
             </div>
@@ -120,14 +120,14 @@
             <div class="product-show-add-button-wrapper">
                 <div class="product-show-form-final-prise">
                     {% if product.sharePrice %}
-                        <span class="index-product-old-price">
+                        <span itemprop="price" class="index-product-old-price">
                             {{ product.price }} <span class="smaller">грн</span>
                         </span>
-                        <span data-price="656" class="index-product-new-price">
+                        <span itemprop="price" data-price="656" class="index-product-new-price">
                             {{ product.sharePrice }} <span class="smaller">грн</span>
                         </span>
                     {% else %}
-                        <span class="index-product-regular-price">
+                        <span itemprop="price" class="index-product-regular-price">
                             {{ product.price }} <span class="smaller">грн</span>
                         </span>
                     {% endif %}
