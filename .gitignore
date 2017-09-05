@@ -26,3 +26,9 @@
 /web/assets
 /web/assets/
 *web/assets/
+/www/assets
+/www/assets/
+*www/assets/
+/www/bundles
+/www/bundles/
+*www/bundles/
