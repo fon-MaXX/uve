@@ -2572,9 +2572,6 @@ body .index-product-input{
     font-size: 40px;
 }
 .product-show-text-wrapper .product-show-text{
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
     font-size: 16px;
     font-family: MullerRegular;
     text-align: justify;
@@ -6453,9 +6450,6 @@ select.global-cart-select.select-default-view,
         font-size: 14px;
     }
     .product-show-text-wrapper .product-show-text {
-        -webkit-column-count: 1;
-        -moz-column-count: 1;
-        column-count: 1;
         padding: 0 5px;
     }
     .product-show-popular-block-wrapper{
@@ -6653,9 +6647,6 @@ select.global-cart-select.select-default-view,
         font-size: 14px;
     }
     .product-show-text-wrapper .product-show-text {
-        -webkit-column-count: 1;
-        -moz-column-count: 1;
-        column-count: 1;
         padding: 0 5px;
     }
     .product-show-popular-block-wrapper{
