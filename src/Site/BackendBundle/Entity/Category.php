@@ -99,12 +99,7 @@ class Category
      */
     public function getTitleMeta()
     {
-        $pos = strripos($this->titleMeta, 'купить в интернет-магазине Ювелир Лайф');
-        if ($pos === false) {
-            return self::ucfirst_utf8($this->h1) . ' купить в интернет-магазине Ювелир Лайф';
-        } else {
-            return self::ucfirst_utf8($this->titleMeta);
-        }
+        return self::ucfirst_utf8($this->h1) . ' купить в интернет-магазине Ювелир Лайф';
     }
 
     /**

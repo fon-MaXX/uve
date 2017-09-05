@@ -29,10 +29,10 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
             $conditions = [];
             foreach($params['insertionType'] as $item){
                 if($insertionType[$item]=='Без вставки'){
-                    $conditions[] = $query->expr()->isNull('p.insertionType');
+                    $conditions[] = $query->expr()->isNull('s.insertionType');
                 }
                 else{
-                    $conditions[] = $query->expr()->like('p.insertionType', $query->expr()->literal('%'.$insertionType[$item].'%'));
+                    $conditions[] = $query->expr()->like('s.insertionType', $query->expr()->literal('%'.$insertionType[$item].'%'));
                 }
             }
             $orX = $query->expr()->orX();

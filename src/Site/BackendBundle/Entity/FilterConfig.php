@@ -379,7 +379,7 @@ class FilterConfig
     public function getFilterConfig($title)
     {
         if (!$title || (!isset($this->filters[$title])) || (!count($this->filters[$title]))) {
-            return false;
+            return [];
         }
         $result = [];
 

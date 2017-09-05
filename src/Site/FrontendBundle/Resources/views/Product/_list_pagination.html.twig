@@ -1,59 +1,141 @@
+{#
+/**
+ * @file
+ * Twitter Bootstrap v3 Sliding pagination control implementation.
+ *
+ * View that can be used with the pagination module
+ * from the Twitter Bootstrap CSS Toolkit
+ * http://getbootstrap.com/components/#pagination
+ *
+ * @author Pablo Díez <pablodip@gmail.com>
+ * @author Jan Sorgalla <jsorgalla@gmail.com>
+ * @author Artem Ponomarenko <imenem@inbox.ru>
+ * @author Artem Zabelin <artjomzabelin@gmail.com>
+ */
+#}
+
 {% if pageCount > 1 %}
     <ul>
+
         {% if previous is defined %}
-            <li class="previous">
-                <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
+            <li>
+                <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
                     <i class="fa  fa-caret-left"></i>
                 </a>
             </li>
         {% else %}
-            <li class="previous">
-                <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">
-                    <i class="fa  fa-caret-left"></i>
-                </a>
+            <li class="disabled">
+                <i class="fa  fa-caret-left"></i>
             </li>
         {% endif %}
-        {#{% if first is defined and current != first and first not in pagesInRange %}#}
+
+        {% if startPage > 1 %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): 1})) }}">1</a>
+            </li>
+            {% if startPage == 3 %}
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): 2})) }}">2</a>
+                </li>
+            {% elseif startPage != 2 %}
+                <li class="disabled">
+                    <span>&hellip;</span>
+                </li>
+            {% endif %}
+        {% endif %}
+
         {% if first is defined and current != first %}
             <li>
                 <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">{{ first }}</a>
             </li>
-            {#<li>#}
-                {#<a class="dot" href="javascript:void(0)">...</a>#}
-            {#</li>#}
         {% endif %}
 
-        {#{% for page in pagesInRange %}#}
-            {#{% if page != current %}#}
-                {#<li>#}
-                    {#<a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>#}
-                {#</li>#}
-            {#{% else %}#}
-                {#<li class="active"><a href="javascript:void(0)">{{ page }}</a></li>#}
-            {#{% endif %}#}
+            {% if current -1 > first %}
+                {% if current - 2 > first %}
+                    <li class="disabled">
+                        <a href="javascript:void(0)">
+                            ...
+                        </a>
+                    </li>
 
-        {#{% endfor %}#}
+                    {#<li>#}
+                        {#<a href="{{ path(route, query|merge({(pageParameterName): current -2})) }}">{{ current -2 }}</a>#}
+                    {#</li>#}
+                    <li>
+                        <a href="{{ path(route, query|merge({(pageParameterName): current -1})) }}">{{ current - 1 }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path(route, query|merge({(pageParameterName): current -1})) }}">{{ current - 1 }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+
         <li class="active"><a href="javascript:void(0)">{{ current }}</a></li>
-        {#{% if last is defined and current != last and last not in pagesInRange %}#}
+
+        {% if current + 1 < last %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): current + 1})) }}">{{ current + 1 }}</a>
+            </li>
+
+            {% if current + 2 < last %}
+                {#<li>#}
+                    {#<a href="{{ path(route, query|merge({(pageParameterName): current + 2})) }}">{{ current + 2 }}</a>#}
+                {#</li>#}
+
+                <li class="disabled">
+                    <a href="javascript:void(0)">
+                        ...
+                    </a>
+                </li>
+            {% endif %}
+        {% endif %}
+
         {% if last is defined and current != last %}
-            {#<li class="dot">#}
-                {#<a href="javascript:void(0)">...</a>#}
-            {#</li>#}
             <li>
                 <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">{{ last }}</a>
             </li>
         {% endif %}
+
+        {#{% for page in pagesInRange %}#}
+        {#{% if page != current %}#}
+        {#<li>#}
+        {#<a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>#}
+        {#</li>#}
+        {#{% else %}#}
+        {#<li class="active">#}
+        {#<span>{{ page }}</span>#}
+        {#</li>#}
+        {#{% endif %}#}
+
+        {#{% endfor %}#}
+
+        {% if pageCount > endPage %}
+            {% if pageCount > (endPage + 1) %}
+                {% if pageCount > (endPage + 2) %}
+                    <li class="disabled">
+                        <span>&hellip;</span>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path(route, query|merge({(pageParameterName): (pageCount - 1)})) }}">{{ pageCount -1 }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): pageCount})) }}">{{ pageCount }}</a>
+            </li>
+        {% endif %}
+
         {% if next is defined %}
-            <li class="next">
-                <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">
-                    <i class="fa fa-caret-right"></i>
+            <li>
+                <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">
+                    <i class="fa  fa-caret-right"></i>
                 </a>
             </li>
         {% else %}
-            <li class="next">
-                <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">
-                    <i class="fa  fa-caret-right"></i>
-                </a>
+            <li class="disabled">
+                <i class="fa  fa-caret-right"></i>
             </li>
         {% endif %}
     </ul>
