@@ -35,7 +35,7 @@ class DefaultController extends Controller
             if (!$validator) {
                 $data = array(
                     'success' => false,
-                    'error' => 'To upload files on a website, you need to have JavaScript enabled in your browser'
+                    'error' => 'Not valid file format'
                 );
 
                 return new JsonResponse($data);
@@ -51,7 +51,8 @@ class DefaultController extends Controller
                     mkdir($uploadDir, 0777, true);
 
                 $uniq = uniqid();
-                $fileName = 'file'.$uniq.'.'.$this->uploadFile->getClientOriginalExtension();
+
+                $fileName = 'file'.$uniq.'.'.strtolower($this->uploadFile->getClientOriginalExtension());
 
 
                 $this->uploadFile->move($uploadDir, $fileName);
@@ -115,7 +116,7 @@ class DefaultController extends Controller
         $match = false;
 
         foreach ($formats as $format) {
-            if (strtolower($format) == $this->uploadFile->getClientOriginalExtension())
+            if (strtolower($format) == strtolower($this->uploadFile->getClientOriginalExtension()))
                 $match = true;
         }
 

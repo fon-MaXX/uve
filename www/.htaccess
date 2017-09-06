@@ -1,8 +1,0 @@
-DirectoryIndex app.php
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTP_HOST} ^www.uvelife.com$ [NC]
-    RewriteRule ^(.*)$ https://uvelife.com/$1 [R=301,L]
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ app.php [QSA,L]
-</IfModule>
