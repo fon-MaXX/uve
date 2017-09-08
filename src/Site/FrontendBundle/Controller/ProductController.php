@@ -189,10 +189,13 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository('SiteBackendBundle:Product')->getOneWithCategoryAndSubCategory($slug);
-        if(!$product){
+        if(is_null($product)){
             throw new NotFoundHttpException('Товар с параметром = '.$slug.' не найден');
         }
         $subCategory = $product->getSubCategory();
+        if(is_null($subCategory)){
+            throw new NotFoundHttpException('Товар с параметром = '.$slug.' не найден');
+        }
         $category = $subCategory->getCategory();
         $arr=[
             'main'=>[

@@ -11,7 +11,8 @@ namespace Site\BackendBundle\Entity\Repository;
 class NewsRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getForNewsList($slug=null){
-        $query =  $this->createQueryBuilder('n');
+        $query =  $this->createQueryBuilder('n')
+            ->orderBy('n.createdAt','DESC');
         if($slug){
             $query->leftJoin('n.newsTags','nt')
                 ->where('nt.slug = :slug')
