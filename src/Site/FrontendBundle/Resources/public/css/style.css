@@ -3599,7 +3599,7 @@ select.global-cart-select.select-default-view,
     width: 270px;
     float: left;
     padding: 0 5px;
-    margin: 0 7px;
+    margin: 0 7px 10px;
 }
 .list-article-preview-image{
     position: relative;
@@ -3612,6 +3612,7 @@ select.global-cart-select.select-default-view,
 }
 .list-article-preview-outer-wrapper .index-product-preview-inner-wrapper img{
     min-width: 260px;
+    max-width: 600px;
     min-height: 270px;
     max-height: 600px;
     transition: 0.2s;
