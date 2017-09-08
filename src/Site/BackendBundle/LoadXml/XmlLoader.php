@@ -406,7 +406,7 @@ class XmlLoader
             if($object->getChainSizes()&&count($object->getChainSizes())){
                 foreach($object->getChainSizes() as $size){
                     if(!count($items)||!in_array($size->getTitle(),$items)){
-                        $object->removeRingSize($size);
+                        $object->removeChainSize($size);
                         $size->removeProduct($object);
                     }
                 }
