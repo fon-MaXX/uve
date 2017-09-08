@@ -62,7 +62,7 @@
                                         <div class="index-product-preview-outer-wrapper">
                                             <div class="index-product-preview-inner-wrapper">
                                                 <a href="{{ path('site_frontend_product_show',{'slug':product.slug}) }}">
-                                                    <img alt="{{ product.title }}. Фото" src="{{ (product.poster)?product.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                                    <img title="{{ product.title }}" alt="{{ product.title }}. Фото" src="{{ (product.poster)?product.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
                                                 </a>
                                             </div>
                                         </div>
