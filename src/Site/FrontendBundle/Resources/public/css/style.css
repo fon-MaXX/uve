@@ -3603,7 +3603,7 @@ select.global-cart-select.select-default-view,
     width: 270px;
     float: left;
     padding: 0 5px;
-    margin: 0 7px 10px;
+    margin: 0 7px 30px;
 }
 .list-article-preview-image{
     position: relative;
