@@ -311,7 +311,14 @@ $(document).ready(function () {
 //**********cart***************
     $('body').on('click','.product-show-cart-add-button',function(){
         var $url = $(this).attr('data-url');
-        var $object = $('#product-show-form').serialize();
+        var $object = {};
+        if($('#set-show-form').length > 0){
+            $object = $('#set-show-form').serialize();
+        }
+        if($('#product-show-form').length > 0){
+            $object = $('#product-show-form').serialize();
+        }
+
         $.post($url,$object,function(data){
             getNumberOfItemsInCart();
             $(".global-cart-items-container").html(data);
