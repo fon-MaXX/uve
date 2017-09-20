@@ -134,7 +134,7 @@
                         </span>
                     {% endif %}
                 </div>
-                <button type="submit" form="product-show-form" class="regular-button product-show-cart-add-button">
+                <button data-url="{{ path('site_frontend_save_temp_order_from_show', {'slug': product.slug}) }}" type="submit" form="product-show-form" class="regular-button product-show-cart-add-button">
                     купить
                 </button>
                 <div class="clearfix"></div>

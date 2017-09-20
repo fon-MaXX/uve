@@ -307,6 +307,30 @@ $(document).ready(function () {
             $('.set-show-item-final-price').html($sum);
         });
     }
+
+//**********cart***************
+    $('body').on('click','.product-show-cart-add-button',function(){
+        var $url = $(this).attr('data-url');
+        var $object = $('#product-show-form').serialize();
+        $.post($url,$object,function(data){
+            getNumberOfItemsInCart();
+            $(".global-cart-items-container").html(data);
+            $('.global-cart-items-container').trigger('contentchanged');
+            countGlobalCartSum();
+            var $obj = $(".global-cart-wrapper");
+            $('.modal-shadow').removeClass("show-image");
+            $(".global-cart-wrapper").addClass('open');
+            $(".global-cart-modal-body-container").one('transitionend',
+                function(e) {
+                    var $elm = $(".global-cart-modal-body-container")[0];
+                    if($elm.clientHeight < $elm.scrollHeight){
+                        $(".global-cart-modal-body-container").addClass('scroll');
+                    }
+                });
+            return false;
+        });
+        return false;
+    });
 //**********global cart***************
 //    #################################################
     if($(".global-cart-wrapper").length>0){
