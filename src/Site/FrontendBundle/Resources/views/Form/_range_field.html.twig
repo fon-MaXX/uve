@@ -49,6 +49,12 @@
                     $("input.form-range-max-input").val(ui.values[ 1 ]);
                     $(".range-min_{{ name }}").html(ui.values[ 0 ]);
                     $(".range-max_{{ name }}").html(ui.values[ 1 ]);
+                },
+                stop: function( event, ui ) {
+                    $("input.form-range-min-input").val(ui.values[ 0 ]);
+                    $("input.form-range-max-input").val(ui.values[ 1 ]);
+                    $(".range-min_{{ name }}").html(ui.values[ 0 ]);
+                    $(".range-max_{{ name }}").html(ui.values[ 1 ]);
                 }
             });
             $(".range-min_{{ name }}").html($("input.form-range-min-input").val());
