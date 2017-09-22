@@ -19,4 +19,9 @@ class NumberInCart{
         $number = 0 + count($order->getOrderHasProducts()) + count($order->getOrderHasSets());
         return $number;
     }
+    public function getSelectedNumber($sessionName){
+        $session = $this->session->get($sessionName);
+        $list = ($session)?json_decode($session,true):[];
+        return count($list);
+    }
 }
