@@ -13,6 +13,7 @@ use Site\FrontendBundle\Form\CallbackType;
 use Site\FrontendBundle\Form\ContactsType;
 use Site\FrontendBundle\Form\SearchType;
 use Site\BackendBundle\Entity\Callback;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Site\FrontendBundle\Form\CommentType;
 
@@ -20,6 +21,8 @@ class DefaultController extends Controller
 {
     private $cartSession = 'cart_session';
     private $newCartSession = 'order_cart_session';
+    private $selectedSession = 'selected_session';
+    private $comparingSession = 'comparison_session';
 
     public function sitemapAction(Request $request)
     {
@@ -80,10 +83,10 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $productNovels = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber(5, 'новинка');
-        $setNovels = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber(5, 'новинка');
-        $productHits = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber(5, 'топ продаж');
-        $setHits = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber(5, 'топ продаж');
+        $productNovels = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber('новинка',5);
+        $setNovels = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber('новинка',5);
+        $productHits = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber('топ продаж',5);
+        $setHits = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber('топ продаж',5);
         $novels = $this->bestFiveByRand($productNovels, $setNovels);
         $hits = $this->bestFiveByRand($productHits, $setHits);
         $news = $em->getRepository('SiteBackendBundle:News')->getLastByNumber(4);
@@ -101,6 +104,33 @@ class DefaultController extends Controller
             'seo' => $seo
         ]);
     }
+    public function addPopularSliderAction(Request $request,$type){
+        $page = $request->query->get('page',0);
+        $em=$this->getDoctrine()->getManager();
+        if($page){
+            $products=null;
+            $sets=null;
+            switch($type){
+                case 'hits':
+                    break;
+                    $products = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber('топ продаж');
+                    $sets = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber('топ продаж');
+                case 'novels':
+                    $products = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber('новинка');
+                    $sets = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber('новинка');
+                    break;
+            }
+            if($products&&$sets){
+                $items = $this->bestFiveByRating($products, $sets,$page);
+                return $this->render('SiteFrontendBundle:Default:_popularSliderAdd.html.twig',[
+                    'products'=>$items,
+                    'type'=>$type
+                ]);
+            }
+        }
+        return new Response('');
+
+    }
 
     /**
      * for main page popular and hot blocks
@@ -109,7 +139,7 @@ class DefaultController extends Controller
      * @param $sets
      * @return array
      */
-    private function bestFiveByRating($products, $sets)
+    private function bestFiveByRating($products, $sets,$page=0)
     {
         if (!is_array($products)) $products = [];
         if (!is_array($sets)) $sets = [];
@@ -120,7 +150,7 @@ class DefaultController extends Controller
             $temp[$k] = $item->getRating();
         }
         asort($temp);
-        $delete = array_slice($temp, 0, count($temp) - 5);
+        $delete = array_slice($temp, $page, count($temp) - $page*6);
         foreach ($delete as $k => $value) {
             unset($arr[$k]);
         }
@@ -147,6 +177,10 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('SiteBackendBundle:Category')->getCategoriesWithSubCategoriesIndexBySlug();
         $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->newCartSession);
+
+        $selectedNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->selectedSession);
+        $comparingNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->comparingSession);
+
         $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('footer_and_header');
         $searchForm = $this->createForm(SearchType::class, [], [
             'action' => $this->get('router')->generate('site_frontend_search')
@@ -155,6 +189,10 @@ class DefaultController extends Controller
             'category' => new Category(),
             'categories' => $categories,
             'itemsNumber' => $itemsNumber,
+
+            'selected' => $selectedNumber,
+            'comparing' => $comparingNumber,
+
             'staticContent' => $staticContent,
             'searchForm' => $searchForm->createView()
         ]);

@@ -144,13 +144,13 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
-    public function getLastByTagAndNumber($number,$tagTitle){
+    public function getLastByTagAndNumber($tagTitle,$number){
         return $this->createQueryBuilder('s')
             ->leftJoin('s.shareTags','shT')
             ->where('shT.title = :title')
             ->setParameter('title',$tagTitle)
-            ->setMaxResults($number)
             ->orderBy('s.rating','DESC')
+            ->setMaxResults($number)
             ->getQuery()
             ->getResult()
             ;

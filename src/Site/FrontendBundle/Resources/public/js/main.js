@@ -97,6 +97,97 @@ $(document).ready(function () {
             $mainTopSlider.reloadSlider();
         });
     }
+    //if($('.default-popular-container').length){
+    //    function productDefaultSliderParameters(obj,slide){
+    //        var $maxSlides = null;
+    //        var $width = $(".default-popular-container").width();
+    //        var $slideWidth = $(".default-popular-item").width();
+    //        var $type=obj.attr('data-type');
+    //        $maxSlides = Math.floor($width/($slideWidth));
+    //        var $next = "#default-"+$type+"-right";
+    //        var $prev = "#default-"+$type+"-left";
+    //        return {
+    //            startSlide: slide,
+    //            auto: false,
+    //            mode: 'horizontal',
+    //            pager: false,
+    //            infiniteLoop: false,
+    //            controls: true,
+    //            nextText: '<i class="fa  fa-caret-right"></i>',
+    //            prevText: '<i class="fa  fa-caret-left"></i>',
+    //            prevSelector: $prev,
+    //            nextSelector: $next,
+    //            minSlides: 1,
+    //            maxSlides: $maxSlides,
+    //            moveSlides: 1,
+    //            slideWidth: $slideWidth,
+    //            slideMargin: 5,
+    //            responsive: true,
+    //            onSlideNext: function($slideElement, oldIndex, newIndex){
+    //                $slideElement.trigger('new-slide-load');
+    //            }
+    //        };
+    //    }
+    //    if($("#default-slider-novels")){
+    //        var $params = productDefaultSliderParameters($("#default-slider-novels"),0);
+    //        var $novelsSlider = $("#default-slider-novels").bxSlider($params);
+    //        $novelsSlider.on('new-slide-load',function(){
+    //            var $number = $novelsSlider.getSlideCount();
+    //            var $current = $novelsSlider.getCurrentSlide();
+    //            var $width = $(".default-popular-container").width();
+    //            var $slideWidth = $(".default-popular-item").width();
+    //            $maxSlides = Math.floor($width/($slideWidth));
+    //            if($current+$maxSlides+2>$number){
+    //                var $page = parseInt($("#default-slider-novels").attr('page'));
+    //                var $url = $("#default-slider-novels").attr('data-url')+"?page="+$page;
+    //                $.get($url,function(data){
+    //                    if(data){
+    //                        $("#default-slider-novels").append(data);
+    //                        $params = productDefaultSliderParameters($("#default-slider-novels"),$current);
+    //                        $novelsSlider.reloadSlider($params);
+    //                        $("#default-slider-novels").attr('page',$page+1)
+    //                    }
+    //                });
+    //            }
+    //        });
+    //    }
+    //    if($("#default-slider-hits")){
+    //        var $params = productDefaultSliderParameters($("#default-slider-hits"),0);
+    //        var $hitsSlider = $("#default-slider-hits").bxSlider($params);
+    //        $hitsSlider.on('new-slide-load',function(){
+    //            var $number = $hitsSlider.getSlideCount();
+    //            var $current = $hitsSlider.getCurrentSlide();
+    //            var $width = $(".default-popular-container").width();
+    //            var $slideWidth = $(".default-popular-item").width();
+    //            $maxSlides = Math.floor($width/($slideWidth));
+    //            if($current+$maxSlides+2>$number){
+    //                var $page = parseInt($("#default-slider-hits").attr('page'));
+    //                var $url = $("#default-slider-hits").attr('data-url')+"?page="+$page;
+    //                $.get($url,function(data){
+    //                    if(data){
+    //                        $("#default-slider-hits").append(data);
+    //                        $params = productDefaultSliderParameters($("#default-slider-hits"),$current);
+    //                        $hitsSlider.reloadSlider($params);
+    //                        $("#default-slider-hits").attr('page',$page+1)
+    //                    }
+    //                });
+    //            }
+    //        });
+    //    }
+    //    $(window).on('resize', function () {
+    //        clearTimeout(window.resizedFinished);
+    //        window.resizedFinished = setTimeout(function () {
+    //            if(typeof $novelsSlider !== 'undefined' ){
+    //                var $params = productDefaultSliderParameters($("#default-slider-novels"),0);
+    //                $novelsSlider.reloadSlider($params);
+    //            }
+    //            if(typeof $novelsSlider !== 'undefined' ){
+    //                var $params = productDefaultSliderParameters($("#default-slider-novels"),0);
+    //                $novelsSlider.reloadSlider($params);
+    //            }
+    //        }, 100);
+    //    });
+    //}
 //    product-show-slider
     if($('.product-show-slider').length>0&&$('.product-thumbnail-image-container ul').length>0){
         $(".product-show-slider").removeClass('show-preload-li');
@@ -262,7 +353,7 @@ $(document).ready(function () {
         });
     }
     if($('#product-filter-form').length>0){
-        $('#product-filter-form input').on('change',function(){
+        $('#product-filter-form input[type="checkbox"]').on('change',function(){
             $(this).closest('form').submit();
             return false;
         });
@@ -364,7 +455,7 @@ $(document).ready(function () {
                 getNumberOfItemsInCart();
             });
         });
-        $('.index-product-buy,.basket-image,.menu-basket-wrapper').click(function(){
+        $(document).on('click','.index-product-buy,.basket-image,.menu-basket-wrapper',function(){
             $('.modal-shadow').addClass("open show-image");
             $("body").addClass('body-no-scroll');
             var $url = $(this).attr('data-url');
@@ -560,8 +651,25 @@ $(document).ready(function () {
         );
     }
 //    ******************comparison and selected
+    function updateSelectedNumber(data){
+        try
+        {
+            var response = JSON.parse(data);
+        }
+        catch(e)
+        {
+            return;
+        }
+        if(typeof response.number !== 'undefined'&&typeof response.type !== 'undefined'){
+            var $selector = ".count-holder[data-type='"+response.type+"']";
+            var $element = $($selector);
+            $element.text(response.number).addClass('active').one('transitionend',function(){
+                $element.removeClass('active');
+            });
+        }
+    }
     if($('.comparison-item').length||$('.selected-item').length){
-        $('.comparison-item ,.selected-item').click(function(){
+        $(document).on('click','.comparison-item ,.selected-item',function(){
             if($(this).hasClass('comparison-item-disabled')){
                 return false;
             }
@@ -569,8 +677,9 @@ $(document).ready(function () {
             var $url = $obj.attr('data-url');
             $(this).addClass('comparison-item-disabled');
             $('.modal-no-background').addClass('active');
-            $.post($url,[],function(){
+            $.post($url,[],function(data){
                 $('.modal-no-background').removeClass('active');
+                updateSelectedNumber(data);
             });
         });
     }
@@ -601,7 +710,8 @@ $(document).ready(function () {
                 $($selector).remove();
             });
             var $url = $(this).attr('data-url');
-            $.post($url,[],function(){
+            $.post($url,[],function(data){
+                updateSelectedNumber(data);
             });
         });
     }
@@ -615,7 +725,8 @@ $(document).ready(function () {
             },500,function(){
                 $obj.remove();
             });
-            $.post($url,[],function(){
+            $.post($url,[],function(data){
+                updateSelectedNumber(data);
             });
         });
     }
