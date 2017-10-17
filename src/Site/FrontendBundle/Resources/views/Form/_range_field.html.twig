@@ -17,14 +17,21 @@
         <div class="product-list-filters-range-wrapper">
             {% set wrapperSelector = "filter-values-wrapper_"~name %}
             <div class="slider-range-size">
-                <span class="range-min_{{ name }}">{{ min }}</span>
+                <input type="text" class="range-min_{{ name }}" value="{{ min }}">
                 <span>-</span>
-                <span class="range-max_{{ name }}">{{ max }}</span>
+                <input type="text" class="range-max_{{ name }}" value="{{ max }}">
             </div>
             {% set divSelector = "filter-slider-range_"~name %}
             <div class="{{ divSelector }}"></div>
         </div>
         <script>
+            var delayT = (function(){
+                var timer = 0;
+                return function(callback, ms){
+                    clearTimeout (timer);
+                    timer = setTimeout(callback, ms);
+                };
+            })();
             if(!$("input.form-range-min-input").val()){
                 $("input.form-range-min-input").val({{ min }});
                 var $valMin = {{ min }};
@@ -47,12 +54,46 @@
                 slide: function( event, ui ) {
                     $("input.form-range-min-input").val(ui.values[ 0 ]);
                     $("input.form-range-max-input").val(ui.values[ 1 ]);
-                    $(".range-min_{{ name }}").html(ui.values[ 0 ]);
-                    $(".range-max_{{ name }}").html(ui.values[ 1 ]);
+                    $(".range-min_{{ name }}").val(ui.values[ 0 ]);
+                    $(".range-max_{{ name }}").val(ui.values[ 1 ]);
+                },
+                stop: function( event, ui ) {
+                    $("input.form-range-min-input").val(ui.values[ 0 ]);
+                    $("input.form-range-max-input").val(ui.values[ 1 ]);
+                    $(".range-min_{{ name }}").val(ui.values[ 0 ]);
+                    $(".range-max_{{ name }}").val(ui.values[ 1 ]);
                 }
             });
-            $(".range-min_{{ name }}").html($("input.form-range-min-input").val());
-            $(".range-max_{{ name }}").html($("input.form-range-max-input").val());
+            $(".range-min_{{ name }}").val($("input.form-range-min-input").val());
+            $(".range-max_{{ name }}").val($("input.form-range-max-input").val());
+            $(".range-min_{{ name }}").keyup(function(){
+                var $obj = $(this);
+                delayT(function(){
+                    var minItem = ($obj.val())?$obj.val():0;
+                    minItem = parseInt(minItem);
+                    var maxItem = parseInt($("input.form-range-max-input").val());
+                    if(minItem>maxItem){
+                        minItem = maxItem-1;
+                    }
+                    $obj.val(minItem);
+                    $("input.form-range-min-input").val(minItem);
+                    $("{{ "."~divSelector}}").slider('values',0,minItem);
+                }, 1000 );
+            });
+            $(".range-max_{{ name }}").keyup(function(){
+                var $obj = $(this);
+                delayT(function(){
+                    var maxItem = ($obj.val())?$obj.val():0;
+                    maxItem = parseInt(maxItem);
+                    var minItem = parseInt($("input.form-range-min-input").val());
+                    if(minItem>maxItem){
+                        maxItem = minItem+1;
+                    }
+                    $obj.val(maxItem);
+                    $("input.form-range-max-input").val(maxItem);
+                    $("{{ "."~divSelector}}").slider('values',1,maxItem);
+                }, 1000 );
+            });
         </script>
     {% endspaceless %}
 {% endblock %}

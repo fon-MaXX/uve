@@ -7,6 +7,10 @@ sitemap:
 site_frontend_homepage:
     path:  /
     defaults: { _controller: SiteFrontendBundle:Default:index}
+
+site_frontend_popular_slider_add:
+    path:  /popular-slider-add/{type}
+    defaults: { _controller: SiteFrontendBundle:Default:addPopularSlider}
 #**************************************PRODUCT*************************************************************************#
 site_frontend_category:
     path:  /category/{slug}
@@ -52,6 +56,11 @@ site_frontend_order_create:
     path:  /order/create
     defaults: { _controller: SiteFrontendBundle:Order:create}
 
+site_frontend_save_temp_order_from_show:
+    path:  /order/add-product-from-show/
+    defaults: { _controller: SiteFrontendBundle:Order:addProductFromShow}
+    methods:  [POST]
+
 site_frontend_save_temp_order:
     path:  /order/save/
     defaults: { _controller: SiteFrontendBundle:Order:save}
@@ -75,7 +84,7 @@ site_frontend_selected_remove_product:
 
 site_frontend_selected_remove_set:
     path:  /selected/remove-set/{slug}
-    defaults: { _controller: SiteFrontendBundle:Selected:removeProductFromSelected}
+    defaults: { _controller: SiteFrontendBundle:Selected:removeSetFromSelected}
 
 site_frontend_selected_list:
     path:  /selected/list

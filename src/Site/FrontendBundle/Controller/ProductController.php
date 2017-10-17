@@ -20,6 +20,8 @@ class ProductController extends Controller
     private $listSession = 'product_controller_list';
     private $cartSession = 'cart_session';
     private $newCartSession = 'order_cart_session';
+    private $selectedSession = 'selected_session';
+    private $comparingSession = 'comparison_session';
     private $numberOnPage = [
         20=>'20 на страницу',
         40=>'40 на страницу',
@@ -89,6 +91,8 @@ class ProductController extends Controller
         $products->setTemplate('SiteFrontendBundle:Product:_list_pagination.html.twig');
         $shareTags=$em->getRepository('SiteBackendBundle:ShareTag')->getShareTagsIndexByTitle();
         $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->newCartSession);
+        $selectedNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->selectedSession);
+        $comparingNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->comparingSession);
         $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('footer_and_header');
         $searchForm = $this->createForm(SearchType::class,[],[
             'action'=>$this->get('router')->generate('site_frontend_search')
@@ -102,6 +106,8 @@ class ProductController extends Controller
             'numberOnPageSelect'=>$numberOnPageSelect,
             'shareTags'=>$shareTags,
             'itemsNumber'=>$itemsNumber,
+            'selected' => $selectedNumber,
+            'comparing' => $comparingNumber,
             'staticContent'=>$staticContent,
             'searchForm'=>$searchForm->createView()
         ]);
@@ -167,6 +173,8 @@ class ProductController extends Controller
         $products->setTemplate('SiteFrontendBundle:Product:_list_pagination.html.twig');
         $shareTags=$em->getRepository('SiteBackendBundle:ShareTag')->getShareTagsIndexByTitle();
         $itemsNumber = $this->get('fonmaxx.cart.items.number')->getItemsNumber($this->newCartSession);
+        $selectedNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->selectedSession);
+        $comparingNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->comparingSession);
         $staticContent = $em->getRepository('SiteBackendBundle:StaticPageContent')->getStaticContentForPage('footer_and_header');
         $searchForm = $this->createForm(SearchType::class,[],[
             'action'=>$this->get('router')->generate('site_frontend_search')
@@ -181,6 +189,8 @@ class ProductController extends Controller
             'numberOnPageSelect'=>$numberOnPageSelect,
             'shareTags'=>$shareTags,
             'itemsNumber'=>$itemsNumber,
+            'selected' => $selectedNumber,
+            'comparing' => $comparingNumber,
             'staticContent'=>$staticContent,
             'searchForm'=>$searchForm->createView()
         ]);

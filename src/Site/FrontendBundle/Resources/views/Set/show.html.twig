@@ -134,7 +134,7 @@
                         <span class="set-show-item-final-price">{{ set.filterPrice }}</span><span class="smaller">грн</span>
                     </span>
                 </div>
-                <button type="submit" form="set-show-form"  class="regular-button product-show-cart-add-button">
+                <button data-url="{{ url("site_frontend_save_temp_order_from_show",{'slug':set.slug}) }}" type="submit" form="set-show-form"  class="regular-button product-show-cart-add-button">
                     купить
                 </button>
                 <div class="clearfix"></div>

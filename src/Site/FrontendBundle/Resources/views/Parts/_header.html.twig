@@ -35,8 +35,14 @@
                             </a>
                         </div>
                         <div class="navbar-contacts-vk-widget">
-                            <a class="head-selected-items selected-list" href="{{ url('site_frontend_selected_list') }}">избранное</a>
-                            <a class="head-selected-items comparing-list" href="{{ url('site_frontend_comparing_show') }}">сравнение</a>
+                            <a class="head-selected-items selected-list" href="{{ url('site_frontend_selected_list') }}">
+                                избранное
+                                <span data-type="selected" class="count-holder">{{ selected }}</span>
+                            </a>
+                            <a class="head-selected-items comparing-list" href="{{ url('site_frontend_comparing_show') }}">
+                                сравнение
+                                <span data-type="comparing" class="count-holder">{{ comparing }}</span>
+                            </a>
                         </div>
                         <div class="search-input-wrapper">
                             <div class="custom-search-input search-input-inner">
@@ -169,11 +175,13 @@
                             корзина
                         </div>
                     </div>
-                    <a class="menu-items-button menu-selected-item">
+                    <a href="{{ url('site_frontend_selected_list') }}" class="menu-items-button menu-selected-item">
                         избранное
+                        <span data-type="selected" class="count-holder">{{ selected }}</span>
                     </a>
-                    <a class="menu-items-button menu-comparing-item">
+                    <a href="{{ url('site_frontend_comparing_show') }}" class="menu-items-button menu-comparing-item">
                         сравнение
+                        <span data-type="comparing" class="count-holder">{{ comparing }}</span>
                     </a>
                 </div>
             </div>

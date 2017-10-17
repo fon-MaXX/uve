@@ -84,57 +84,95 @@ class SelectedController extends Controller
     {
         $em= $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Product')->findOneBySlug($slug);
-        $this->addItemToSession($entity,'product',$this->selectedSession);
-        return new Response('');
+        $number = $this->addItemToSession($entity,'product',$this->selectedSession);
+        $result=[
+            'number'=>$number,
+            'type'=>'selected'
+        ];
+        return new Response(json_encode($result));
     }
     public function addSetAction(Request $request, $slug)
     {
         $em= $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Set')->findOneBySlug($slug);
-        $this->addItemToSession($entity,'set',$this->selectedSession);
-        return new Response('');
+        $number = $this->addItemToSession($entity,'set',$this->selectedSession);
+        $result=[
+            'number'=>$number,
+            'type'=>'selected'
+        ];
+        return new Response(json_encode($result));
     }
     public function addProductToComparingAction(Request $request, $slug)
     {
+        $result=[
+            'success'=>false
+        ];
         $em= $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Product')->findOneBySlug($slug);
-        $this->addItemToSession($entity,'product',$this->comparisonSession);
-        return new Response('');
+        $number = $this->addItemToSession($entity,'product',$this->comparisonSession);
+        if($number)
+        {
+            $result=[
+                'number'=>$number,
+                'type'=>'comparing'
+            ];
+        }
+        return new Response(json_encode($result));
     }
     public function addSetToComparingAction(Request $request, $slug)
     {
         $em= $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Set')->findOneBySlug($slug);
-        $this->addItemToSession($entity,'set',$this->comparisonSession);
-        return new Response('');
+        $number=$this->addItemToSession($entity,'set',$this->comparisonSession);
+        $result=[
+            'number'=>$number,
+            'type'=>'comparing'
+        ];
+        return new Response(json_encode($result));
     }
     public function removeProductFromSelectedAction(Request $request, $slug)
     {
         $em= $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Product')->findOneBySlug($slug);
-        $this->removeItemFromSession($entity,'product',$this->selectedSession);
-        return new Response('');
+        $number = $this->removeItemFromSession($entity,'product',$this->selectedSession);
+        $result=[
+            'number'=>$number,
+            'type'=>'selected'
+        ];
+        return new Response(json_encode($result));
     }
     public function removeSetFromSelectedAction(Request $request, $slug)
     {
         $em= $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Set')->findOneBySlug($slug);
-        $this->removeItemFromSession($entity,'set',$this->selectedSession);
-        return new Response('');
+        $number = $this->removeItemFromSession($entity,'set',$this->selectedSession);
+        $result=[
+            'number'=>$number,
+            'type'=>'selected'
+        ];
+        return new Response(json_encode($result));
     }
     public function removeProductFromComparingAction(Request $request, $slug)
     {
         $em= $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Product')->findOneBySlug($slug);
-        $this->removeItemFromSession($entity,'product',$this->comparisonSession);
-        return new Response('');
+        $number = $this->removeItemFromSession($entity,'product',$this->comparisonSession);
+        $result=[
+            'number'=>$number,
+            'type'=>'comparing'
+        ];
+        return new Response(json_encode($result));
     }
     public function removeSetFromComparingAction(Request $request, $slug)
     {
         $em= $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SiteBackendBundle:Set')->findOneBySlug($slug);
-        $this->removeItemFromSession($entity,'set',$this->comparisonSession);
-        return new Response('');
+        $number  = $this->removeItemFromSession($entity,'set',$this->comparisonSession);
+        $result=[
+            'number'=>$number,
+            'type'=>'comparing'
+        ];
+        return new Response(json_encode($result));
     }
     private function removeItemFromSession($entity,$type,$sessionName){
         $session = $this->get('session')->get($sessionName);
@@ -148,6 +186,7 @@ class SelectedController extends Controller
                 $this->get('session')->set($sessionName,$session);
             }
         }
+        return count($list);
     }
     private function addItemToSession($entity,$type,$sessionName)
     {
@@ -162,6 +201,7 @@ class SelectedController extends Controller
                 $this->get('session')->set($sessionName,$session);
             }
         }
+        return count($list);
     }
     private function getItemsFromSession($sessionName)
     {

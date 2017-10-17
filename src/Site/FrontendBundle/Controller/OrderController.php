@@ -20,6 +20,30 @@ class OrderController extends Controller
     private $newCartSession = 'order_cart_session';
     private $previousUrl = 'previous-url';
 
+    public function addProductFromShowAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $previousUrl = $this->getRefererUrl($request);
+
+        $order = $this->getNewOrderObject();
+        //        in a case set_show was submitted
+        $order = $this->checkOrderHasSetSubmit($request, $order);
+        //        in a case product_show was submitted
+        $order = $this->checkOrderHasProductSubmit($request, $order);
+
+        if (!$order) return $this->redirect($previousUrl);
+
+        $form = $this->createForm(OrderType::class, $order, [
+            'action' => $this->get('router')->generate('site_frontend_order_create', []),
+            'container' => $this->container,
+            'is_frontend' => true,
+            'is_ajax' => true
+        ]);
+
+        return $this->render('SiteFrontendBundle:Order:_ajax_cart.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
     public function saveAction(Request $request)
     {
         $order = $this->getNewOrderObject();

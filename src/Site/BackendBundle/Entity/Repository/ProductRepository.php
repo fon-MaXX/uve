@@ -117,15 +117,15 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             ->getOneOrNullResult()
             ;
     }
-    public function getLastByTagAndNumber($number,$tagTitle){
+    public function getLastByTagAndNumber($tagTitle,$number){
         return $this->createQueryBuilder('p')
             ->leftJoin('p.shareTags','shT')
             ->where('shT.title = :title')
             ->andWhere('p.state != :state')
             ->setParameter('title',$tagTitle)
             ->setParameter('state','только в наборе')
-            ->setMaxResults($number)
             ->orderBy('p.rating','DESC')
+            ->setMaxResults($number)
             ->getQuery()
             ->getResult()
             ;
