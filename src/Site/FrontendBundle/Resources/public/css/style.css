@@ -1977,8 +1977,21 @@ body .index-product-input{
     font-size:32px;
     font-family: GeorgiaItalic;
 }
+
+.index-novels-block .loop{
+    z-index: 10;
+}
+
 .index-popular-block{
     margin-bottom: 65px;
+}
+
+.index-popular-block .loop{
+    z-index: 0;
+}
+
+.large{
+    height: 350px;
 }
 .index-product-preview-image{
     position: relative;

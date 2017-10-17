@@ -83,8 +83,8 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $productNovels = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber('новинка',5);
-        $setNovels = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber('новинка',5);
+        $productNovels = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber('новинка',15);
+        $setNovels = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber('новинка',15);
         $productHits = $em->getRepository('SiteBackendBundle:Product')->getLastByTagAndNumber('топ продаж',5);
         $setHits = $em->getRepository('SiteBackendBundle:Set')->getLastByTagAndNumber('топ продаж',5);
         $novels = $this->bestFiveByRand($productNovels, $setNovels);
@@ -162,8 +162,8 @@ class DefaultController extends Controller
         if (!is_array($products)) $products = [];
         if (!is_array($sets)) $sets = [];
         $arr = array_merge($products, $sets);
-        if (count($arr) <= 5) return $arr;
-        $keys = array_rand($arr, 5);
+        if (count($arr) <= 15) return $arr;
+        $keys = array_rand($arr, 15);
         foreach ($arr as $k => $value) {
             if (!in_array($k, $keys)) {
                 unset($arr[$k]);
