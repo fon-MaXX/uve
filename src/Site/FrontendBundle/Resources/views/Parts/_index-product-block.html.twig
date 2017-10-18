@@ -1,5 +1,5 @@
 <h2>{{ title }}</h2>
-<div class="large columns">
+<div class="large columns col-md-12">
     <div class="loop owl-carousel owl-theme" >
 {% for item in products %}
     {% if item.shortClassName == "Product" %}
@@ -145,7 +145,7 @@
         $('.loop').owlCarousel({
             autoplay: true,
             slideSpeed: 2000,
-            items: 4,
+            items: 5,
             autoWidth: true,
             loop: true,
             margin: 50,
