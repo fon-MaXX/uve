@@ -2008,8 +2008,9 @@ body .index-product-input{
     height: 30px;
     width: 36px;
     background-size: cover;
-    right: -95px;
+    left: -95px;
     position: absolute;
+    transform: rotate(180deg);
     background: white;
     background-image: url("../images/main/ovl-nav-left.svg");
     color: transparent;
@@ -2020,9 +2021,8 @@ body .index-product-input{
     height: 30px;
     width: 36px;
     background-size: cover;
-    left: -95px;
+    right: -95px;
     position: absolute;
-    transform: rotate(180deg);
     background: white;
     background-image: url("../images/main/ovl-nav-left.svg");
     color: transparent;
@@ -2032,12 +2032,12 @@ body .index-product-input{
     background: white;
     background-image: url("../images/main/ovl-nav-right.svg");
     color: transparent;
+    transform: rotate(180deg);
 }
 .large .owl-theme .owl-next:hover{
     background: white;
     background-image: url("../images/main/ovl-nav-right.svg");
     color: transparent;
-    transform: rotate(180deg);
 }
 
 
