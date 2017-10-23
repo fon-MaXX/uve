@@ -2009,7 +2009,7 @@ body .index-product-input{
     height: 30px;
     width: 36px;
     background-size: cover;
-    left: -95px;
+    left: -85px;
     position: absolute;
     transform: rotate(180deg);
     background: white;
@@ -2022,7 +2022,7 @@ body .index-product-input{
     height: 30px;
     width: 36px;
     background-size: cover;
-    right: -95px;
+    right: -85px;
     position: absolute;
     background: white;
     background-image: url("../images/main/ovl-nav-left.svg");
