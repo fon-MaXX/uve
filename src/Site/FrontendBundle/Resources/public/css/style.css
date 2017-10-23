@@ -1981,7 +1981,14 @@ body .index-product-input{
 .index-novels-block .loop{
     z-index: 10;
 }
-
+.loop.owl-theme .owl-nav {
+    top: -230px;
+}
+.loop.owl-theme .owl-nav {
+    margin-top: 10px;
+    top: -230px;
+    position: relative;
+}
 .index-popular-block{
     margin-bottom: 65px;
 }
@@ -1993,6 +2000,47 @@ body .index-product-input{
 .large{
     height: 350px;
 }
+.large .owl-theme .owl-nav{
+    position: relative;
+    top: -555px;
+}
+.large .owl-theme .owl-prev{
+    height: 30px;
+    width: 36px;
+    background-size: cover;
+    right: -95px;
+    position: absolute;
+    background: white;
+    background-image: url("../images/main/ovl-nav-left.svg");
+    color: transparent;
+}
+
+
+.large .owl-theme .owl-next{
+    height: 30px;
+    width: 36px;
+    background-size: cover;
+    left: -95px;
+    position: absolute;
+    transform: rotate(180deg);
+    background: white;
+    background-image: url("../images/main/ovl-nav-left.svg");
+    color: transparent;
+}
+
+.large .owl-theme .owl-prev:hover{
+    background: white;
+    background-image: url("../images/main/ovl-nav-right.svg");
+    color: transparent;
+}
+.large .owl-theme .owl-next:hover{
+    background: white;
+    background-image: url("../images/main/ovl-nav-right.svg");
+    color: transparent;
+    transform: rotate(180deg);
+}
+
+
 .index-product-preview-image{
     position: relative;
 }
