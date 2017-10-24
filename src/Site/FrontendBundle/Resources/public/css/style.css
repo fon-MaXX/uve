@@ -2012,7 +2012,7 @@ body .index-product-input{
     left: -85px;
     position: absolute;
     transform: rotate(180deg);
-    background: white;
+    background: transparent;
     background-image: url("../images/main/ovl-nav-left.svg");
     color: transparent;
 }
@@ -2024,19 +2024,19 @@ body .index-product-input{
     background-size: cover;
     right: -85px;
     position: absolute;
-    background: white;
+    background: transparent;
     background-image: url("../images/main/ovl-nav-left.svg");
     color: transparent;
 }
 
 .large .owl-theme .owl-prev:hover{
-    background: white;
+    background: transparent;
     background-image: url("../images/main/ovl-nav-right.svg");
     color: transparent;
     transform: rotate(180deg);
 }
 .large .owl-theme .owl-next:hover{
-    background: white;
+    background: transparent;
     background-image: url("../images/main/ovl-nav-right.svg");
     color: transparent;
 }
@@ -4991,6 +4991,12 @@ select.global-cart-select.select-default-view,
 }
 /**************************************END-COMMENTS********************************************************************/
 /**************************************MEDIA QUERIES*******************************************************************/
+
+@media (max-width: 1266px) {
+    .large .owl-theme .owl-nav{
+        display: none;
+    }
+}
 /**************************************media-1199**********************************************************************/
 @media (max-width: 1199px) {
     /**************************************Comparison-LIST*************************************************************/
