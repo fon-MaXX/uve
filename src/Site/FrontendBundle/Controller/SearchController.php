@@ -13,6 +13,8 @@ class SearchController extends Controller
 {
     private $cartSession = 'cart_session';
     private $newCartSession = 'order_cart_session';
+    private $selectedSession = 'selected_session';
+    private $comparingSession = 'comparison_session';
     public function searchAction(Request $request){
         $form = $this->createForm(SearchType::class,[],[
             'action'=>$this->get('router')->generate('site_frontend_search')
@@ -64,16 +66,20 @@ class SearchController extends Controller
         $seo = $em->getRepository('SiteBackendBundle:StaticSeoPages')->findOneBy([
             'linkname'=>'search'
         ]);
+        $selectedNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->selectedSession);
+        $comparingNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->comparingSession);
         return $this->render('SiteFrontendBundle:Search:searchResult.html.twig', [
-                'pagination' => $pagination,
+            'pagination' => $pagination,
 //                'items'=>$items,
-                'breadcrumbs'=>$menu,
-                'staticContent'=>$staticContent,
-                'categories'=>$categories,
-                'category'=> new Category(),
-                'itemsNumber'=>$itemsNumber,
-                'searchForm'=>$form->createView(),
-                'seo'=>$seo
+            'breadcrumbs'=>$menu,
+            'staticContent'=>$staticContent,
+            'categories'=>$categories,
+            'category'=> new Category(),
+            'itemsNumber'=>$itemsNumber,
+            'searchForm'=>$form->createView(),
+            'seo'=>$seo,
+            'selected' => $selectedNumber,
+            'comparing' => $comparingNumber,
         ]);
     }
 }

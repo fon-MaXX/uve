@@ -172,6 +172,7 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             foreach ($options as $optionKey => $option) {
                 $conditions[] = $queryBuilder->expr()->like('a.title', $queryBuilder->expr()->literal('%'.$option.'%'));
             }
+            $conditions[] = $queryBuilder->expr()->neq('a.state', $queryBuilder->expr()->literal('только в наборе'));
             $andX = $queryBuilder->expr()->andX();
             $andX->addMultiple($conditions);
             $queryBuilder->andWhere($andX);
@@ -181,8 +182,10 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
         }
         return $this->createQueryBuilder('q')
             ->where('q.title LIKE :title')
+            ->andWhere('q.state != :state')
             ->orWhere('q.cod LIKE :title')
             ->setParameter('title', '%'.$title.'%')
+            ->setParameter('state','только в наборе')
             ->getQuery()
             ->getResult()
             ;
