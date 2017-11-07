@@ -29,7 +29,8 @@ class Order
     ];
     public $states = [
         'новый'=>'new',
-        'выполнен'=>'accomplished'
+        'выполнен'=>'accomplished',
+        'отменен'=>'refused',
     ];
     /**
      * @var int
