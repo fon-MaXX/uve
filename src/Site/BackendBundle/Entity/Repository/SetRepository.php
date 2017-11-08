@@ -11,9 +11,17 @@ namespace Site\BackendBundle\Entity\Repository;
 class SetRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getSetsIndexByCode(){
-        return $this->createQueryBuilder('s','s.cod')
+        $q =  $this->createQueryBuilder('s','s.cod')
             ->getQuery()
             ->getResult();
+        $result=[];
+        if($q){
+            foreach($q as $k=>$item){
+                $k = trim(mb_strtolower($k,'UTF-8'));
+                $result[$k] = $item;
+            }
+        }
+        return $result;
     }
     //    product-list filter method
     public function getForSetList(array $params, array $config){
@@ -129,7 +137,10 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
         }
         return $this->createQueryBuilder('q')
             ->where('q.title LIKE :title')
+            ->leftJoin('q.products','pr')
             ->orWhere('q.cod LIKE :title')
+            ->orWhere('pr.cod LIKE :title')
+            ->orWhere('pr.title LIKE :title')
             ->setParameter('title', '%'.$title.'%')
             ->getQuery()
             ->getResult()

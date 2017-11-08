@@ -416,4 +416,28 @@ class DefaultController extends Controller
             $route['_route'] == 'site_frontend_set_show'
         );
     }
+    public function testAction(){
+        $em=$this->getDoctrine()->getManager();
+        $products = $em->getRepository('SiteBackendBundle:Product')->findAll();
+        foreach ($products as $item){
+            $code = $item->getCod();
+            $code = trim(mb_strtolower($code,'UTF-8'));
+            $state = $item->getState();
+            $state = trim(mb_strtolower($state,'UTF-8'));
+            $item->setCod($code);
+            $item->setState($state);
+            $em->persist($item);
+        }
+        $sets = $em->getRepository('SiteBackendBundle:Set')->findAll();
+        foreach ($sets as $item){
+            $code = $item->getCod();
+            $code = trim(mb_strtolower($code,'UTF-8'));
+            $state = $item->getState();
+            $state = trim(mb_strtolower($state,'UTF-8'));
+            $item->setCod($code);
+            $item->setState($state);
+            $em->persist($item);
+        }
+        return new Response('ok');
+    }
 }

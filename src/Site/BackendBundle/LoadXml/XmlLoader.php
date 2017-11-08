@@ -37,7 +37,6 @@ class XmlLoader
         $this->shareTags = $this->em->getRepository("SiteBackendBundle:ShareTag")->getShareTagsIndexByTitle();
         $this->categories = $this->em->getRepository("SiteBackendBundle:Category")->getCategoriesWithSubCategoriesIndexByTitle();
         $this->subCategories = $this->em->getRepository("SiteBackendBundle:SubCategory")->getSubCategoriesWithCategoriesIndexByTitle();
-
     }
 
     /**
@@ -137,7 +136,7 @@ class XmlLoader
                 'method'=>'setSetComposition'
             ],
             "status_izdeliya"=>[
-                'method'=>'SetFilterAttribute',
+                'method'=>'setState',
                 'setter'=>'setState'
             ],
             "proizvoditel"=>[
@@ -162,6 +161,7 @@ class XmlLoader
                 $item = $xml->Row[$i];
                 $type = (string)$item->Cell[$this->objectTypeIndex]->Data;
                 $code = (string)$item->Cell[$this->objectCodIndex]->Data;
+                $code = trim(mb_strtolower($code,'UTF-8'));
                 if($type == "1"){
                     $setsArray[]=$item;
                 }
@@ -177,6 +177,7 @@ class XmlLoader
             $arr=[];
             foreach($setsArray as $set){
                 $code = (string)$set->Cell[$this->objectCodIndex]->Data;
+                $code = trim(mb_strtolower($code,'UTF-8'));
                 $object = (isset($this->sets[$code]))?$this->sets[$code]:new Set();
                 $object = $this->loadItem($object,$sortedParameters,$set,'set');
                 $this->em->persist($object);
@@ -225,15 +226,16 @@ class XmlLoader
 
     /**
      * unset all items which are present in new-file
-     *
      * @param $object
      * @param $type
+     * @return mixed
      */
     private function unsetItemFromList($object,$type){
         $name = 'fresh'.ucfirst($type).'s';
         $list=&$this->$name;
-        if(count($list)&&isset($list[$object->getCod()])){
-            unset($list[$object->getCod()]);
+        $cod = $object->getCod();
+        if(count($list)&&isset($list[$cod])){
+            unset($list[$cod]);
             $object->setIsFresh(true);
         }
         return $object;
@@ -251,7 +253,8 @@ class XmlLoader
         if(strlen($text)>255){
             throw new ToLongStringException("Артикул ".$text." длиннее 255");
         }
-        return $object->setCod((string)$text);
+        $code = trim(mb_strtolower((string)$text, 'UTF-8'));
+        return $object->setCod($code);
     }
 
     /**
@@ -269,6 +272,23 @@ class XmlLoader
             throw new ToLongStringException("Название ".$text." длиннее 500");
         }
         return $object->setTitle($text);
+    }
+    /**
+     * title setter
+     *
+     * @param $object
+     * @param $text
+     * @param $type
+     * @param $setter
+     * @return mixed
+     * @throws ToLongStringException
+     */
+    private function setState($object,$text,$type,$setter){
+        if(strlen($text)>255){
+            throw new ToLongStringException("Название ".$text." длиннее 500");
+        }
+        $state = trim(mb_strtolower($text,'UTF-8'));
+        return $object->setState($text);
     }
 
     /**
@@ -494,7 +514,13 @@ class XmlLoader
      */
     private function setSetComposition($object,$text,$type,$setter){
         if($type == 'set'&&$text!='-'&&$text){
-            $items = explode(';',$text);
+            $rowItems = explode(';',$text);
+            $items=[];
+            if(count($rowItems)){
+                foreach ($rowItems as $item){
+                    $items[]=trim(mb_strtolower($item,'UTF-8'));
+                }
+            }
             if($object->getProducts()&&count($object->getProducts())){
                 foreach($object->getProducts() as $product){
                     if(!count($items)||!in_array($product->getCod(),$items)){

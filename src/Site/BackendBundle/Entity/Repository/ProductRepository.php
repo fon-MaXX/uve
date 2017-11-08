@@ -11,9 +11,17 @@ namespace Site\BackendBundle\Entity\Repository;
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getProductsIndexByCode(){
-        return $this->createQueryBuilder('p','p.cod')
+        $q =  $this->createQueryBuilder('p','p.cod')
             ->getQuery()
             ->getResult();
+        $result=[];
+        if($q){
+            foreach($q as $k=>$item){
+                $k = trim(mb_strtolower($k,'UTF-8'));
+                $result[$k] = $item;
+            }
+        }
+        return $result;
     }
     public function getAllSortedByCod(){
         return $this->createQueryBuilder('p')
