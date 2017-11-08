@@ -189,9 +189,8 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
                 ->getResult();
         }
         return $this->createQueryBuilder('q')
-            ->where('q.title LIKE :title')
-            ->andWhere('q.state != :state')
-            ->orWhere('q.cod LIKE :title')
+            ->where('q.title LIKE :title AND q.state != :state')
+            ->orWhere('q.cod LIKE :title AND q.state != :state')
             ->setParameter('title', '%'.$title.'%')
             ->setParameter('state','только в наборе')
             ->getQuery()
