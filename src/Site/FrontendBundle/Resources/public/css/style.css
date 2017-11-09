@@ -2891,10 +2891,11 @@ body .index-product-input{
 }
 .product-show-cod{
     padding: 25px 0 0 35px;
-    color: #006FAB;
-    font-size: 10px;
+    color: #006fab;
+    font-size: 12px;
     font-family: MullerMedium;
     text-transform: uppercase;
+    font-weight: bold;
 }
 .product-show-state{
     padding: 0;
@@ -2930,18 +2931,19 @@ body .index-product-input{
     display: inline-block;
     width: 200px;
     padding-left: 35px;
-    font-family: MullerRegular;
-    font-weight: normal;
+    font-family: MullerThin;
     font-size: 15px;
+    font-weight: bold;
 }
 .product-show-fetures-item span{
     text-align: left;
     display: inline-block;
     width: 200px;
     margin-left: 25px;
-    font-family: MullerThin;
+    font-family: MullerRegular;
     font-size: 15px;
     padding-right: 35px;
+    font-weight: bold;
 }
 .show-form-label,
 .show-form-item{
