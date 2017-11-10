@@ -2001,6 +2001,10 @@ body .index-product-input{
     height: 350px;
 }
 
+.large .owl-stage-outer{
+    height: 500px;
+}
+
 .large .owl-theme .owl-nav{
     position: relative;
     top: -265px;
