@@ -97,6 +97,15 @@
                 </div>
                 <div class="product-fetures-wrapper">
                     <div class="index-product-price">
+                        {% if item.hasOldPrice %}
+                            <span class="index-product-old-price">
+                            {{ item.oldPrice }} <span class="smaller">грн</span>
+                            </span>
+                            <span class="index-product-new-price">{{ item.filterPrice }} <span class="smaller">грн</span></span>
+                            {#<span class="index-product-regular-price">{{ item.filterPrice }} <span class="smaller">грн</span></span>#}
+                        {% else %}
+                            <span class="index-product-regular-price">{{ item.filterPrice }} <span class="smaller">грн</span></span>
+                        {% endif %}
                         {#<span class="index-product-old-price">#}
                         {#756 <span class="smaller">грн</span>#}
                         {#</span>#}
