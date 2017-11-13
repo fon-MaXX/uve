@@ -285,6 +285,15 @@
                                                 <div class="global-cart-item-price-sum">
                                                     сумма:
                                                 </div>
+                                                {% if setItem.hasOldPrice %}
+                                                    <div>
+                                                        <div>
+                                                            <span class="index-product-old-price">
+                                                                {{ setItem.oldPrice }} <span class="smaller">грн</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
                                                 <div class="global-cart-item-price-value">
                                                     0
                                                 </div>

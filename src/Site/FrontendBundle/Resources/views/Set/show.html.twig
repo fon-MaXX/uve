@@ -131,7 +131,19 @@
             <div class="product-show-add-button-wrapper">
                 <div class="product-show-form-final-prise">
                     <span class="index-product-regular-price">
-                        <span class="set-show-item-final-price">{{ set.filterPrice }}</span><span class="smaller">грн</span>
+                        {% if set.hasOldPrice %}
+                            <span class="index-product-old-price">
+                                {{ set.oldPrice }} <span class="smaller">грн</span>
+                            </span>
+                            <span class="index-product-new-price set-show-item-final-price">
+                                {{ set.filterPrice }} <span class="smaller">грн</span>
+                            </span>
+                        {% else %}
+                            <span class="set-show-item-final-price">
+                                {{ set.filterPrice }} <span class="smaller">грн</span>
+                            </span>
+                        {% endif %}
+                        {#<span class="set-show-item-final-price">{{ set.filterPrice }}</span><span class="smaller">грн</span>#}
                     </span>
                 </div>
                 <button data-url="{{ url("site_frontend_save_temp_order_from_show",{'slug':set.slug}) }}" type="submit" form="set-show-form"  class="regular-button product-show-cart-add-button">

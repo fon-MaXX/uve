@@ -57,9 +57,22 @@
                                     </div>
                                     {% elseif item.type=='set' %}
                                         <div class="comparison-show-price-wrapper">
-                                            <span class="index-product-regular-price">
+                                            {% if item.entity.hasOldPrice %}
+                                                <span class="index-product-old-price">
+                                                {{ item.entity.oldPrice }} <span class="smaller">грн</span>
+                                            </span>
+                                                <span class="index-product-new-price">
+                                                {{ item.entity.filterPrice }}
+                                                    <span class="smaller">грн</span>
+                                            </span>
+                                            {% else %}
+                                                <span class="index-product-regular-price">
                                                 {{ item.entity.filterPrice }} <span class="smaller">грн</span>
                                             </span>
+                                            {% endif %}
+                                            {#<span class="index-product-regular-price">#}
+                                                {#{{ item.entity.filterPrice }} <span class="smaller">грн</span>#}
+                                            {#</span>#}
                                             <button data-url="{{ url('site_frontend_order_add_set',{"slug":item.entity.slug}) }}" class="index-product-buy">купить</button>
                                         </div>
                                     {% endif %}
