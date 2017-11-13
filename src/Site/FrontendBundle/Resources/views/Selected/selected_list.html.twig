@@ -39,9 +39,21 @@
                                     </div>
                                     <div class="product-fetures-wrapper">
                                         <div class="index-product-price">
-                                            <span class="index-product-regular-price">
-                                                {{ item.entity.filterPrice }}<span class="smaller">грн</span>
-                                            </span>
+                                            {% if item.entity.hasOldPrice %}
+                                                <span class="index-product-old-price">
+                                                    {{ item.entity.oldPrice }} <span class="smaller">грн</span>
+                                                </span>
+                                                <span class="index-product-new-price">
+                                                    {{ item.entity.filterPrice }} <span class="smaller">грн</span>
+                                                </span>
+                                            {% else %}
+                                                <span class="index-product-regular-price">
+                                                    {{ item.entity.filterPrice }} <span class="smaller">грн</span>
+                                                </span>
+                                            {% endif %}
+                                            {#<span class="index-product-regular-price">#}
+                                                {#{{ item.entity.filterPrice }}<span class="smaller">грн</span>#}
+                                            {#</span>#}
                                         </div>
                                         <div class="index-product-controls col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
                                             <button data-url="{{ url('site_frontend_order_add_set',{"slug":item.entity.slug}) }}" class="index-product-buy">

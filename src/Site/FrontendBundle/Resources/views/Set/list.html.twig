@@ -69,11 +69,23 @@
                                     </div>
                                     <div class="product-fetures-wrapper">
                                         <div class="index-product-price">
+                                            {% if set.hasOldPrice %}
+                                                <span class="index-product-old-price">
+                                                    {{ set.oldPrice }} <span class="smaller">грн</span>
+                                                </span>
+                                                <span class="index-product-new-price">
+                                                    {{ set.filterPrice }} <span class="smaller">грн</span>
+                                                </span>
+                                            {% else %}
+                                                <span class="index-product-regular-price">
+                                                    {{ set.filterPrice }} <span class="smaller">грн</span>
+                                                </span>
+                                            {% endif %}
                                             {#<span class="index-product-old-price">#}
                                                 {#756 <span class="smaller">грн</span>#}
                                             {#</span>#}
                                             {#<span class="index-product-new-price">656 <span class="smaller">грн</span></span>#}
-                                            <span class="index-product-regular-price">{{ set.filterPrice }} <span class="smaller">грн</span></span>
+                                            {#<span class="index-product-regular-price">{{ set.filterPrice }} <span class="smaller">грн</span></span>#}
                                         </div>
                                         <div class="index-product-controls col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
                                             <button data-url="{{ url('site_frontend_order_add_set',{"slug":set.slug}) }}" class="index-product-buy">
