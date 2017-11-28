@@ -197,6 +197,17 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
             ;
     }
+
+
+    public function getProductForSiteMap(){
+        $q=$this->createQueryBuilder('p');
+        return $q
+            ->andWhere('p.state != :state')
+            ->setParameter('state','Только в наборе')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getRandProducts($number,$id=null)
     {
         $q=$this->createQueryBuilder('p');

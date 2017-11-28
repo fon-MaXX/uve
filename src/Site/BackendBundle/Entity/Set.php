@@ -118,7 +118,7 @@ class Set
      */
     private $setGallery;
     public function hasOldPrice(){
-        if(count($this-$this->getProducts())){
+        if(count($this->getProducts())){
             foreach ($this->getProducts() as $item){
                 if($item->getSharePrice()){
                     return true;
@@ -129,7 +129,7 @@ class Set
     }
     public function getOldPrice(){
         $price=0;
-        if(count($this-$this->getProducts())){
+        if(count($this->getProducts())){
             foreach ($this->getProducts() as $item){
                 $price+=$item->getPrice();
             }

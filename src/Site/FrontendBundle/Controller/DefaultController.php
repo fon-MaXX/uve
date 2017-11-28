@@ -64,7 +64,7 @@ class DefaultController extends Controller
                 )), 'priority' => '1.0');
         }
 
-        foreach ($em->getRepository('SiteBackendBundle:Product')->findAll() as $item) {
+        foreach ($em->getRepository('SiteBackendBundle:Product')->getProductForSiteMap() as $item) {
             $urls[] = array('loc' => $this->get('router')->generate('site_frontend_product_show',
                 array('slug' => $item->getSlug())), 'priority' => '1.0');
         }
