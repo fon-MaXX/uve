@@ -45,7 +45,6 @@ class XmlLoader
      * @param $path
      * @return bool
      * @throws ItemNotValidException
-     * @throws NoCityException
      * @throws XmlNotValidException
      */
     public function parseXmlFile($path)
@@ -409,6 +408,14 @@ class XmlLoader
                 }
             }
         }
+        elseif($type == 'product'&&$text=='-'&&$text){
+            if(count($colors=$object->getInsertionColors())){
+                foreach($colors as $color){
+                    $object->removeInsertionColor($color);
+                    $color->removeProduct($object);
+                }
+            }
+        }
         return $object;
     }
     /**
@@ -421,7 +428,7 @@ class XmlLoader
      * @return mixed
      */
     private function setChainSizes($object,$text,$type,$setter){
-        if($text!='-'&&$text){
+        if($type == 'product'&&$text!='-'&&$text){
             $items = explode(';',$text);
             if($object->getChainSizes()&&count($object->getChainSizes())){
                 foreach($object->getChainSizes() as $size){
@@ -449,6 +456,14 @@ class XmlLoader
                 }
             }
         }
+        elseif($type == 'product'&&$text=='-'&&$text){
+            if(count($sizes=$object->getChainSizes())){
+                foreach($sizes as $size){
+                    $object->removeChainSize($size);
+                    $size->removeProduct($object);
+                }
+            }
+        }
         return $object;
     }
 
@@ -467,6 +482,7 @@ class XmlLoader
             if($object->getRingSizes()&&count($object->getRingSizes())){
                 foreach($object->getRingSizes() as $size){
                     if(!count($items)||!in_array($size->getTitle(),$items)){
+
                         $object->removeRingSize($size);
                         $size->removeProduct($object);
                     }
@@ -487,6 +503,14 @@ class XmlLoader
                         $this->ringSizes[$item] = $size;
                         $object->addRingSize($size);
                     }
+                }
+            }
+        }
+        elseif ($type == 'product'&&$text=='-'&&$text){
+            if(count($sizes=$object->getRingSizes())){
+                foreach($sizes as $size){
+                    $object->removeRingSize($size);
+                    $size->removeProduct($object);
                 }
             }
         }
