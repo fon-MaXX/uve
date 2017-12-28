@@ -48,3 +48,20 @@
         </a>
     </div>
 </div>
+
+<div class="top-head-block-child">
+    <div class="top-head-block-child-body block-child-body-pink">
+        <div class="block-child-body-title">
+            Запросы о контактах
+        </div>
+        <div class="block-child-body-content">
+            {{ contacts }}
+        </div>
+    </div>
+    <div class="top-head-block-child-href block-child-href-pink">
+        <a href="{{ url('admin_site_backend_contacts_list',{'filter[state][value][]':'new'}) }}">
+            Read more
+            <i class="fa fa-arrow-right"></i>
+        </a>
+    </div>
+</div>

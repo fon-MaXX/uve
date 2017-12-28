@@ -14,6 +14,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Contacts
 {
+    public $states=[
+        'новый'=>'new',
+        'недозвон'=>'dismissed',
+        'выполнен'=>'accomplished'
+    ];
+
     /**
      * @var int
      *
@@ -61,6 +67,12 @@ class Contacts
      * @ORM\Column(name="updated_at",type="datetime")
      */
     private $updatedAt;
+
+    /**
+     *
+     * @ORM\Column(name="state_field", type="string", length=255, nullable=true)
+     */
+    private $state='new';
 
     /**
      * Get id
@@ -238,5 +250,22 @@ class Contacts
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 }

@@ -10,4 +10,11 @@ namespace Site\BackendBundle\Entity\Repository;
  */
 class ContactsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllByState($state){
+        return $this->createQueryBuilder('q')
+            ->where('q.state = :state')
+            ->setParameter('state',$state)
+            ->getQuery()
+            ->getResult();
+    }
 }
