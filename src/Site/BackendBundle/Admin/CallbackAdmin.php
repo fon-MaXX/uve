@@ -56,6 +56,9 @@ class CallbackAdmin extends AbstractAdmin
             ->add('phone',null,[
                 'label'=>'Телефон'
             ])
+            ->add('createdAt', null, [
+                'label' => 'Дата создания'
+            ])
             ->add('state','choice',[
                 'editable'=>true,
                 'choices'=>array_flip($callback->states),
