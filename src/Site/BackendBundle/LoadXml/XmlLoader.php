@@ -359,6 +359,7 @@ class XmlLoader
             }
         }
         elseif($setter == "setSharePrice"){
+            $object->$setter(null);
             if(isset($this->shareTags['акция'])){
                 $tag = $this->shareTags['акция'];
                 if($object->hasShareTag($tag)){
