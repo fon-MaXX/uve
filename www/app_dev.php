@@ -11,8 +11,9 @@ use Symfony\Component\Debug\Debug;
 
 // This check prevents access to debug front controllers that are deployed by accident to production servers.
 // Feel free to remove this, extend it, or make something more sophisticated.
+//set_time_limit(240);
 if (isset($_SERVER['HTTP_CLIENT_IP'])
-    || !(in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1','134.249.146.220','195.69.222.78','::1'])
+    || !(in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1','134.249.146.220','37.44.89.255','::1'])
         || php_sapi_name() === 'cli-server')
 ) {
     header('HTTP/1.0 403 Forbidden');

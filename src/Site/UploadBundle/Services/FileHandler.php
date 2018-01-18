@@ -323,11 +323,11 @@ class FileHandler
                 $watermark= new Imagick($wPath);
                 $imHeight = $img->getImageHeight();
                 $imWidth = $img->getImageWidth();
-                $wHeight =(int)($imHeight/3);
+                $wHeight =(int)($imHeight/5);
                 $watermark->resizeImage(null,$wHeight,Imagick::FILTER_LANCZOS,1,false);
-                $paddingX=$imWidth-(int)($watermark->getImageWidth())-5;
+                $paddingX=$imWidth-(int)($watermark->getImageWidth())-20;
                 if($paddingX<0)$paddingX=0;
-                $paddingY=$imHeight-(int)($watermark->getImageHeight())-5;
+                $paddingY=$imHeight-(int)($watermark->getImageHeight())-20;
                 if($paddingY<0)$paddingY=0;
                 $img->compositeImage($watermark, imagick::COMPOSITE_OVER, $paddingX, $paddingY);
             }

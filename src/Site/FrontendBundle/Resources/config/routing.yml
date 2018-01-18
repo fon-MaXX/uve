@@ -176,6 +176,10 @@ site_frontend_add_comment:
     path:  /add-comment/{type}
     defaults: { _controller: SiteFrontendBundle:Default:addComment}
 
-site_frontend_test:
-    path:  /test
-    defaults: { _controller: SiteFrontendBundle:Default:test}
+#site_frontend_test:
+#    path:  /perform-watermark
+#    defaults: { _controller: SiteFrontendBundle:Test:watermark}
+#
+#site_frontend_test_set:
+#    path:  /set-perform-watermark
+#    defaults: { _controller: SiteFrontendBundle:Test:setWatermark}

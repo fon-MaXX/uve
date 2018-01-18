@@ -305,17 +305,17 @@ site_upload:
                    width: 100
                    height: 100
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
                 small:
                    width: 350
                    height: 350
                    action: resize_and_crop
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
         set_icon:
             type: image
             mime_type: []  # default
@@ -327,17 +327,17 @@ site_upload:
                    width: 100
                    height: 100
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
                 small:
                    width: 350
                    height: 350
                    action: resize_and_crop
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
         news_icon:
             type: image
             mime_type: []  # default
@@ -349,12 +349,12 @@ site_upload:
                    width: 350
                    height: 350
                    action: resize_and_crop
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
         product_gallery_icon:
             type: image
             mime_type: []  # default
@@ -366,17 +366,17 @@ site_upload:
                    width: 100
                    height: 100
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
                 small:
                    width: 350
                    height: 350
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
         set_gallery_icon:
             type: image
             mime_type: []  # default
@@ -388,17 +388,17 @@ site_upload:
                    width: 100
                    height: 100
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
                 small:
                    width: 350
                    height: 350
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
                 big:
                    width: 710
                    height: 510
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
         slider:
             type: image
             mime_type: []  # default
@@ -410,4 +410,4 @@ site_upload:
                    width: 850
                    height: 370
                    action: exact_resize
-                   watermark: 'bundles/sitefrontend/images/watermark-01.png'
+                   watermark: 'bundles/sitefrontend/images/watermark-with-sitename.png'
