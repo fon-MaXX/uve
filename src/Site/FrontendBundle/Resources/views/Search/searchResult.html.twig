@@ -26,32 +26,22 @@
                 {{ "Результаты поиска" }}
             </h1>
         </div>
-        <div class="static-content-wrapper search-result-wrapper">
+        <div class="search-result-wrapper">
+            <div class="product-min-height">
             {% if pagination|length %}
                 <div class="search-result-container">
                     {% for item in pagination %}
                         {% set url = "" %}
                         {% if 'Product' == item.shortClassName %}
-                            {% set url = url('site_frontend_product_show',{'slug':item.slug}) %}
+                            {#{% set url = url('site_frontend_product_show',{'slug':item.slug}) %}#}
+                            {% include "SiteFrontendBundle:Search:_productItem.html.twig" with {'item':item,'shareTags':shareTags} %}
                         {% elseif 'Set' == item.shortClassName %}
-                            {% set url = url('site_frontend_set_show',{ 'slug':item.slug }) %}
+                            {#{% set url = url('site_frontend_set_show',{ 'slug':item.slug }) %}#}
+                            {% include "SiteFrontendBundle:Search:_setItem.html.twig" with {'item':item,'shareTags':shareTags} %}
                         {% elseif 'News' == item.shortClassName %}
-                            {% set url = url('site_frontend_news_show',{ 'slug':item.slug }) %}
+                            {#{% set url = url('site_frontend_news_show',{ 'slug':item.slug }) %}#}
+                            {% include "SiteFrontendBundle:Search:_newsItem.html.twig" with {'item':item} %}
                         {% endif %}
-                        <div class="show-page-popular-item">
-                            <div class="index-product-preview-image">
-                                <div class="index-product-preview-outer-wrapper">
-                                    <div class="index-product-preview-inner-wrapper">
-                                        <a href="{{ url }}">
-                                            <img alt="Ювелирный интернет-магазин серебряных украшений Ювелир Лайф" src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="index-product-title">
-                                <span>{{ item.title }}</span>
-                            </div>
-                        </div>
                     {% endfor %}
                 </div>
             {% else %}

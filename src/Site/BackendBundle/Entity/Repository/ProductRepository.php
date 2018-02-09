@@ -31,7 +31,9 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
 //    product-list filter method
     public function getForProductList(array $params, array $config,$id, $subCategoryId=null){
         $query = $this->createQueryBuilder('p')
+            ->select('p,sc,c,sh')
             ->leftJoin('p.subCategory','sc')
+            ->leftJoin('p.shareTags','sh')
             ->leftJoin('sc.category','c');
             if($subCategoryId){
                 $query
@@ -175,7 +177,10 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
     public function search($title){
         $options = explode(' ',$title);
         if(count($options)>1){
-            $queryBuilder = $this->createQueryBuilder('a');
+            $queryBuilder = $this->createQueryBuilder('a')
+                ->select('a,sh')
+                ->leftJoin('a.shareTags','sh')
+            ;
             $conditions = [];
             foreach ($options as $optionKey => $option) {
                 $conditions[] = $queryBuilder->expr()->like('a.title', $queryBuilder->expr()->literal('%'.$option.'%'));

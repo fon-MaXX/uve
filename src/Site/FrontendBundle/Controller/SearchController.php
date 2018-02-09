@@ -47,6 +47,7 @@ class SearchController extends Controller
             $form->submit($arr);
         }
         $news = $em->getRepository('SiteBackendBundle:News')->search($title);
+
         $products = $em->getRepository('SiteBackendBundle:Product')->search($title);
         $sets = $em->getRepository('SiteBackendBundle:Set')->search($title);
         $result = array_merge($result,$products);
@@ -68,6 +69,8 @@ class SearchController extends Controller
         ]);
         $selectedNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->selectedSession);
         $comparingNumber = $this->get('fonmaxx.cart.items.number')->getSelectedNumber($this->comparingSession);
+        $shareTags=$em->getRepository('SiteBackendBundle:ShareTag')->getShareTagsIndexByTitle();
+
         return $this->render('SiteFrontendBundle:Search:searchResult.html.twig', [
             'pagination' => $pagination,
 //                'items'=>$items,
@@ -80,6 +83,7 @@ class SearchController extends Controller
             'seo'=>$seo,
             'selected' => $selectedNumber,
             'comparing' => $comparingNumber,
+            'shareTags' => $shareTags
         ]);
     }
 }

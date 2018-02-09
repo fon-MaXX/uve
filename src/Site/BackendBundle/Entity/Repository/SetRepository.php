@@ -25,7 +25,11 @@ class SetRepository extends \Doctrine\ORM\EntityRepository
     }
     //    product-list filter method
     public function getForSetList(array $params, array $config){
-        $query = $this->createQueryBuilder('s');
+        $query = $this->createQueryBuilder('s')
+            ->select('s,sh,p')
+            ->leftJoin('s.shareTags','sh')
+            ->leftJoin('s.products','p')
+        ;
         if(isset($params['range'])&&$params['range']){
             $query->andWhere('s.filterPrice > :min')
                 ->andWhere('s.filterPrice < :max')

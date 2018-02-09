@@ -1,0 +1,77 @@
+{% extends "SiteFrontendBundle::layout.html.twig" %}
+{% block header %}
+    {% include "SiteFrontendBundle:Parts:_header.html.twig" with {
+    'category': category,
+    'categories': categories,
+    'itemsNumber': itemsNumber,
+    'staticContent':staticContent,
+    'searchForm': searchForm
+    } %}
+{% endblock header %}
+{% block content %}
+    <div class="container static-content-page">
+        <div class="breadcrumbs">
+            {% if breadcrumbs|length>0 %}
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb-last"><span itemprop="title">{{ breadcrumb.title }}</span></span>
+                    {% else %}
+                        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" class="breadcrumbs-item" href="{{ breadcrumb.url }}"><span itemprop="title">{{ breadcrumb.title }}</span></a></span>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="static-title-wrapper">
+            <h1>
+                {{ "Результаты поиска" }}
+            </h1>
+        </div>
+        <div class="static-content-wrapper search-result-wrapper">
+            {% if pagination|length %}
+                <div class="search-result-container">
+                    {% for item in pagination %}
+                        {% set url = "" %}
+                        {% if 'Product' == item.shortClassName %}
+                            {% set url = url('site_frontend_product_show',{'slug':item.slug}) %}
+                        {% elseif 'Set' == item.shortClassName %}
+                            {% set url = url('site_frontend_set_show',{ 'slug':item.slug }) %}
+                        {% elseif 'News' == item.shortClassName %}
+                            {% set url = url('site_frontend_news_show',{ 'slug':item.slug }) %}
+                        {% endif %}
+                        <div class="show-page-popular-item">
+                            <div class="index-product-preview-image">
+                                <div class="index-product-preview-outer-wrapper">
+                                    <div class="index-product-preview-inner-wrapper">
+                                        <a href="{{ url }}">
+                                            <img alt="Ювелирный интернет-магазин серебряных украшений Ювелир Лайф" src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="index-product-title">
+                                <span>{{ item.title }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="order-message-box">
+                    Поиск не дал результатов..
+                </div>
+            {% endif %}
+        </div>
+        <div class="product-list-pagination-wrapper">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock content %}
+{% block seo %}
+    <meta name="robots" content="noindex, follow" />
+    <title>{{ seo.title }}</title>
+    {% if seo.description %}
+        <meta name="description" content="{{ seo.description }}">
+    {% endif %}
+    {% if seo.keywords %}
+        <meta name="keywords" content="{{ seo.keywords }}">
+    {% endif %}
+{% endblock seo %}

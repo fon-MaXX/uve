@@ -1,0 +1,61 @@
+<div class="default-popular-item serach-result">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding index-product-item">
+        <div class="index-product-preview-image">
+            {% if item.hasShareTag(shareTags['топ продаж']) %}
+                <div class="share-marker share-marker-hot"></div>
+            {% elseif item.hasShareTag(shareTags['новинка']) %}
+                <div class="share-marker share-marker-novel"></div>
+            {% elseif item.hasShareTag(shareTags['акция']) %}
+                <div class="share-marker share-marker-share"></div>
+            {% endif %}
+            {#<div class="share-marker share-marker-hot"></div>#}
+            {#<div class="share-marker share-marker-share"></div>#}
+            {#<div class="share-marker share-marker-novel"></div>#}
+            <div class="index-product-preview-outer-wrapper">
+                <div class="index-product-preview-inner-wrapper">
+                    <a href="{{ path('site_frontend_product_show',{'slug':item.slug}) }}">
+                        <img alt="{{ item.title }}. Фото." src="{{ (item.poster)?item.poster|json_decode.small:asset("bundles/sitefrontend/images/main/no-image.png") }}">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="index-product-title">
+            <span>{{ item.title }}</span>
+        </div>
+        <div class="product-fetures-wrapper">
+            <div class="index-product-price">
+                {% if item.sharePrice %}
+                    <span class="index-product-old-price">
+                                    {{ item.price }} <span class="smaller">грн</span>
+                                </span>
+                    <span class="index-product-new-price">
+                                    {{ item.sharePrice }} <span class="smaller">грн</span>
+                                </span>
+                {% else %}
+                    <span class="index-product-regular-price">
+                                    {{ item.price }} <span class="smaller">грн</span>
+                                </span>
+                {% endif %}
+            </div>
+            <div class="index-product-controls col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                <button data-url="{{ url('site_frontend_order_add_product',{"slug":item.slug}) }}" class="index-product-buy">
+                    купить
+                </button>
+            </div>
+            <div class="index-product-shortcut-wrapper">
+                <div><strong>Металл:</strong>  {{ item.metal }};</div>
+                <div><strong>Средний вес, г:</strong>  {{ item.weight }};</div>
+                <div><strong>Тип вставки:</strong>  {{ (item.insertionType)?item.insertionType:"Без вставки" }};</div>
+                <div class="product-state {{ item.state|product_state }}"><span>{{ item.state }}</span></div>
+                <div class="selected-button-wrapper">
+                                <span data-url="{{ url("site_frontend_selected_add_product",{'slug':item.slug}) }}" class="selected-item">
+                                    <span>добавить<br> в избранное</span>
+                                </span>
+                    <span data-url="{{ url("site_frontend_comparing_add_product",{'slug':item.slug}) }}" class="comparison-item">
+                                    <span>добавить<br> в сравнение</span>
+                                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

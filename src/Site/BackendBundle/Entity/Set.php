@@ -513,6 +513,7 @@ class Set
      */
     public function removeShareTag(\Site\BackendBundle\Entity\ShareTag $shareTag)
     {
+        $shareTag->removeSet($this);
         $this->shareTags->removeElement($shareTag);
     }
 
@@ -528,6 +529,20 @@ class Set
     public function hasShareTag(ShareTag $tag)
     {
         return $this->getShareTags()->contains($tag);
+    }
+    public function hasDiscountTag(ShareTag $tag)
+    {
+//        $state = $this->getShareTags()->contains($tag);
+        $state = false;
+        if(count($products = $this->getProducts())){
+            foreach ($products as $item){
+                if($item->hasShareTag($tag)){
+                    $state = true;
+                    break;
+                }
+            }
+        }
+        return $state;
     }
     /**
      * Constructor

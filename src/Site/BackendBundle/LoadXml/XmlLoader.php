@@ -179,6 +179,9 @@ class XmlLoader
                 $code = trim(mb_strtolower($code,'UTF-8'));
                 $object = (isset($this->sets[$code]))?$this->sets[$code]:new Set();
                 $object = $this->loadItem($object,$sortedParameters,$set,'set');
+                if(!$object->hasDiscountTag($this->shareTags['акция'])){
+                    $object->removeShareTag($this->shareTags['акция']);
+                }
                 $this->em->persist($object);
                 $arr[]=$object;
             }
